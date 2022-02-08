@@ -1,0 +1,2 @@
+!/bin/sh
+rsync -av ./ usygecy@ftp.cluster031.hosting.ovh.net --include=public/build --include=vendor --include=.env --exclude-from=.gitignore --exclude=".\*"
