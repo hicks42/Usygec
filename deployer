@@ -1,3 +1,0 @@
-#!/bin/zsh
-
-rsync -av app/ usygecy@ftp.cluster031.hosting.ovh.net:~/ --include=public/build --include=.env --exclude-from=.gitignore --exclude=".\*"
