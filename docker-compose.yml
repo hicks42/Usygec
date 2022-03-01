@@ -1,7 +1,7 @@
 version: '3'
 
 networks:
-    usygec:
+    app-usygec:
 
 services:
 
@@ -16,10 +16,11 @@ services:
             - usygec-mysql56-service
         volumes:
             - ./php/vhosts:/etc/apache2/sites-enabled
-            - ./app:/var/www/usygec
+            - ./app:/var/www/project
+            - ./shopdemo:/var/www/shopdemo
         restart: always
         networks:
-            - usygec
+            - app-usygec
 
     # php
     usygec-php74-service:
@@ -28,9 +29,10 @@ services:
             dockerfile: ./php/Dockerfile
         container_name: usygec-php74-container
         volumes:
-            - ./app:/var/www/usygec
+            - ./app:/var/www/project
+            - ./shopdemo:/var/www/shopdemo
         networks:
-            - usygec
+            - app-usygec
 
     # mysql
     usygec-mysql56-service:
@@ -46,7 +48,7 @@ services:
             MYSQL_ROOT_PASSWORD: secret
             MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
         networks:
-            - usygec
+            - app-usygec
 
     #phpmyadmin
     usygec-phpmyadmin:
@@ -60,17 +62,17 @@ services:
         environment:
             PMA_HOST: usygec-mysql56-service
         networks:
-            - usygec
+            - app-usygec
 
     # node
     usygec-node-service:
         image: node:14.17.5
         container_name: usygec-node-container
         volumes:
-            - ./app:/var/www/usygec
-        working_dir: /var/www/usygec
+            - ./app:/var/www/project
+        working_dir: /var/www/project
         networks:
-            - usygec
+            - app-usygec
         ports:
             - "8082:8080"
         command: ["yarn", "dev-server", "--host=0.0.0.0"]
