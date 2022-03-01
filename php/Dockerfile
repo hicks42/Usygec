@@ -27,12 +27,10 @@ RUN apt-get update && apt-get install -y libmagickwand-dev --no-install-recommen
 RUN printf "\n" | pecl install imagick
 RUN docker-php-ext-enable imagick
 
-# RUN npm install --global yarn
-
 RUN git config --global user.email "gerin.patrice@yahoo.fr" \
     &&  git config --global user.name "patrice"
 
-CMD tail -f /dev/null
 
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 
-WORKDIR /var/www/usygec
+WORKDIR /var/www/project

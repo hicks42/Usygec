@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!
+{% endblock %}
+
+{% block body %}
+	<div class="example-wrapper">
+		<h1>Usygec</h1>
+
+		Nos réalisations:
+		<ul>
+			<li>ShopDemo
+				<code>
+					{# <a href="{{ path('%kernel.project_dir%/shopdemo/public') }}">Voir</a> #}
+					{{ dump(app.request.server.get('DOCUMENT_ROOT')) }}
+					<a href="#">Voir</a>
+				</code>
+			</li>
+		</ul>
+	</div>
+{% endblock %}
