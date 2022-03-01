@@ -1,19 +1,51 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<html class="no-js" lang="fr">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="x-ua-compatible" content="ie=edge"/>
+		{% block title %}Usygec - Solutions pour le web.
+		{% endblock %}
+		<meta name="description" content=""/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg"/>
+		<!-- Place favicon.ico in the root directory -->
+
+		<!-- Web Font -->
+		<link
+		href="https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> <!-- ========================= CSS here ========================= -->
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		{% block body %}
+			<!-- Preloader -->
+			<div class="preloader">
+				<div class="preloader-inner">
+					<div class="preloader-icon">
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+			</div>
+			<!-- /End Preloader -->
+			{% block content %}{% endblock %}
+			{{ include('main/partials/_footer.html.twig') }}
+		{% endblock %}
+	</body>
+	<script type="text/javascript">
+		// ========= glightbox
+GLightbox({
+'href': 'https://www.youtube.com/watch?v=r44RKWyfcFw&fbclid=IwAR21beSJORalzmzokxDRcGfkZA1AtRTE__l5N4r09HcGS5Y6vOluyouM9EM',
+'type': 'video',
+'source': 'youtube', // vimeo, youtube or local
+'width': 900,
+'autoplayVideos': true
+});
+	</script>
 </html>

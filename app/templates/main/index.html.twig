@@ -3,19 +3,29 @@
 {% block title %}Hello MainController!
 {% endblock %}
 
-{% block body %}
-	<div class="example-wrapper">
-		<h1>Usygec</h1>
 
+{% block content %}
+	<h1>Usygec</h1>
+	<div class="">
 		Nos réalisations:
 		<ul>
 			<li>ShopDemo
 				<code>
-					{# <a href="{{ path('%kernel.project_dir%/shopdemo/public') }}">Voir</a> #}
-					{{ dump(app.request.server.get('DOCUMENT_ROOT')) }}
 					<a href="#">Voir</a>
 				</code>
 			</li>
 		</ul>
 	</div>
+	{# {{ include('main/partials/_header.html.twig') }} #}
+	{# {{ include('main/partials/_hero.html.twig') }} #}
+	{# {{ include('main/partials/_service.html.twig') }} #}
+	{# {{ include('main/partials/_aboutus.html.twig') }} #}
+	{# {{ include('main/partials/_video.html.twig') }} #}
+	{# {{ include('main/partials/_pricing.html.twig') }} #}
+	{# {{ include('main/partials/_version.html.twig') }} #}
+	{# {{ include('main/partials/_news.html.twig') }} #}
+	{# {{ include('main/partials/_newsletter.html.twig') }} #}
+	{# {{ include('main/partials/_brand.html.twig') }} #}
+		<a href="#" class="scroll-top btn-hover"> <i class="lni lni-chevron-up"></i>
+	</a>
 {% endblock %}
