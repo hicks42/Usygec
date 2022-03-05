@@ -1,4 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import "~bootstrap/scss/bootstrap";
+
+// @import "shared/variables";
+@import "components/animate";
+@import "components/bootstrap.min";
+@import "components/glightbox.min";
+@import "components/LineIcons.2.0";
+@import "components/main";
+@import "components/tiny-slider";
+@import "scss/main";
 
 body {
   background-color: lightgray;

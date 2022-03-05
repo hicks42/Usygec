@@ -1,3 +1,4 @@
 #!/bin/sh
 docker-compose run --rm usygec-node-service yarn build
-rsync -av app/ usygecy@ftp.cluster031.hosting.ovh.net:~/ --include=public/build --include=.env --exclude-from=.gitignore --exclude=".\*"
+rsync -av app/ usygecy@ftp.cluster031.hosting.ovh.net:~/ --include=public/build --include="vendor" --include=.env --exclude-from=.gitignore --exclude=".\*" --exclude="node_modules" --exclude="assets"
+ssh usygecy@ftp.cluster031.hosting.ovh.net 'bin/console cache:clear'
