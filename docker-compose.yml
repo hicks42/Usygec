@@ -70,6 +70,7 @@ services:
         container_name: usygec-node-container
         volumes:
             - ./app:/var/www/project
+            - ./shopdemo:/var/www/shopdemo
         working_dir: /var/www/project
         networks:
             - app-usygec

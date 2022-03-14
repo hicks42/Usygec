@@ -1,4 +1,7 @@
+# nodemodules
+/app/node_modules/*
 # Cache and logs (Symfony2)
+/mysql/*
 /app/cache/*
 /app/logs/*
 !app/cache/.gitkeep
