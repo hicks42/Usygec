@@ -17,7 +17,7 @@ services:
         volumes:
             - ./php/vhosts:/etc/apache2/sites-enabled
             - ./app:/var/www/project
-            # - ./shopdemo:/var/www/shopdemo
+            - ./shopdemo:/var/www/shopdemo
         restart: always
         networks:
             - app-usygec
@@ -30,7 +30,7 @@ services:
         container_name: usygec-php74-container
         volumes:
             - ./app:/var/www/project
-            # - ./shopdemo:/var/www/shopdemo
+            - ./shopdemo:/var/www/shopdemo
         networks:
             - app-usygec
 
@@ -70,6 +70,7 @@ services:
         container_name: usygec-node-container
         volumes:
             - ./app:/var/www/project
+            - ./shopdemo:/var/www/shopdemo
         working_dir: /var/www/project
         networks:
             - app-usygec
