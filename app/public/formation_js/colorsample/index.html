@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
+  </style>
+  <link rel="stylesheet" href="./style.css">
+  <title>Color sample</title>
+</head>
+
+<body>
+
+  <div class="colors">
+    <div class="color">
+      <h2>Hex</h2>
+      <div class="controls">
+        <button class="adjust"><em class="fa fa-sliders-h"></em></button>
+        <button class="lock"><em class="fa fa-lock-open"></em></button>
+      </div>
+      <div class="sliders">
+        <button class="close-adjustment">x</button>
+        <span>Hue</span>
+        <input type="range" min="0" max="360" step="1" name="hue" class="hue-input" data-hue="0">
+        <span>brightness</span>
+        <input type="range" min="0" max="1" step="0.01" name="brightness" class="bright-input" data-bright="0">
+        <span>saturation</span>
+        <input type="range" min="0" max="1" step="0.01" name="saturation" class="sat-input" data-sat="0">
+      </div>
+    </div>
+    <div class="color">
+      <h2>Hex</h2>
+      <div class="controls">
+        <button class="adjust"><em class="fa fa-sliders-h"></em></button>
+        <button class="lock"><em class="fa fa-lock-open"></em></button>
+      </div>
+      <div class="sliders">
+        <button class="close-adjustment">x</button>
+        <span>Hue</span>
+        <input type="range" min="0" max="360" step="1" name="hue" class="hue-input" data-hue="1">
+        <span>brightness</span>
+        <input type="range" min="0" max="1" step="0.01" name="brightness" class="bright-input" data-bright="1">
+        <span>saturation</span>
+        <input type="range" min="0" max="1" step="0.01" name="saturation" class="sat-input" data-sat="1">
+      </div>
+    </div>
+    <div class="color">
+      <h2>Hex</h2>
+      <div class="controls">
+        <button class="adjust"><em class="fa fa-sliders-h"></em></button>
+        <button class="lock"><em class="fa fa-lock-open"></em></button>
+      </div>
+      <div class="sliders">
+        <button class="close-adjustment">x</button>
+        <span>Hue</span>
+        <input type="range" min="0" max="360" step="1" name="hue" class="hue-input" data-hue="2">
+        <span>brightness</span>
+        <input type="range" min="0" max="1" step="0.01" name="brightness" class="bright-input" data-bright="2">
+        <span>saturation</span>
+        <input type="range" min="0" max="1" step="0.01" name="saturation" class="sat-input" data-sat="2">
+      </div>
+    </div>
+    <div class="color">
+      <h2>Hex</h2>
+      <div class="controls">
+        <button class="adjust"><em class="fa fa-sliders-h"></em></button>
+        <button class="lock"><em class="fa fa-lock-open"></em></button>
+      </div>
+      <div class="sliders">
+        <button class="close-adjustment">x</button>
+        <span>Hue</span>
+        <input type="range" min="0" max="360" step="1" name="hue" class="hue-input" data-hue="3">
+        <span>brightness</span>
+        <input type="range" min="0" max="1" step="0.01" name="brightness" class="bright-input" data-bright="3">
+        <span>saturation</span>
+        <input type="range" min="0" max="1" step="0.01" name="saturation" class="sat-input" data-sat="3">
+      </div>
+    </div>
+    <div class="color">
+      <h2>Hex</h2>
+      <div class="controls">
+        <button class="adjust"><em class="fa fa-sliders-h"></em></button>
+        <button class="lock"><em class="fa fa-lock-open"></em></button>
+      </div>
+      <div class="sliders">
+        <button class="close-adjustment">x</button>
+        <span>Hue</span>
+        <input type="range" min="0" max="360" step="1" name="hue" class="hue-input" data-hue="4">
+        <span>brightness</span>
+        <input type="range" min="0" max="1" step="0.01" name="brightness" class="bright-input" data-bright="4">
+        <span>saturation</span>
+        <input type="range" min="0" max="1" step="0.01" name="saturation" class="sat-input" data-sat="4">
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="library-panel">
+      <button class="library"><em class="fas fa-book-open"></em></button>
+      <p>Library</p>
+    </div>
+    <div class="generate-panel">
+      <button class="generate"><em class="fas fa-sync"></em></button>
+      <p>Generate</p>
+    </div>
+    <div class="save-panel">
+      <button class="save"><em class="fas fa-save"></em></button>
+      <p>Save</p>
+    </div>
+    <div class="raz-panel">
+      <button class="raz"><em class="fas fa-broom"></em></button>
+      <p>Remise a zero</p>
+    </div>
+  </div>
+
+  <div class="copy-container">
+    <div class="copy-popup">
+      <h3>Copied to clipboard</h3>
+      <h4>&#128077;</h4>
+    </div>
+  </div>
+
+  <div class="save-container">
+    <div class="save-popup">
+      <button class="close-save">x</button>
+      <h4>Give a name to your palette</h4>
+      <input type="text" max-length="35" class="save-me">
+      <button type="submit" class="submit-save">Save</button>
+    </div>
+  </div>
+
+  <div class="library-container">
+    <div class="library-popup">
+      <button class="close-library">x</button>
+      <h4>Pick your palette</h4>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.js"
+    integrity="sha512-TsDUjQW16/G8fz4gmgTOBW2s2Oi6TPUtQ6/hm+TxZZdkQtQrK5xEFIE0rgDuz5Cl1xQU1u3Yer7K5IuuBeiCqw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"
+    integrity="sha512-zInFF17qBFVvvvFpIfeBzo7Tj7+rQxLeTJDmbxjBz5/zIr89YVbTNelNhdTT+/DCrxoVzBeUPVFJsczKbB7sew=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./app.js"></script>
+</body>
+
+</html>

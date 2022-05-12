@@ -39,7 +39,7 @@ Author: GrayGrids
         }
     };
 
-    // for menu scroll 
+    // for menu scroll
     var pageLink = document.querySelectorAll('.page-scroll');
 
     pageLink.forEach(elem => {
@@ -93,7 +93,7 @@ Author: GrayGrids
         };
     };
 
-    //====== counter up 
+    //====== counter up
     var cu = new counterUp({
         start: 0,
         duration: 2000,

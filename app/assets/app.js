@@ -8,18 +8,31 @@
 // any CSS you import will output into a single css file (app.css in this case)
 
 import './styles/app.scss';
+
+
+import './js/bootstrap.min.js';
+import './js/count-up.min.js';
+import './js/wow.min.js';
+import './js/tiny-slider.js';
+import './js/glightbox.min.js';
+import './js/imagesloaded.min.js';
+import './js/isotope.min.js';
 import './js/main.js';
 
 // start the Stimulus application
 import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
 
-import './bootstrap'; //css
+window.Popper = require('./js/popper.js');
+
+// import './bootstrap'; //css replaced by bootstrap.min
 import 'bootstrap'; //dans node_modules
 
 import { Tooltip, Toast, Popover } from 'bootstrap';
 
-$(function () {
-  $('[data-toogle="tooltip"]').tooltip()
+$(document).ready(function() {
+  $('[data-toggle="popover"]').popover();
 });
 
 // ========= glightbox

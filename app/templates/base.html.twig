@@ -11,17 +11,19 @@
 				{% block title %}{% endblock %}
 			</title>
 			<link
-			rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg"/>
+			rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
 			<!-- Place favicon.ico in the root directory -->
 
 			{% block stylesheets %}
 				{{ encore_entry_link_tags('app') }}
+				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 			{% endblock %}
 
 			{% block javascripts %}
 				{{ encore_entry_script_tags('app') }}
 			{% endblock %}
 		{% endblock %}
+
 	</head>
 	<body>
 		{% block body %}
