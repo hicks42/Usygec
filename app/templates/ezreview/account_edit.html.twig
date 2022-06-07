@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccountController!
+{% endblock %}
+
+{% block content %}
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 co-12">
+				<div class="form-container">
+					<h3>Modifier de votre compte</h3>
+					{{ form_start(form, {"method": "PATCH"}) }}
+					<div class="row">
+						<div class="col-md-12">
+							{{ form_row(form.email) }}
+							{{ form_row(form.googlUrl) }}
+							{{ form_rest(form) }}
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary btn-lg btn-block my-5">
+						Apply changes
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
