@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'ezreview_base.html.twig' %}
 
 {% block title %}Hello AccountController!
 {% endblock %}
@@ -12,16 +12,27 @@
 					<h3>Ceci est la page de votre compte</h3>
 					<div class="w-50 my-5">
 						<div class="my-2">
+							<strong>Société:</strong><br>
+							{{user.company}}
+						</div>
+						<div class="my-2">
 							<strong>e-mail:</strong>
 							{{user.email}}
 						</div>
 						<div class="my-2">
-							<strong>Url googlereview:
-							</strong><br>
-							{{(user.googlUrl|slice(34, 50) ~ '...')|raw}}</div>
+							<strong>Url googlereview:</strong><br>
+							{{(user.googlUrl|slice(34, 50) ~ '...')|raw}}
+						</div>
+						<div class="my-2">
+							<strong>Page Bad Review:</strong><br>
+							{{user.badRevUrl}}
+						</div>
 					</div>
+					<div class="flex justify-around text-center">
+						<a href="{{ path('account_edit') }}" class="btn btn-primary btn  w-3">Modifier</a>
+					</div>
+					<a href="{{ path('ezreview') }}" class="btn btn-secondary btn w-3">Retour</a>
 				</div>
-				<a href="{{ path('account_edit') }}" class="btn btn-primary btn-lg btn-block">Modifier</a>
 			</div>
 		</div>
 	</div>

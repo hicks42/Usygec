@@ -9,20 +9,20 @@
 
 import './styles/app.scss';
 
-
 import './js/bootstrap.min.js';
 import './js/count-up.min.js';
-import './js/wow.min.js';
 import './js/tiny-slider.js';
 import './js/glightbox.min.js';
 import './js/imagesloaded.min.js';
 import './js/isotope.min.js';
+import './js/wow.min.js';
+import './js/web-animations.min.js';
 import './js/main.js';
 
 // start the Stimulus application
-import $ from 'jquery';
-window.jQuery = $;
-window.$ = $;
+// import $ from 'jquery';
+const $ = require('jquery');
+global.$ = global.jQuery = $;
 
 window.Popper = require('./js/popper.js');
 
@@ -34,15 +34,6 @@ import { Tooltip, Toast, Popover } from 'bootstrap';
 $(document).ready(function() {
   $('[data-toggle="popover"]').popover();
 });
-
-// ========= glightbox
-GLightbox({
-  'href': 'https://www.youtube.com/watch?v=r44RKWyfcFw&fbclid=IwAR21beSJORalzmzokxDRcGfkZA1AtRTE__l5N4r09HcGS5Y6vOluyouM9EM',
-  'type': 'video',
-  'source': 'youtube', // vimeo, youtube or local
-  'width': 900,
-  'autoplayVideos': true
-  });
 
 // faire apparaître le nom de l’image apparaît dans le champs du formulaire
 $('.custom-file-input').on('change', function (e) {

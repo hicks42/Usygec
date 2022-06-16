@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'ezreview_base.html.twig' %}
 
 {% block title %}Hello AccountController!
 {% endblock %}
@@ -13,8 +13,10 @@
 					{{ form_start(form, {"method": "PATCH"}) }}
 					<div class="row">
 						<div class="col-md-12">
+							{{ form_row(form.company) }}
 							{{ form_row(form.email) }}
 							{{ form_row(form.googlUrl) }}
+							{{ form_row(form.badRevUrl) }}
 							{{ form_rest(form) }}
 						</div>
 					</div>
@@ -22,6 +24,7 @@
 						Apply changes
 					</button>
 				</div>
+				<a href="{{ path('ezreview') }}" class="btn btn-secondary btn w-3">Retour</a>
 			</div>
 		</div>
 	</div>

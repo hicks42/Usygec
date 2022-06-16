@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AccountController extends AbstractController
 {
     /**
-     * @Route("/account", name="account")
+     * @Route("/ezreview/account", name="account")
      */
     public function show(Security $security): Response
     {
@@ -26,7 +26,7 @@ class AccountController extends AbstractController
     }
 
     /**
-     * @Route("/edit", name="account_edit", methods={"GET", "POST"})
+     * @Route("/ezreview/account/edit", name="account_edit", methods={"GET", "POST"})
      * @IsGranted("IS_AUTHENTICATED_FULLY"))
      */
     public function edit(Request $request, EntityManagerInterface $em): Response
