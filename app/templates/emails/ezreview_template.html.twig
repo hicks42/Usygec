@@ -1,0 +1,105 @@
+{% apply inline_css %}
+<style>
+	.container {
+		background-color: #F3F3F3;
+		font-family: "Spartan", sans-serif;
+		font-weight: normal;
+		font-style: normal;
+		color: #7A7A7A;
+		overflow-x: hidden;
+		font-size: 14px;
+	}
+
+	@media(min-width: 992px) {
+		.col-lg-12 {
+			flex: 0 0 auto;
+			width: 100%;
+		}
+	}
+
+	.row {
+		--bs-gutter-x: 1.5px;
+		--bs-gutter-y: 0;
+		display: flex;
+		flex-wrap: wrap;
+		margin-top: calc(var(--bs-gutter-y) * -1);
+		margin-right: calc(var(--bs-gutter-x) / -2);
+		margin-left: calc(var(--bs-gutter-x) / -2);
+	}
+
+	.form-container {
+		margin: 220px auto;
+		width: 80%;
+	}
+
+	form > label {
+		margin: 10px;
+	}
+
+	.btn-gd {
+		display: block;
+		color: #fff;
+		background-color: #2E924F;
+		text-align: center;
+		text-decoration: none;
+		vertical-align: middle;
+		cursor: pointer;
+		border-radius: 5px;
+		font-size: 1rem;
+		width: 40%;
+		padding: 5px;
+		margin: 0 10px;
+	}
+
+	.btn-bd {
+		display: block;
+		color: #000;
+		background-color: #F9B338;
+		text-align: center;
+		text-decoration: none;
+		vertical-align: middle;
+		cursor: pointer;
+		border-radius: 5px;
+		font-size: 1rem;
+		width: 40%;
+		padding: 5px;
+		margin: 0 10px;
+	}
+
+	.message {
+		margin: 10px 0;
+	}
+
+	.bouton-container {
+		align-items: center;
+		display: flex;
+		justify-content: space-around;
+	}
+</style>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12 co-12">
+			<div class="form-container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>{{ subject }}</h2>
+						<p>Mail en provenance de
+							{{company}}</p>
+						<div class="message">Bonjour.<br>
+							T'es content de ton passage chez nous?</div>
+						<div class="bouton-container">
+							{% set returnUrl = app.request.getSchemeAndHttpHost() ~ "/badreview/" ~ returnMail %}
+							<a
+								href="{{returnUrl}}" class="btn-bd">
+								{# <a href="{{ app.request.getSchemeAndHttpHost() }}{{ badRevUrl }}" class="btn-bd"> #}
+								plutot une mauvaise experience</a>
+							<a href="{{ googleUrl }}" class="btn-gd">
+								plutot une bonne experience</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endapply %}

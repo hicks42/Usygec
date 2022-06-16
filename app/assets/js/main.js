@@ -8,7 +8,7 @@ Author: GrayGrids
 
     window.onload = function () {
         window.setTimeout(fadeout, 500);
-    }
+    };
 
     function fadeout() {
         document.querySelector('.preloader').style.opacity = '0';
@@ -64,11 +64,11 @@ Author: GrayGrids
     );
     navbarToggler.addEventListener('click', function () {
         navbarToggler.classList.toggle("active");
-    })
+    });
     // WOW active
-    new WOW().init();
 
-    let filterButtons = document.querySelectorAll('.portfolio-btn-wrapper button');
+    // new WOW().init();
+    let filterButtons = document.querySelectorAll('.btn');
     filterButtons.forEach(e =>
         e.addEventListener('click', () => {
 
@@ -81,7 +81,7 @@ Author: GrayGrids
 
     var elements = document.getElementsByClassName("portfolio-btn");
     for (var i = 0; i < elements.length; i++) {
-        elements[i].onclick = function () {
+        elements[i].onclick = function() {
             var el = elements[0];
             while (el) {
                 if (el.tagName === "BUTTON") {
@@ -91,15 +91,15 @@ Author: GrayGrids
             }
             this.classList.add("active");
         };
-    };
+    }
 
     //====== counter up
-    var cu = new counterUp({
-        start: 0,
-        duration: 2000,
-        intvalues: true,
-        interval: 100,
-        append: " ",
-    });
-    cu.start();
+    // var cu = new counterUp({
+    //     start: 0,
+    //     duration: 2000,
+    //     intvalues: true,
+    //     interval: 100,
+    //     append: " ",
+    // });
+    // cu.start();
 })();

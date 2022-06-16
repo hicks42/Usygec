@@ -1,0 +1,90 @@
+{% apply inline_css %}
+<style>
+	body {
+		background-color: lightgray;
+		font-family: "Spartan", sans-serif;
+		font-weight: normal;
+		font-style: normal;
+		color: #6e657e;
+		overflow-x: hidden;
+		font-size: 14px;
+	}
+
+	@media(min-width: 992px) {
+		.col-lg-12 {
+			flex: 0 0 auto;
+			width: 100%;
+		}
+	}
+
+	.row {
+		--bs-gutter-x: 1.5rem;
+		--bs-gutter-y: 0;
+		display: flex;
+		flex-wrap: wrap;
+		margin-top: calc(var(--bs-gutter-y) * -1);
+		margin-right: calc(var(--bs-gutter-x) / -2);
+		margin-left: calc(var(--bs-gutter-x) / -2);
+	}
+
+	.form-container {
+		margin: 220px auto;
+		width: 50%;
+	}
+
+	form > label {
+		margin: 1rem;
+	}
+
+	.btn {
+		display: block;
+		color: #fff;
+		background-color: #0d6efd;
+		border-color: #0d6efd;
+		text-align: center;
+		text-decoration: none;
+		vertical-align: middle;
+		cursor: pointer;
+		border: 1px solid transparent;
+		font-size: 1rem;
+		width: 30%;
+		padding: 0.375rem 0.75rem;
+		margin: 0 0.75rem;
+		transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+		border-radius: 0.25rem;
+	}
+
+	.message {
+		margin: 1rem 0;
+	}
+
+	.bouton-container {
+		align-items: center;
+		display: flex;
+		justify-content: space-around;
+	}
+</style>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12 co-12">
+			<div class="form-container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>Mail en provenance de
+							{{company}}</h3>
+						<p>{{ subject }}</p>
+						<div class="message">Bonjour.<br>
+							T'es content de ton passage chez nous?</div>
+						<div class="bouton-container">
+							<a href="{{googleUrl}}" class="btn btn-primary btn-lg btn-block my-5">
+								plutot une bonne experience</a>
+							<a href="{{badRevUrl}}" class="btn btn-primary btn-lg btn-block my-5">
+								plutot une mauvaise experience</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endapply %}

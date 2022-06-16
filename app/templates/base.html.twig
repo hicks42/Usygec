@@ -19,18 +19,20 @@
 				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 			{% endblock %}
 
-			{% block javascripts %}
-				{{ encore_entry_script_tags('app') }}
-			{% endblock %}
+
 		{% endblock %}
 
 	</head>
 	<body>
 		{% block body %}
+			{{ include('main/partials/_message_flash.html.twig') }}
 			{{ include('main/partials/_header.html.twig') }}
 			{{ include('main/partials/_preloader.html.twig') }}
 			{% block content %}{% endblock %}
 			{{ include('main/partials/_footer.html.twig') }}
+		{% endblock %}
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</body>
 </html>
