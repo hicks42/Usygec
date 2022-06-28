@@ -7,26 +7,29 @@
 {% block content %}
 
 	<div class="container">
-		<div class="etbl-card bg-light rounded overflow-hidden my-3 p-2">
-			<div class="row">
-				<div class="col-lg-12 co-12">
-					<div class="form-container">
-						<h1>Compte de
-							{{ user.company}}</h1>
-						<a href="{{ path('ezreview') }}" class="btn btn-secondary btn w-3">
-							<i class="fa-solid fa-angles-left"></i>
-							Retour</a>
-						<div class="my-3">
+		<div class="row">
+			<div class="col-lg-12 co-12">
+				<div class="form-container">
+					<h2>Compte de
+						{{ user.company}}</h2>
+					<a href="{{ path('ezreview') }}" class="btn btn-secondary btn w-3">
+						<i class="fa-solid fa-angles-left"></i>
+						Retour</a>
+					<div class="my-3">
+						<div class="bg-light rounded overflow-hidden my-3 p-2">
 							<div class="my-4">
 								<h5>Société :</h5>
 								<strong>{{ user.company}}</strong>
 							</div>
+						</div>
+						<div class="bg-light rounded overflow-hidden my-3 p-2">
 							<div class="my-4">
 								<h5>e-mail :</h5>
 								<small>(login et envois/réception de l'enquete)</small><br>
 								<strong>{{user.email}}</strong>
-
 							</div>
+						</div>
+						<div class="bg-light rounded overflow-hidden my-3 p-2">
 							<div class="my-4">
 								<h5>Etablissements:</h5>
 								<ul class="structures">
@@ -38,9 +41,9 @@
 									{% endfor %}
 								</ul>
 							</div>
-							<div class="flex justify-around text-center">
-								<a href="{{ path('user_edit') }}" class="btn btn-primary btn  w-3">Modifier votre compte</a>
-							</div>
+						</div>
+						<div class="flex justify-around text-center">
+							<a href="{{ path('user_edit') }}" class="btn btn-primary btn  w-3">Modifier votre compte</a>
 						</div>
 					</div>
 				</div>
