@@ -2,13 +2,61 @@
 
 {% block title %}Modification du compte
 {% endblock %}
-
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('collection') }}
+{% endblock javascripts %}
 {% block content %}
+
 	{% macro niceForm(form) %}
 		<div class="etbl-card bg-light rounded overflow-hidden my-3 p-2">
-			<h4>
-				{{ form.name.vars.value }}
-			</h4>
+			<div class="accordion" id="etbls">
+				<div class="accordion-item">
+					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ form.vars.name }}" aria-expanded="true" aria-controls="collapse-{{ form.vars.name }}">
+						<h6 class="accordion-header" id="heading-{{ form.vars.name }}">
+							{{ form.name.vars.value }}
+						</h6>
+					</button>
+					<div id="collapse-{{ form.vars.name }}" class="accordion-collapse collapse" aria-labelledby="heading-{{ form.vars.name }}" data-bs-parent="#etbls">
+						<div class="accordion-body">
+							{{ form_row(form.name)}}
+							{{ form_row(form.imageFile)}}
+							{{ form_row(form.googlUrl)}}
+							{{ form_row(form.badRevUrl)}}
+							<div class="row">
+								<div class="col-lg-6">
+									{{ form_row(form.adresse1)}}
+								</div>
+								<div class="col-lg-6">
+									{{ form_row(form.adresse2)}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-6">
+									{{ form_row(form.cp)}}
+								</div>
+								<div class="col-lg-6">
+									{{ form_row(form.city)}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-6">
+									{{ form_row(form.country)}}
+								</div>
+								<div class="col-lg-6">
+									{{ form_row(form.phone)}}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	{% endmacro niceForm %}
+
+	{% macro newForm(form) %}
+		<div class="etbl-card bg-light rounded overflow-hidden my-3 p-2">
 			{{ form_row(form.name)}}
 			{{ form_row(form.imageFile)}}
 			{{ form_row(form.googlUrl)}}
@@ -39,7 +87,8 @@
 			</div>
 		</div>
 
-	{% endmacro niceForm %}
+
+	{% endmacro newForm %}
 
 	{% import _self as formMacros %}
 
@@ -62,7 +111,7 @@
 									{{ formMacros.niceForm(row) }}
 								</div>
 							{% endfor %}
-							<ul class="structures" data-index="{{ form.structures|length > 0 ? form.structures|last.vars.name + 1 : 0 }}" data-prototype="{{ formMacros.niceForm(form.structures.vars.prototype)|e('html_attr') }}"></ul>
+							<ul class="structures" data-index="{{ form.structures|length > 0 ? form.structures|last.vars.name + 1 : 0 }}" data-prototype="{{ formMacros.newForm(form.structures.vars.prototype)|e('html_attr') }}"></ul>
 							<button type="button" class="add_item_link btn btn-secondary w-3 mt-2" data-collection-holder-class="structures">Ajouter un établissement</button>
 						</div>
 						{% do form.company.setRendered %}
@@ -76,5 +125,4 @@
 			</div>
 		</div>
 	</div>
-	{{ encore_entry_script_tags('collection') }}
 {% endblock %}

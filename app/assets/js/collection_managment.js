@@ -10,8 +10,8 @@ const addFormToCollection = (e) => {
 
 const addFormDeleteLink = (item) => {
   const removeFormButton = document.createElement('button');
-  removeFormButton.innerText = 'Suprimer X';
-  removeFormButton.className = `btn btn-danger w-3 mt-2`;
+  removeFormButton.innerText = 'Supprimer X';
+  removeFormButton.className = `btn btn-danger w-3 mt-2 btn-sm`;
 
   item.append(removeFormButton);
 

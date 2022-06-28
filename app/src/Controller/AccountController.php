@@ -63,37 +63,37 @@ class AccountController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/ezreview/account/edit", name="account_edit", methods={"GET", "POST"})
-     * @IsGranted("IS_AUTHENTICATED_FULLY"))
-     */
-    public function edit(Request $request, EntityManagerInterface $em): Response
-    {
-        $user = $this->getUser();
+    // /**
+    //  * @Route("/ezreview/account/edit", name="account_edit", methods={"GET", "POST"})
+    //  * @IsGranted("IS_AUTHENTICATED_FULLY"))
+    //  */
+    // public function edit(Request $request, EntityManagerInterface $em): Response
+    // {
+    //     $user = $this->getUser();
 
-        $form = $this->createForm(UserType::class, $user, [
-            'method' => 'POST',
-        ]);
+    //     $form = $this->createForm(UserType::class, $user, [
+    //         'method' => 'POST',
+    //     ]);
 
-        $form->handleRequest($request);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // $structures = $user->getStructures();
-            // foreach ($structures as $key => $structure) {
-            //     $structure->setUser($user);
-            //     $structures->set($key, $structure);
-            // }
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         // $structures = $user->getStructures();
+    //         // foreach ($structures as $key => $structure) {
+    //         //     $structure->setUser($user);
+    //         //     $structures->set($key, $structure);
+    //         // }
 
-            $em->flush();
+    //         $em->flush();
 
-            $this->addFlash('success', 'Account updated successfully!');
+    //         $this->addFlash('success', 'Account updated successfully!');
 
-            return $this->redirectToRoute('account');
-        }
+    //         return $this->redirectToRoute('account');
+    //     }
 
-        return $this->render('ezreview/account_edit.html.twig', [
-            'form' => $form->createView(),
-            'user' => $user
-        ]);
-    }
+    //     return $this->render('ezreview/account_edit.html.twig', [
+    //         'form' => $form->createView(),
+    //         'user' => $user
+    //     ]);
+    // }
 }

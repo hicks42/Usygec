@@ -8,7 +8,7 @@
 			<meta name="description" content=""/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
 			<title>
-				{% block title %}{% endblock %}
+				{% block title %}{% endblock title %}
 			</title>
 			<link
 			rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
@@ -17,15 +17,15 @@
 			{% block stylesheets %}
 				{{ encore_entry_link_tags('app') }}
 				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-			{% endblock %}
+			{% endblock stylesheets %}
 
-
-		{% endblock %}
+		{% endblock head %}
 
 	</head>
 	<body>
 		{% block body %}
 			{{ include('main/partials/_message_flash.html.twig') }}
+			{# {{ include('main/partials/_header.html.twig') }} #}
 			{{ include('main/partials/_preloader.html.twig') }}
 			{% block content %}{% endblock %}
 		{% endblock %}
