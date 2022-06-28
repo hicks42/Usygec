@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Entity\Structure;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,9 +21,45 @@ class AccountController extends AbstractController
     public function show(Security $security): Response
     {
         $user = $security->getUser();
+        // dd($user);
         return $this->render('ezreview/account.html.twig', [
             'controller_name' => 'AccountController',
-            'user' => $user
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/ezreview/account/create", name="account_create", methods={"GET", "POST"})
+     * @IsGranted("IS_AUTHENTICATED_FULLY") and ("IS_ADMIN"))
+     */
+    public function create(Request $request, EntityManagerInterface $em): Response
+    {
+        $user = new User;
+
+        $form = $this->createForm(UserType::class, $user, [
+            'method' => 'POST',
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            // $structures = $user->getStructures();
+            // foreach ($structures as $key => $structure) {
+            //     $structure->setUser($user);
+            //     $structures->set($key, $structure);
+            // }
+
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('success', 'Account updated successfully!');
+
+            return $this->redirectToRoute('account');
+        }
+
+        return $this->render('ezreview/account_create.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 
@@ -40,6 +78,12 @@ class AccountController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // $structures = $user->getStructures();
+            // foreach ($structures as $key => $structure) {
+            //     $structure->setUser($user);
+            //     $structures->set($key, $structure);
+            // }
+
             $em->flush();
 
             $this->addFlash('success', 'Account updated successfully!');
@@ -48,7 +92,8 @@ class AccountController extends AbstractController
         }
 
         return $this->render('ezreview/account_edit.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $user
         ]);
     }
 }

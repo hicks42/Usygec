@@ -36,6 +36,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('collection', './assets/js/collection_managment.js')
     // .addEntry('popper', '@popperjs/core/dist/cjs/popper.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)

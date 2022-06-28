@@ -68,6 +68,7 @@
 
 	.message {
 		margin: 10px 0;
+		text-align: justify;
 	}
 
 	.bouton-container {
@@ -85,9 +86,9 @@
 						<h2>Retour de l'enquete</h2>
 						<div class="my-5">
 							Date de la visite
-							{{ date_rdv|date('d/m/y') }}
-							à
-							{{ lieu_rdv }}
+							<strong>{{ date_rdv|date('d/m/y \\à H:i', "Europe/Paris") }}</strong><br>
+							Lieu du rendez vous :
+							<strong>{{ lieu_rdv }}</strong>
 							<h3>Note donnée :
 								{{note}}</h3>
 							<div class="message my-3">

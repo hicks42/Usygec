@@ -67,7 +67,8 @@
 	}
 
 	.message {
-		margin: 10px 0;
+		margin: 20px 0 5px;
+		text-align: justify;
 	}
 
 	.bouton-container {
@@ -83,18 +84,29 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h2>{{ subject }}</h2>
-						<p>Mail en provenance de
-							{{company}}</p>
 						<div class="message">Bonjour.<br>
-							T'es content de ton passage chez nous?</div>
-						<div class="bouton-container">
+							<p>
+								Vous avez récemment été accueillis dans notre établissement :
+								<strong>"{{company}}"</strong>.
+							</p>
+							<p>
+								Soucieux de l'amélioration continue de nos prestations et afin de répondre au mieux à vos attentes, nous avons mis en place cette enquête de satisfaction.
+							</p>
+							<p>
+								Toutes les données recueillies restent confidentielles et seront traitées de manière anonyme.
+							</p>
+							<h3>
+								Qu'avez vous pensé de la qualité de nos services ? :
+							</h3>
+						</div>
+						<div class="bouton-container"><br>
 							{% set returnUrl = app.request.getSchemeAndHttpHost() ~ "/badreview/" ~ returnMail %}
 							<a
 								href="{{returnUrl}}" class="btn-bd">
 								{# <a href="{{ app.request.getSchemeAndHttpHost() }}{{ badRevUrl }}" class="btn-bd"> #}
-								plutot une mauvaise experience</a>
+								plutot mécontent</a>
 							<a href="{{ googleUrl }}" class="btn-gd">
-								plutot une bonne experience</a>
+								plutot satisfait</a>
 						</div>
 					</div>
 				</div>

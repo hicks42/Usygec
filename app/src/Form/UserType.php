@@ -6,16 +6,31 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
-            ->add('company')
-            ->add('googlUrl')
-            ->add('badRevUrl');
+            ->add('email', EmailType::class, [
+                'label' => 'Indiquez le mail login/envois/retour :'
+            ])
+            ->add('company', TextType::class, [
+                'label' => 'Nom de la société',
+                'attr' => [
+                    'placeholder' => 'Nom de votre employeur'
+                ]
+            ])
+            ->add('structures', CollectionType::class, [
+                'entry_type' => StructureType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

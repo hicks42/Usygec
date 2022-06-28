@@ -18,10 +18,10 @@ liip_imagine:
                     mode: outbound
                     allow_upscale: true
 
-        square_thumbnail_vtiny:
+        company_image_banner:
             filters:
                 thumbnail:
-                    size: [100, 75]
+                    size: [600, 100]
                     mode: outbound
                     allow_upscale: true
 

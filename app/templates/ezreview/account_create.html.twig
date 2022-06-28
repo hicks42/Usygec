@@ -1,0 +1,56 @@
+{% extends 'ezreview_base.html.twig' %}
+
+{% block title %}Hello AccountController!
+{% endblock %}
+
+{% block content %}
+
+	<div class="container">
+		<div class="row mt-3">
+			<div class="col-lg-12 co-12">
+				<div class="form-container">
+					<h3>Créer un compte</h3>
+					{{ form_start(form, {"method": "POST"}) }}
+					<div class="row">
+						<h3>structures</h3>
+						<ul class="structures" data-index="{{ form.structures|length > 0 ? form.structures|last.vars.name + 1 : 0 }}" data-prototype="{{ form_widget(form.structures.vars.prototype)|e('html_attr') }}">
+							{% for structure in form.structures %}
+								<li>{{ form_row(structure.name) }}</li>
+							{% endfor %}
+						</ul>
+						<button type="button" class="add_item_link btn btn-secondary btn w-3" data-collection-holder-class="structures">Add a structure</button>
+						<div class="col-md-12 mt-3">
+							{{ form_row(form.email) }}
+						</div>
+						<div class="col-md-12 mt-3">
+							{{ form_row(form.googlUrl) }}
+						</div>
+						<div class="col-md-12 mt-3">
+							{{ form_row(form.badRevUrl) }}
+						</div>
+						<div class="col-md-12 mt-3">
+							{{ form_rest(form) }}
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary btn-lg btn-block">
+						Apply changes
+					</button>
+				</div>
+				<a href="{{ path('ezreview') }}" class="btn btn-secondary btn w-3">Retour</a>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		document.querySelectorAll('.add_item_link').forEach(btn => {
+btn.addEventListener("click", addFormToCollection);
+});
+const addFormToCollection = (e) => {
+const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+const item = document.createElement('li');
+
+item.innerHTML = collectionHolder.dataset.prototype.replace(/__name__/g, collectionHolder.dataset.index);
+collectionHolder.appendChild(item);
+collectionHolder.dataset.index ++;
+};
+	</script>
+{% endblock %}
