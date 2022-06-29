@@ -2,19 +2,24 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use App\Entity\Traits\Timestampable;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serializable
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -41,19 +46,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $googlUrl;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $badRevUrl;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $company;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Structure::class, mappedBy="user", orphanRemoval=true, cascade={"persist"})
+     * @var Collection
+     */
+    private $structures;
+
+    public function __construct()
+    {
+        $this->structures = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -149,30 +155,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getGooglUrl(): ?string
-    {
-        return $this->googlUrl;
-    }
-
-    public function setGooglUrl(?string $googlUrl): self
-    {
-        $this->googlUrl = $googlUrl;
-
-        return $this;
-    }
-
-    public function getBadRevUrl(): ?string
-    {
-        return $this->badRevUrl;
-    }
-
-    public function setBadRevUrl(string $badRevUrl): self
-    {
-        $this->badRevUrl = $badRevUrl;
-
-        return $this;
-    }
-
     public function getCompany(): ?string
     {
         return $this->company;
@@ -183,5 +165,55 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->company = $company;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Structure[]
+     */
+    public function getStructures(): Collection
+    {
+        return $this->structures;
+    }
+
+    public function addStructure(Structure $structure): self
+    {
+        if (!$this->structures->contains($structure)) {
+            $this->structures[] = $structure;
+            $structure->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStructure(Structure $structure): self
+    {
+        if ($this->structures->removeElement($structure)) {
+            // set the owning side to null (unless already changed)
+            if ($structure->getUser() === $this) {
+                $structure->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function serialize()
+    {
+
+        return serialize([
+            $this->id,
+            $this->email,
+            $this->password,
+        ]);
+    }
+
+    public function unserialize($serialized)
+    {
+
+        list(
+            $this->id,
+            $this->email,
+            $this->password,
+        ) = unserialize($serialized);
     }
 }

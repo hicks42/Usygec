@@ -1,6 +1,7 @@
 {% extends 'ezreview_base.html.twig' %}
 
-{% block title %}Hello AccountController!
+{% block title %}Compte de
+	{{ user.company}}
 {% endblock %}
 
 {% block content %}
@@ -9,31 +10,43 @@
 		<div class="row">
 			<div class="col-lg-12 co-12">
 				<div class="form-container">
-					<h3>Ceci est la page de votre compte</h3>
-					<div class="w-50 my-5">
-						<div class="my-2">
-							<strong>Société:</strong><br>
-							{{user.company}}
+					<h2>Compte de
+						{{ user.company}}</h2>
+					<a href="{{ path('ezreview') }}" class="btn btn-secondary btn w-3">
+						<i class="fa-solid fa-angles-left"></i>
+						Retour</a>
+					<div class="my-3">
+						<div class="bg-light rounded overflow-hidden my-3 p-2">
+							<div class="my-4">
+								<h5>Société :</h5>
+								<strong>{{ user.company}}</strong>
+							</div>
 						</div>
-						<div class="my-2">
-							<strong>e-mail:</strong>
-							{{user.email}}
+						<div class="bg-light rounded overflow-hidden my-3 p-2">
+							<div class="my-4">
+								<h5>e-mail :</h5>
+								<small>(login et envois/réception de l'enquete)</small><br>
+								<strong>{{user.email}}</strong>
+							</div>
 						</div>
-						<div class="my-2">
-							<strong>Url googlereview:</strong><br>
-							{{(user.googlUrl|slice(34, 50) ~ '...')|raw}}
+						<div class="bg-light rounded overflow-hidden my-3 p-2">
+							<div class="my-4">
+								<h5>Etablissements:</h5>
+								<ul class="structures">
+									{% for structure in user.structures %}
+										<li>
+											<strong>-
+												{{ structure.name }}</strong>
+										</li>
+									{% endfor %}
+								</ul>
+							</div>
 						</div>
-						<div class="my-2">
-							<strong>Page Bad Review:</strong><br>
-							{{user.badRevUrl}}
+						<div class="flex justify-around text-center">
+							<a href="{{ path('user_edit') }}" class="btn btn-primary btn  w-3">Modifier votre compte</a>
 						</div>
 					</div>
-					<div class="flex justify-around text-center">
-						<a href="{{ path('account_edit') }}" class="btn btn-primary btn  w-3">Modifier</a>
-					</div>
-					<a href="{{ path('ezreview') }}" class="btn btn-secondary btn w-3">Retour</a>
 				</div>
 			</div>
 		</div>
-	</div>
-{% endblock %}
+	{% endblock %}

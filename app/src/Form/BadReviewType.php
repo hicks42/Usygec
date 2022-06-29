@@ -4,11 +4,9 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -19,22 +17,28 @@ class BadReviewType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
         $builder
             ->add('email', HiddenType::class)
             ->add('lieu_rdv', TextType::class, [
                 'label' => 'Le lieu de votre rendez vous :'
             ])
-            ->add('date_rdv', DateType::class, [
-                'label' => 'Indiquez la date de votre rendez vous :',
+            ->add('date_rdv', DateTimeType::class, [
+                'label' => false,
                 'widget' => 'single_text',
-                // this is actually the default format for single_text
-                'format' => 'yyyy-MM-dd',
+                'input'  => 'datetime_immutable',
             ])
-
             ->add('note', ChoiceType::class, [
-                'choices' => [range(0, 10)],
-                'label' => 'Notez la qualité du service :',
+                'label' => false,
+                'choices' => range(0, 10),
+                'placeholder' => 'de 0 à 10',
+                'attr' => [
+                    'class' => 'btn btn-secondary dropdown-toggle',
+                ],
+                'choice_attr' => function ($choice, $key, $value) {
+                    return [
+                        'class' => 'dropdown-item text-white text-center'
+                    ];
+                },
             ])
 
             ->add('message', TextareaType::class, [
