@@ -39,6 +39,6 @@ document.querySelectorAll('.add_item_link').forEach(btn => {
   btn.addEventListener("click", addFormToCollection);
 });
 
-document.querySelectorAll('[id^="user_structures"]').forEach((group) => {
-  addFormDeleteLink(group);
-});
+// document.querySelectorAll('[id^="user_structures"]').forEach((group) => {
+//   addFormDeleteLink(group);
+// });

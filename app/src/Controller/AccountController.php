@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Entity\Structure;
 use App\Form\UserType;
+use App\Form\RegistrationFormType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
@@ -16,41 +17,34 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AccountController extends AbstractController
 {
     /**
-     * @Route("/ezreview/account", name="account")
+     * @Route("/ezreview/accounts", name="accounts_index")
      */
-    public function show(Security $security): Response
+    public function index(UserRepository $userRepo): Response
     {
-        $user = $security->getUser();
-        // dd($user);
-        return $this->render('ezreview/account.html.twig', [
-            'controller_name' => 'AccountController',
-            'user' => $user,
-        ]);
+        $users = $userRepo->findBy([], ['email' => 'DESC']);
+
+        return $this->render('ezreview/account_index.html.twig', compact('users'));
     }
 
     /**
-     * @Route("/ezreview/account/create", name="account_create", methods={"GET", "POST"})
-     * @IsGranted("IS_AUTHENTICATED_FULLY") and ("IS_ADMIN"))
+     * @Route("/ezreview/account/{id<[0-9]+>}/edit", name="account_edit", methods={"GET", "POST"})
+     * @IsGranted("IS_AUTHENTICATED_FULLY"))
      */
-    public function create(Request $request, EntityManagerInterface $em): Response
+    public function edit(Request $request, EntityManagerInterface $em, User $user): Response
     {
-        $user = new User;
-
-        $form = $this->createForm(UserType::class, $user, [
+        $form = $this->createForm(RegistrationFormType::class, $user, [
             'method' => 'POST',
         ]);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             // $structures = $user->getStructures();
             // foreach ($structures as $key => $structure) {
             //     $structure->setUser($user);
             //     $structures->set($key, $structure);
             // }
 
-            $em->persist($user);
             $em->flush();
 
             $this->addFlash('success', 'Account updated successfully!');
@@ -58,42 +52,74 @@ class AccountController extends AbstractController
             return $this->redirectToRoute('account');
         }
 
-        return $this->render('ezreview/account_create.html.twig', [
-            'form' => $form->createView()
+        return $this->render('ezreview/account_edit.html.twig', [
+            'form' => $form->createView(),
+            'user' => $user
         ]);
     }
 
-    // /**
-    //  * @Route("/ezreview/account/edit", name="account_edit", methods={"GET", "POST"})
-    //  * @IsGranted("IS_AUTHENTICATED_FULLY"))
-    //  */
-    // public function edit(Request $request, EntityManagerInterface $em): Response
-    // {
-    //     $user = $this->getUser();
 
-    //     $form = $this->createForm(UserType::class, $user, [
-    //         'method' => 'POST',
-    //     ]);
+    /**
+     * @Route("/ezreview/account/{id<\d+>}/delete", name="account_delete", methods={"POST"})
+     */
+    public function delete(Request $request, User $user, EntityManagerInterface $em): Response
+    {
+        if ($this->isCsrfTokenValid('user_deletion_' . $user->getId(), $request->request->get('csrf_token'))) {
+            $em->remove($user);
+            $em->flush();
 
-    //     $form->handleRequest($request);
+            $this->addFlash('info', 'Utilisateur supprimé !!!');
+        }
 
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         // $structures = $user->getStructures();
-    //         // foreach ($structures as $key => $structure) {
-    //         //     $structure->setUser($user);
-    //         //     $structures->set($key, $structure);
-    //         // }
+        return $this->redirectToRoute('ezreview');
+    }
 
-    //         $em->flush();
-
-    //         $this->addFlash('success', 'Account updated successfully!');
-
-    //         return $this->redirectToRoute('account');
+    //  /**
+    //      * @Route("/ezreview/account", name="account")
+    //      */
+    //     public function show(Security $security): Response
+    //     {
+    //         $user = $security->getUser();
+    //         // dd($user);
+    //         return $this->render('ezreview/account.html.twig', [
+    //             'controller_name' => 'AccountController',
+    //             'user' => $user,
+    //         ]);
     //     }
 
-    //     return $this->render('ezreview/account_edit.html.twig', [
-    //         'form' => $form->createView(),
-    //         'user' => $user
-    //     ]);
-    // }
+    //     /**
+    //      * @Route("/ezreview/account/create", name="account_create", methods={"GET", "POST"})
+    //      * @IsGranted("IS_AUTHENTICATED_FULLY") and ("IS_ADMIN"))
+    //      */
+    //     public function create(Request $request, EntityManagerInterface $em): Response
+    //     {
+    //         $user = new User;
+
+    //         $form = $this->createForm(UserType::class, $user, [
+    //             'method' => 'POST',
+    //         ]);
+
+    //         $form->handleRequest($request);
+
+    //         if ($form->isSubmitted() && $form->isValid()) {
+
+    //             // $structures = $user->getStructures();
+    //             // foreach ($structures as $key => $structure) {
+    //             //     $structure->setUser($user);
+    //             //     $structures->set($key, $structure);
+    //             // }
+
+    //             $em->persist($user);
+    //             $em->flush();
+
+    //             $this->addFlash('success', 'Account updated successfully!');
+
+    //             return $this->redirectToRoute('account');
+    //         }
+
+    //         return $this->render('ezreview/account_create.html.twig', [
+    //             'form' => $form->createView()
+    //         ]);
+    //     }
+
 }

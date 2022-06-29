@@ -7,6 +7,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class UserController extends AbstractController
@@ -14,7 +16,7 @@ class UserController extends AbstractController
     /**
      * @Route("/user/edit", name="user_edit")
      */
-    public function edit(Request $request, EntityManagerInterface $em): Response
+    public function edit(Request $request, EntityManagerInterface $em, ValidatorInterface $validator): Response
     {
         $user = $this->getUser();
 
@@ -26,6 +28,7 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $structures = $user->getStructures();
+
             foreach ($structures as $key => $structure) {
                 $structure->setUser($user);
                 $structures->set($key, $structure);
@@ -38,7 +41,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('account');
         }
 
-        return $this->render('ezreview/account_edit.html.twig', [
+        return $this->render('ezreview/user_edit.html.twig', [
             'form' => $form->createView(),
             'user' => $user
         ]);
