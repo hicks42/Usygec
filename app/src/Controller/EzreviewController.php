@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Structure;
 use App\Form\TargetType;
 use App\Form\BadReviewType;
+use App\Repository\StructureRepository;
 use App\Service\SendMailService;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,24 +26,27 @@ class EzreviewController extends AbstractController
     }
 
     /**
-     * @Route("/ezreview", name="ezreview")
+     * @Route("/{id<\d+>}/enquete", name="enquete")
      * @Security("is_granted('ROLE_USER')")
      */
-    public function sendEmail(SendMailService $mailService, Request $request): Response
+    public function sendEmail(SendMailService $mailService, Request $request, Structure $structure): Response
     {
         $form = $this->createForm(TargetType::class);
         $target = $form->handleRequest($request);
         $user = $this->getUser();
         $user->getEmail();
 
+        // dd($structure->getGooglUrl());
+
         if ($form->isSubmitted() && $form->isValid()) {
             $context = [
                 'mail' => $target->get('email')->getData(),
                 'company' => $user->getCompany(),
-                'googleUrl' => $user->getGooglUrl(),
-                'badRevUrl' => $user->getBadRevUrl(),
+                'structure' => $structure->getName(),
+                'googleUrl' => $structure->getGooglUrl(),
+                'badRevUrl' => $structure->getBadRevUrl(),
                 'subject' => 'Enquète de satisfaction',
-                'returnMail' => $user->getEmail(),
+                'structureId' => $structure->getId(),
             ];
 
             $mailService->send(
@@ -53,7 +58,7 @@ class EzreviewController extends AbstractController
             );
 
             $this->addFlash('success', 'Votre mail a bien été envoyé');
-            return $this->redirectToRoute('ezreview');
+            return $this->redirectToRoute('account');
         }
 
         return $this->render('ezreview/target_form.html.twig', [
@@ -62,12 +67,14 @@ class EzreviewController extends AbstractController
     }
 
     /**
-     * @Route("/badreview/{returnMail} ", name="badreview")
+     * @Route("/badreview/{structureId} ", name="badreview")
      */
-    public function badreview(SendMailService $mailService, Request $request, $returnMail): Response
+    public function badreview(SendMailService $mailService, Request $request, StructureRepository $structureRepo,  $structureId): Response
     {
         $form = $this->createForm(BadReviewType::class);
         $badreview = $form->handleRequest($request);
+        $structure = $structureRepo->findById($structureId);
+        $userMail = $structure[0]->getUser()->getEmail();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $context = [
@@ -79,8 +86,8 @@ class EzreviewController extends AbstractController
             ];
 
             $mailService->send(
-                'patouseul@yahoo.fr',                   //from
-                $returnMail,                            //to
+                'usygec@usygec.fr',                   //from
+                $userMail,                            //to
                 'Retour de l\'enquète de satisfaction', //subject
                 'badreview_template',                   //template
                 $context                                //context
@@ -100,5 +107,13 @@ class EzreviewController extends AbstractController
     public function exit(): Response
     {
         return $this->render('ezreview/exit.html.twig');
+    }
+
+    /**
+     * @Route("/ezreview ", name="ezreview")
+     */
+    public function ezreview(): Response
+    {
+        return $this->redirectToRoute('app_login');
     }
 }

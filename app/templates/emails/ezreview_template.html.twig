@@ -87,7 +87,7 @@
 						<div class="message">Bonjour.<br>
 							<p>
 								Vous avez récemment été accueillis dans notre établissement :
-								<strong>"{{company}}"</strong>.
+								<strong>"{{structure}}"</strong>.
 							</p>
 							<p>
 								Soucieux de l'amélioration continue de nos prestations et afin de répondre au mieux à vos attentes, nous avons mis en place cette enquête de satisfaction.
@@ -100,7 +100,7 @@
 							</h3>
 						</div>
 						<div class="bouton-container"><br>
-							{% set returnUrl = app.request.getSchemeAndHttpHost() ~ "/badreview/" ~ returnMail %}
+							{% set returnUrl = app.request.getSchemeAndHttpHost() ~ "/badreview/" ~ structureId %}
 							<a
 								href="{{returnUrl}}" class="btn-bd">
 								{# <a href="{{ app.request.getSchemeAndHttpHost() }}{{ badRevUrl }}" class="btn-bd"> #}

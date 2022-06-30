@@ -71,7 +71,7 @@ class AccountController extends AbstractController
             $this->addFlash('info', 'Utilisateur supprimé !!!');
         }
 
-        return $this->redirectToRoute('ezreview');
+        return $this->redirectToRoute('account');
     }
 
     /**

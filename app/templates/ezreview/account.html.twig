@@ -12,9 +12,6 @@
 				<div class="form-container">
 					<h2>Compte de
 						{{ user.company}}</h2>
-					<a href="{{ path('ezreview') }}" class="btn btn-secondary btn w-3">
-						<i class="fa-solid fa-angles-left"></i>
-						Retour</a>
 					<div class="my-3">
 						<div class="bg-light rounded overflow-hidden my-3 p-2">
 							<div class="my-4">
@@ -35,14 +32,17 @@
 								<ul class="structures">
 									{% for structure in user.structures %}
 										<li>
-											<strong>-
-												{{ structure.name }}</strong>
+											<div class="d-flex justify-content-around align-items-center">
+												<strong>-
+													{{ structure.name }}</strong>
+												<a href="{{ path('enquete', {'id': structure.id}) }}" class="btn btn-secondary btn-sm  w-3">Envoyer mail</a>
+											</div>
 										</li>
 									{% endfor %}
 								</ul>
 							</div>
 						</div>
-						<div class="flex justify-around text-center">
+						<div class="d-flex justify-content-around text-center">
 							<a href="{{ path('user_edit') }}" class="btn btn-primary btn  w-3">Modifier votre compte</a>
 						</div>
 					</div>
