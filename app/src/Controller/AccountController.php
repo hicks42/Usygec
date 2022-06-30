@@ -74,18 +74,17 @@ class AccountController extends AbstractController
         return $this->redirectToRoute('ezreview');
     }
 
-    //  /**
-    //      * @Route("/ezreview/account", name="account")
-    //      */
-    //     public function show(Security $security): Response
-    //     {
-    //         $user = $security->getUser();
-    //         // dd($user);
-    //         return $this->render('ezreview/account.html.twig', [
-    //             'controller_name' => 'AccountController',
-    //             'user' => $user,
-    //         ]);
-    //     }
+    /**
+     * @Route("/ezreview/account", name="account")
+     */
+    public function show(Security $security): Response
+    {
+        $user = $security->getUser();
+        return $this->render('ezreview/account.html.twig', [
+            'controller_name' => 'AccountController',
+            'user' => $user,
+        ]);
+    }
 
     //     /**
     //      * @Route("/ezreview/account/create", name="account_create", methods={"GET", "POST"})

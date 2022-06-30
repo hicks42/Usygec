@@ -1,7 +1,7 @@
 const addFormToCollection = (e) => {
   const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
   const item = document.createElement('li');
-  item.className = `bg-light rounded overflow-hidden p-2`;
+  item.className = `bg-light rounded overflow-hidden p-2 mt-3`;
   item.innerHTML = collectionHolder.dataset.prototype.replace(/__name__/g, collectionHolder.dataset.index);
   collectionHolder.appendChild(item);
   collectionHolder.dataset.index ++;

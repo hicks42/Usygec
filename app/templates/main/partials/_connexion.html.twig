@@ -2,7 +2,7 @@
 	<ul class="banner-menu mt-1">
 		{% if app.user %}
 			<li class="menu-inline-item">
-				<a class="menu-link" href=" {{ path('user_edit')}} ">
+				<a class="menu-link" href=" {{ path('account')}} ">
 					<i class="fas fa-user-circle mx-1"></i>
 					{{ app.user.email }}</a>
 			</li>

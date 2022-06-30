@@ -38,7 +38,7 @@ class UserController extends AbstractController
 
             $this->addFlash('success', 'Account updated successfully!');
 
-            return $this->redirectToRoute('account');
+            return $this->redirectToRoute('user_edit');
         }
 
         return $this->render('ezreview/user_edit.html.twig', [

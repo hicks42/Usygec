@@ -20,7 +20,7 @@ class LogoutEventSubscriber implements EventSubscriberInterface
     {
         $event->getRequest()->getSession()->getFlashBag()->add(
             'success',
-            'Logged out successfully!'
+            'Deconnexion réussie!'
         );
 
         $event->setResponse(new RedirectResponse($this->urlGenerator->generate('ezreview')));
