@@ -80,7 +80,7 @@ class EzreviewController extends AbstractController
             $context = [
                 // 'mail' => $badreview->get('email')->getData(),
                 'note' => $badreview->get('note')->getData(),
-                'lieu_rdv' => $badreview->get('lieu_rdv')->getData(),
+                'lieu_rdv' => $structure[0]->get('name')->getData(),
                 'date_rdv' => $badreview->get('date_rdv')->getData(),
                 'message' => $badreview->get('message')->getData(),
             ];

@@ -2,27 +2,27 @@
 	<ul class="banner-menu mt-1">
 		{% if app.user %}
 			<li class="menu-inline-item">
-				<a class="menu-link" href=" {{ path('account')}} ">
-					<i class="fas fa-user-circle mx-1"></i>
+				<a href=" {{ path('account')}}" class="link-secondary mt-1">
+					<i class="fas fa-user-circle mx-2"></i>
 					{{ app.user.email }}</a>
 			</li>
 			{% if is_granted('ROLE_ADMIN') %}
 				<li>
-					<a href="{{ path('app_register') }}">
-						<i class="fas fa-id-badge mx-1"></i>
+					<a href="{{ path('app_register') }}" class="link-secondary mt-1">
+						<i class="fas fa-id-badge mx-2"></i>
 						Enregistrer un utilisateur</a>
 				</li>
 				<li>
-					<a href="{{ path('accounts_index') }}">
-						<i class="fas fa-id-badge mx-1"></i>
+					<a href="{{ path('accounts_index') }}" class="link-secondary mt-1">
+						<i class="fas fa-users mx-2"></i>
 						Voir les utilisateurs</a>
 				</li>
 			{% endif %}
 
 			{# delete form################################ #}
 			<li>
-				<a href="#" onclick="event.preventDefault(); document.getElementById('js-logout-form').submit();">
-					<i class="fas fa-sign-out-alt mx-1"></i>
+				<a href="#" onclick="event.preventDefault(); document.getElementById('js-logout-form').submit();" class="link-secondary mt-1">
+					<i class="fas fa-sign-out-alt mx-2"></i>
 					Logout</a>
 			</li>
 			<form id="js-logout-form" action="{{ path('app_logout') }}" method="POST" style="display: none;">
@@ -31,7 +31,7 @@
 			{# delete form################################ #}
 		{% else %}
 			<li>
-				<a href="{{ path('app_login') }}">
+				<a href="{{ path('app_login') }}" class="link-secondary mt-1">
 					<i class="fas fa-sign-in-alt"></i>
 					Connexion</a>
 			</li>

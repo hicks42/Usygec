@@ -23,7 +23,7 @@ class LogoutEventSubscriber implements EventSubscriberInterface
             'Deconnexion réussie!'
         );
 
-        $event->setResponse(new RedirectResponse($this->urlGenerator->generate('account')));
+        $event->setResponse(new RedirectResponse($this->urlGenerator->generate('app_login')));
     }
 
     public static function getSubscribedEvents()

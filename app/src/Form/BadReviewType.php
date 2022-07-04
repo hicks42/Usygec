@@ -19,9 +19,9 @@ class BadReviewType extends AbstractType
     {
         $builder
             ->add('email', HiddenType::class)
-            ->add('lieu_rdv', TextType::class, [
-                'label' => 'Le lieu de votre rendez vous :'
-            ])
+            // ->add('lieu_rdv', TextType::class, [
+            //     'label' => 'Le lieu de votre rendez vous :'
+            // ])
             ->add('date_rdv', DateTimeType::class, [
                 'label' => false,
                 'widget' => 'single_text',
