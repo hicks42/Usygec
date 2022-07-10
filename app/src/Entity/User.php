@@ -2,23 +2,28 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use App\Entity\Traits\Timestampable;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Ignore;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @ORM\HasLifecycleCallbacks
+ * @Vich\Uploadable
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serializable
 {
+    use Timestampable;
 
     /**
      * @ORM\Id
@@ -55,6 +60,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
      * @var Collection
      */
     private $structures;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $csvName;
+
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="user_csv_files", fileNameProperty="csvName")
+     * @Assert\File(maxSize="8M", maxSizeMessage="Le fichier est trop gros")
+     * @Ignore()
+     * @var File|null
+     */
+    private ?File $csvFile = null;
 
     public function __construct()
     {
@@ -195,6 +215,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
         }
 
         return $this;
+    }
+
+    public function getCsvName(): ?string
+    {
+        return $this->csvName;
+    }
+
+    public function setCsvName(?string $csvName): self
+    {
+        $this->csvName = $csvName;
+
+        return $this;
+    }
+
+    public function setCsvFile(?File $csvFile = null): void
+    {
+        $this->csvFile = $csvFile;
+
+        if (null !== $csvFile) {
+            $this->setUpdatedAt(new \DateTimeImmutable);
+        }
+    }
+
+    public function getCsvFile(): ?File
+    {
+        return $this->csvFile;
     }
 
     public function serialize()

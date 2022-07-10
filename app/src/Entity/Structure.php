@@ -134,6 +134,7 @@ class Structure
     {
         return $this->imageFile;
     }
+
     public function getAdresse1(): ?string
     {
         return $this->adresse1;

@@ -31,4 +31,25 @@ class SendMailService
         // On envoie le mail
         $this->mailer->send($email);
     }
+
+    public function sendToTarget($user, $target, $structure)
+    {
+        $context = [
+            'mail' => $target,
+            'company' => $user->getCompany(),
+            'structure' => $structure->getName(),
+            'googleUrl' => $structure->getGooglUrl(),
+            'badRevUrl' => $structure->getBadRevUrl(),
+            'subject' => 'Enquète de satisfaction',
+            'structureId' => $structure->getId(),
+        ];
+
+        $this->send(
+            $user->getEmail(),                  //from
+            $target,                            //to
+            'Enquète de satisfaction ',         //subject
+            'ezreview_template',                //template
+            $context                            //context
+        );
+    }
 }

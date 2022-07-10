@@ -3,19 +3,35 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\UserType;
+use App\Form\CsvType;
+use League\Csv\Reader;
+use App\Entity\Structure;
+use App\Service\SendMailService;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
+use Vich\UploaderBundle\Entity\File;
+use App\Repository\StructureRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class AccountController extends AbstractController
 {
+    public function __construct(Security $security, SendMailService $mailService, StructureRepository $structureRepo)
+    {
+        $this->mailService = $mailService;
+        $this->structureRepo = $structureRepo;
+        $this->user = $security->getUser();
+    }
+
     /**
      * @Route("/ezreview/accounts", name="accounts_index")
      */
@@ -39,15 +55,10 @@ class AccountController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $structures = $user->getStructures();
-            // foreach ($structures as $key => $structure) {
-            //     $structure->setUser($user);
-            //     $structures->set($key, $structure);
-            // }
 
             $em->flush();
 
-            $this->addFlash('success', 'Account updated successfully!');
+            $this->addFlash('success', 'Votre compte a été modifié !');
 
             return $this->redirectToRoute('account');
         }
@@ -77,48 +88,69 @@ class AccountController extends AbstractController
     /**
      * @Route("/ezreview/account", name="account")
      */
-    public function show(Security $security): Response
+    public function show(Request $request, Security $security, SluggerInterface $slugger): Response
     {
-        $user = $security->getUser();
+        $user = $this->user;
+
+        $form = $this->createForm(CsvType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $csvFile */
+            // upload le csv
+            $csvFile = $form['csvFile']->getData();
+            // get la structure via l ID
+            $structureId = $form['structureId']->getData();
+            $structure = $this->structureRepo->findOneById($structureId);
+
+            if ($csvFile) {
+                $newFilename = $this->getNewFileName($csvFile, $slugger);
+                // get un array de tous les mails du csv
+                $targets =  $this->getEmailsArray($newFilename);
+
+                foreach ($targets as $target) {
+                    $this->mailService->sendToTarget($user, $target, $structure);
+                    $seconds = rand(2, 5);
+                    sleep($seconds);
+                }
+                $this->deleteFile($newFilename);
+            }
+            $this->addFlash('success', 'Ficier csv traité !');
+        }
         return $this->render('ezreview/account.html.twig', [
-            'controller_name' => 'AccountController',
             'user' => $user,
+            'form' => $form->createView(),
         ]);
     }
 
-    //     /**
-    //      * @Route("/ezreview/account/create", name="account_create", methods={"GET", "POST"})
-    //      * @IsGranted("IS_AUTHENTICATED_FULLY") and ("IS_ADMIN"))
-    //      */
-    //     public function create(Request $request, EntityManagerInterface $em): Response
-    //     {
-    //         $user = new User;
+    private function getNewFileName($csvFile, $slugger)
+    {
+        $originalFilename = pathinfo($csvFile->getClientOriginalName(), PATHINFO_FILENAME);
+        // this is needed to safely include the file name as part of the URL
+        $safeFilename = $slugger->slug($originalFilename);
+        $newFilename = $safeFilename . '-' . uniqid() . '.' . $csvFile->guessExtension();
+        // Move the file to the directory where csvs are stored
+        $csvFile->move(
+            $this->getParameter('csv_directory'),
+            $newFilename
+        );
+        return $newFilename;
+    }
 
-    //         $form = $this->createForm(UserType::class, $user, [
-    //             'method' => 'POST',
-    //         ]);
+    private function getEmailsArray($newFilename)
+    {
+        $reader = Reader::createFromPath('uploads/csv/' . $newFilename, 'r');
+        $emailpattern = '/[a-z0-9_\-\+\.]+@[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i';
+        // $emailpattern = '/[a-z0-9_\-\+\.]+@[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i';
+        preg_match_all($emailpattern, $reader, $matches);
+        $emails = $matches[0];
 
-    //         $form->handleRequest($request);
+        return $emails;
+    }
 
-    //         if ($form->isSubmitted() && $form->isValid()) {
-
-    //             // $structures = $user->getStructures();
-    //             // foreach ($structures as $key => $structure) {
-    //             //     $structure->setUser($user);
-    //             //     $structures->set($key, $structure);
-    //             // }
-
-    //             $em->persist($user);
-    //             $em->flush();
-
-    //             $this->addFlash('success', 'Account updated successfully!');
-
-    //             return $this->redirectToRoute('account');
-    //         }
-
-    //         return $this->render('ezreview/account_create.html.twig', [
-    //             'form' => $form->createView()
-    //         ]);
-    //     }
-
+    private function deleteFile(string $filename)
+    {
+        $filesystem = new Filesystem();
+        $filesystem->remove(['uploads/csv/' . $filename]);
+    }
 }
