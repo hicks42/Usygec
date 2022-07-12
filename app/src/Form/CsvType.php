@@ -15,14 +15,13 @@ class CsvType extends AbstractType
     {
         $builder
             ->add('csvFile', VichFileType::class, [
-                'label' => true,
+                'label' => false,
                 'mapped' => false,
                 'required' => false,
                 'allow_delete' => false,
-                'delete_label' => 'Supprimer',
                 'download_uri' => true,
-                'download_label' => false,
-                'asset_helper' => false,
+                // 'download_label' => false,
+                // 'asset_helper' => false,
                 // 'constraints' => [
                 //     new File([
                 //         'maxSize' => '8M',
@@ -34,6 +33,7 @@ class CsvType extends AbstractType
                 // ],
             ])
             ->add('structureId', IntegerType::class, [
+                'label' => false,
                 'mapped' => false,
                 'required' => false,
                 // 'empty_data' => '1',

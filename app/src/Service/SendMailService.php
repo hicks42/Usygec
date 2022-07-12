@@ -38,6 +38,7 @@ class SendMailService
             'mail' => $target,
             'company' => $user->getCompany(),
             'structure' => $structure->getName(),
+            'imageName' => $structure->getImageName(),
             'googleUrl' => $structure->getGooglUrl(),
             'badRevUrl' => $structure->getBadRevUrl(),
             'subject' => 'Enquète de satisfaction',

@@ -6,11 +6,12 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	<link rel="stylesheet" href="http://localhost:8080/wip.scss">
+	{# <link rel="stylesheet" href="http://localhost:8080/wip.scss"> #}
 {% endblock stylesheets %}
 
 {% block javascripts %}
 	{{ parent() }}
+	{# {{ encore_entry_script_tags('upload') }} #}
 	<script src="http://localhost:8080/wip.js"></script>
 {% endblock javascripts %}
 
@@ -38,13 +39,16 @@
 					{% for structure in user.structures %}
 						<li>
 							<hr>
-							<div class="d-flex justify-content-between align-items-center m-1 ml-4">
-								<strong>-
-									{{ structure.name }}</strong>
-								<a href="{{ path('enquete', {'id': structure.id}) }}" class="btn btn-secondary btn-sm  w-3">Envoyer mail</a>
+							<div class="d-flex flex-wrap justify-content-around align-items-center m-1 ml-4">
+								<div class="col-xl-6 col-sm-12 my-3">
+									<strong>-
+										{{ structure.name }}</strong>
+								</div>
+								<div class="d-flex flex-nowrap justify-content-around col-xl-6 col-sm-12 my-3">
+									<a href="{{ path('enquete', {'id': structure.id}) }}" class="btn btn-secondary btn-sm w-3 mx-1">Envoyer mail</a>
 
-								{# <a href="{{ path('download', {'id': structure.id}) }}" type="submit" class="btn btn-secondary btn-sm  w-3">charger un fichier</a> #}
-								<a href="#" type="submit" id="download-btn" data-structureid="{{structure.id}}" class="btn btn-secondary btn-sm  w-3">charger un fichier</a>
+									<a href="#" type="button" data-structureid="{{structure.id}}" class="download-btn btn btn-secondary btn-sm w-3 mx-1">charger un fichier</a>
+								</div>
 							</div>
 						</li>
 					{% endfor %}
@@ -59,10 +63,9 @@
 			<div class="download-popup">
 				<button class="close-popup">x</button>
 				{{ form_start(form, {"method": "POST"}) }}
-				<h4 id="form-title">Selectionnez un fichier csv</h4>
+				<h6 id="form-title">Selectionnez un fichier csv</h6>
 				{{ form_row(form.csvFile) }}
 				<button type="submit" class="submit-download">Traiter</button>
-				{# {% do form.structureId.setRendered %} #}
 				{{ form_widget(form._token) }}
 				{{ form_end(form, {'render_rest': false}) }}
 			</div>

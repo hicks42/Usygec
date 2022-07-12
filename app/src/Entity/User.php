@@ -23,7 +23,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serializable
 {
-    use Timestampable;
+    // use Timestampable;
 
     /**
      * @ORM\Id
@@ -60,21 +60,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
      * @var Collection
      */
     private $structures;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $csvName;
-
-    /**
-     * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     *
-     * @Vich\UploadableField(mapping="user_csv_files", fileNameProperty="csvName")
-     * @Assert\File(maxSize="8M", maxSizeMessage="Le fichier est trop gros")
-     * @Ignore()
-     * @var File|null
-     */
-    private ?File $csvFile = null;
 
     public function __construct()
     {
@@ -215,32 +200,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
         }
 
         return $this;
-    }
-
-    public function getCsvName(): ?string
-    {
-        return $this->csvName;
-    }
-
-    public function setCsvName(?string $csvName): self
-    {
-        $this->csvName = $csvName;
-
-        return $this;
-    }
-
-    public function setCsvFile(?File $csvFile = null): void
-    {
-        $this->csvFile = $csvFile;
-
-        if (null !== $csvFile) {
-            $this->setUpdatedAt(new \DateTimeImmutable);
-        }
-    }
-
-    public function getCsvFile(): ?File
-    {
-        return $this->csvFile;
     }
 
     public function serialize()

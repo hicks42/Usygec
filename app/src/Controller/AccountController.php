@@ -69,7 +69,6 @@ class AccountController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/ezreview/account/{id<\d+>}/delete", name="account_delete", methods={"POST"})
      */
@@ -110,7 +109,7 @@ class AccountController extends AbstractController
 
                 foreach ($targets as $target) {
                     $this->mailService->sendToTarget($user, $target, $structure);
-                    $seconds = rand(2, 5);
+                    $seconds = rand(2, 7);
                     sleep($seconds);
                 }
                 $this->deleteFile($newFilename);
