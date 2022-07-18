@@ -1,0 +1,3 @@
+PID_CDP= "data-pid https://search.google.com/local/writereview?placeid=ChIJb1ZAlVes9UcRG8dSpHE1LNU"
+PID_BERGSON= "data-pid https://search.google.com/local/writereview?placeid=ChIJgXdYYBGs9UcRbGIgQ62dw6k"
+PID_CENTRE2= "data-pid https://search.google.com/local/writereview?placeid=ChIJYXKDwkqp9UcRGqvhhGgorfY"

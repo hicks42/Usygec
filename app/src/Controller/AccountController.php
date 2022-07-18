@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\CsvType;
 use League\Csv\Reader;
 use App\Entity\Structure;
+use App\Form\ChangeMailFormType;
 use App\Service\SendMailService;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
@@ -34,6 +35,7 @@ class AccountController extends AbstractController
 
     /**
      * @Route("/ezreview/accounts", name="accounts_index")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(UserRepository $userRepo): Response
     {
@@ -44,11 +46,11 @@ class AccountController extends AbstractController
 
     /**
      * @Route("/ezreview/account/{id<[0-9]+>}/edit", name="account_edit", methods={"GET", "POST"})
-     * @IsGranted("IS_AUTHENTICATED_FULLY"))
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, EntityManagerInterface $em, User $user): Response
     {
-        $form = $this->createForm(RegistrationFormType::class, $user, [
+        $form = $this->createForm(ChangeMailFormType::class, $user, [
             'method' => 'POST',
         ]);
 
@@ -60,7 +62,7 @@ class AccountController extends AbstractController
 
             $this->addFlash('success', 'Votre compte a été modifié !');
 
-            return $this->redirectToRoute('account');
+            return $this->redirectToRoute('accounts_index');
         }
 
         return $this->render('ezreview/account_edit.html.twig', [
@@ -71,6 +73,7 @@ class AccountController extends AbstractController
 
     /**
      * @Route("/ezreview/account/{id<\d+>}/delete", name="account_delete", methods={"POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, User $user, EntityManagerInterface $em): Response
     {
@@ -81,11 +84,12 @@ class AccountController extends AbstractController
             $this->addFlash('info', 'Utilisateur supprimé !!!');
         }
 
-        return $this->redirectToRoute('account');
+        return $this->redirectToRoute('accounts_index');
     }
 
     /**
-     * @Route("/ezreview/account", name="account")
+     * @Route("/ezreview/account/", name="account")
+     * @IsGranted("ROLE_USER")
      */
     public function show(Request $request, Security $security, SluggerInterface $slugger): Response
     {

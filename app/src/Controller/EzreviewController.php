@@ -25,7 +25,7 @@ class EzreviewController extends AbstractController
     }
 
     /**
-     * @Route("/{id<\d+>}/enquete", name="enquete")
+     * @Route("/{id<\d+>}/enquete/", name="enquete")
      * @Security("is_granted('ROLE_USER')")
      */
     public function sendOneEmail(Request $request, $id): Response
@@ -46,26 +46,25 @@ class EzreviewController extends AbstractController
     }
 
     /**
-     * @Route("/badreview/{structureId} ", name="badreview")
+     * @Route("/badreview/{structureId}", name="badreview")
      */
     public function badreview(Request $request, $structureId): Response
     {
         $form = $this->createForm(BadReviewType::class);
         $badreview = $form->handleRequest($request);
         $structure = $this->structureRepo->findOneById($structureId);
-        $userMail = $structure[0]->getUser()->getEmail();
-
+        $userMail = $structure->getUser()->getEmail();
         if ($form->isSubmitted() && $form->isValid()) {
             $context = [
                 // 'mail' => $badreview->get('email')->getData(),
                 'note' => $badreview->get('note')->getData(),
-                'lieu_rdv' => $structure[0]->get('name')->getData(),
+                'lieu_rdv' => $structure->getName(),
                 'date_rdv' => $badreview->get('date_rdv')->getData(),
                 'message' => $badreview->get('message')->getData(),
             ];
 
             $this->mailService->send(
-                'usygec@usygec.fr',                     //from
+                'noreply@usygec.fr',                     //from
                 $userMail,                              //to
                 'Retour de l\'enquète de satisfaction', //subject
                 'badreview_template',                   //template
@@ -89,10 +88,10 @@ class EzreviewController extends AbstractController
     }
 
     /**
-     * @Route("/ezreview ", name="ezreview")
+     * @Route("/ezreview/", name="ezreview")
      */
     public function ezreview(): Response
     {
-        return $this->redirectToRoute('app_login');
+        return $this->redirectToRoute('account');
     }
 }

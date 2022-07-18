@@ -8,7 +8,8 @@
 {% endblock javascripts %}
 {% block content %}
 
-	{% import "ezreview/macros/forms.html" as formMacros %}
+	{% import "ezreview/macros/forms.html.twig" as formMacros %}
+
 	<h3>Modifier votre compte</h3>
 	<a href="{{ path('account') }}" class="btn btn-secondary btn w-3">
 		<i class="fa-solid fa-angles-left"></i>
