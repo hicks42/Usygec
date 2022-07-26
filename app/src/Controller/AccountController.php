@@ -5,12 +5,10 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\CsvType;
 use League\Csv\Reader;
-use App\Entity\Structure;
+use App\Mails\EnqueteMail;
 use App\Form\ChangeMailFormType;
 use App\Service\SendMailService;
-use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
-use Vich\UploaderBundle\Entity\File;
 use App\Repository\StructureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Filesystem\Filesystem;
@@ -18,11 +16,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class AccountController extends AbstractController
 {
@@ -30,7 +28,7 @@ class AccountController extends AbstractController
     {
         $this->mailService = $mailService;
         $this->structureRepo = $structureRepo;
-        $this->user = $security->getUser();
+        $this->userId = $security->getUser()->getId();
     }
 
     /**
@@ -72,6 +70,47 @@ class AccountController extends AbstractController
     }
 
     /**
+     * @Route("/ezreview/account/", name="account")
+     * @IsGranted("ROLE_USER")
+     */
+    public function show(Request $request, SluggerInterface $slugger, MessageBusInterface $bus, Security $security): Response
+    {
+        $user = $security->getUser();
+
+
+        $form = $this->createForm(CsvType::class);
+        $form->handleRequest($request);
+
+        // dd(unserialize(""));
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $csvFile */
+            // upload le csv
+            $csvFile = $form['csvFile']->getData();
+            // get la structure via l ID
+            $structureId = $form['structureId']->getData();
+            // $structure = $this->structureRepo->findOneById($structureId);
+            if ($csvFile) {
+                $baseUrl = $request->getSchemeAndHttpHost();
+
+                $newFilename = $this->getNewFileName($csvFile, $slugger);
+                // get un array de tous les mails du csv
+                $targets =  $this->getEmailsArray($newFilename);
+
+                foreach ($targets as $target) {
+                    // $this->mailService->sendToTarget($user, $target, $structure);
+                    $bus->dispatch(new EnqueteMail($target, $structureId, $baseUrl));
+                }
+                $this->deleteFile($newFilename);
+            }
+            $this->addFlash('success', 'Ficier csv traité !');
+        }
+        return $this->render('ezreview/account.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/ezreview/account/{id<\d+>}/delete", name="account_delete", methods={"POST"})
      * @IsGranted("ROLE_ADMIN")
      */
@@ -85,45 +124,6 @@ class AccountController extends AbstractController
         }
 
         return $this->redirectToRoute('accounts_index');
-    }
-
-    /**
-     * @Route("/ezreview/account/", name="account")
-     * @IsGranted("ROLE_USER")
-     */
-    public function show(Request $request, Security $security, SluggerInterface $slugger): Response
-    {
-        $user = $this->user;
-
-        $form = $this->createForm(CsvType::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $csvFile */
-            // upload le csv
-            $csvFile = $form['csvFile']->getData();
-            // get la structure via l ID
-            $structureId = $form['structureId']->getData();
-            $structure = $this->structureRepo->findOneById($structureId);
-
-            if ($csvFile) {
-                $newFilename = $this->getNewFileName($csvFile, $slugger);
-                // get un array de tous les mails du csv
-                $targets =  $this->getEmailsArray($newFilename);
-
-                foreach ($targets as $target) {
-                    $this->mailService->sendToTarget($user, $target, $structure);
-                    $seconds = rand(2, 7);
-                    sleep($seconds);
-                }
-                $this->deleteFile($newFilename);
-            }
-            $this->addFlash('success', 'Ficier csv traité !');
-        }
-        return $this->render('ezreview/account.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
     }
 
     private function getNewFileName($csvFile, $slugger)

@@ -43,8 +43,10 @@ class SendMailService
             'badRevUrl' => $structure->getBadRevUrl(),
             'subject' => 'Enquète de satisfaction',
             'structureId' => $structure->getId(),
+            // 'baseUrl' => $request->getSchemeAndHttpHost(),
         ];
-
+        $seconds = rand(2, 7);
+        sleep($seconds);
         $this->send(
             $user->getEmail(),                  //from
             $target,                            //to

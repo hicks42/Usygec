@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use App\Form\TargetType;
 use App\Entity\Structure;
+use App\Mails\EnqueteMail;
 use App\Form\BadReviewType;
-use App\Service\SendMailService;
+use App\Service\AsyncMailService;
 use App\Repository\StructureRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -17,7 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EzreviewController extends AbstractController
 {
-    public function __construct(SessionInterface $session, SendMailService $mailService, StructureRepository $structureRepo)
+    public function __construct(SessionInterface $session, AsyncMailService $mailService, StructureRepository $structureRepo)
     {
         $this->session = $session;
         $this->mailService = $mailService;
@@ -28,16 +30,18 @@ class EzreviewController extends AbstractController
      * @Route("/{id<\d+>}/enquete/", name="enquete")
      * @Security("is_granted('ROLE_USER')")
      */
-    public function sendOneEmail(Request $request, $id): Response
+    public function sendOneEmail(Request $request, MessageBusInterface $bus, $id): Response
     {
         $form = $this->createForm(TargetType::class);
         $target = $form->handleRequest($request)->get('email')->getData();
-        $user = $this->getUser();
         $structureId = $id;
-        $structure = $this->structureRepo->findOneById($structureId);
+        $baseUrl = $request->getSchemeAndHttpHost();
+        // $user = $this->getUser();
+        // $structure = $this->structureRepo->findOneById($structureId);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->mailService->sendToTarget($user, $target, $structure);
+            // $this->mailService->sendToTarget($target, $structureId, $baseUrl);
+            $bus->dispatch(new EnqueteMail($target, $structureId, $baseUrl));
             $this->addFlash('success', 'Le mail a bien été envoyé !');
         }
         return $this->render('ezreview/target_form.html.twig', [
