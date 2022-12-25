@@ -4,49 +4,59 @@
 	{{ user.company}}
 {% endblock %}
 
-{% block content %}
+{% block stylesheets %}
+	{{ parent() }}
+	{# <link rel="stylesheet" href="http://localhost:8080/wip.scss"> #}
+{% endblock stylesheets %}
 
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 co-12">
-				<div class="form-container">
-					<h2>Compte de
-						{{ user.company}}</h2>
-					<a href="{{ path('ezreview') }}" class="btn btn-secondary btn w-3">
-						<i class="fa-solid fa-angles-left"></i>
-						Retour</a>
-					<div class="my-3">
-						<div class="bg-light rounded overflow-hidden my-3 p-2">
-							<div class="my-4">
-								<h5>Société :</h5>
-								<strong>{{ user.company}}</strong>
-							</div>
-						</div>
-						<div class="bg-light rounded overflow-hidden my-3 p-2">
-							<div class="my-4">
-								<h5>e-mail :</h5>
-								<small>(login et envois/réception de l'enquete)</small><br>
-								<strong>{{user.email}}</strong>
-							</div>
-						</div>
-						<div class="bg-light rounded overflow-hidden my-3 p-2">
-							<div class="my-4">
-								<h5>Etablissements:</h5>
-								<ul class="structures">
-									{% for structure in user.structures %}
-										<li>
-											<strong>-
-												{{ structure.name }}</strong>
-										</li>
-									{% endfor %}
-								</ul>
-							</div>
-						</div>
-						<div class="flex justify-around text-center">
-							<a href="{{ path('user_edit') }}" class="btn btn-primary btn  w-3">Modifier votre compte</a>
-						</div>
-					</div>
-				</div>
+{% block javascripts %}
+	{{ parent() }}
+	{# {{ encore_entry_script_tags('qrcode') }} #}
+	<script src="http://localhost:8080/wip.js"></script>
+{% endblock javascripts %}
+
+{% block content %}
+	<h2>Compte de
+		{{ user.company}}</h2>
+	<div class="my-3">
+		<div class="bg-light rounded overflow-hidden my-3 p-2">
+			<div class="my-4">
+				<h5>Société :</h5>
+				<strong>{{ user.company}}</strong>
 			</div>
 		</div>
-	{% endblock %}
+		<div class="bg-light rounded overflow-hidden my-3 p-2">
+			<div class="my-4">
+				<h5>e-mail :</h5>
+				<small>(login et envois/réception de l'enquete)</small><br>
+				<strong>{{user.email}}</strong>
+			</div>
+		</div>
+		<div class="bg-light rounded overflow-hidden my-3 p-2">
+			<div class="my-4">
+				<h5>Etablissements:</h5>
+				<ul class="structures">
+					{% for structure in user.structures %}
+						<li>
+							<hr>
+							<div class="d-flex flex-wrap justify-content-around align-items-center m-1 ml-4">
+								<div class="col-xl-6 col-sm-12 my-3">
+									<strong>-
+										{{ structure.name }}</strong>
+								</div>
+								<div class="d-flex flex-nowrap justify-content-around col-xl-6 col-sm-12 my-3">
+
+									<a href="{{ path('qr_gen', {id: structure.id}) }}" type="button" data-structureid="{{structure.id}}" class="qrcode-btn btn btn-secondary btn-sm w-3 mx-1">Créer un code</a>
+
+								</div>
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+		<div class="d-flex justify-content-around text-center">
+			<a href="{{ path('user_edit') }}" class="btn btn-primary btn  w-3">Modifier votre compte</a>
+		</div>
+	</div>
+{% endblock %}

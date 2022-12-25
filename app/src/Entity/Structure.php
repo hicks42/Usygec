@@ -19,6 +19,11 @@ class Structure
 {
     use Timestampable;
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -134,6 +139,7 @@ class Structure
     {
         return $this->imageFile;
     }
+
     public function getAdresse1(): ?string
     {
         return $this->adresse1;

@@ -27,55 +27,12 @@ class StructureController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="structure_new", methods={"GET", "POST"})
-     */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $structure = new Structure();
-        $form = $this->createForm(Structure1Type::class, $structure);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($structure);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('structure_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('structure/new.html.twig', [
-            'structure' => $structure,
-            'form' => $form,
-        ]);
-    }
-
-    /**
      * @Route("/{id}", name="structure_show", methods={"GET"})
      */
     public function show(Structure $structure): Response
     {
         return $this->render('structure/show.html.twig', [
             'structure' => $structure,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="structure_edit", methods={"GET", "POST"})
-     */
-    public function edit(Request $request, Structure $structure, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(Structure1Type::class, $structure);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $entityManager->flush();
-
-            return $this->redirectToRoute('structure_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('structure/edit.html.twig', [
-            'structure' => $structure,
-            'form' => $form,
         ]);
     }
 

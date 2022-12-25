@@ -52,7 +52,7 @@ currentHexes.forEach(hex => {
   // Ici on fait un callback pour pouvoir utiliser hex ds copyToClipboard(hex)
   hex.addEventListener("click", () => {
     copyToClipboard(hex);
-  })
+  });
 });
 
 popup.addEventListener("transitionend", () => {

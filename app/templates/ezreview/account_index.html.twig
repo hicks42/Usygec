@@ -4,37 +4,25 @@
 {% endblock %}
 
 {% block content %}
+	<h2>Liste des comptes</h2>
+	<div class="bg-light rounded overflow-hidden my-3 p-2">
+		<ul class="structures">
+			{% for user in users %}
+				<li>
+					<div class="d-flex justify-content-between align-items-center w-100">
+						<strong class="w-50">-{{ user.email }}</strong>
+						<a href="{{ path('account_edit', {id: user.id}) }}" class="btn btn-sm btn-secondary m-2">Modifier</a>
+						{# <a href="{{ path('account_delete', {id: user.id}) }}" class="btn btn-sm btn-danger m-2">&times; Supprimer</a> #}
 
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 co-12">
-				<div class="form-container">
-					<h2>Liste des comptes</h2>
-					<a href="{{ path('ezreview') }}" class="btn btn-secondary btn w-3">
-						<i class="fa-solid fa-angles-left"></i>
-						Retour</a>
-					<div class="bg-light rounded overflow-hidden my-3 p-2">
-						<ul class="structures">
-							{% for user in users %}
-								<li>
-									<div class="d-flex justify-content-between align-items-center w-100">
-										<strong class="w-50">-{{ user.email }}</strong>
-										<a href="{{ path('account_edit', {id: user.id}) }}" class="btn btn-sm btn-secondary m-2">Modifier</a>
-										{# <a href="{{ path('account_delete', {id: user.id}) }}" class="btn btn-sm btn-danger m-2">&times; Supprimer</a> #}
+						<a href="#" onclick="event.preventDefault(); confirm('Etes vous sure ?') && document.getElementById('js-user-delete-form').submit();" class="btn btn-sm btn-danger m-2">&times; Supprimer</a>
 
-										<a href="#" onclick="event.preventDefault(); confirm('Etes vous sure ?') && document.getElementById('js-user-delete-form').submit();" class="btn btn-sm btn-danger m-2">&times; Supprimer</a>
+						<form id="js-user-delete-form" action="{{ path('account_delete', {id: user.id}) }}" method="post" style="display: none;">
+							<input type="hidden" name="csrf_token" value="{{ csrf_token('user_deletion_' ~ user.id) }}">
+							<input type="hidden" name="_method" value="POST">
+						</form>
 
-										<form id="js-user-delete-form" action="{{ path('account_delete', {id: user.id}) }}" method="post" style="display: none;">
-											<input type="hidden" name="csrf_token" value="{{ csrf_token('user_deletion_' ~ user.id) }}">
-											<input type="hidden" name="_method" value="POST">
-										</form>
-
-									</div>
-								</li>
-							{% endfor %}
-						</ul>
 					</div>
-				</div>
-			</div>
-		</div>
+				</li>
+			{% endfor %}
+		</ul>
 	{% endblock %}

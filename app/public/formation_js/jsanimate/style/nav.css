@@ -1,0 +1,108 @@
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1;
+  opacity: 1;
+  clip-path: circle(50px at 100% -10%);
+  -webkit-clip-path: circle(50px at 100% -10%);
+}
+
+.nav-header {
+  position: relative;
+  min-height: 10vh;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  width: 80%;
+  margin: auto;
+  padding: 2rem 0rem;
+  z-index: 2;
+}
+
+.nav-links {
+  font-size: 3rem;
+  flex-basis: 30rem;
+}
+
+.nav-links>li {
+  padding: 3rem 0rem 3rem 0rem;
+  list-style: none;
+}
+
+#logo {
+  color: rgb(0, 0, 0);
+  font-family: "abril Fatface";
+  font-weight: 100;
+}
+
+.z-active {
+  z-index: 2;
+}
+
+.burger {
+  cursor: pointer;
+}
+
+.line1,
+.line2 {
+  width: 3rem;
+  min-height: 0.2rem;
+  margin: 0.4rem;
+  background: rgb(126, 126, 126);
+  pointer-events: none;
+}
+
+.cursor {
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid white;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  /* mettre une animation sur tous les apects du cursor */
+  transition: all 0.5s ease-in-out;
+  /* Activer la transition uniquement sur les proprietes du nav-active */
+  transition-property: backgraound, transform;
+  /* pour remettre le cursor au milieu */
+  transform-origin: 75% 75%;
+}
+
+.cursor.nav-active {
+  background: rgb(228, 51, 45);
+  transform: translate(-40%, -40%) scale(1.5);
+}
+
+.cursor.explore-active {
+  background: rgba(126, 126, 126, 0.486);
+  transform: translate(-40%, -40%) scale(1.5);
+}
+
+.cursor-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 0.5rem;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 1024px) {
+  rgb .nav-bar {
+    display: block;
+  }
+
+  .nav-links {
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 100px;
+  }
+}

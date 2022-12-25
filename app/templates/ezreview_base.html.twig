@@ -27,7 +27,20 @@
 			{{ include('main/partials/_message_flash.html.twig') }}
 			{{ include('main/partials/_header_ezreview.html.twig') }}
 			{{ include('main/partials/_preloader.html.twig') }}
-			{% block content %}{% endblock %}
+			<div class="container">
+				<div class="row">
+					<div class="m-5 p-1">&nbsp;</div>
+					<div class="row justify-content-center mt-5">
+						<div class="col-lg-6  col-sm-12 mt-5">
+							{% block content %}{% endblock %}
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ========================= scroll-top ========================= -->
+			<a href="#" class="scroll-top btn-hover">
+				<i class="lni lni-chevron-up"></i>
+			</a>
 		{% endblock %}
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}

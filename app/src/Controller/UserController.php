@@ -7,14 +7,15 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class UserController extends AbstractController
 {
     /**
      * @Route("/user/edit", name="user_edit")
+     * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, EntityManagerInterface $em, ValidatorInterface $validator): Response
     {
@@ -38,7 +39,7 @@ class UserController extends AbstractController
 
             $this->addFlash('success', 'Account updated successfully!');
 
-            return $this->redirectToRoute('account');
+            return $this->redirectToRoute('user_edit');
         }
 
         return $this->render('ezreview/user_edit.html.twig', [
