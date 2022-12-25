@@ -1,4 +1,4 @@
-.download-container {
+.upload-container {
   position: fixed;
   top: 0%;
   left: 0%;
@@ -13,14 +13,14 @@
   pointer-events: none;
 }
 
-.download-container.active {
-    opacity: 1;
-    pointer-events: all;
+.upload-container.active {
+  opacity: 1;
+  pointer-events: all;
 }
 
-.download-popup {
+.upload-popup {
   background: #ffffff;
-  padding: 0 2rem ;
+  padding: 0 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -33,17 +33,17 @@
   opacity: 0;
 }
 
-.download-popup h4 {
+.upload-popup h4 {
   font-size: 1.5rem;
   padding: 2rem;
 }
 
-.download-popup.active {
+.upload-popup.active {
   opacity: 1;
   transform: translateY(1rem);
 }
 
-.submit-download {
+.submit-upload {
   margin: 2rem;
   padding: 1rem 3rem;
   background-color: rgb(31, 33, 63);

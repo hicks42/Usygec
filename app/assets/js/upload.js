@@ -1,33 +1,37 @@
-// Download Module
-const downloadBtn = document.querySelector("#download-btn");
+// upload Module
+const uploadBtns = document.querySelectorAll(".upload-btn");
+// const uploadBtn = document.querySelector("#upload-btn");
 const formTitle = document.querySelector("#form-title");
-const submitDownloadBtn = document.querySelector(".submit-download");
+const submituploadBtn = document.querySelector(".submit-upload");
 const closePopupdBtn = document.querySelector(".close-popup");
-const downloadContainer = document.querySelector(".download-container");
-const downloadInput = document.querySelector(".download-container input");
+const uploadContainer = document.querySelector(".upload-container");
+const uploadInput = document.querySelector(".upload-container input");
 
-downloadBtn.addEventListener("click", openModal);
+uploadBtns.forEach(uploadBtn => {
+  uploadBtn.addEventListener("click", openModal);
+});
 closePopupdBtn.addEventListener("click", closeModal);
-submitDownloadBtn.addEventListener("click", downloadFile);
+submituploadBtn.addEventListener("click", uploadFile);
 
-// Download Modal
+// upload Modal
 function openModal(e) {
-  const structureId = downloadBtn.getAttribute("data-structureid");
+  const structureId = e.target.getAttribute("data-structureid");
+  console.log(structureId);
+  // const structureId = uploadBtn.getAttribute("data-structureid");
   formRow = `<input type="hidden" id="csv_structureId" class="form-control" name="csv[structureId]" value="${structureId}">`;
-  // formRow = '{{ form_row(form.structureId, { \'value\': structure.id }) }}';
   formTitle.insertAdjacentHTML('afterend', formRow);
-  const popup = downloadContainer.children[0];
-  downloadContainer.classList.add("active");
+  const popup = uploadContainer.children[0];
+  uploadContainer.classList.add("active");
   popup.classList.add("active");
 }
 
 function closeModal(e) {
-  const popup = downloadContainer.children[0];
-  downloadContainer.classList.remove("active");
+  const popup = uploadContainer.children[0];
+  uploadContainer.classList.remove("active");
   popup.classList.remove("active");
 }
 
-function downloadFile(e) {
-  downloadContainer.classList.remove("active");
+function uploadFile(e) {
+  uploadContainer.classList.remove("active");
   popup.classList.remove("active");
 }

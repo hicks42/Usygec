@@ -6,7 +6,7 @@ use App\Form\TargetType;
 use App\Entity\Structure;
 use App\Mails\EnqueteMail;
 use App\Form\BadReviewType;
-use App\Service\AsyncMailService;
+use App\Service\SendMailService;
 use App\Repository\StructureRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,11 +19,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EzreviewController extends AbstractController
 {
-    public function __construct(SessionInterface $session, AsyncMailService $mailService, StructureRepository $structureRepo)
+    public function __construct(SessionInterface $session, SendMailService $mailService, StructureRepository $structureRepo)
     {
         $this->session = $session;
         $this->mailService = $mailService;
         $this->structureRepo = $structureRepo;
+    }
+
+    /**
+     * @Route("/{id<\d+>}/survey ", name="survey")
+     */
+    public function survey(Request $request, $id): Response
+    {
+        $structure = $this->structureRepo->findOneById($id);
+        $badRevUrl = $structure->getBadRevUrl();
+        $GooglUrl = $structure->getGooglUrl();
+
+			return $this->render('ezreview/ezreview_survey.html.twig', [
+                'structure' => $structure,
+                'badRevUrl' => $badRevUrl,
+                'GooglUrl' => $GooglUrl,
+            ]);
     }
 
     /**
@@ -40,9 +56,13 @@ class EzreviewController extends AbstractController
         // $structure = $this->structureRepo->findOneById($structureId);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $this->mailService->sendToTarget($target, $structureId, $baseUrl);
-            $bus->dispatch(new EnqueteMail($target, $structureId, $baseUrl));
+
+            $this->mailService->sendToTarget($target, $structureId, $baseUrl);
+
+            // $bus->dispatch(new EnqueteMail($target, $structureId, $baseUrl));
+
             $this->addFlash('success', 'Le mail a bien été envoyé !');
+            return $this->redirectToRoute('enquete', ['id' => $id]);
         }
         return $this->render('ezreview/target_form.html.twig', [
             'form' => $form->createView(),
@@ -67,7 +87,7 @@ class EzreviewController extends AbstractController
                 'message' => $badreview->get('message')->getData(),
             ];
 
-            $this->mailService->send(
+            $this->mailService->sendToTarget(
                 'noreply@usygec.fr',                     //from
                 $userMail,                              //to
                 'Retour de l\'enquète de satisfaction', //subject

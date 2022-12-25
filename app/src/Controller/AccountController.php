@@ -97,12 +97,14 @@ class AccountController extends AbstractController
                 $targets =  $this->getEmailsArray($newFilename);
 
                 foreach ($targets as $target) {
-                    // $this->mailService->sendToTarget($user, $target, $structure);
-                    $bus->dispatch(new EnqueteMail($target, $structureId, $baseUrl));
+                    // $this->mailService->sendToTarget($target, $structureId, $baseUrl);
+                    $this->mailService->sendToTarget($target, $structureId, $baseUrl);
+                    // $bus->dispatch(new EnqueteMail($target, $structureId, $baseUrl));
                 }
                 $this->deleteFile($newFilename);
             }
             $this->addFlash('success', 'Ficier csv traité !');
+            return $this->redirectToRoute('account');
         }
         return $this->render('ezreview/account.html.twig', [
             'user' => $user,

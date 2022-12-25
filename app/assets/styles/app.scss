@@ -10,6 +10,7 @@
 @import "components/main";
 @import "components/tiny-slider";
 @import "components/upload";
+@import "components/qrcode";
 @import "scss/main";
 
 body {
@@ -26,7 +27,7 @@ body {
 }
 
 .form-container {
-  margin: 220px auto ;
+  margin: 220px auto;
   width: 50%;
 }
 

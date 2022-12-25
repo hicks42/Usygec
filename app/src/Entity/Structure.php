@@ -19,6 +19,11 @@ class Structure
 {
     use Timestampable;
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

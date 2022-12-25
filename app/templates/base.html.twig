@@ -3,6 +3,17 @@
 
 	<head>
 		{% block head %}
+			<!-- Google tag (gtag.js) -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=G-CPGP0YXXM9"></script>
+			<script>
+				window.dataLayer = window.dataLayer || [];
+function gtag() {
+dataLayer.push(arguments);
+}
+gtag('js', new Date());
+
+gtag('config', 'G-CPGP0YXXM9');
+			</script>
 			<meta charset="utf-8"/>
 			<meta http-equiv="x-ua-compatible" content="ie=edge"/>
 			<meta name="description" content=""/>
@@ -31,6 +42,7 @@
 			{{ include('main/partials/_preloader.html.twig') }}
 			{% block content %}{% endblock %}
 			{{ include('main/partials/_footer.html.twig') }}
+
 		{% endblock %}
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}

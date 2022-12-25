@@ -1,4 +1,3 @@
-#!/bin/sh
 #bootstrap
 docker-compose run --rm usygec-php74-service symfony console
 docker-compose run --rm usygec-node-service yarn dev
