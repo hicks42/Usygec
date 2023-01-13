@@ -1,15 +1,19 @@
-{% extends 'ezreview_base.html.twig' %}
+{% extends 'raw.html.twig' %}
 
 {% block title %}Hello AccountController!
 {% endblock %}
 
 {% block content %}
-	<h3>Votre mail a bien été envoyé</h3>
-	<div class="row">
-		<div class="col-md-12 my-5">
-			Nous tenons à vous remercier de votre retour et vous assurons qu'il sera pris en compte afin d'améliorer nos services.<br>
-			Toute notre équipe vous souhaite une bonne journée.
+	<div class="container mt-5">
+		<div class="content">
+			<h3>Votre mail a bien été envoyé</h3>
+			<div class="row">
+				<div class="col-md-12 my-5">
+					Nous tenons à vous remercier de votre retour et vous assurons qu'il sera pris en compte afin d'améliorer nos services.<br>
+					Toute notre équipe vous souhaite une bonne journée.
+				</div>
+				<a href="https://www.google.com" class="btn btn-secondary btn w-3 my-2">Au revoir</a>
+			</div>
 		</div>
-		<a href="https://www.google.com" class="btn btn-secondary btn w-3 my-2">Au revoir</a>
 	</div>
 {% endblock %}
