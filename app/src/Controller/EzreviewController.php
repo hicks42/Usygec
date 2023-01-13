@@ -87,7 +87,7 @@ class EzreviewController extends AbstractController
                 'message' => $badreview->get('message')->getData(),
             ];
 
-            $this->mailService->sendToTarget(
+            $this->mailService->send(
                 'noreply@usygec.fr',                     //from
                 $userMail,                              //to
                 'Retour de l\'enquète de satisfaction', //subject

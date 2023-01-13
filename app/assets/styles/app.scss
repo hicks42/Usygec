@@ -34,3 +34,9 @@ body {
 label {
   margin-top: 1rem;
 }
+
+.bouton-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 5rem 30%;
+}

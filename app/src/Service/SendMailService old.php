@@ -18,14 +18,19 @@ class SendMailService
         $this->em = $em;
     }
 
-    public function sendmail($structureId)
+    public function sendToTarget($target, $structureId, $baseUrl)
     {
         $structure = $this->em->find(Structure::class, $structureId);
         $userMail = $structure->getUser()->getEmail();
+        $target = $target;
 
         $context = [
-            'mail' => 'info@usygec.fr',
+            'mail' => $target,
+            'baseUrl' => $baseUrl,
             'structure' => $structure->getName(),
+            'imageName' => $structure->getImageName(),
+            'googleUrl' => $structure->getGooglUrl(),
+            'badRevUrl' => $structure->getBadRevUrl(),
             'subject' => 'Enquète de satisfaction',
             'structureId' => $structureId,
         ];
@@ -34,8 +39,8 @@ class SendMailService
         sleep($seconds);
 
         $this->send(
-            'info@usygec.fr',                   //from
-            $userMail,                          //to
+            $userMail,                          //from
+            $target,                            //to
             'Enquète de satisfaction ',         //subject
             'ezreview_template',                //template
             $context                            //context
