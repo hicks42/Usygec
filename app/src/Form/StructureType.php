@@ -31,8 +31,12 @@ class StructureType extends AbstractType
                 'download_uri' => false,
                 'imagine_pattern' => 'company_image_banner',
             ])
+            // ->add('googlUrl', TextareaType::class, [
+            //     'label' => 'Indiquez l\'URL pour un avis positif (Google) :'
+            // ])
             ->add('googlUrl', TextareaType::class, [
-                'label' => 'Indiquez l\'URL pour un avis positif (Google) :'
+                // 'mapped' => false,
+                // 'attr' => ['autocomplete' => 'fullGooglUrl'],
             ])
             ->add('badRevUrl', TextType::class, [
                 'label' => 'Indiquez la route pour un avis negatif :'

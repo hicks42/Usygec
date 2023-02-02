@@ -42,6 +42,35 @@ class SendMailService
         );
     }
 
+    public function sendToTarget($target, $structureId, $baseUrl)
+    {
+        $structure = $this->em->find(Structure::class, $structureId);
+        $userMail = $structure->getUser()->getEmail();
+        $target = $target;
+
+        $context = [
+            'mail' => $target,
+            'baseUrl' => $baseUrl,
+            'structure' => $structure->getName(),
+            'imageName' => $structure->getImageName(),
+            'googleUrl' => $structure->getGooglUrl(),
+            'badRevUrl' => $structure->getBadRevUrl(),
+            'subject' => 'Enquète de satisfaction',
+            'structureId' => $structureId,
+        ];
+
+        $seconds = rand(2, 7);
+        sleep($seconds);
+
+        $this->send(
+            $userMail,                          //from
+            $target,                            //to
+            'Enquète de satisfaction ',         //subject
+            'ezreview_template',                //template
+            $context                            //context
+        );
+    }
+
     public function send(
         string $from,
         string $to,

@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Structure;
-use App\Form\Structure1Type;
 use App\Repository\StructureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

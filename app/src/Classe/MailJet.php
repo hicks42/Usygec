@@ -2,8 +2,6 @@
 
 namespace App\Classe;
 
-// require 'vendor/autoload.php';
-
 use Mailjet\Client;
 use Mailjet\Resources;
 use App\Entity\Structure;
@@ -14,20 +12,20 @@ class MailJet
 {
     private EntityManagerInterface $em;
 
-    private $api_key = "2ee6ab00b79772edb1f214fba6072f1f";
-    private $api_key_private = "e80d4553e2b1eb4a037f2f88c8103e02";
+    private $api_key_public = '%env(MJ_APIKEY_PUBLIC)%';
+    private $api_key_private = '%env(MJ_APIKEY_PRIVATE)%';
 
-    // public function __construct(EntityManagerInterface $em)
-    // {
-    //     $this->em = $em;
-    // }
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
 
-    public function send($target, $structureId, $baseUrl)
+    public function sendMJ($target, $structureId, $baseUrl)
     {
 
         // $structure = $this->em->find(Structure::class, $structureId);
 
-        $mj = new Client($this->api_key, $this->api_key_private, true, ["version" => 'v3.1']);
+        $mj = new Client($this->api_key_public, $this->api_key_private, true, ["version" => 'v3.1']);
         // $body = [
         //     'Messages' => [
         //         [
@@ -70,6 +68,7 @@ class MailJet
                             'Name' => "Patrice"
                         ]
                     ],
+                    'templateID'=> 10223769,
                     'Subject' => "Greetings from Mailjet.",
                     'TextPart' => "My first Mailjet email",
                     'HTMLPart' => "<h3>Dear passenger 1, welcome to <a href='https://www.mailjet.com/'>Mailjet</a>!</h3><br />May the delivery force be with you!",

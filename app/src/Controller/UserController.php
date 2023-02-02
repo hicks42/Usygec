@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\UserType;
+use App\Service\ScraperService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +18,7 @@ class UserController extends AbstractController
      * @Route("/user/edit", name="user_edit")
      * @IsGranted("ROLE_USER")
      */
-    public function edit(Request $request, EntityManagerInterface $em, ValidatorInterface $validator): Response
+    public function edit(Request $request, EntityManagerInterface $em, ValidatorInterface $validator , ScraperService $scraperService): Response
     {
         $user = $this->getUser();
 
@@ -31,6 +32,15 @@ class UserController extends AbstractController
             $structures = $user->getStructures();
 
             foreach ($structures as $key => $structure) {
+
+                $structureName = $structure->getName();
+                $cp = $structure->getCp();
+                $googlUrl = $structure->getGooglUrl();
+
+                // sraping (not working)
+                // $pid = $scraperService->getPid( $structureName, $cp );
+                // $fullGooglUrl = "https://search.google.com/local/writereview?placeid=" . $pid ;
+
                 $structure->setUser($user);
                 $structures->set($key, $structure);
             }

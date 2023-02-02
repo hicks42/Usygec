@@ -37,7 +37,6 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('collection', './assets/js/collection_managment.js')
-    .addEntry('qrcode', './assets/js/qr-code.js')
     .addEntry('upload', './assets/js/upload.js')
     // .addEntry('popper', '@popperjs/core/dist/cjs/popper.js')
 
