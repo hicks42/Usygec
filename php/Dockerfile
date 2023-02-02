@@ -30,7 +30,6 @@ RUN docker-php-ext-enable imagick
 RUN git config --global user.email "gerin.patrice@yahoo.fr" \
     &&  git config --global user.name "patrice"
 
-
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 
 WORKDIR /var/www/project

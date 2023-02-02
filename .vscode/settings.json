@@ -1,10 +1,12 @@
 {
   // "php.validate.enable": false,
   "docker-linter.php.enable": true,
-  "docker-linter.php.container": "scip-php74-container",
+  "docker-linter.php.container": "usygec-php74-container",
   "docker-linter.php.machine": "",
-
   "jshint.packageManager": "yarn",
   "jshint.nodePath": "./app/node_modules/",
-  "jshint.options": { "esversion": 6 }
+  "jshint.options": {
+    "esversion": 6
+  },
+  "php.validate.executablePath": "./php_path"
 }

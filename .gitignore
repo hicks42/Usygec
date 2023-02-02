@@ -1,18 +1,10 @@
 ###> symfony/framework-bundle ###
 deploy
 conx
-.env
-.env.local
-.env.*.local
 .*
-/.env
-/.env.local
-/.env.local.php
-/.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
-/var/
-/vendor/
+var
+VRAC/
+vendor
 # nodemodules
 /app/node_modules/*
 # Cache and logs (Symfony2)
