@@ -34,12 +34,16 @@ class StructureType extends AbstractType
             // ->add('googlUrl', TextareaType::class, [
             //     'label' => 'Indiquez l\'URL pour un avis positif (Google) :'
             // ])
-            ->add('googlUrl', TextareaType::class, [
+            ->add('Pid', TextType::class, [
                 // 'mapped' => false,
                 // 'attr' => ['autocomplete' => 'fullGooglUrl'],
             ])
-            ->add('badRevUrl', TextType::class, [
-                'label' => 'Indiquez la route pour un avis negatif :'
+            ->add('badRevUrl', TextareaType::class, [
+                'label' => 'Indiquez l\'URL pour un avis negatif :',
+                'required' => false,
+                'attr' => [
+                    'placeholder' => '(optionelle)'
+                ]
             ])
             ->add('adresse1', TextType::class, [
                 'label' => 'Adresse 1',

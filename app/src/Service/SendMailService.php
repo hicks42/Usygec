@@ -18,29 +18,29 @@ class SendMailService
         $this->em = $em;
     }
 
-    public function sendmail($structureId)
-    {
-        $structure = $this->em->find(Structure::class, $structureId);
-        $userMail = $structure->getUser()->getEmail();
+    // public function sendmail($structureId)
+    // {
+    //     $structure = $this->em->find(Structure::class, $structureId);
+    //     $userMail = $structure->getUser()->getEmail();
 
-        $context = [
-            'mail' => 'info@usygec.fr',
-            'structure' => $structure->getName(),
-            'subject' => 'Enquète de satisfaction',
-            'structureId' => $structureId,
-        ];
+    //     $context = [
+    //         'mail' => 'info@usygec.fr',
+    //         'structure' => $structure->getName(),
+    //         'subject' => 'Enquète de satisfaction',
+    //         'structureId' => $structureId,
+    //     ];
 
-        $seconds = rand(2, 7);
-        sleep($seconds);
+    //     $seconds = rand(2, 7);
+    //     sleep($seconds);
 
-        $this->send(
-            'info@usygec.fr',                   //from
-            $userMail,                          //to
-            'Enquète de satisfaction ',         //subject
-            'ezreview_template',                //template
-            $context                            //context
-        );
-    }
+    //     $this->send(
+    //         'info@usygec.fr',                   //from
+    //         $userMail,                          //to
+    //         'Enquète de satisfaction ',         //subject
+    //         'ezreview_template',                //template
+    //         $context                            //context
+    //     );
+    // }
 
     public function sendToTarget($target, $structureId, $baseUrl)
     {
@@ -66,7 +66,7 @@ class SendMailService
             $userMail,                          //from
             $target,                            //to
             'Enquète de satisfaction ',         //subject
-            'ezreview_template',                //template
+            // 'ezreview_template',                //template
             $context                            //context
         );
     }
@@ -75,7 +75,7 @@ class SendMailService
         string $from,
         string $to,
         string $subject,
-        string $template,
+        // string $template,
         array $context
     ): void {
         // On crée le mail
@@ -83,11 +83,12 @@ class SendMailService
             ->from($from)
             ->to($to)
             ->subject($subject)
-            ->htmlTemplate("emails/$template.html.twig")
-            ->context($context);
+            // ->htmlTemplate("emails/$template.html.twig")
+            ->context($context)
+            ;
 
         //Pour faire passer le mail par mailjet
-        // $email->getHeaders()->addTextHeader('X-Transport', 'mailjet');
+        $email->getHeaders()->addTextHeader('X-Transport', 'mailjet');
 
         // On envoie le mail
         $this->mailer->send($email);

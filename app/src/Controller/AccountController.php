@@ -24,6 +24,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AccountController extends AbstractController
 {
+    private $mailService;
+    private $structureRepo;
+    private $userId;
+
     public function __construct(Security $security, SendMailService $mailService, StructureRepository $structureRepo)
     {
         $this->mailService = $mailService;

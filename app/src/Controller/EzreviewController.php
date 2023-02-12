@@ -6,7 +6,9 @@ use App\Form\TargetType;
 use App\Entity\Structure;
 use App\Mails\EnqueteMail;
 use App\Form\BadReviewType;
+use App\Service\MailJetService;
 use App\Service\SendMailService;
+use App\Service\AsyncMailService;
 use App\Repository\StructureRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +21,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EzreviewController extends AbstractController
 {
-    public function __construct(SessionInterface $session, SendMailService $mailService, StructureRepository $structureRepo)
+    private $session;
+    private $mailService;
+    private $structureRepo;
+
+    public function __construct(SessionInterface $session, MailJetService $mailService, StructureRepository $structureRepo)
     {
         $this->session = $session;
         $this->mailService = $mailService;
@@ -33,12 +39,13 @@ class EzreviewController extends AbstractController
     {
         $structure = $this->structureRepo->findOneById($id);
         $badRevUrl = $structure->getBadRevUrl();
-        $GooglUrl = $structure->getGooglUrl();
+        $GooglUrl = "https://search.google.com/local/writereview?placeid=" . $structure->getPid();
 
 			return $this->render('ezreview/ezreview_survey.html.twig', [
                 'structure' => $structure,
                 'badRevUrl' => $badRevUrl,
                 'GooglUrl' => $GooglUrl,
+                'image' => $image,
             ]);
     }
 
@@ -50,14 +57,24 @@ class EzreviewController extends AbstractController
     {
         $form = $this->createForm(TargetType::class);
         $target = $form->handleRequest($request)->get('email')->getData();
-        $structureId = $id;
         $baseUrl = $request->getSchemeAndHttpHost();
         // $user = $this->getUser();
-        // $structure = $this->structureRepo->findOneById($structureId);
+
+        $structure = $this->structureRepo->findOneById($id);
+        if ($structure->getBadRevUrl() === null) {
+        $badUrl = $baseUrl . "/badreview/" . $id;
+      } else {
+        $badUrl = $structure->getBadRevUrl();
+      };
+        $image = $structure->getImageName();
+        $imageUrl = $baseUrl . "/images/companies/" . $image;
+// dd($badUrl);
+        $structureName = $structure->getName();
+        $GooglUrl = "https://search.google.com/local/writereview?placeid=" . $structure->getPid();
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->mailService->sendToTarget($target, $structureId, $baseUrl);
+            $this->mailService->send($target, $structureName, $GooglUrl, $badUrl, $imageUrl);
 
             // $bus->dispatch(new EnqueteMail($target, $structureId, $baseUrl));
 

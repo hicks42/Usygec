@@ -88,12 +88,12 @@ class Structure
     private $user;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    private $googlUrl;
+    private $Pid;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text", length=255, nullable=true)
      */
     private $badRevUrl;
 
@@ -224,14 +224,14 @@ class Structure
         return $this;
     }
 
-    public function getGooglUrl(): ?string
+    public function getPid(): ?string
     {
-        return $this->googlUrl;
+        return $this->Pid;
     }
 
-    public function setGooglUrl(?string $googlUrl): self
+    public function setPid(?string $Pid): self
     {
-        $this->googlUrl = $googlUrl;
+        $this->Pid = $Pid;
 
         return $this;
     }
@@ -241,7 +241,7 @@ class Structure
         return $this->badRevUrl;
     }
 
-    public function setBadRevUrl(string $badRevUrl): self
+    public function setBadRevUrl(?string $badRevUrl): self
     {
         $this->badRevUrl = $badRevUrl;
 

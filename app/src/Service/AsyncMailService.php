@@ -63,7 +63,7 @@ class AsyncMailService
             ->context($context);
 
         //On fait passer le mail par mailjet
-        // $email->getHeaders()->addTextHeader('X-Transport', 'mailjet');
+        $email->getHeaders()->addTextHeader('X-Transport', 'mailjet');
 
         // On envoie le mail
         $this->mailer->send($email);
