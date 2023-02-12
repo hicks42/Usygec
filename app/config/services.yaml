@@ -7,6 +7,8 @@ parameters:
     app.mail_from_name: "Usygec"
     app.mail_from_address: "postmaster@usygec.fr"
     csv_directory: "%kernel.project_dir%/public/uploads/csv"
+    app.mailjet_key_public: "%env(MJ_APIKEY_PUBLIC)%"
+    app.mailjet_key_private: "%env(MJ_APIKEY_PRIVATE)%"
 
 services:
     # default configuration for services in *this* file
@@ -25,3 +27,8 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Service\MailJetService:
+        arguments:
+            $mailjet_key_public: "%app.mailjet_key_public%"
+            $mailjet_key_private: "%app.mailjet_key_private%"
