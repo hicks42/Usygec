@@ -2,8 +2,22 @@
 
 {% block title %}Retour de l'enquete de satisfaction.
 {% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+{% endblock %}
+
 {% block javascripts %}
 	{{ parent() }}
+	{# <script src="http://localhost:8080/wip.js"></script> #}
+	{{ encore_entry_script_tags('datepicker') }}
+	<script type="text/javascript">
+		$(function () {
+alert("Ready!");
+});
+	</script>
 {% endblock javascripts %}
 
 {% block content %}
@@ -16,6 +30,7 @@
 					{{ form_row(form.email) }}
 				</div>
 			</div>
+
 			<div class="row mt-5">
 				<div class="col-md-8 ">
 					Indiquez la date et l'heure de votre rendez vous :
@@ -24,6 +39,7 @@
 					{{ form_row(form.date_rdv) }}
 				</div>
 			</div>
+
 			<div class="row mt-5">
 				<div class="dropdown col-md-9">
 					Sur une échelle de 1 à 10, (1 étant fortement insatisfait à 10 : extrêmement satisfait), comment évaluez-vous nos services:

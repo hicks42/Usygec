@@ -10,7 +10,7 @@
 
 	{% import "ezreview/macros/forms.html.twig" as formMacros %}
 
-	<h3>Modifier votre compte</h3>
+	<h1>Modification du compte</h1>
 	<a href="{{ path('account') }}" class="btn btn-secondary btn w-3">
 		<i class="fa-solid fa-angles-left"></i>
 		Retour</a>
@@ -35,7 +35,8 @@
 				{% do form.structures.setRendered %}
 			{% endif %}
 		</div>
-		<button type="submit" class="btn btn-primary btn-lg btn-block">
+		<button type="submit" class="btn btn-warning btn-lg btn-block">
+			<i class="fa-solid fa-file-arrow-down"></i>
 			Enregistrer les modifications
 		</button>
 		{{ form_end(form) }}

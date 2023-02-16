@@ -16,7 +16,7 @@ submituploadBtn.addEventListener("click", uploadFile);
 // upload Modal
 function openModal(e) {
   const structureId = e.target.getAttribute("data-structureid");
-  console.log(structureId);
+  // console.log(structureId);
   // const structureId = uploadBtn.getAttribute("data-structureid");
   formRow = `<input type="hidden" id="csv_structureId" class="form-control" name="csv[structureId]" value="${structureId}">`;
   formTitle.insertAdjacentHTML('afterend', formRow);

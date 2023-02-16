@@ -26,6 +26,10 @@ class BadReviewType extends AbstractType
                 'label' => false,
                 'widget' => 'single_text',
                 'input'  => 'datetime_immutable',
+                'html5' => false,
+                'attr' => [
+                    'class' => 'js-datepicker'
+                ],
             ])
             ->add('note', ChoiceType::class, [
                 'label' => false,

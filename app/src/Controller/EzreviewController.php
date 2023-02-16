@@ -55,26 +55,13 @@ class EzreviewController extends AbstractController
      */
     public function sendOneEmail(Request $request, MessageBusInterface $bus, $id): Response
     {
-        $form = $this->createForm(TargetType::class);
+      $baseUrl = $request->getSchemeAndHttpHost();
+      $form = $this->createForm(TargetType::class);
         $target = $form->handleRequest($request)->get('email')->getData();
-        $baseUrl = $request->getSchemeAndHttpHost();
-        // $user = $this->getUser();
-
-        $structure = $this->structureRepo->findOneById($id);
-        if ($structure->getBadRevUrl() === null) {
-        $badUrl = $baseUrl . "/badreview/" . $id;
-      } else {
-        $badUrl = $structure->getBadRevUrl();
-      };
-        $image = $structure->getImageName();
-        $imageUrl = $baseUrl . "/images/companies/" . $image;
-// dd($badUrl);
-        $structureName = $structure->getName();
-        $GooglUrl = "https://search.google.com/local/writereview?placeid=" . $structure->getPid();
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->mailService->send($target, $structureName, $GooglUrl, $badUrl, $imageUrl);
+            $this->mailService->send($baseUrl, $target, $id);
 
             // $bus->dispatch(new EnqueteMail($target, $structureId, $baseUrl));
 
