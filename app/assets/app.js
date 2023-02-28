@@ -10,7 +10,6 @@
 import './styles/app.scss';
 
 import './js/bootstrap.min.js';
-import './js/datepicker.js';
 import './js/count-up.min.js';
 import './js/tiny-slider.js';
 import './js/glightbox.min.js';

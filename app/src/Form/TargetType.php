@@ -14,8 +14,9 @@ class TargetType extends AbstractType
         $builder
             ->add('email')
             ->add('envoyer', SubmitType::class, [
+                'row_attr' => ['class' => 'd-flex justify-content-center'],
                 'attr' => [
-                    'class' => 'btn btn-primary btn-lg btn-block my-5'
+                    'class' => 'btn-primary btn-sm btn-block w-25 my-5'
                 ]
             ]);
     }

@@ -15,12 +15,16 @@ class SendMailService
     private $twig;
     private MailerInterface $mailer;
     private EntityManagerInterface $em;
+    private $dkim_key_path;
+    private $project_dir;
 
-    public function __construct(MailerInterface $mailer, EntityManagerInterface $em, Environment $twig)
+    public function __construct(MailerInterface $mailer, EntityManagerInterface $em, Environment $twig, $dkim_key_path, $project_dir)
     {
         $this->mailer = $mailer;
         $this->em = $em;
         $this->twig = $twig;
+        $this->dkim_key_path = $dkim_key_path;
+        $this->project_dir = $project_dir;
     }
 
     // public function sendToTarget($target, $structureId, $baseUrl)
@@ -76,8 +80,10 @@ class SendMailService
         //Pour faire passer le mail par mailjet
         // $email->getHeaders()->addTextHeader('X-Transport', 'mailjet');
 
-        // dd($email);
-        $signer = new DkimSigner('file://'.dirname(__DIR__).'/../../DKIM_key.txt', 'usygec.fr', 'email');
+        // $signer = new DkimSigner('file://'.dirname(__DIR__).$this->dkim_key_path, 'usygec.fr', 'email');
+        // $signer = new DkimSigner('file://'.dirname(__DIR__).'/../../DKIM_key.txt', 'usygec.fr', 'email');
+        $signer = new DkimSigner('file://'.$this->project_dir.$this->dkim_key_path, 'usygec.fr', 'email');
+
         $signedEmail = $signer->sign($email, (new DkimOptions())
         ->bodyCanon('relaxed')
         ->headerCanon('relaxed')

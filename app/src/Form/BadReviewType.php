@@ -27,16 +27,15 @@ class BadReviewType extends AbstractType
                 'widget' => 'single_text',
                 'input'  => 'datetime_immutable',
                 'html5' => false,
-                'attr' => [
-                    'class' => 'js-datepicker'
-                ],
+                'format' => 'DD-MM-YYYY HH:mm'
+                // 'attr' => ['class' => 'js-datepicker'],
             ])
             ->add('note', ChoiceType::class, [
                 'label' => false,
                 'choices' => range(0, 10),
-                'placeholder' => 'de 0 à 10',
+                // 'placeholder' => '0',
                 'attr' => [
-                    'class' => 'btn btn-secondary dropdown-toggle',
+                    'class' => 'btn btn-secondary dropdown-toggle w-100',
                 ],
                 'choice_attr' => function ($choice, $key, $value) {
                     return [
@@ -49,8 +48,9 @@ class BadReviewType extends AbstractType
                 'label' => 'Expliquez le motif de votre mécontentement :'
             ])
             ->add('envoyer', SubmitType::class, [
+                'row_attr' => ['class' => 'd-flex justify-content-center'],
                 'attr' => [
-                    'class' => 'btn btn-primary btn-lg btn-block my-5'
+                    'class' => 'btn-primary btn-lg btn-block w-25 my-5'
                 ]
             ]);
     }

@@ -18,6 +18,7 @@ services:
             - ./php/vhosts:/etc/apache2/sites-enabled
             - ./app:/var/www/project
             - ./shopdemo:/var/www/shopdemo
+            - ./VRAC:/var/www/VRAC
         restart: always
         networks:
             - app-usygec
@@ -31,6 +32,7 @@ services:
         volumes:
             - ./app:/var/www/project
             - ./shopdemo:/var/www/shopdemo
+            - ./VRAC:/var/www/VRAC
         networks:
             - app-usygec
 
