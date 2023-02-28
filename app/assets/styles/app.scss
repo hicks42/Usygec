@@ -1,10 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import "~bootstrap/scss/bootstrap";
 
+@import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.min";
+
 
 // @import "shared/variables";
 @import "components/animate";
 @import "components/bootstrap.min";
+@import "components/datetimepicker";
 @import "components/glightbox.min";
 @import "components/LineIcons.2.0";
 @import "components/main";
@@ -14,7 +17,7 @@
 @import "scss/main";
 
 body {
-  background-color: lightgray;
+  background-color: rgb(241, 243, 255);
 }
 
 .footer {
@@ -39,4 +42,42 @@ label {
   display: flex;
   justify-content: space-around;
   margin: 5rem 30%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.h1,
+h1 {
+  font-size: 2.5rem;
+}
+
+
+.glass {
+  width: 100%;
+  height: 100%;
+}
+
+.logosw {
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 767.98px) {
+  .logosw {
+    width: 50px;
+    height: 40px;
+    background-image: url(https://www.usygec.fr/images/vv-tny-logo-usygec.gif);
+    background-size: cover;
+  }
+}
+
+@media (min-width: 768px) {
+  .logosw {
+    width: 150px;
+    height: 33px;
+    background-image: url(https://www.usygec.fr/images/logo-usygec.gif);
+    background-size: cover;
+  }
 }

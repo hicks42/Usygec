@@ -31,7 +31,7 @@ import 'bootstrap'; //dans node_modules
 
 import { Tooltip, Toast, Popover } from 'bootstrap';
 
-$(document).ready(function() {
+$(function () {
   $('[data-toggle="popover"]').popover();
 });
 

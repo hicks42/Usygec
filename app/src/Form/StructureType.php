@@ -35,6 +35,7 @@ class StructureType extends AbstractType
             //     'label' => 'Indiquez l\'URL pour un avis positif (Google) :'
             // ])
             ->add('Pid', TextType::class, [
+                'required' => false,
                 // 'mapped' => false,
                 // 'attr' => ['autocomplete' => 'fullGooglUrl'],
             ])

@@ -86,14 +86,14 @@
 						<h2>Retour de l'enquete</h2>
 						<div class="my-5">
 							Date de la visite
-							<strong>{{ date_rdv|date('d/m/y \\à H:i', "Europe/Paris") }}</strong><br>
+							<strong>{{ context.date_rdv|date('d/m/y \\à H:i', "Europe/Paris") }}</strong><br>
 							Lieu du rendez vous :
-							<strong>{{ lieu_rdv }}</strong>
+							<strong>{{ context.lieu_rdv }}</strong>
 							<h3>Note donnée :
-								{{note}}</h3>
+								{{context.note}}</h3>
 							<div class="message my-3">
 								<h3>Raison du mécontentement :</h3>
-								{{ message }}</div>
+								{{ context.message }}</div>
 						</div>
 					</div>
 				</div>

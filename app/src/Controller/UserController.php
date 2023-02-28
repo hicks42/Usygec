@@ -37,7 +37,7 @@ class UserController extends AbstractController
                 $cp = $structure->getCp();
                 $pid = $structure->getPid();
 
-                // sraping (not working)
+                // scraping (not working)
                 // $pid = $scraperService->getPid( $structureName, $cp );
                 // $fullGooglUrl = "https://search.google.com/local/writereview?placeid=" . $pid ;
 

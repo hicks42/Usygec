@@ -50,6 +50,7 @@
         "symfony/web-link": "5.4.*",
         "symfony/webpack-encore-bundle": "^1.14",
         "symfony/yaml": "5.4.*",
+        "tempusdominus/bootstrap-4": "^5.1",
         "twig/cssinliner-extra": "^3.4",
         "twig/extra-bundle": "^3.4",
         "twig/inky-extra": "^3.4",
@@ -72,7 +73,10 @@
             "composer/package-versions-deprecated": true,
             "symfony/flex": true,
             "symfony/runtime": true,
-            "endroid/installer": true
+            "endroid/installer": true,
+            "composer/installers": true,
+            "oomphinc/composer-installers-extender": true,
+            "robloach/component-installer": true
         },
         "optimize-autoloader": true,
         "preferred-install": {

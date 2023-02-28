@@ -8,8 +8,8 @@ use League\Csv\Reader;
 use App\Mails\EnqueteMail;
 use App\Form\ChangeMailFormType;
 use App\Service\SendMailService;
+use App\Service\MailJetService;
 use App\Repository\UserRepository;
-use App\Repository\StructureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,10 +28,9 @@ class AccountController extends AbstractController
     private $structureRepo;
     private $userId;
 
-    public function __construct(Security $security, SendMailService $mailService, StructureRepository $structureRepo)
+    public function __construct(Security $security, MailJetService $mailService)
     {
         $this->mailService = $mailService;
-        $this->structureRepo = $structureRepo;
         $this->userId = $security->getUser()->getId();
     }
 
@@ -102,7 +101,7 @@ class AccountController extends AbstractController
 
                 foreach ($targets as $target) {
                     // $this->mailService->sendToTarget($target, $structureId, $baseUrl);
-                    $this->mailService->sendToTarget($target, $structureId, $baseUrl);
+                    $this->mailService->send($baseUrl, $target, $structureId);
                     // $bus->dispatch(new EnqueteMail($target, $structureId, $baseUrl));
                 }
                 $this->deleteFile($newFilename);

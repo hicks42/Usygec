@@ -24,6 +24,7 @@ class EzreviewController extends AbstractController
     private $session;
     private $mailService;
     private $structureRepo;
+    private $mjDkimKeyPath;
 
     public function __construct(SessionInterface $session, MailJetService $mailService, StructureRepository $structureRepo)
     {
@@ -40,6 +41,7 @@ class EzreviewController extends AbstractController
         $structure = $this->structureRepo->findOneById($id);
         $badRevUrl = $structure->getBadRevUrl();
         $GooglUrl = "https://search.google.com/local/writereview?placeid=" . $structure->getPid();
+        $image = $structure->getImageName();
 
 			return $this->render('ezreview/ezreview_survey.html.twig', [
                 'structure' => $structure,
@@ -55,26 +57,13 @@ class EzreviewController extends AbstractController
      */
     public function sendOneEmail(Request $request, MessageBusInterface $bus, $id): Response
     {
-        $form = $this->createForm(TargetType::class);
+      $baseUrl = $request->getSchemeAndHttpHost();
+      $form = $this->createForm(TargetType::class);
         $target = $form->handleRequest($request)->get('email')->getData();
-        $baseUrl = $request->getSchemeAndHttpHost();
-        // $user = $this->getUser();
-
-        $structure = $this->structureRepo->findOneById($id);
-        if ($structure->getBadRevUrl() === null) {
-        $badUrl = $baseUrl . "/badreview/" . $id;
-      } else {
-        $badUrl = $structure->getBadRevUrl();
-      };
-        $image = $structure->getImageName();
-        $imageUrl = $baseUrl . "/images/companies/" . $image;
-// dd($badUrl);
-        $structureName = $structure->getName();
-        $GooglUrl = "https://search.google.com/local/writereview?placeid=" . $structure->getPid();
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->mailService->send($target, $structureName, $GooglUrl, $badUrl, $imageUrl);
+            $this->mailService->send($baseUrl, $target, $id);
 
             // $bus->dispatch(new EnqueteMail($target, $structureId, $baseUrl));
 
@@ -89,7 +78,7 @@ class EzreviewController extends AbstractController
     /**
      * @Route("/badreview/{structureId}", name="badreview")
      */
-    public function badreview(Request $request, $structureId): Response
+    public function badreview(Request $request, SendMailService $sendMailService, $structureId): Response
     {
         $form = $this->createForm(BadReviewType::class);
         $badreview = $form->handleRequest($request);
@@ -104,7 +93,7 @@ class EzreviewController extends AbstractController
                 'message' => $badreview->get('message')->getData(),
             ];
 
-            $this->mailService->send(
+            $sendMailService->send(
                 'noreply@usygec.fr',                     //from
                 $userMail,                              //to
                 'Retour de l\'enquète de satisfaction', //subject
