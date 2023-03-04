@@ -111,13 +111,17 @@
                 var day = parseInt(m.format('D'));
                 $b.text(day);
 
-                // Impossible past selection
+                // forbide past selection
                 // if (flagStart && day < dayNow) {
-                //     // $b.addClass('dtp_modal-grey');
+                // $b.addClass('dtp_modal-grey');
                 // }
                 // else
 
-                if (flagSelect && day == cerDay) {
+                // forbide futur selection
+                if (flagStart && day > dayNow) {
+                  $b.addClass('dtp_modal-grey');
+                }
+                else if (flagSelect && day == cerDay) {
                   $b.addClass('dtp_modal-cell-selected');
                 }
                 else {
@@ -160,10 +164,12 @@
           $s = $('<span>');
           $s.text(selectMonth.format("MMM YYYY"));
           $d.append($s);
-          $s = $('<i></i>');
-          $s.addClass('fa fa-angle-right cursorily ico-size-month hov');
-          $s.bind('click', nextMonth);
-          $d.append($s);
+          if (totalMonths(selectDate) < totalMonths(startDate)) {
+            $s = $('<i></i>');
+            $s.addClass('fa fa-angle-right cursorily ico-size-month hov');
+            $s.bind('click', nextMonth);
+            $d.append($s);
+          }
           return $d;
         }
 
@@ -185,11 +191,15 @@
         }
 
         function prevMonth() {
-          // add IF to forbid past selection
+          // to forbid past selection
           //if (totalMonths(selectDate) > totalMonths(startDate)) {
+
+
+          // to forbid futur selection ??
+          // if (totalMonths(selectDate) < totalMonths(startDate)) {
           selectDate.add(-1, 'month');
           feelDates(selectDate);
-          //}
+          // }
         }
 
         function attachChangeTime() {
@@ -405,7 +415,7 @@ let psl;
 if (window.innerWidth < 450) {
   psl = 2;
 } else {
-  psl = 25;
+  psl = 33;
 }
 
 $(document).ready(function () {
