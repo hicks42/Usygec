@@ -24,15 +24,18 @@ class BadReviewType extends AbstractType
             // ])
             ->add('date_rdv', DateTimeType::class, [
                 'label' => false,
+                'model_timezone' => 'UTC',
+                'view_timezone' => 'Europe/Paris',
+                'format' => 'yyyy-MM-dd  HH:mm',
                 'widget' => 'single_text',
                 'input'  => 'datetime_immutable',
                 'html5' => false,
-                'format' => 'DD-MM-YYYY HH:mm'
                 // 'attr' => ['class' => 'js-datepicker'],
             ])
             ->add('note', ChoiceType::class, [
                 'label' => false,
                 'choices' => range(0, 10),
+                'row_attr' => ['class' => 'd-flex justify-content-center'],
                 // 'placeholder' => '0',
                 'attr' => [
                     'class' => 'btn btn-secondary dropdown-toggle w-100',
@@ -50,7 +53,7 @@ class BadReviewType extends AbstractType
             ->add('envoyer', SubmitType::class, [
                 'row_attr' => ['class' => 'd-flex justify-content-center'],
                 'attr' => [
-                    'class' => 'btn-primary btn-lg btn-block w-25 my-5'
+                    'class' => 'btn-primary btn-lg btn-sm w-25 my-5'
                 ]
             ]);
     }

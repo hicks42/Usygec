@@ -50,10 +50,10 @@
         "symfony/web-link": "5.4.*",
         "symfony/webpack-encore-bundle": "^1.14",
         "symfony/yaml": "5.4.*",
-        "tempusdominus/bootstrap-4": "^5.1",
         "twig/cssinliner-extra": "^3.4",
         "twig/extra-bundle": "^3.4",
         "twig/inky-extra": "^3.4",
+        "twig/intl-extra": "^3.5",
         "twig/twig": "^2.12|^3.0",
         "vich/uploader-bundle": "^1.19"
     },
