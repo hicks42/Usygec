@@ -52,11 +52,15 @@
     border: solid 1px #94a7af;
     border-radius: 10px;
     width: 530px;
-    position: absolute;
+    // position: absolute;
     z-index: 1000;
-    top: 100px;
-    left: 0;
+    // top: 100px;
+    // left: 0;
     font-weight: normal;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .dtp_modal-content-no-time {
@@ -196,7 +200,7 @@
     }
 
     .dtp_modal-content {
-        width: 100%;
+        width: 98%;
         font-size: smaller;
     }
 
@@ -246,6 +250,75 @@
 
     .dtp_modal-time-block {
         height: 125px;
+    }
+
+}
+
+@media screen and (min-width: 450px) and (max-width: 768px) {
+
+    .h1,
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .dtp_modal-content {
+        width: 490px;
+        font-size: smaller;
+    }
+
+    .dtp_modal-title {
+        border-bottom: solid 3px #54646b;
+        padding: 8px 16px;
+        margin-bottom: 8px;
+    }
+
+    .dtp_modal-cell-date {
+        padding: 0;
+    }
+
+    .dtp_modal-time-line {
+        padding-top: 0px;
+    }
+
+    .dtp_modal-time-block {
+        width: 165px;
+        height: 142px;
+    }
+
+    .dtp_modal-time-mechanic {
+        padding-top: 0px;
+    }
+
+    .dtp_modal-calendar {
+        width: 266px;
+        margin: 0 5px;
+    }
+
+    .dtp_modal-calendar-cell {
+        padding: 2px 0;
+    }
+
+    .dtp_modal-cell-time {
+        margin-top: 20px;
+        width: 210px;
+        float: right;
+        font-size: smaller;
+        display: inline-grid;
+        justify-content: center;
+    }
+
+    .dtp_modal-digit {
+        font-size: smaller;
+    }
+
+    .dtp_modal-midle-dig {
+        font-size: smaller;
+    }
+
+    .dpt_modal-button {
+        font-size: 12px;
+        padding: 4px 20px;
+        margin: 5px auto;
     }
 
 }

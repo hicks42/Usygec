@@ -63,8 +63,11 @@
         var $content = createContent();
         $body.append($content);
         var offset = elem.offset();
+
         // $content.css({ top: (offset.top + settings.positionShift.top) + "px", left: (offset.left + settings.positionShift.left) + "px" });
-        $content.css({ top: (offset.top + settings.positionShift.top) + "px", left: (settings.positionShift.left) + "%" });
+
+        // $content.css({ top: (offset.top + settings.positionShift.top) + "px", left: (settings.positionShift.left) + "%" });
+
         feelDates(selectDate);
         $win.on('click', function () {
           $content.remove();
@@ -420,7 +423,7 @@ if (window.innerWidth < 450) {
 
 $(document).ready(function () {
   $('#picker').dateTimePicker({
-    positionShift: { top: 30, left: psl },
+    // positionShift: { top: 30, left: psl },
     title: "Selectinez l\'heure et la date.",
     buttonTitle: "Valider",
   });
