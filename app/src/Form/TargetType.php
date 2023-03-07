@@ -13,12 +13,13 @@ class TargetType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('envoyer', SubmitType::class, [
-                'row_attr' => ['class' => 'd-flex justify-content-center'],
-                'attr' => [
-                    'class' => 'btn-primary btn-sm btn-block w-25 my-5'
-                ]
-            ]);
+            // ->add('envoyer', SubmitType::class, [
+            //     'row_attr' => ['class' => 'd-flex justify-content-center'],
+            //     'attr' => [
+            //         'class' => 'btn-primary btn-sm btn-block w-25 my-5'
+            //     ]
+            // ])
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -7,8 +7,7 @@
 {% endblock javascripts %}
 
 {% block content %}
-	<div class="qr-container">
-
+	<div class="qr-container mt-5 mx-1">
 		<div class="banner-qr-container">
 			<img src="{{ (structure.imageName ? vich_uploader_asset(structure) : asset('build/images/placeholder.jpg')) | imagine_filter('company_image_banner') }}" alt="{{ structure.name }}" alt="{{structure}}">
 		</div>

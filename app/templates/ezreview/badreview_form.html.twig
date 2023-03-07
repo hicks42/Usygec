@@ -5,20 +5,19 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	{# <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet"> #}
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 
 {% block javascripts %}
 	{{ parent() }}
 	{# <script src="http://localhost:8080/wip.js"></script> #}
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js" integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ==" crossorigin="anonymous"></script>
+	<script src="moment-timezone-with-data.js"></script>
 	{{ encore_entry_script_tags('datepicker') }}
 {% endblock javascripts %}
 
 {% block content %}
-	<div class="container mt-5">
+	<div class="col-12 col-sm-8 col-lg-6 px-2 my-3">
 		<div class="content">
 			<h1>Faites part de votre mécontentement :</h1>
 			{{ form_start(form) }}
@@ -29,11 +28,11 @@
 			</div>
 
 			<div class="row d-flex justify-content-between mt-5">
-				<div class="col-md-6">
+				<div class="col-md-6 col-sm-12">
 					Indiquez la date et l'heure de votre rendez vous :
 				</div>
 
-				<div class="col-md-6">
+				<div class="col-md-6 col-sm-12 d-flex justify-content-center justify-content-md-end">
 					<div id="picker"></div>
 					{{ form_row(form.date_rdv, { 'type': "hidden", 'id': 'result'}) }}
 				</div>
@@ -41,10 +40,10 @@
 			</div>
 
 			<div class="row d-flex justify-content-between mt-5">
-				<div class="dropdown col-md-10">
+				<div class="dropdown col-sm-12 col-md-10">
 					Sur une échelle de 1 à 10, (1 étant fortement insatisfait à 10 : extrêmement satisfait), comment évaluez-vous nos services:
 				</div>
-				<div class="dropdown col-md-2">
+				<div class="dropdown col-sm-12 col-md-2">
 					{{ form_row(form.note) }}
 				</div>
 			</div>

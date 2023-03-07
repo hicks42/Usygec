@@ -92,7 +92,9 @@ class EzreviewController extends AbstractController
                 'date_rdv' => $badreview->get('date_rdv')->getData(),
                 'message' => $badreview->get('message')->getData(),
             ];
-
+//$dateRdv = $badreview->get('date_rdv')->getData();
+//$message = $badreview->get('message')->getData();
+// dd($dateRdv, $message);
             $sendMailService->send(
                 'noreply@usygec.fr',                     //from
                 $userMail,                              //to

@@ -4,19 +4,22 @@
 {% endblock %}
 
 {% block content %}
-	<h3>Modifier l'email du compte</h3>
-	<a href="{{ path('accounts_index') }}" class="btn btn-secondary btn w-3">
-		<i class="fa-solid fa-angles-left"></i>
-		Retour</a>
-	{{ form_start(form, {"method": "POST"}) }}
 	<div class="row">
-		{{ form_row(form.email) }}
+		<div class="col-12 mt-3">
+			<h3>Modifier l'email du compte</h3>
+			{{ form_start(form, {"method": "POST"}) }}
+			{{ form_row(form.email) }}
+			<div class="col-12 d-flex justify-content-around">
+				<a href="{{ path('accounts_index') }}" class="btn btn-outline-secondary btn-sm my-5">
+					<i class="fa-solid fa-angles-left"></i>
+					Retour</a>
+				<button type="submit" class="btn btn-primary btn-sm my-5">
+					Enregistrer les modifications
+				</button>
+				{# {{ form_widget(form._token) }} #}
+				{# {{ form_end(form, {'render_rest': false}) }} #}
+				{{ form_end(form) }}
+			</div>
+		</div>
 	</div>
-	<div class="col-md-12 mt-3"></div>
-	<button type="submit" class="btn btn-primary btn-lg btn-block">
-		Enregistrer les modifications
-	</button>
-	{# {{ form_widget(form._token) }} #}
-	{# {{ form_end(form, {'render_rest': false}) }} #}
-	{{ form_end(form) }}
-</div>{% endblock %}
+{% endblock %}

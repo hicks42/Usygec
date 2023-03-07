@@ -85,12 +85,19 @@
 					<div class="col-md-12">
 						<h2>Retour de l'enquete</h2>
 						<div class="my-5">
-							Date de la visite
-							<strong>{{ context.date_rdv|date('d/m/y \\à H:i', "Europe/Paris") }}</strong><br>
-							Lieu du rendez vous :
-							<strong>{{ context.lieu_rdv }}</strong>
-							<h3>Note donnée :
-								{{context.note}}</h3>
+							Date de la visite:
+							<strong>{{ context.date_rdv|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}</strong><br>
+							{# <strong>{{ context.date_rdv|date('d/M/y \\à H:i', "Europe/Paris") }}</strong><br> #}
+							<p>
+								Lieu du rendez vous :
+								<strong>{{ context.lieu_rdv }}</strong>
+							</p>
+							<p>
+								Note donnée :
+								<strong>
+									{{context.note}}
+								</strong>
+							</p>
 							<div class="message my-3">
 								<h3>Raison du mécontentement :</h3>
 								{{ context.message }}</div>
