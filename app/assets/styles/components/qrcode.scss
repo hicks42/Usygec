@@ -2,7 +2,7 @@
   background-color: white;
   padding: 0;
   height: 100vh;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -34,7 +34,12 @@
 
 .qr-text {
   color: black;
-  margin: 5rem 10px;
+  margin: 2rem 10px;
+}
+
+.qr-text p {
+  color: black;
+  margin: 1rem 0;
 }
 
 .image-qr-container {
