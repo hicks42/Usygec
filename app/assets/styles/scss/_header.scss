@@ -9,6 +9,8 @@
     transition: all 0.3s ease-out 0s;
     background-color: $white;
     position: absolute;
+    min-height: 70px;
+    margin: auto 3px;
 }
 
 .header.index2 {
@@ -202,8 +204,8 @@
 }
 
 .header .navbar-nav li .sub-menu li a.active {
-    background-color: $theme-color  !important;
-    color: $white  !important;
+    background-color: $theme-color !important;
+    color: $white !important;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -448,16 +450,16 @@
 
 .header.index2 .sticky {
     .nav-item a {
-        color: $black  !important;
+        color: $black !important;
 
         &:hover {
-            color: $theme-color  !important;
+            color: $theme-color !important;
         }
 
     }
 
     .nav-item a.active {
-        color: $theme-color  !important;
+        color: $theme-color !important;
     }
 }
 
@@ -529,7 +531,7 @@
 }
 
 .header.index2 .navbar-nav .sub-menu li a:hover {
-    color: $white  !important;
+    color: $white !important;
 }
 
 /* Index 4 */

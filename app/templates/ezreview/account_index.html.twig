@@ -4,30 +4,45 @@
 {% endblock %}
 
 {% block content %}
-	<div class="mt-5">
-		<h2>Liste des comptes</h2>
-	</div>
-	<p>Ici, vous pouvez changer les adresses mail des differents comptes administrés</p>
-	<div class="bg-light rounded overflow-hidden my-3 p-2">
-		<ul class="structures">
-			{% for user in users %}
-				<li>
-					<div class="d-flex justify-content-between align-items-center w-100">
-						<strong class="w-50">-{{ user.email }}</strong>
-						<a href="{{ path('account_edit', {id: user.id}) }}" class="btn btn-sm btn-secondary m-2">
-							<i class="fa-solid fa-pen-to-square"></i>
-							Modifier</a>
-						{# <a href="{{ path('account_delete', {id: user.id}) }}" class="btn btn-sm btn-danger m-2">&times; Supprimer</a> #}
+	<div class="col-12 col-md-8 col-lg-6 mt-5">
+		<div class="row d-flex justify-content-center">
+			<h2>Liste des comptes</h2>
+		</div>
+		<p>Sur cette page on peut modifier les emails, et les mots de passe utilisateurs.</p>
+		<p>On peut également supprimer les utilisateurs et leurs dependences.</p>
+		<div class="bg-light rounded overflow-hidden my-3 p-2">
+			<ul class="structures">
+				{% for user in users %}
+					<li>
+						<div class="d-flex justify-content-between align-items-center w-100">
+							<strong class="w-50">-
+								{{ user.email }}</strong>
+							<a href="{{ path('account_edit', {id: user.id}) }}" class="btn btn-sm btn-secondary m-2">
+								<i class="fa-solid fa-pen-to-square"></i>
+								<i class="fa-regular fa-envelope"></i>
+							</a>
 
-						<a href="#" onclick="event.preventDefault(); confirm('Etes vous sure ?') && document.getElementById('js-user-delete-form').submit();" class="btn btn-sm btn-danger m-2">&times; Supprimer</a>
-
-						<form id="js-user-delete-form" action="{{ path('account_delete', {id: user.id}) }}" method="post" style="display: none;">
-							<input type="hidden" name="csrf_token" value="{{ csrf_token('user_deletion_' ~ user.id) }}">
-							<input type="hidden" name="_method" value="POST">
-						</form>
-
-					</div>
-				</li>
-			{% endfor %}
-		</ul>
+							<a href="{{ path('change_password', {id: user.id}) }}" class="btn btn-secondary btn-sm float-end">
+								<i class="fa-solid fa-pen-to-square"></i>
+								<i class="fa-solid fa-lock"></i>
+							</a>
+							{# <a href="{{ path('account_delete', {id: user.id}) }}" class="btn btn-sm btn-danger m-2">&times; Supprimer</a> #}
+							{% if 'ROLE_ADMIN' not in user.roles %}
+								<a href="#" onclick="event.preventDefault(); confirm('Confirmez la suppression de {{user.email}} ?') && document.getElementById('js-user-delete-form-{{user.id}}').submit();" class="btn btn-sm btn-danger m-2">
+									<i class="fa-solid fa-trash-can"></i>
+								</a>
+								<form id="js-user-delete-form-{{user.id}}" action="{{ path('account_delete', {id: user.id}) }}" method="post" style="display: none;">
+									<input type="hidden" name="csrf_token" value="{{ csrf_token('user_deletion_' ~ user.id) }}">
+									<input type="hidden" name="_method" value="POST">
+								</form>
+							{% else %}
+								<p class="lead mx-2 mr-3 text-muted">
+									<i class="fa-solid fa-ban"></i>
+								</p>
+							{% endif %}
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
 	{% endblock %}

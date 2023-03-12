@@ -24,141 +24,141 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AccountController extends AbstractController
 {
-    private $mailService;
-    private $structureRepo;
-    private $userId;
+  private $mailService;
+  private $structureRepo;
+  private $userId;
 
-    public function __construct(Security $security, MailJetService $mailService)
-    {
-        $this->mailService = $mailService;
-        $this->userId = $security->getUser()->getId();
+  public function __construct(Security $security, MailJetService $mailService)
+  {
+    $this->mailService = $mailService;
+    $this->userId = $security->getUser()->getId();
+  }
+
+  /**
+   * @Route("/ezreview/accounts", name="accounts_index")
+   * @IsGranted("ROLE_ADMIN")
+   */
+  public function index(UserRepository $userRepo): Response
+  {
+    $users = $userRepo->findBy([], ['email' => 'DESC']);
+
+    return $this->render('ezreview/account_index.html.twig', compact('users'));
+  }
+
+  /**
+   * @Route("/ezreview/account/{id<[0-9]+>}/edit", name="account_edit", methods={"GET", "POST"})
+   * @IsGranted("ROLE_ADMIN")
+   */
+  public function edit(Request $request, EntityManagerInterface $em, User $user): Response
+  {
+    $form = $this->createForm(ChangeMailFormType::class, $user, [
+      'method' => 'POST',
+    ]);
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+
+      $em->flush();
+
+      $this->addFlash('success', 'Votre compte a été modifié !');
+
+      return $this->redirectToRoute('accounts_index');
     }
 
-    /**
-     * @Route("/ezreview/accounts", name="accounts_index")
-     * @IsGranted("ROLE_ADMIN")
-     */
-    public function index(UserRepository $userRepo): Response
-    {
-        $users = $userRepo->findBy([], ['email' => 'DESC']);
+    return $this->render('ezreview/account_edit.html.twig', [
+      'form' => $form->createView(),
+      'user' => $user
+    ]);
+  }
 
-        return $this->render('ezreview/account_index.html.twig', compact('users'));
-    }
+  /**
+   * @Route("/ezreview/account/", name="account")
+   * @IsGranted("ROLE_USER")
+   */
+  public function show(Request $request, SluggerInterface $slugger, MessageBusInterface $bus, Security $security): Response
+  {
+    $user = $security->getUser();
 
-    /**
-     * @Route("/ezreview/account/{id<[0-9]+>}/edit", name="account_edit", methods={"GET", "POST"})
-     * @IsGranted("ROLE_ADMIN")
-     */
-    public function edit(Request $request, EntityManagerInterface $em, User $user): Response
-    {
-        $form = $this->createForm(ChangeMailFormType::class, $user, [
-            'method' => 'POST',
-        ]);
 
-        $form->handleRequest($request);
+    $form = $this->createForm(CsvType::class);
+    $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+    // dd(unserialize(""));
+    if ($form->isSubmitted() && $form->isValid()) {
+      /** @var UploadedFile $csvFile */
+      // upload le csv
+      $csvFile = $form['csvFile']->getData();
+      // get la structure via l ID
+      $structureId = $form['structureId']->getData();
+      // $structure = $this->structureRepo->findOneById($structureId);
+      if ($csvFile) {
+        $baseUrl = $request->getSchemeAndHttpHost();
 
-            $em->flush();
+        $newFilename = $this->getNewFileName($csvFile, $slugger);
+        // get un array de tous les mails du csv
+        $targets = $this->getEmailsArray($newFilename);
 
-            $this->addFlash('success', 'Votre compte a été modifié !');
-
-            return $this->redirectToRoute('accounts_index');
+        foreach ($targets as $target) {
+          // $this->mailService->sendToTarget($target, $structureId, $baseUrl);
+          $this->mailService->send($baseUrl, $target, $structureId);
+          // $bus->dispatch(new EnqueteMail($target, $structureId, $baseUrl));
         }
+        $this->deleteFile($newFilename);
+      }
+      $this->addFlash('success', 'Ficier csv traité !');
+      return $this->redirectToRoute('account');
+    }
+    return $this->render('ezreview/account.html.twig', [
+      'user' => $user,
+      'form' => $form->createView(),
+    ]);
+  }
 
-        return $this->render('ezreview/account_edit.html.twig', [
-            'form' => $form->createView(),
-            'user' => $user
-        ]);
+  /**
+   * @Route("/ezreview/account/{id<\d+>}/delete", name="account_delete", methods={"POST"})
+   * @IsGranted("ROLE_ADMIN")
+   */
+  public function delete(Request $request, EntityManagerInterface $em, User $user): Response
+  {
+    if ($this->isCsrfTokenValid('user_deletion_' . $user->getId(), $request->request->get('csrf_token'))) {
+      $em->remove($user);
+      $em->flush();
+
+      $this->addFlash('info', 'Utilisateur supprimé !!!');
     }
 
-    /**
-     * @Route("/ezreview/account/", name="account")
-     * @IsGranted("ROLE_USER")
-     */
-    public function show(Request $request, SluggerInterface $slugger, MessageBusInterface $bus, Security $security): Response
-    {
-        $user = $security->getUser();
+    return $this->redirectToRoute('accounts_index');
+  }
 
+  private function getNewFileName($csvFile, $slugger)
+  {
+    $originalFilename = pathinfo($csvFile->getClientOriginalName(), PATHINFO_FILENAME);
+    // this is needed to safely include the file name as part of the URL
+    $safeFilename = $slugger->slug($originalFilename);
+    $newFilename = $safeFilename . '-' . uniqid() . '.' . $csvFile->guessExtension();
+    // Move the file to the directory where csvs are stored
+    $csvFile->move(
+      $this->getParameter('csv_directory'),
+      $newFilename
+    );
+    return $newFilename;
+  }
 
-        $form = $this->createForm(CsvType::class);
-        $form->handleRequest($request);
+  private function getEmailsArray($newFilename)
+  {
+    $reader = Reader::createFromPath('uploads/csv/' . $newFilename, 'r');
+    $emailpattern = '/[a-z0-9_\-\+\.]+@[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i';
+    // $emailpattern = '/[a-z0-9_\-\+\.]+@[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i';
+    preg_match_all($emailpattern, $reader, $matches);
+    $emails = $matches[0];
 
-        // dd(unserialize(""));
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $csvFile */
-            // upload le csv
-            $csvFile = $form['csvFile']->getData();
-            // get la structure via l ID
-            $structureId = $form['structureId']->getData();
-            // $structure = $this->structureRepo->findOneById($structureId);
-            if ($csvFile) {
-                $baseUrl = $request->getSchemeAndHttpHost();
+    return $emails;
+  }
 
-                $newFilename = $this->getNewFileName($csvFile, $slugger);
-                // get un array de tous les mails du csv
-                $targets =  $this->getEmailsArray($newFilename);
-
-                foreach ($targets as $target) {
-                    // $this->mailService->sendToTarget($target, $structureId, $baseUrl);
-                    $this->mailService->send($baseUrl, $target, $structureId);
-                    // $bus->dispatch(new EnqueteMail($target, $structureId, $baseUrl));
-                }
-                $this->deleteFile($newFilename);
-            }
-            $this->addFlash('success', 'Ficier csv traité !');
-            return $this->redirectToRoute('account');
-        }
-        return $this->render('ezreview/account.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/ezreview/account/{id<\d+>}/delete", name="account_delete", methods={"POST"})
-     * @IsGranted("ROLE_ADMIN")
-     */
-    public function delete(Request $request, User $user, EntityManagerInterface $em): Response
-    {
-        if ($this->isCsrfTokenValid('user_deletion_' . $user->getId(), $request->request->get('csrf_token'))) {
-            $em->remove($user);
-            $em->flush();
-
-            $this->addFlash('info', 'Utilisateur supprimé !!!');
-        }
-
-        return $this->redirectToRoute('accounts_index');
-    }
-
-    private function getNewFileName($csvFile, $slugger)
-    {
-        $originalFilename = pathinfo($csvFile->getClientOriginalName(), PATHINFO_FILENAME);
-        // this is needed to safely include the file name as part of the URL
-        $safeFilename = $slugger->slug($originalFilename);
-        $newFilename = $safeFilename . '-' . uniqid() . '.' . $csvFile->guessExtension();
-        // Move the file to the directory where csvs are stored
-        $csvFile->move(
-            $this->getParameter('csv_directory'),
-            $newFilename
-        );
-        return $newFilename;
-    }
-
-    private function getEmailsArray($newFilename)
-    {
-        $reader = Reader::createFromPath('uploads/csv/' . $newFilename, 'r');
-        $emailpattern = '/[a-z0-9_\-\+\.]+@[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i';
-        // $emailpattern = '/[a-z0-9_\-\+\.]+@[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i';
-        preg_match_all($emailpattern, $reader, $matches);
-        $emails = $matches[0];
-
-        return $emails;
-    }
-
-    private function deleteFile(string $filename)
-    {
-        $filesystem = new Filesystem();
-        $filesystem->remove(['uploads/csv/' . $filename]);
-    }
+  private function deleteFile(string $filename)
+  {
+    $filesystem = new Filesystem();
+    $filesystem->remove(['uploads/csv/' . $filename]);
+  }
 }

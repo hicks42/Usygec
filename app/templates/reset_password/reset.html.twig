@@ -1,0 +1,17 @@
+{% extends 'ezreview_base.html.twig' %}
+
+{% block title %}Reset your password
+{% endblock %}
+
+{% block body %}
+	<div class="row de-flex justify-content-center">
+		<div class="col-12 col-sm-8 col-lg-6 px-2 my-3">
+			<h1>Reset your password</h1>
+
+			{{ form_start(resetForm) }}
+			{{ form_row(resetForm.plainPassword) }}
+			<button class="btn btn-primary">Reset password</button>
+			{{ form_end(resetForm) }}
+		</div>
+	</div>
+{% endblock %}
