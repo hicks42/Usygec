@@ -1,0 +1,20 @@
+{% extends 'ezreview_base.html.twig' %}
+
+{% block title %}Changer le mot de passe
+{% endblock %}
+
+{% block body %}
+	<div class="row de-flex justify-content-center">
+		<div class="col-12 col-sm-8 col-lg-6 px-2 my-3">
+			<h1>Changer le mot de passe de
+				{{ userName }}</h1>
+
+			{{ form_start(changeForm) }}
+			{{ form_row(changeForm.plainPassword) }}
+			<div class="row de-flex justify-content-center">
+				<button class="btn btn-primary btn-sm w-25 mt-3">Changer</button>
+			</div>
+			{{ form_end(changeForm) }}
+		</div>
+	</div>
+{% endblock %}

@@ -29,6 +29,17 @@ class SendMailService
         $this->parameterBag = $parameterBag;
     }
 
+    public function sendOne($email)
+    {
+        $this->send(
+            'noreply@usygec.fr',                          //from
+            $target,                            //to
+            'Enquète de satisfaction ',         //subject
+            'ezreview_template',                //template
+            $context                            //context
+        );
+    }
+
     // public function sendToTarget($target, $structureId, $baseUrl)
     // {
     //     $structure = $this->em->find(Structure::class, $structureId);

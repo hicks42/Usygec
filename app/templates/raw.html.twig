@@ -36,9 +36,9 @@ gtag('config', 'G-CPGP0YXXM9');
 	<body>
 		{% block body %}
 			{{ include('main/partials/_preloader.html.twig') }}
-
-			{% block content %}{% endblock %}
-
+			<div class="col-12 d-flex justify-content-center">
+				{% block content %}{% endblock %}
+			</div>
 		{% endblock %}
 	</body>
 </html>
