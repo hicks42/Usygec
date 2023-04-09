@@ -8,7 +8,6 @@ Index Of css
     Normalize CSS
 ========================================*/
 @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
 html {
   scroll-behavior: smooth;
 }
@@ -940,7 +939,7 @@ ol {
 /* Section Title */
 .section-title {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
   padding: 0 300px;
   position: relative;
   z-index: 5;
@@ -1035,11 +1034,11 @@ ol {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-size: 14px;
   color: #fff !important;
   border-radius: 0;
@@ -1098,7 +1097,7 @@ ol {
   display: inline-block;
   border: 1px solid #eee;
   -webkit-box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
-  box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
+          box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
 }
 
 .pagination .pagination-list li {
@@ -1158,9 +1157,9 @@ ol {
   background-color: #081828;
   color: #fff;
   -webkit-box-shadow: 0 1rem 3rem rgba(35, 38, 45, 0.15) !important;
-  box-shadow: 0 1rem 3rem rgba(35, 38, 45, 0.15) !important;
+          box-shadow: 0 1rem 3rem rgba(35, 38, 45, 0.15) !important;
   -webkit-transform: translate3d(0, -5px, 0);
-  transform: translate3d(0, -5px, 0);
+          transform: translate3d(0, -5px, 0);
 }
 
 .button .btn-alt {
@@ -1231,13 +1230,12 @@ ol {
 @keyframes preloader-fx {
   0% {
     -webkit-transform: scale(0, 0);
-    transform: scale(0, 0);
+            transform: scale(0, 0);
     opacity: 0.5;
   }
-
   100% {
     -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
+            transform: scale(1, 1);
     opacity: 0;
   }
 }
@@ -1247,7 +1245,6 @@ ol {
     -webkit-transform: scale(0, 0);
     opacity: 0.5;
   }
-
   100% {
     -webkit-transform: scale(1, 1);
     opacity: 0;
@@ -1274,7 +1271,7 @@ ol {
   content: "";
   right: 0;
   width: 50%;
-  // background-image: url(../images/demo/demo-bg.jpg);
+  background-image: url(../images/demo/demo-bg.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1339,15 +1336,15 @@ ol {
 
 .universal-demo .single-demo:hover img {
   -webkit-transform: translate3d(0, -7px, 0);
-  transform: translate3d(0, -7px, 0);
+          transform: translate3d(0, -7px, 0);
   -webkit-box-shadow: 0 20px 50px #c2c2c2;
-  box-shadow: 0 20px 50px #c2c2c2;
+          box-shadow: 0 20px 50px #c2c2c2;
 }
 
 .universal-demo .single-demo img {
   width: 100%;
   -webkit-box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
-  box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
+          box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
   border-radius: 6px;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
@@ -1414,7 +1411,7 @@ ol {
   z-index: 99;
   background-color: #fff;
   -webkit-box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
-  box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
   -webkit-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
   top: 0;
@@ -1425,7 +1422,7 @@ ol {
   z-index: 99;
   background-color: #fff;
   -webkit-box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
-  box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
   -webkit-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
   top: 0;
@@ -1478,7 +1475,7 @@ ol {
 .navbar-toggler:focus {
   outline: none;
   -webkit-box-shadow: none;
-  box-shadow: none;
+          box-shadow: none;
 }
 
 .navbar-toggler .toggler-icon {
@@ -1494,7 +1491,7 @@ ol {
 
 .navbar-toggler.active .toggler-icon:nth-of-type(1) {
   -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
+          transform: rotate(45deg);
   top: 7px;
 }
 
@@ -1504,7 +1501,7 @@ ol {
 
 .navbar-toggler.active .toggler-icon:nth-of-type(3) {
   -webkit-transform: rotate(135deg);
-  transform: rotate(135deg);
+          transform: rotate(135deg);
   top: -7px;
 }
 
@@ -1517,7 +1514,7 @@ ol {
     background-color: #fff;
     z-index: 9;
     -webkit-box-shadow: 0px 15px 20px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 15px 20px 0px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 15px 20px 0px rgba(0, 0, 0, 0.1);
     padding: 5px 12px;
   }
 }
@@ -1531,7 +1528,7 @@ ol {
     background-color: #fff;
     z-index: 9;
     -webkit-box-shadow: 0px 15px 20px 0px rgba(29, 42, 93, 0.1);
-    box-shadow: 0px 15px 20px 0px rgba(29, 42, 93, 0.1);
+            box-shadow: 0px 15px 20px 0px rgba(29, 42, 93, 0.1);
     padding: 5px 12px;
   }
 }
@@ -1609,7 +1606,6 @@ ol {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-
   .navbar-nav .nav-item a:hover::after,
   .navbar-nav .nav-item a:hover::before,
   .navbar-nav .nav-item a.active::after,
@@ -1619,7 +1615,6 @@ ol {
 }
 
 @media (max-width: 767px) {
-
   .navbar-nav .nav-item a:hover::after,
   .navbar-nav .nav-item a:hover::before,
   .navbar-nav .nav-item a.active::after,
@@ -1708,7 +1703,7 @@ ol {
   border-left: 1px solid #222;
   border-bottom: 1px solid #222;
   -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+          transform: rotate(-45deg);
   position: relative;
   top: -5px;
 }
@@ -1742,7 +1737,7 @@ ol {
   font-size: 14px;
   font-weight: 500;
   -webkit-box-shadow: none;
-  box-shadow: none;
+          box-shadow: none;
 }
 
 .header .button .btn:hover {
@@ -1770,9 +1765,9 @@ ol {
   transition: all 0.3s ease 0s;
   z-index: 9999999;
   -webkit-transform-origin: 0 0 0;
-  transform-origin: 0 0 0;
+          transform-origin: 0 0 0;
   -webkit-transform: scaleY(0.2);
-  transform: scaleY(0.2);
+          transform: scaleY(0.2);
   border-radius: 0 0 3px 3px;
 }
 
@@ -1780,7 +1775,7 @@ ol {
   opacity: 1;
   visibility: visible;
   -webkit-transform: scaleY(1);
-  transform: scaleY(1);
+          transform: scaleY(1);
 }
 
 .header .navbar-nav li .sub-menu li {
@@ -1845,7 +1840,7 @@ ol {
   opacity: 1;
   visibility: visible;
   -webkit-transform: scaleY(1);
-  transform: scaleY(1);
+          transform: scaleY(1);
 }
 
 .header.index2 .sticky .nav-item a {
@@ -1970,7 +1965,7 @@ ol {
 
 .hero-area .hero-text {
   float: none;
-  margin-top: 100px;
+  margin-top: 220px;
 }
 
 .hero-area .hero-text h1 {
@@ -2029,7 +2024,7 @@ ol {
 }
 
 .hero-area.index2 .hero-text {
-  margin-top: 100px;
+  margin-top: 220px;
 }
 
 .hero-area.index2 .hero-text h1 {
@@ -2287,7 +2282,7 @@ ol {
   z-index: -1;
   border-radius: 10px;
   -webkit-transform: scale(1);
-  transform: scale(1);
+          transform: scale(1);
   -webkit-transition: all 0.4s cubic-bezier(0.94, 0.05, 0.23, 1.04);
   transition: all 0.4s cubic-bezier(0.94, 0.05, 0.23, 1.04);
   -moz-transition: all 0.4s cubic-bezier(0.94, 0.05, 0.23, 1.04);
@@ -2299,7 +2294,7 @@ ol {
   opacity: 1;
   visibility: visible;
   -webkit-transform: scale(1.05);
-  transform: scale(1.05);
+          transform: scale(1.05);
 }
 
 .single-service:hover h3 a {
@@ -2461,7 +2456,7 @@ ol {
   font-size: 13px;
   background-color: #fff;
   -webkit-box-shadow: 0px 0px 20px 0px rgba(52, 49, 75, 0.1);
-  box-shadow: 0px 0px 20px 0px rgba(52, 49, 75, 0.1);
+          box-shadow: 0px 0px 20px 0px rgba(52, 49, 75, 0.1);
 }
 
 .about-us .about-left .about-tab .nav li a.active {
@@ -2530,7 +2525,7 @@ ol {
   transition: all 0.4s ease;
   border-radius: 5px;
   -webkit-box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
-  box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
+          box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
 }
 
 .about-us.index3 .first-overview {
@@ -2584,7 +2579,7 @@ ol {
   transition: all 0.4s ease;
   padding: 60px 20px;
   -webkit-box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
-  box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
+          box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
   overflow: hidden;
   border-radius: 5px;
 }
@@ -2722,7 +2717,6 @@ ol {
     transform: scale(1);
     opacity: 1;
   }
-
   100% {
     -webkit-transform: scale(1.3);
     transform: scale(1.3);
@@ -2736,7 +2730,6 @@ ol {
     transform: scale(1);
     opacity: 1;
   }
-
   100% {
     -webkit-transform: scale(1.3);
     transform: scale(1.3);
@@ -2750,7 +2743,6 @@ ol {
     transform: scale(1);
     opacity: 1;
   }
-
   100% {
     -webkit-transform: scale(1.5);
     transform: scale(1.5);
@@ -2764,7 +2756,6 @@ ol {
     transform: scale(1);
     opacity: 1;
   }
-
   100% {
     -webkit-transform: scale(1.5);
     transform: scale(1.5);
@@ -2833,7 +2824,7 @@ ol {
 
 .latest-news-area .single-news:hover .image .thumb {
   -webkit-transform: scale(1.1) rotate(1deg);
-  transform: scale(1.1) rotate(1deg);
+          transform: scale(1.1) rotate(1deg);
 }
 
 .blog-list .single-news {
@@ -2912,10 +2903,10 @@ ul.custom-flex {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .post-details .post-meta li {
@@ -3032,11 +3023,11 @@ blockquote span {
 
 .post-details .post-tags-media .post-social-media ul {
   -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
-.post-details .post-tags-media .post-social-media ul>li>a {
+.post-details .post-tags-media .post-social-media ul > li > a {
   font-size: 18px;
   color: #7184AD;
   height: 40px;
@@ -3044,7 +3035,7 @@ blockquote span {
   line-height: 40px;
 }
 
-.post-details .post-tags-media .post-social-media ul>li>a:hover {
+.post-details .post-tags-media .post-social-media ul > li > a:hover {
   color: #3763EB;
 }
 
@@ -3053,11 +3044,11 @@ blockquote span {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin-bottom: 30px;
 }
 
@@ -3079,7 +3070,7 @@ blockquote span {
   color: #3763EB;
 }
 
-.post-details>p {
+.post-details > p {
   font-size: 14px;
 }
 
@@ -3095,7 +3086,7 @@ blockquote span {
   border-radius: 5px;
 }
 
-.post-details>ul>li {
+.post-details > ul > li {
   font-weight: 500;
 }
 
@@ -3115,8 +3106,8 @@ blockquote span {
 
 .post-details .post-tags-media .post-social-media ul {
   -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .detail-post-navigation {
@@ -3125,11 +3116,11 @@ blockquote span {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   background: #fff;
   padding: 30px;
   border: 1px solid #eee;
@@ -3457,7 +3448,7 @@ blockquote span {
   font-size: 12px;
 }
 
-.sidebar .widget.popular-feeds .single-popular-feed .feed-desc .time>i {
+.sidebar .widget.popular-feeds .single-popular-feed .feed-desc .time > i {
   margin-right: 4px;
 }
 
@@ -3514,7 +3505,7 @@ blockquote span {
   padding-bottom: 30px;
 }
 
-.popular-tag-widget .tags>a {
+.popular-tag-widget .tags > a {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -3535,7 +3526,7 @@ blockquote span {
   border-radius: 30px;
 }
 
-.popular-tag-widget .tags>a:hover {
+.popular-tag-widget .tags > a:hover {
   background-color: #3763EB;
   color: #fff;
   border-color: transparent;
@@ -3555,7 +3546,7 @@ blockquote span {
   height: 100%;
   border-radius: 5px;
   -webkit-box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
-  box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
+          box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
 }
 
 .newsletter-area .subscribe-text h6 {
@@ -3605,7 +3596,7 @@ blockquote span {
   width: 100%;
   padding: 40px;
   -webkit-box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
-  box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
+          box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
   border-radius: 5px;
 }
 
@@ -3725,7 +3716,7 @@ blockquote span {
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
   -webkit-transform: scale(0.9);
-  transform: scale(0.9);
+          transform: scale(0.9);
   opacity: 0.5;
 }
 
@@ -3822,7 +3813,7 @@ blockquote span {
   opacity: 0;
   visibility: hidden;
   -webkit-transform: scale(0);
-  transform: scale(0);
+          transform: scale(0);
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
@@ -3831,7 +3822,7 @@ blockquote span {
   opacity: 1;
   visibility: visible;
   -webkit-transform: scale(1);
-  transform: scale(1);
+          transform: scale(1);
 }
 
 .footer .footer-middle {
@@ -3930,12 +3921,10 @@ blockquote span {
   .section {
     padding: 60px 0px;
   }
-
   .section-title {
     margin-bottom: 50px;
     padding: 0px 90px;
   }
-
   .section-title span {
     text-transform: uppercase;
     color: #3763EB;
@@ -3943,63 +3932,50 @@ blockquote span {
     margin-bottom: 8px;
     font-size: 13px;
   }
-
   .section-title h2 {
     font-size: 28px;
     margin-top: 5px;
     line-height: 38px;
   }
-
   .section-title.align-left {
     padding: 0;
     padding-right: 200px;
   }
-
   .section-title p {
     font-size: 13px;
   }
-
   .breadcrumbs {
     padding-top: 105px;
     padding-bottom: 50px;
   }
-
   .breadcrumbs .breadcrumbs-content .page-title {
     font-size: 30px;
     margin-bottom: 5px;
     color: #fff;
   }
-
   .button .btn {
     padding: 12px 25px;
     font-size: 14px;
     font-weight: 500;
   }
-
   #scrollUp {
     bottom: 55px;
   }
-
   .navbar-brand img {
     width: 130px;
   }
-
   .header.index2 .navbar .navbar-nav .nav-item a {
     color: #081828;
   }
-
   .header.index2 .navbar .navbar-nav .nav-item a::before {
     background-color: #3763EB;
   }
-
   .header.index2 .navbar-toggler .toggler-icon {
     background-color: #fff !important;
   }
-
   .header.index2 .sticky .navbar .navbar-toggler .toggler-icon {
     background: #081828 !important;
   }
-
   .header .navbar-nav li .sub-menu {
     background: #fff;
     width: 200px;
@@ -4016,402 +3992,314 @@ blockquote span {
     border: 1px dashed #eee;
     border-radius: 5px;
     -webkit-box-shadow: none;
-    box-shadow: none;
+            box-shadow: none;
   }
-
   .header .navbar-nav li .sub-menu li a {
     padding: 5px 10px;
     font-size: 13px;
     padding: 8px 12px;
     font-size: 12px;
   }
-
   .header .navbar-nav li a:hover .sub-menu {
     top: 42px;
   }
-
   .header .navbar-nav li a {
     position: relative;
     margin-bottom: 6px;
   }
-
   .navbar-collapse {
     overflow: scroll;
     height: 400px;
     -webkit-transition: all 0.4s ease;
     transition: all 0.4s ease;
   }
-
   .navbar-nav .nav-item:last-child {
     padding-bottom: 20px;
   }
-
   .right-button .btn {
     font-size: 13px;
   }
-
   .breadcrumbs .bread-list {
     margin-top: 8px;
   }
-
   .hero-area .hero-inner {
     height: 450px;
   }
-
   .hero-area .hero-inner::before {
     display: none;
   }
-
   .hero-area .hero-text {
     float: none;
     margin-top: 140px;
   }
-
   .hero-area .hero-text h1 {
     font-size: 30px;
     line-height: 38px;
   }
-
   .hero-area .hero-text .button {
     margin-top: 25px;
   }
-
   .hero-area.index2 .hero-text {
     margin-top: 135px;
   }
-
   .hero-area.index2 .hero-inner {
     height: 500px;
   }
-
   .hero-area.index2 .shape {
     height: 220px;
   }
-
   .hero-area.index2 .mobile-screen {
     display: none;
   }
-
   .hero-area.index3 .desktop-screen img {
     width: 100%;
   }
-
   .hero-area.index3 .hero-inner {
     height: 770px;
   }
-
   .hero-area.index3 .hero-text {
     margin-top: 150px;
   }
-
   .hero-area.index4 .hero-text {
     margin-top: 150px;
   }
-
   .hero-area.index4 .hero-inner {
     height: 550px;
   }
-
   .hero-area.index4 .hero-text h1 span {
     font-size: 30px;
     margin-bottom: 8px;
   }
-
   .hero-area.index4 .personal-image {
     display: none;
   }
-
   .about-us.index3 .about-left .section-title {
     margin-bottom: 0;
   }
-
   .about-us.index3 .about-right.margin-zero {
     margin: 0;
     margin-bottom: 40px;
   }
-
   .about-us.index3 .about-left.pl {
     padding-left: 0;
   }
-
   .services.index2 .review-content {
     margin-bottom: 15px;
   }
-
   .services .single-service {
     margin: 15px 0;
   }
-
   .services .single-head .service-patern {
     position: absolute;
     left: -30px;
     bottom: -30px;
   }
-
   .service-details h3 {
     font-size: 20px !important;
     margin-top: 30px;
     line-height: 32px !important;
   }
-
   .service-details .service-category {
     padding: 14px;
   }
-
   .service-details .service-category li a {
     font-size: 13px;
   }
-
   .service-details .content {
     padding: 60px 0;
   }
-
   .about-us .about-right {
     text-align: center;
     margin-top: 40px;
   }
-
   .portfolio-section.section {
     padding-bottom: 30px;
   }
-
   .portfolio-section .portfolio-btn-wrapper {
     position: relative;
     margin-top: 40px;
     text-align: left;
   }
-
   .portfolio-section .portfolio-btn-wrapper button {
     margin-right: 10px;
     padding: 7px 18px;
     font-size: 13px;
   }
-
   .portfolio-details .top-head {
     padding-bottom: 60px;
     padding-top: 60px;
   }
-
   .portfolio-details .top-head .cat {
     margin-bottom: 3px;
   }
-
   .portfolio-details .top-head h2 {
     margin-bottom: 30px;
     font-size: 28px;
     line-height: 50px;
   }
-
   .portfolio-details .content {
     padding: 60px 0;
   }
-
   .portfolio-details .content img {
     margin-top: 30px;
   }
-
   .single-team {
     width: 100%;
   }
-
   .single-team .image {
     text-align: center;
     display: inline-block;
   }
-
   .team .single-team .social-links .social {
     display: inline-block;
   }
-
   .team .single-team .shapes .shape1 {
     left: 70px;
   }
-
   .team .single-team .shapes .shape2 {
     right: 70px;
     bottom: 12px;
   }
-
   .testimonials {
     padding-bottom: 100px !important;
   }
-
   .intro-video-area {
     padding-bottom: 100px !important;
   }
-
   .pricing-table .section-title {
     margin-bottom: 20px;
   }
-
   .pricing-table .single-table {
     margin-top: 30px;
   }
-
   .faq-area {
     padding-bottom: 0;
   }
-
   .faq-area .heading {
     font-size: 17px;
     line-height: 28px;
   }
-
   .brand-area .section-title.align-left {
     padding-right: 200px;
     margin-bottom: 40px !important;
   }
-
   .newsletter-area .mini-call-action {
     height: auto;
   }
-
   .latest-news-area .section-title {
     margin-bottom: 20px;
   }
-
   .latest-news-area .single-news {
     margin-top: 30px;
   }
-
   .post-details .post-meta li {
     margin-bottom: 8px;
   }
-
   .latest-news-area.blog-list {
     padding-top: 30px;
   }
-
   .blog-list .single-news {
     margin-bottom: 0 !important;
   }
-
   .post-details p {
     margin: 25px 0;
   }
-
   .sidebar {
     margin-top: 30px;
   }
-
   .sidebar .widget.search-widget form input {
     padding: 0 80px 0 20px;
   }
-
   .sidebar .widget.social-widget ul li {
     margin-bottom: 10px;
   }
-
   .contact-area .contact-address-wrapper {
     padding-right: 0;
   }
-
   .contact-area .inner-section-title h2 {
     font-weight: 700;
     font-size: 28px;
   }
-
-  .sidebar.service-sidebar .service-category>li>a {
+  .sidebar.service-sidebar .service-category > li > a {
     font-size: 14px;
     font-weight: 500;
     padding: 0;
     padding: 10px 15px;
   }
-
   .sidebar.service-sidebar .service-category {
     padding: 30px;
   }
-
   .sidebar.service-sidebar .service-docs {
     padding: 30px;
   }
-
   .sidebar.service-sidebar .service-quote {
     padding: 30px;
   }
-
   .adv-banner {
     padding: 30px;
   }
-
   .post-details .post-title {
     line-height: 30px;
   }
-
   .post-details .post-title a {
     font-size: 24px;
     font-weight: 600;
   }
-
   .blog-middle-image {
     margin-bottom: 20px;
   }
-
   .blog-single .sidebar {
     margin-top: 30px;
   }
-
   .map-section {
     background-color: #fff;
     margin-top: 50px;
     padding-bottom: 60px !important;
     height: auto;
   }
-
   .map-section iframe {
     height: 300px !important;
   }
-
   .newsletter-area .mini-call-action {
     margin-top: 30px;
   }
-
   .error-page .error-image img {
     width: 70%;
   }
-
   .error-page .error-text {
     margin-top: 50px;
     padding-left: 0 !important;
     text-align: center !important;
     padding: 0px 100px !important;
   }
-
   .error-page .error-image img {
     width: 70%;
   }
-
   .error-page .error-text {
     margin-top: 50px !important;
     padding-left: 0 !important;
     text-align: center !important;
     padding: 0px 100px !important;
   }
-
   .mail-success .success-image img {
     width: 70%;
   }
-
   .mail-success .siccess-text {
     margin-top: 50px;
     padding-left: 0 !important;
     text-align: center !important;
     padding: 0px 100px !important;
   }
-
   .contact-us .form-main {
     padding: 50px 50px 50px 50px !important;
   }
-
   .footer .footer-middle {
     padding-bottom: 60px;
     padding-top: 30px;
   }
-
   .footer .f-about p {
     padding-right: 80px;
   }
-
   .footer .single-footer {
     margin-top: 30px;
   }
@@ -4422,12 +4310,10 @@ blockquote span {
   .section {
     padding: 50px 0px;
   }
-
   .section-title {
     margin-bottom: 40px;
     padding: 0px 20px;
   }
-
   .section-title span {
     text-transform: uppercase;
     color: #3763EB;
@@ -4435,63 +4321,50 @@ blockquote span {
     margin-bottom: 8px;
     font-size: 12px;
   }
-
   .section-title h2 {
     font-size: 25px;
     margin-top: 3px;
     line-height: 35px;
   }
-
   .section-title.align-left {
     padding: 0;
     padding-right: 0;
   }
-
   .section-title p {
     font-size: 13px;
   }
-
   .breadcrumbs {
     padding-top: 105px;
     padding-bottom: 50px;
   }
-
   .breadcrumbs .breadcrumbs-content .page-title {
     font-size: 30px;
     margin-bottom: 5px;
     color: #fff;
   }
-
   .button .btn {
     padding: 12px 25px;
     font-size: 14px;
     font-weight: 500;
   }
-
   #scrollUp {
     bottom: 55px;
   }
-
   .navbar-brand img {
     width: 130px;
   }
-
   .header.index2 .navbar .navbar-nav .nav-item a {
     color: #081828;
   }
-
   .header.index2 .navbar .navbar-nav .nav-item a::before {
     background-color: #3763EB;
   }
-
   .header.index2 .navbar-toggler .toggler-icon {
     background-color: #fff !important;
   }
-
   .header.index2 .sticky .navbar .navbar-toggler .toggler-icon {
     background: #081828 !important;
   }
-
   .header .navbar-nav li .sub-menu {
     background: #fff;
     width: 200px;
@@ -4508,514 +4381,401 @@ blockquote span {
     border: 1px dashed #eee;
     border-radius: 5px;
     -webkit-box-shadow: none;
-    box-shadow: none;
+            box-shadow: none;
   }
-
   .header .navbar-nav li .sub-menu li a {
     padding: 5px 10px;
     font-size: 13px;
     padding: 8px 12px;
     font-size: 12px;
   }
-
   .header .navbar-nav li a:hover .sub-menu {
     top: 42px;
   }
-
   .header .navbar-nav li a {
     position: relative;
     margin-bottom: 6px;
   }
-
   .navbar-collapse {
     overflow: scroll;
     height: 400px;
     -webkit-transition: all 0.4s ease;
     transition: all 0.4s ease;
   }
-
   .navbar-nav .nav-item:last-child {
     padding-bottom: 20px;
   }
-
   .right-button .btn {
     font-size: 13px;
   }
-
   .breadcrumbs .bread-list {
     margin-top: 8px;
   }
-
   .hero-area .hero-inner {
     height: 400px;
     overflow: visible;
   }
-
   .hero-area .hero-inner::before {
     display: none;
   }
-
   .hero-area .hero-text {
     float: none;
     margin-top: 100px;
   }
-
   .hero-area .hero-text h1 {
     font-size: 23px;
     line-height: 30px;
   }
-
   .hero-area .hero-text .button {
     margin-top: 20px;
   }
-
   .hero-area.index2 .hero-text {
     margin-top: 100px;
   }
-
   .hero-area.index2 .hero-inner {
     height: 500px;
   }
-
   .hero-area.index2 .shape {
     height: 120px;
   }
-
   .hero-area.index2 .mobile-screen {
     display: none;
   }
-
   .hero-area.index3 .desktop-screen img {
     width: 100%;
   }
-
   .hero-area.index3 .hero-inner {
     height: 550px;
   }
-
   .hero-area.index3 .hero-text {
     margin-top: 100px;
   }
-
   .hero-area.index4 .hero-text {
     margin-top: 120px;
   }
-
   .hero-area.index4 .hero-text p {
     font-size: 13px;
   }
-
   .hero-area.index4 .hero-inner {
     height: 500px;
   }
-
   .hero-area.index4 .hero-text h1 span {
     font-size: 23px;
     margin-bottom: 5px;
   }
-
   .hero-area.index4 .hero-text .small {
     margin-bottom: 12px;
     font-size: 13px;
   }
-
   .hero-area.index4 .personal-image {
     display: none;
   }
-
   .services.index2 .review-content {
     margin-bottom: 15px;
   }
-
   .services.index2 .section-title {
     padding-right: 0;
   }
-
   .services {
     padding-bottom: 35px;
   }
-
   .services .single-service {
     margin: 15px 0;
   }
-
   .services .section-title {
     margin-bottom: 25px;
   }
-
   .services .single-head .service-patern {
     position: absolute;
     left: -30px;
     bottom: -30px;
   }
-
   .service-details h3 {
     font-size: 20px !important;
     margin-top: 30px;
     line-height: 32px !important;
   }
-
   .service-details .service-category {
     margin-top: 30px;
   }
-
   .service-details .content {
     padding: 50px 0;
   }
-
   .about-us .about-right {
     text-align: center;
     margin-top: 40px;
   }
-
   .about-us .about-right img {
     width: 100%;
   }
-
   .about-us .about-tab .nav {
     margin-bottom: 28px !important;
   }
-
   .about-us .about-tab .nav li {
     margin-bottom: 12px;
   }
-
   .about-us.index3 .about-right.margin-zero {
     margin: 0;
     margin-bottom: 40px;
   }
-
   .about-us.index3 .about-left.pl {
     padding-left: 0;
   }
-
   .portfolio-section.section {
     padding-bottom: 20px;
   }
-
   .portfolio-section .portfolio-btn-wrapper {
     position: relative;
     margin-top: 40px;
     text-align: left;
   }
-
   .portfolio-section .portfolio-btn-wrapper button {
     margin-right: 10px;
     padding: 8px 18px;
     font-size: 12px;
   }
-
   .portfolio-details .top-head {
     padding-bottom: 50px;
     padding-top: 50px;
   }
-
   .portfolio-details .top-head .cat {
     margin-bottom: 3px;
   }
-
   .portfolio-details .top-head h2 {
     margin-bottom: 15px;
     font-size: 25px;
     line-height: 40px;
   }
-
   .portfolio-details .top-head .meta-description li {
     margin-top: 15px;
   }
-
   .portfolio-details .content {
     padding: 50px 0;
   }
-
   .portfolio-details .content img {
     margin-top: 30px;
   }
-
   .single-team {
     width: 100%;
   }
-
   .single-team .image {
     text-align: center;
     display: inline-block;
   }
-
   .team .single-team .social-links .social {
     display: inline-block;
   }
-
   .team .single-team .shapes .shape1 {
     display: none;
   }
-
   .team .single-team .shapes .shape2 {
     display: none;
   }
-
   .testimonials .tns-nav {
     bottom: -30px;
   }
-
   .testimonials {
     padding-bottom: 70px !important;
   }
-
   .intro-video-area .section-title {
     margin-bottom: 130px;
   }
-
   .intro-video-area .play-thumb {
     position: relative;
     left: 15px;
   }
-
   .intro-video-area .intro-video-play .play-thumb a {
     height: 80px;
     width: 80px;
     line-height: 80px;
     font-size: 16px;
   }
-
   .intro-video-area {
     padding-bottom: 75px !important;
   }
-
   .pricing-table .section-title {
     margin-bottom: 10px;
   }
-
   .pricing-table .single-table {
     margin-top: 30px;
   }
-
   .faq-area {
     padding-bottom: 0;
   }
-
   .faq-area .single-faq {
     margin-bottom: 45px;
   }
-
   .faq-area .heading {
     font-size: 15px;
     line-height: 25px;
   }
-
   .brand-area .section-title.align-left {
     padding-right: 0;
     margin-bottom: 40px !important;
   }
-
   .latest-news-area .section-title {
     margin-bottom: 10px;
   }
-
   .latest-news-area .single-news {
     margin-top: 30px;
   }
-
   .post-details .post-meta li {
     margin-bottom: 8px;
   }
-
   .post-details p {
     margin: 20px 0;
   }
-
   .post-image .blog-inner-big-img {
     margin-bottom: 1.5rem !important;
   }
-
   .post-comments .comments-list li.children {
     margin-left: 0 !important;
   }
-
   .post-comments .comments-list li .comment-img img {
     max-width: 70px;
     max-height: 70px;
   }
-
   .post-comments .comments-list li .comment-desc .desc-top .reply-link {
     position: absolute;
     right: 0;
     top: 0;
     -webkit-transform: translateY(0);
-    transform: translateY(0);
+            transform: translateY(0);
     padding: 8px 25px;
     position: relative;
     margin-top: 15px;
   }
-
   .post-comments .comments-list li {
     padding-left: 100px;
   }
-
   .latest-news-area.blog-list {
     padding-top: 20px;
   }
-
   .blog-list .single-news {
     margin-bottom: 0 !important;
   }
-
   .sidebar {
     margin-top: 30px;
   }
-
   .sidebar .widget.search-widget form input {
     padding: 0 80px 0 20px;
   }
-
   .sidebar .widget.social-widget ul li {
     margin-bottom: 10px;
   }
-
   .contact-area .contact-address-wrapper {
     padding-right: 0;
   }
-
   .contact-area .inner-section-title h2 {
     font-weight: 700;
     font-size: 28px;
   }
-
-  .sidebar.service-sidebar .service-category>li>a {
+  .sidebar.service-sidebar .service-category > li > a {
     font-size: 14px;
     font-weight: 500;
     padding: 0;
     padding: 10px 15px;
   }
-
   .sidebar.service-sidebar .service-category {
     padding: 30px;
   }
-
   .sidebar.service-sidebar .service-docs {
     padding: 30px;
   }
-
   .sidebar.service-sidebar .service-quote {
     padding: 30px;
   }
-
   .adv-banner {
     padding: 30px;
   }
-
   .post-details .post-title {
     line-height: 30px;
   }
-
   .post-details .post-title a {
     font-size: 24px;
     font-weight: 600;
   }
-
   .blog-middle-image {
     margin-bottom: 20px;
   }
-
   .blog-single .sidebar {
     margin-top: 30px;
   }
-
   .map-section {
     background-color: #fff;
     margin-top: 50px;
     padding-bottom: 50px !important;
     height: auto;
   }
-
   .map-section iframe {
     height: 300px !important;
   }
-
   .brand-list {
     border: none;
   }
-
   .brand-list:before {
     display: none;
   }
-
   .brand-list li {
     border: 1px solid #eee;
   }
-
   .brand-list li a {
     border: none;
   }
-
   .newsletter-area .mini-call-action {
     margin-top: 30px;
   }
-
   .newsletter-area .subscribe-text input {
     width: 100%;
   }
-
   .newsletter-area .subscribe-text h6 {
     color: #fff;
     font-size: 22px;
     line-height: 30px;
     margin-bottom: 15px;
   }
-
   .newsletter-area .subscribe-text .button {
     margin-top: 10px;
     margin-left: 0;
   }
-
   .newsletter-area .mini-call-action {
     height: auto;
   }
-
   .error-page .error-image img {
     width: 90%;
   }
-
   .error-page .error-text {
     margin-top: 50px !important;
     padding: 0 !important;
     text-align: center !important;
   }
-
   .error-page .error-text h2 {
     font-size: 25px !important;
   }
-
   .error-page .error-text h2 span {
     font-size: 22px !important;
   }
-
   .mail-success .success-image img {
     width: 90%;
   }
-
   .mail-success .siccess-text {
     margin-top: 50px;
     padding: 0 !important;
     text-align: center !important;
   }
-
   .mail-success .siccess-text h2 {
     font-size: 25px !important;
   }
-
   .mail-success .siccess-text h2 span {
     font-size: 22px !important;
   }
-
   .footer .footer-middle {
     padding-bottom: 60px;
     padding-top: 30px;
   }
-
   .footer .f-about p {
     padding-right: 80px;
   }
-
   .footer .single-footer {
     margin-top: 30px;
   }
@@ -5252,7 +5012,7 @@ blockquote span {
 
 .map-section .map-container {
   -webkit-box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
-  box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
+          box-shadow: 0 10px 30px rgba(111, 111, 111, 0.1);
   padding: 20px;
   border-radius: 7px;
 }
