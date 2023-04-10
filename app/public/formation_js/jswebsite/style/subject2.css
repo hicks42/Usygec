@@ -1,0 +1,173 @@
+.slide {
+  min-height: 100vh;
+  margin: 0 auto 0 auto;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f3f3f3;
+}
+
+.hero-desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  flex-basis: 25rem;
+  padding-left: 5rem;
+  position: relative;
+}
+
+.hero-desc h2 {
+  color: #f54848;
+  font-family: "Abril Fatface", cursive;
+  font-size: 5rem;
+  font-weight: 100;
+}
+
+.hero-desc p {
+  padding: 3rem 0 3rem 0;
+  font-size: 1.1rem;
+  color: #17181a;
+}
+
+.hero-img {
+  position: relative;
+  flex: 1;
+  flex-basis: 25rem;
+  overflow: hidden;
+}
+
+.hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reveal-img,
+.reveal-text {
+  position: absolute;
+  width: 100%;
+  height: 150%;
+  background: #f3f3f3;
+  left: 0;
+  top: -15%;
+}
+
+.cursor {
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid #17181a;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  /* mettre une animation sur tous les apects du cursor */
+  transition: all 0.5s ease-in-out;
+  /* Activer la transition uniquement sur les proprietes du nav-active */
+  transition-property: backgraound, transform;
+  /* pour remettre le cursor au milieu */
+  transform-origin: 75% 75%;
+}
+
+.cursor.nav-active {
+  background: rgb(86, 124, 228);
+  transform: scale(1.5);
+}
+
+.cursor.explore-active {
+  background: white;
+  transform: scale(1.5);
+  transform-origin: 150% 150%;
+}
+
+.cursor-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 0.5rem;
+  transform: translate(-50%, -50%);
+}
+
+/* .active{
+  background-color: orange;
+} */
+
+.reveal-img,
+.reveal-text {
+  position: absolute;
+  width: 100%;
+  height: 150%;
+  background: rgb(243, 243, 243);
+  left: 0;
+  top: -15%;
+}
+
+.title {
+  position: relative;
+  overflow: hidden;
+}
+
+.title-swipe {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  mix-blend-mode: hue;
+  transform: translateY(100%);
+}
+
+.subject2-a-span {
+  color: rgb(18, 39, 82);
+}
+
+.subject2-b-span {
+  color: rgb(21, 199, 253);
+}
+
+.subject2-c-span {
+  color: rgb(126, 126, 126);
+}
+
+.t-swipe1 {
+  background: rgb(22 255 9);
+}
+
+.t-swipe2 {
+  background: rgb(45 82 228);
+}
+
+.t-swipe3 {
+  background: rgb(255, 94, 0);
+}
+
+.swipe {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.swipe1 {
+  background: rgb(18, 39, 82);
+  z-index: 5;
+}
+
+.swipe2 {
+  background: rgb(228, 51, 45);
+  z-index: 4;
+}
+
+.swipe3 {
+  background: rgb(126, 126, 126);
+  z-index: 3;
+}
+
+/* making it mobile friendly */
+@media screen and (max-width: 1500px) {}
+
+@media screen and (max-width: 1024px) {}
