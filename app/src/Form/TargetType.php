@@ -3,9 +3,11 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 
 class TargetType extends AbstractType
 {
@@ -19,7 +21,10 @@ class TargetType extends AbstractType
             //         'class' => 'btn-primary btn-sm btn-block w-25 my-5'
             //     ]
             // ])
-            ;
+            ->add('captcha', Recaptcha3Type::class, [
+                'constraints' => new Recaptcha3(),
+                'action_name' => 'contact'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

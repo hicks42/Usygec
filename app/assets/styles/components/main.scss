@@ -25,6 +25,7 @@ body {
 p {
   margin: 0;
   padding: 0;
+  text-align: justify;
 }
 
 * {
@@ -1940,7 +1941,7 @@ ol {
 }
 
 .hero-area .hero-inner {
-  height: 700px;
+  // height: 700px;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -1970,7 +1971,7 @@ ol {
 
 .hero-area .hero-text {
   float: none;
-  margin-top: 100px;
+  // margin-top: 100px;
 }
 
 .hero-area .hero-text h1 {
@@ -4055,7 +4056,7 @@ blockquote span {
   }
 
   .hero-area .hero-inner {
-    height: 450px;
+    // height: 450px;
   }
 
   .hero-area .hero-inner::before {
@@ -4064,7 +4065,7 @@ blockquote span {
 
   .hero-area .hero-text {
     float: none;
-    margin-top: 140px;
+    // margin-top: 140px;
   }
 
   .hero-area .hero-text h1 {
@@ -4547,7 +4548,7 @@ blockquote span {
   }
 
   .hero-area .hero-inner {
-    height: 400px;
+    // height: 400px;
     overflow: visible;
   }
 

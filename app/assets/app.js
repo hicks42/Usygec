@@ -9,6 +9,12 @@
 
 import './styles/app.scss';
 
+// start the Stimulus application
+// import $ from 'jquery';
+import 'jquery'; // Import jQuery first
+const $ = require('jquery');
+global.$ = global.jQuery = $;
+
 import './js/bootstrap.min.js';
 import './js/count-up.min.js';
 import './js/tiny-slider.js';
@@ -19,15 +25,11 @@ import './js/wow.min.js';
 import './js/web-animations.min.js';
 import './js/main.js';
 
-// start the Stimulus application
-// import $ from 'jquery';
-const $ = require('jquery');
-global.$ = global.jQuery = $;
 
 window.Popper = require('./js/popper.js');
 
 // import './bootstrap'; //css replaced by bootstrap.min
-import 'bootstrap'; //dans node_modules
+// import 'bootstrap'; //dans node_modules
 
 import { Tooltip, Toast, Popover } from 'bootstrap';
 
