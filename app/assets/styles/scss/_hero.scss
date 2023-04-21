@@ -8,11 +8,12 @@
 }
 
 .hero-area .hero-inner {
-    height: 700px;
+    height: none;
     background-size: cover;
     background-position: center;
     position: relative;
     z-index: 3;
+    padding: 2rem;
 }
 
 .hero-area .hero-inner::before {
@@ -38,7 +39,7 @@
 
 .hero-area .hero-text {
     float: none;
-    margin-top: 220px;
+    // margin-top: 220px;
 
     h1 {
         font-size: 40px;
@@ -269,3 +270,38 @@
     }
 
 }
+
+@media screen and (max-width: 991px) {}
+
+@media screen and (min-width: 992px) and (max-width: 1284px) {
+    .hero-area .hero-text {
+        // margin-top: 125px;
+
+    }
+
+    .hero-area .hero-text h1 {
+        font-size: 35px;
+    }
+
+    h3 {
+        font-size: 25px;
+    }
+
+    .hero-area .hero-text p {
+        font-size: 14px;
+        text-align: justify;
+    }
+
+    .hero-area .hero-inner {
+        height: none;
+    }
+
+    .hero-area .hero-inner::before {
+        height: 767px;
+        width: 767px;
+        // top: -120px;
+        right: -270px;
+    }
+}
+
+@media screen and (min-width: 1285) {}

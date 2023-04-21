@@ -926,8 +926,8 @@ ol {
 }
 
 .section {
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 10px;
+  padding-bottom: 50px;
   position: relative;
 }
 
@@ -1015,7 +1015,7 @@ ol {
 
 .section-title.align-left {
   padding: 0;
-  padding-right: 600px;
+  // padding-right: 600px;
 
   h2 {
     &:before {
