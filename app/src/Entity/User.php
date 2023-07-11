@@ -61,9 +61,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
      */
     private $structures;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Customer::class, mappedBy="handler", orphanRemoval=true, cascade={"persist"})
+     * @var Collection
+     */
+    private $customers;
+
     public function __construct()
     {
         $this->structures = new ArrayCollection();
+        $this->customers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -220,5 +227,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
             $this->email,
             $this->password,
         ) = unserialize($serialized);
+    }
+
+    /**
+     * @return Collection<int, Customer>
+     */
+    public function getCustomers(): Collection
+    {
+        return $this->customers;
+    }
+
+    public function addCustomer(Customer $customer): self
+    {
+        if (!$this->customers->contains($customer)) {
+            $this->customers[] = $customer;
+            $customer->setHandler($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCustomer(Customer $customer): self
+    {
+        if ($this->customers->removeElement($customer)) {
+            // set the owning side to null (unless already changed)
+            if ($customer->getHandler() === $this) {
+                $customer->setHandler(null);
+            }
+        }
+
+        return $this;
     }
 }

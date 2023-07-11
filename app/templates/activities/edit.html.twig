@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification de Activité
+{% endblock %}
+
+{% block content %}
+	<h1>Modification de l'activité
+	</h1>
+
+	{{ include('activities/_form.html.twig', {'button_label': 'Update'}) }}
+	{% if customer is not defined %}
+		{% set customer = activity.customer %}
+	{% endif %}
+{% endblock %}

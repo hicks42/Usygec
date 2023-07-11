@@ -1,0 +1,65 @@
+{% extends 'logged_in_base.html.twig' %}
+
+{% block title %}Customers index
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="d-flex justify-content-start">
+		<div>
+			<a class="btn btn-success" href="{{ path('app_customers_new') }}">
+				<i class="fa-solid fa-user-plus"></i>
+			</a>
+		</div>
+		<div class="ms-2">
+			<h1>Liste des clients</h1>
+		</div>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Phone</th>
+				<th>Email</th>
+				<th>En cours</th>
+				<th>-5 J</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for customer in customers %}
+				<tr>
+					<td>
+						<a href="{{ path('app_customers_show', {'id': customer.id}) }}">{{ customer.name }}</a>
+					</td>
+					<td>{{ customer.phone }}</td>
+					<td>
+						<a href="mailto:{{ customer.email }}">{{ customer.email }}</a>
+					</td>
+					<td>
+						<h5>
+							<span class="badge bg-success p-2">{{ customerActiveActivityCounts[customer.id] }}</span></h5>
+					</td>
+					<td>
+						<h5>
+							<span class="badge bg-danger p-2">{{ customerActivityDueCounts[customer.id] }}</span>
+						</h5>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="9">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+				<div class="d-flex justify-content-between my-5 w-100">
+				<div class="align-top">
+					<div class="btn-group btn-group-sm" role="group">
+						<a class="btn btn-outline-primary" href="{{ path('lobby') }}">
+							<i class="fa-solid fa-backward mx-1"></i>
+							Lobby</a>
+					</div>
+				</div>
+			</div></div>
+{% endblock %}

@@ -43,12 +43,12 @@ class EzreviewController extends AbstractController
         $GooglUrl = "https://search.google.com/local/writereview?placeid=" . $structure->getPid();
         $image = $structure->getImageName();
 
-			return $this->render('ezreview/ezreview_survey.html.twig', [
-                'structure' => $structure,
-                'badRevUrl' => $badRevUrl,
-                'GooglUrl' => $GooglUrl,
-                'image' => $image,
-            ]);
+        return $this->render('ezreview/ezreview_survey.html.twig', [
+            'structure' => $structure,
+            'badRevUrl' => $badRevUrl,
+            'GooglUrl' => $GooglUrl,
+            'image' => $image,
+        ]);
     }
 
     /**
@@ -57,8 +57,8 @@ class EzreviewController extends AbstractController
      */
     public function sendOneEmail(Request $request, MessageBusInterface $bus, $id): Response
     {
-      $baseUrl = $request->getSchemeAndHttpHost();
-      $form = $this->createForm(TargetType::class);
+        $baseUrl = $request->getSchemeAndHttpHost();
+        $form = $this->createForm(TargetType::class);
         $target = $form->handleRequest($request)->get('email')->getData();
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -92,9 +92,7 @@ class EzreviewController extends AbstractController
                 'date_rdv' => $badreview->get('date_rdv')->getData(),
                 'message' => $badreview->get('message')->getData(),
             ];
-//$dateRdv = $badreview->get('date_rdv')->getData();
-//$message = $badreview->get('message')->getData();
-// dd($dateRdv, $message);
+
             $sendMailService->send(
                 'noreply@usygec.fr',                     //from
                 $userMail,                              //to
@@ -120,10 +118,10 @@ class EzreviewController extends AbstractController
     }
 
     /**
-     * @Route("/ezreview/", name="ezreview")
+     * @Route("/ezreview/landding", name="ezreview_landing")
      */
     public function ezreview(): Response
     {
-        return $this->redirectToRoute('account');
+        return $this->redirectToRoute('ezreview');
     }
 }

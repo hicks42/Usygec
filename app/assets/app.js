@@ -31,8 +31,9 @@ window.Popper = require('./js/popper.js');
 // import './bootstrap'; //css replaced by bootstrap.min
 // import 'bootstrap'; //dans node_modules
 
-import { Tooltip, Toast, Popover } from 'bootstrap';
 
+// this to active the bootstrap popover functions
+import { Tooltip, Toast, Popover } from 'bootstrap';
 $(function () {
   $('[data-toggle="popover"]').popover();
 });

@@ -39,8 +39,9 @@ gtag('config', 'G-CPGP0YXXM9');
 			{{ include('main/partials/_message_flash.html.twig') }}
 			{{ include('main/partials/_header.html.twig') }}
 			{{ include('main/partials/_preloader.html.twig') }}
-			{% block content %}{% endblock %}
-
+			<div class="content">
+				{% block content %}{% endblock %}
+			</div>
 		{% endblock %}
 
 	</body>

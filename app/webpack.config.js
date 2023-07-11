@@ -38,8 +38,9 @@ Encore
     .addEntry('app', './assets/app.js')
     .addEntry('collection', './assets/js/collection_managment.js')
     .addEntry('upload', './assets/js/upload.js')
-
     .addEntry('datepicker', './assets/js/datetimepicker.js')
+    .addEntry('activity', './assets/js/activity.js')
+
     // .addEntry('popper', '@popperjs/core/dist/cjs/popper.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)

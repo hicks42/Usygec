@@ -1,0 +1,121 @@
+{% extends 'logged_in_base.html.twig' %}
+
+{% block title %}
+	{{ customer.name }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('activity') }}
+	{# {{ encore_entry_script_tags('datetimepicker') }} #}
+{% endblock javascripts %}
+
+{% block content %}
+	<div class="d-flex justify-content-between w-100">
+		<div class="w-25">
+			<div>
+				<h1>{{ customer.name }}</h1>
+			</div>
+			<p>
+				{{ customer.address1 }}<br>
+				{{ customer.address2 }}<br>
+				{{ customer.cp }}<br>
+				{{ customer.city }}<br>
+			</p>
+			<p>
+				<strong>
+					<i class="fa-solid fa-square-phone"></i>
+					:
+					{{ customer.phone }}
+				</strong>
+			</p>
+			<p>
+				<strong>
+					<i class="fa-solid fa-envelope"></i>
+					:
+					<a href="mailto:{{ customer.email }}">{{ customer.email }}</a>
+				</strong>
+			</p>
+			<div class="d-flex justify-content-between my-5 w-100">
+				<div class="align-top">
+					<div class="btn-group btn-group-sm" role="group">
+						<a class="btn btn-outline-primary" href="{{ path('cam') }}">
+							<i class="fa-solid fa-address-book"></i>
+							Clients</a>
+						<a class="btn btn-secondary" href="{{ path('app_customers_edit', {'id': customer.id}) }}">
+							<i class="fa-solid fa-user-pen"></i>
+							Modification</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="w-75">
+			{% import "customers/macros/forms.html.twig" as formMacros %}
+			{{ form_start(form, {"method": "PATCH"}) }}
+			<div class="d-flex justify-content-end mb-2">
+			<div class="input-group me-1" id="activity-search-form">
+				<input type="text" class="form-control" placeholder="Recherche ..." aria-label="Recherche" oninput="searchActivities()">
+				<button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</button>
+			</div>
+				<button id="filter-button" class="btn btn-primary" type="button">
+					<i class="fa-solid fa-filter"></i>
+					Filtre</button>
+				<button type="button" class="add-activity-btn btn btn-success btn-sm w-3 mx-1" data-collection-holder-class="activities">
+					<i class="fa-solid fa-file-circle-plus"></i>
+				</button>
+
+				<button type="submit" class="btn btn-warning">
+					<i class="fa-solid fa-file-arrow-down me-1"></i>
+					Enregistrer
+				</button>
+			</div>
+			<div class="activity-container">
+				<div
+					class="activity-content">
+
+					{# ici commencent le form d'ajout de activity #}
+					<ul class="activities" data-index="{{ form.activities|length > 0 ? form.activities|last.vars.name + 1 : 0 }}" data-prototype="{{ formMacros.newForm(form.activities.vars.prototype)|e('html_attr') }}"></ul>
+
+					{# ici commencent les activities existantes #}
+					{% for row in form.children['activities'].children|reverse %}
+						<div class="activity-card rounded my-2 p-2">
+							<div class="activity-info d-flex justify-content-between">
+								<div class="mt-2">
+									Activité N° :
+									<strong>{{ row.vars.name + 1 }}</strong>
+								</div>
+								<div class="mt-2">
+									Ajouté le
+									<strong>
+										{{ row.vars.data.createdAt|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}
+									</strong>
+								</div>
+								<div class="mt-2">
+									Modifié le
+									<strong>
+										{{ row.vars.data.updatedAt|format_datetime('medium', 'short', locale='fr', timezone='Europe/Paris') }}
+									</strong>
+								</div>
+								{# {{ attribute(form.vars.value, 'id') }} //customerid #}
+							</div>
+							<div class="activ-row">
+								{{ formMacros.existForm(row) }}
+							</div>
+						</div>
+					{% endfor %}
+
+				</div>
+			</div>
+			{# {{ form_end(form) }} #}
+			{{ form_widget(form._token) }}
+			{{ form_end(form, {'render_rest': false}) }}
+		</div>
+	</div>
+{% endblock %}

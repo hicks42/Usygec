@@ -1,4 +1,4 @@
-{% extends 'ezreview_base.html.twig' %}
+{% extends 'logged_in_base.html.twig' %}
 
 {% block title %}EasyReview mail ciblé.
 {% endblock %}
@@ -14,7 +14,7 @@
 		{{ form_row(form.email) }}
 		{{ form_rest(form) }}
 		<div class="col-12 d-flex justify-content-around">
-			<a href="{{ path('account') }}" class="btn btn-outline-secondary btn-sm my-5">
+			<a href="{{ path('ezreview') }}" class="btn btn-outline-secondary btn-sm my-5">
 				<i class="fa-solid fa-angles-left"></i>
 				Retour</a>
 			<button type="submit" class="btn btn-primary btn-sm my-5">
