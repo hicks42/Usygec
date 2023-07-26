@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'logged_in_base.html.twig' %}
 
 {% block title %}Activities
 {% endblock %}
@@ -9,23 +9,30 @@
 	<table class="table">
 		<tbody>
 			<tr>
-				<th>Id</th>
-				<td>{{ activity.id }}</td>
+				<th>Nom</th>
+				<td>{{ activity.name }}</td>
 			</tr>
 			<tr>
 				<th>Description</th>
 				<td>{{ activity.description }}</td>
 			</tr>
 			<tr>
-				<th>DueDate</th>
+				<th>Date limite</th>
 				<td>{{ activity.dueDate ? activity.dueDate|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Rappel</th>
+				<td>{{ activity.reminder ? activity.dueDate|date('Y-m-d H:i:s') : '' }}</td>
 			</tr>
 		</tbody>
 	</table>
 
-	<a href="{{ path('app_customer_activities') }}">back to list</a>
-
-	<a href="{{ path('app_activities_edit', {'id': activity.id}) }}">edit</a>
-
-	{{ include('activities/_delete_form.html.twig') }}
+	<div class="btn-group btn-group-sm" role="group">
+		<a class="btn btn-outline-primary" href="{{ path('app_activities') }}">
+			<i class="fa-solid fa-address-book"></i>
+			Clients</a>
+		<a class="btn btn-secondary" href="{{ path('app_activities_edit', {'id': activity.id}) }}">
+			<i class="fa-solid fa-user-pen"></i>
+			Modification</a>
+	</div>
 {% endblock %}

@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Company;
 use App\Entity\Activity;
-use App\Entity\Customer;
 use App\Form\ActivityType;
 use App\Repository\ActivityRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -18,87 +20,139 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class ActivityController extends AbstractController
 {
-    /**
-     * @Route("/{id<[0-9]+>}/activities", name="app_customer_activities", methods={"GET"})
-     */
-    public function index(ActivityRepository $activityRepository, EntityManagerInterface $em, $id): Response
-    {
-        $customer = $em->getRepository(Customer::class)->findOneById($id);
 
-        $activities = $activityRepository->findBy(['customer' => $customer], ['createdAt' => 'DESC']);
+  private $security;
+  private $user;
 
-        return $this->render('activities/index.html.twig', [
-            'activities' => $activities,
-            'customer' => $customer,
-        ]);
-    }
+  public function __construct(Security $security)
+  {
+    $this->security = $security;
+    $this->user = $this->security->getUser();
+  }
 
-    /**
-     * @Route("/{id<[0-9]+>}/add-activity", name="app_add_activity", methods={"GET", "POST"})
-     */
-    public function new(Request $request, EntityManagerInterface $em, ActivityRepository $activityRepository, $id): Response
-    {
-        $activity = new Activity();
-        $form = $this->createForm(ActivityType::class, $activity);
-        $form->handleRequest($request);
-        $customer = $em->getRepository(Customer::class)->findOneById($id);
+  /**
+   * @Route("/", name="app_activities", methods={"GET"})
+   */
+  public function index(ActivityRepository $activityRepository, Request $request, PaginatorInterface $paginator): Response
+  {
+    $keyword = $request->query->get('keyword');
+    $sortBy = $request->query->get('sort_by', 'reminder'); // Default to sorting by name
+    $sortOrder = $request->query->get('sort_order', 'desc'); // Default to ascending order
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $activity->setCustomer($customer);
-            $activityRepository->add($activity, true);
+    $activities = $activityRepository->findByKeyword($this->user, $keyword, $sortBy, $sortOrder);
 
-            return $this->redirectToRoute('app_customer_activities', ["id" => $id], Response::HTTP_SEE_OTHER);
+    $now = new \DateTime();
+    $daysToReminder = null;
+    $activActivities = [];
+
+    foreach ($activities as $activity) {
+      if ($activity->getReminder()) {
+        $reminderDate = $activity->getReminder();
+        $nowDate = $now->setTime(0, 0, 0);
+        $reminderDateOnly = $reminderDate->setTime(0, 0, 0);
+
+        $daysToReminder = $reminderDateOnly->diff($nowDate)->days;
+
+        // Add "+" in front of $daysToReminder if it is in the past
+        if ($reminderDate < $now) {
+          $daysToReminder = "+" . $daysToReminder;
         }
 
-        return $this->renderForm('activities/new.html.twig', [
+        if ($daysToReminder <= 10) {
+          $activActivities[] = [
             'activity' => $activity,
-            'form' => $form,
-            'customer' => $customer,
-        ]);
-    }
-
-    /**
-     * @Route("/{id<[0-9]+>}", name="app_activities_show", methods={"GET"})
-     */
-    public function show(Activity $activity): Response
-    {
-        return $this->render('activities/show.html.twig', [
-            'activity' => $activity,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="app_activities_edit", methods={"GET", "POST"})
-     */
-    public function edit(Request $request, EntityManagerInterface $em, Activity $activity, ActivityRepository $activityRepository, $id): Response
-    {
-        $form = $this->createForm(ActivityType::class, $activity);
-        $form->handleRequest($request);
-        $customer = $activity->getCustomer();
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $activityRepository->add($activity, true);
-
-            return $this->redirectToRoute('app_customer_activities', ["id" => $customer->getId()], Response::HTTP_SEE_OTHER);
+            'daysToReminder' => $daysToReminder,
+          ];
         }
-
-        return $this->renderForm('activities/edit.html.twig', [
-            'activity' => $activity,
-            'form' => $form,
-            'customer' => $customer,
-        ]);
+      }else{
+        $activActivities[] = [
+          'activity' => $activity,
+          'daysToReminder' => null,
+        ];
+      }
     }
 
-    /**
-     * @Route("/{id}", name="app_activities_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Activity $activity, ActivityRepository $activityRepository): Response
-    {
-        $customerId = $activity->getCustomer()->getId();
-        if ($this->isCsrfTokenValid('delete' . $activity->getId(), $request->request->get('_token'))) {
-            $activityRepository->remove($activity, true);
-        }
+    // Paginate the filtered result
+    $pagination = $paginator->paginate(
+      $activActivities, // Query or result to paginate
+      $request->query->getInt('page', 1), // Current page number
+      10 // Number of items per page
+    );
 
-        return $this->redirectToRoute('app_customer_activities', ["id" => $customerId], Response::HTTP_SEE_OTHER);
+    return $this->render('activities/index.html.twig', [
+      'pagination' => $pagination,
+      'keyword' => $keyword,
+      'sort_by' => $sortBy,
+      'sort_order' => $sortOrder,
+    ]);
+  }
+
+  /**
+   * @Route("/{id<[0-9]+>}/add-activity", name="app_add_activity", methods={"GET", "POST"})
+   */
+  public function new(Request $request, EntityManagerInterface $em, ActivityRepository $activityRepository, $id): Response
+  {
+    $activity = new Activity();
+    $form = $this->createForm(ActivityType::class, $activity);
+    $form->handleRequest($request);
+    $company = $em->getRepository(Company::class)->findOneById($id);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+      $activity->setCompany($company);
+      $activityRepository->add($activity, true);
+
+      return $this->redirectToRoute('app_company_activities', ["id" => $id], Response::HTTP_SEE_OTHER);
     }
+
+    return $this->renderForm('activities/new.html.twig', [
+      'activity' => $activity,
+      'form' => $form,
+      'company' => $company,
+    ]);
+  }
+
+  /**
+   * @Route("/{id<[0-9]+>}", name="app_activities_show", methods={"GET"})
+   */
+  public function show(Activity $activity): Response
+  {
+    return $this->render('activities/show.html.twig', [
+      'activity' => $activity,
+    ]);
+  }
+
+  /**
+   * @Route("/{id}/edit", name="app_activities_edit", methods={"GET", "POST"})
+   */
+  public function edit(Request $request, EntityManagerInterface $em, Activity $activity, ActivityRepository $activityRepository, $id): Response
+  {
+    $form = $this->createForm(ActivityType::class, $activity);
+    $form->handleRequest($request);
+    $company = $activity->getCompany();
+
+    if ($form->isSubmitted() && $form->isValid()) {
+      $activityRepository->add($activity, true);
+
+      return $this->redirectToRoute('app_companies_show', ["id" => $company->getId()], Response::HTTP_SEE_OTHER);
+    }
+
+    return $this->renderForm('activities/edit.html.twig', [
+      'activity' => $activity,
+      'form' => $form,
+      'company' => $company,
+    ]);
+  }
+
+  /**
+   * @Route("/{id}", name="app_activities_delete", methods={"POST"})
+   */
+  public function delete(Request $request, Activity $activity, ActivityRepository $activityRepository): Response
+  {
+    $companyId = $activity->getCompany()->getId();
+    if ($this->isCsrfTokenValid('delete' . $activity->getId(), $request->request->get('_token'))) {
+      $activityRepository->remove($activity, true);
+    }
+
+    return $this->redirectToRoute('app_company_activities', ["id" => $companyId], Response::HTTP_SEE_OTHER);
+  }
 }

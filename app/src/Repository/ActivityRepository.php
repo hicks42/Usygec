@@ -2,8 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\User;
+use App\Entity\Company;
 use App\Entity\Activity;
-use App\Entity\Customer;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -40,33 +41,109 @@ class ActivityRepository extends ServiceEntityRepository
         }
     }
 
-    public function countActiveActivitiesByCustomer(Customer $customer): int
+    public function countByActiveActivitiesByCompany(Company $company): int
     {
         return $this->createQueryBuilder('a')
             ->select('COUNT(a.id)')
-            ->andWhere('a.customer = :customer')
+            ->andWhere('a.company = :company')
             ->andWhere('a.isActive = :isActive')
-            ->setParameter('customer', $customer)
+            ->setParameter('company', $company)
             ->setParameter('isActive', true)
             ->getQuery()
             ->getSingleScalarResult();
     }
 
-    public function countActivitiesDueWithin5Days(Customer $customer): int
+    public function countByActivitiesDueWithin5Days(Company $company): int
     {
         $now = new \DateTime();
         $fiveDaysFromNow = (clone $now)->modify('+5 days');
 
         return $this->createQueryBuilder('a')
             ->select('COUNT(a.id)')
-            ->andWhere('a.customer = :customer')
+            ->andWhere('a.company = :company')
             ->andWhere('a.dueDate BETWEEN :start AND :end')
-            ->setParameter('customer', $customer)
-            ->setParameter('start', $now)
-            ->setParameter('end', $fiveDaysFromNow)
+            ->setParameter('company', $company)
+            ->setParameter('start', $now->format('Y-m-d H:i:s')) // Format the date for comparison
+            ->setParameter('end', $fiveDaysFromNow->format('Y-m-d H:i:s')) // Format the date for comparison
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function findByCompaniesActivities(User $user)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $activitiesWithReminder = $qb
+            ->leftJoin('a.company', 'c')
+            ->leftJoin('c.handler', 'u')
+            ->where('u.id = :user')
+            ->andWhere('a.reminder IS NOT NULL')
+            ->andWhere('a.isActive = :isActive')
+            ->setParameter('isActive', true)
+            ->setParameter('user', $user)
+            ->orderBy('a.reminder', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        $activitiesWithoutReminder = $qb
+            ->resetDQLPart('where')
+            ->andWhere('u.id = :user')
+            ->andWhere('a.reminder IS NULL')
+            ->andWhere('a.isActive = :isActive')
+            ->setParameter('isActive', true)
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
+
+        return [
+            'activitiesWithReminder' => $activitiesWithReminder,
+            'activitiesWithoutReminder' => $activitiesWithoutReminder
+        ];
+    }
+
+    public function findByKeyword(User $user, ?string $keyword, ?string $sortBy, ?string $sortOrder): array
+    {
+        $now = new \DateTime();
+        $fiveDaysFromNow = (clone $now)->modify('+5 days');
+
+        $qb = $this->createQueryBuilder('a')
+        ->leftJoin('a.company', 'c')
+        ->leftJoin('c.handler', 'u')
+        ->where('u.id = :user')
+        ->andWhere('a.isActive = :isActive')
+        ->setParameter('user', $user)
+        ->setParameter('isActive', true);
+
+    // Filter by keyword if provided
+    if ($keyword) {
+        $qb->andWhere($qb->expr()->orX(
+            $qb->expr()->like('a.name', ':keyword'),
+            $qb->expr()->like('a.description', ':keyword'),
+            $qb->expr()->like('c.name', ':keyword')
+        ))
+        ->setParameter('keyword', '%' . $keyword . '%');
+    }
+
+    // Sort the result if sortBy and sortOrder are provided
+    if ($sortBy && $sortOrder) {
+        // Determine the valid columns for sorting
+        $validColumns = ['name', 'company', 'reminder', 'dueDate']; // Add more valid columns if needed
+
+        // Check if the provided sortBy column is valid
+        if (in_array($sortBy, $validColumns)) {
+            // Determine the valid sortOrder values
+            $validSortOrders = ['asc', 'desc'];
+
+            // Check if the provided sortOrder is valid
+            if (in_array($sortOrder, $validSortOrders)) {
+                $qb->orderBy('a.' . $sortBy, $sortOrder);
+            }
+        }
+    }
+
+        return $qb->getQuery()->getResult();
+    }
+
     //    /**
     //     * @return Activity[] Returns an array of Activity objects
     //     */

@@ -62,15 +62,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
     private $structures;
 
     /**
-     * @ORM\OneToMany(targetEntity=Customer::class, mappedBy="handler", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Company::class, mappedBy="handler", orphanRemoval=true, cascade={"persist"})
      * @var Collection
      */
-    private $customers;
+    private $companies;
 
     public function __construct()
     {
         $this->structures = new ArrayCollection();
-        $this->customers = new ArrayCollection();
+        $this->companies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -230,29 +230,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
     }
 
     /**
-     * @return Collection<int, Customer>
+     * @return Collection<int, Company>
      */
-    public function getCustomers(): Collection
+    public function getCompanies(): Collection
     {
-        return $this->customers;
+        return $this->companies;
     }
 
-    public function addCustomer(Customer $customer): self
+    public function addCompany(Company $company): self
     {
-        if (!$this->customers->contains($customer)) {
-            $this->customers[] = $customer;
-            $customer->setHandler($this);
+        if (!$this->companies->contains($company)) {
+            $this->companies[] = $company;
+            $company->setHandler($this);
         }
 
         return $this;
     }
 
-    public function removeCustomer(Customer $customer): self
+    public function removeCompany(Company $company): self
     {
-        if ($this->customers->removeElement($customer)) {
+        if ($this->companies->removeElement($company)) {
             // set the owning side to null (unless already changed)
-            if ($customer->getHandler() === $this) {
-                $customer->setHandler(null);
+            if ($company->getHandler() === $this) {
+                $company->setHandler(null);
             }
         }
 

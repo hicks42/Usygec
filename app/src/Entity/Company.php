@@ -2,16 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\CustomerRepository;
+use App\Repository\CompanyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CustomerRepository::class)
- * @ORM\Table(name="customers")
+ * @ORM\Entity(repositoryClass=CompanyRepository::class)
+ * @ORM\Table(name="companies")
  */
-class Customer
+class Company
 {
     /**
      * @ORM\Id
@@ -56,16 +56,42 @@ class Customer
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="customer", orphanRemoval=true, cascade={"persist"})
-     * @var Collection
+     * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="company", orphanRemoval=true, cascade={"persist"})
+     * @var Collection|Activity[]
      */
     private $activities;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="customers")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="companies")
      * @ORM\JoinColumn(nullable=false)
      */
     private $handler;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="comapnies")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $ContactFirstName;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $contactLastName;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $civ;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $mobile;
 
     public function __construct()
     {
@@ -167,7 +193,7 @@ class Customer
     }
 
     /**
-     * @return Collection<int, Activity>
+     * @return Collection|Activity[]
      */
     public function getActivities(): Collection
     {
@@ -178,7 +204,7 @@ class Customer
     {
         if (!$this->activities->contains($activity)) {
             $this->activities[] = $activity;
-            $activity->setCustomer($this);
+            $activity->setCompany($this);
         }
 
         return $this;
@@ -188,8 +214,8 @@ class Customer
     {
         if ($this->activities->removeElement($activity)) {
             // set the owning side to null (unless already changed)
-            if ($activity->getCustomer() === $this) {
-                $activity->setCustomer(null);
+            if ($activity->getCompany() === $this) {
+                $activity->setCompany(null);
             }
         }
 
@@ -204,6 +230,80 @@ class Customer
     public function setHandler(?user $handler): self
     {
         $this->handler = $handler;
+
+        return $this;
+    }
+
+     /**
+     * Get the string representation of the Category object.
+     *
+     * @return string
+     */
+    public function getCategoryAsString(): string
+    {
+        if ($this->category) {
+            return $this->category->getName();
+        }
+
+        return '';
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getContactFirstName(): ?string
+    {
+        return $this->ContactFirstName;
+    }
+
+    public function setContactFirstName(?string $ContactFirstName): self
+    {
+        $this->ContactFirstName = $ContactFirstName;
+
+        return $this;
+    }
+
+    public function getContactLastName(): ?string
+    {
+        return $this->contactLastName;
+    }
+
+    public function setContactLastName(?string $contactLastName): self
+    {
+        $this->contactLastName = $contactLastName;
+
+        return $this;
+    }
+
+    public function getCiv(): ?string
+    {
+        return $this->civ;
+    }
+
+    public function setCiv(?string $civ): self
+    {
+        $this->civ = $civ;
+
+        return $this;
+    }
+
+    public function getMobile(): ?string
+    {
+        return $this->mobile;
+    }
+
+    public function setMobile(?string $mobile): self
+    {
+        $this->mobile = $mobile;
 
         return $this;
     }

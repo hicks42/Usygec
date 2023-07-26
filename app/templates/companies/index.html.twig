@@ -1,0 +1,102 @@
+{% extends 'bam_base.html.twig' %}
+
+{% block title %}Liste des sociétés
+{% endblock %}
+
+{% block content %}
+	<div class="d-flex justify-content-between w-100">
+		<div class="ms-2">
+			<h1>Liste des sociétés</h1>
+		</div>
+		<div>
+			<a class="btn btn-success" href="{{ path('app_companies_new') }}">
+				<i class="fa-solid fa-user-plus"></i>
+			</a>
+		</div>
+	</div>
+
+	<table class="table mt-3">
+		<thead>
+			<tr>
+				<td colspan="4">
+					<form action="{{ path('app_companies_result') }}" method="GET">
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" name="name" placeholder="Recherche par nom">
+							<select id="category" name="category" class="form-select">
+								<option value="">ou categories</option>
+								{% for category in categories %}
+									<option value="{{ category }}">{{ category }}</option>
+								{% endfor %}
+							</select>
+							<button type="submit" class="btn btn-outline-dark">
+								<i class="fa-solid fa-magnifying-glass"></i>
+							</button>
+						</div>
+					</form>
+				</td>
+				<td colspan="3"></td>
+			</tr>
+			<tr>
+				<th>Categorie</th>
+				<th>Société</th>
+				<th>Téléphone</th>
+				<th>Contact</th>
+				<th>Portable</th>
+				<th>Email</th>
+				<th class="text-center">Activités</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in pagination %}
+				{# {{ dump(sortedCompany) }} #}
+				{% set company = item.company %}
+				{% set activeActivityCount = item.activeActivityCount %}
+				<tr>
+					<td>
+						{{ item.company.category }}
+					</td>
+					<td>
+						<a href="{{ path('app_companies_show', {'id': item.company.id}) }}">
+							<i class="fa-solid fa-right-to-bracket me-2"></i>
+							{{ item.company.name }}</a>
+					</td>
+					<td>{{ item.company.phone }}</td>
+					<td>{{ item.company.contactFirstName }}
+						{{ item.company.contactLastName }}</td>
+					<td>{{ item.company.mobile }}</td>
+					<td>
+						<a href="mailto:{{ item.company.email }}">{{ item.company.email }}</a>
+					</td>
+					<td class="text-center">
+					{% if item.activeActivityCount > 0 %}
+						<span class="badge bg-success p-2">{{ item.activeActivityCount }}</span>
+					{% endif %}
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="9">Pas encore de compte</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{# <span class="badge bg-success p-2">{{ activeActivityCount }}</span> #}
+	{# {% if daysToSoonestReminder is not null %} #}
+	{# <span class="badge bg-danger p-2">{{ daysToSoonestReminder }} j</span>
+			{% else %}
+				-
+			{% endif %}#}
+		<div class="d-flex justify-content-center"> {{ knp_pagination_render(pagination) }}
+	</div>
+	<div class="d-flex justify-content-between my-5 w-100">
+		<div class="align-top">
+			<div class="btn-group btn-group-sm" role="group">
+				<a class="btn btn-secondary" href="{{ path('csv_export') }}">
+					<i class="fa-solid fa-file-arrow-down me-1"></i>
+					Télécharger en CSV</a>
+				<a class="btn btn-outline-primary" href="{{ path('app_activities')}}">
+					<i class="fa-solid fa-table-list me-1"></i>Activités</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -22,9 +22,9 @@ document.querySelectorAll('.add-activity-btn').forEach(btn => {
 const addFormDeleteLink = (newItem) => {
   const removeFormButton = document.createElement('button');
   removeFormButton.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
-  removeFormButton.className = `btn btn-warning fs-6 px-2 my-2 btn-sm`;
+  removeFormButton.className = `btn btn-warning fs-6 px-2 btn-sm`;
 
-  const newActiveInput = newItem.querySelector('.new-active');
+  const newActiveInput = newItem.querySelector('input[name$="[reminder]"]');
   newActiveInput.insertAdjacentElement('afterend', removeFormButton);
 
   removeFormButton.addEventListener('click', (e) => {
@@ -120,7 +120,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 ////////////////////// recherche ////////////////////////
 function searchActivities() {
-  const searchInput = document.getElementById('activity-search-form');
+  const searchInput = document.getElementById('search-input');
   const searchTerm = searchInput.value.toLowerCase();
 
   const activities = document.querySelectorAll('.activity-card');
@@ -139,9 +139,8 @@ function searchActivities() {
   });
 }
 
-const activitySearchForm = document.getElementById('activity-search-form');
-activitySearchForm.addEventListener('submit', (e) => {
-  e.preventDefault();
+const activitySearchForm = document.getElementById('search-input');
+activitySearchForm.addEventListener('input', () => {
   searchActivities();
 });
 

@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -16,6 +16,14 @@ class ActivityType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('name', TextType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Nom',
+                    'class' => 'form-control'
+                ]
+            ])
             ->add('description', TextareaType::class, [
                 'label' => false,
                 'required' => true,
@@ -34,12 +42,21 @@ class ActivityType extends AbstractType
                 // 'input'  => 'datetime_immutable',
                 'html5' => true,
                 'row_attr' => [
-                    'class' => 'col-4 my-1 m-2 input-group',
+                    'class' => 'my-1 m-2 input-group',
                 ],
-                // 'attr' => [
-                //     'placeholder' => 'Date limite',
-                //     'name' => 'form-control'
-                // ]
+            ])
+            ->add('reminder', DateType::class, [
+                'label' => 'Rappel : ',
+                'widget' => 'single_text',
+                'required' => false,
+                'label_attr' => [
+                    'class' => 'mt-2 my-1',
+                ],
+                // 'input'  => 'datetime_immutable',
+                'html5' => true,
+                'row_attr' => [
+                    'class' => 'my-1 m-2 input-group',
+                ],
             ])
             ->add('isActive', CheckboxType::class, [
                 'label' => ' : En cours',

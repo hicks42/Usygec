@@ -1,0 +1,36 @@
+{# form to make a new activity #}
+{% macro newForm(form) %}
+	{{ form_row(form.name) }}
+	{{ form_row(form.description) }}
+	<div class="row d-flex justify-content-between">
+		<div class="col-4">
+			{{ form_row(form.reminder, {'attr':{'class': 'new-reminder mx-2'}}) }}
+		</div>
+		<div class="col-4">
+			{{ form_row(form.dueDate, {'attr':{'class': 'new-dueDate mx-2'}}) }}
+		</div>
+		<div class="new-active" style="display: none;">
+			{{ form_row(form.isActive, { 'checked': 'checked' }) }}
+		</div>
+		<div class="col-4"></div>
+	</div>
+{% endmacro newForm %}
+
+{# form for existing activities #}
+{% macro existForm(form) %}
+	<div class="col-md-12 p-1">
+		{{ form_row(form.name)}}
+		{{ form_row(form.description)}}
+		<div id="{{ form.vars.name }}" class="info-row row d-flex justify-content-between ">
+			<div class="col-4">
+				{{ form_row(form.reminder, {'attr':{'class': 'mx-2'}}) }}
+			</div>
+			<div class="col-4">
+				{{ form_row(form.dueDate, {'attr':{'class': 'mx-2'}}) }}
+			</div>
+			<div class="col-4">
+				{{ form_row(form.isActive)}}
+			</div>
+		</div>
+	</div>
+{% endmacro existForm %}

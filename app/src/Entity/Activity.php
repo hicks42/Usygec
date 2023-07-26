@@ -38,10 +38,20 @@ class Activity
     private $isActive;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Customer::class, inversedBy="activities")
+     * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="activities")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $customer;
+    private $company;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $reminder;
 
     public function getId(): ?int
     {
@@ -72,7 +82,7 @@ class Activity
         return $this;
     }
 
-    public function isIsActive(): ?bool
+    public function isActive(): ?bool
     {
         return $this->isActive;
     }
@@ -84,14 +94,38 @@ class Activity
         return $this;
     }
 
-    public function getCustomer(): ?Customer
+    public function getCompany(): ?Company
     {
-        return $this->customer;
+        return $this->company;
     }
 
-    public function setCustomer(?Customer $customer): self
+    public function setCompany(?Company $company): self
     {
-        $this->customer = $customer;
+        $this->company = $company;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getReminder(): ?\DateTimeInterface
+    {
+        return $this->reminder;
+    }
+
+    public function setReminder(?\DateTimeInterface $reminder): self
+    {
+        $this->reminder = $reminder;
 
         return $this;
     }

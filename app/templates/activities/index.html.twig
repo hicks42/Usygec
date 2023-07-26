@@ -1,38 +1,135 @@
-{% extends 'base.html.twig' %}
+{% extends 'logged_in_base.html.twig' %}
 
-{% block title %}Activities index
+{% block title %}Liste des Activités
 {% endblock %}
 
 {% block content %}
-	<h1>Activities index</h1>
-
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Description</th>
-				<th>DueDate</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for activity in activities %}
+	<div class="comtainer">
+		<div class="d-flex justify-content-between">
+			<div class="ms-2">
+				<h1>Liste des Activités</h1>
+			</div>
+			<div>
+				<a class="btn btn-success" href="{{ path('app_companies_new') }}">
+					<i class="fa-solid fa-file-circle-plus"></i>
+				</a>
+			</div>
+		</div>
+		<table class="table mt-3">
+			<thead>
 				<tr>
-					<td>{{ activity.id }}</td>
-					<td>{{ activity.description }}</td>
-					<td>{{ activity.dueDate ? activity.dueDate|date('Y-m-d H:i:s') : '' }}</td>
-					<td>
-						<a href="{{ path('app_activities_show', {'id': activity.id}) }}">show</a>
-						<a href="{{ path('app_activities_edit', {'id': activity.id}) }}">edit</a>
+					<td colspan="2">
+						<form action="{{ path('app_activities') }}" method="GET">
+							<div class="input-group mb-3">
+								<input type="text" class="form-control" name="keyword" placeholder="Recherche par mots cléfs">
+								<button type="submit" class="btn btn-outline-dark">
+									<i class="fa-solid fa-magnifying-glass"></i>
+								</button>
+							</div>
+						</form>
 					</td>
+					<td colspan="3"></td>
 				</tr>
-			{% else %}
 				<tr>
-					<td colspan="4">no records found</td>
+					<th>
+						<a href="{{ path('app_activities', {'sort_by': 'name', 'sort_order': (sort_order == 'desc' and sort_by == 'name') ? 'asc' : 'desc', 'keyword': keyword }) }}">Activité
+							{% if sort_by == 'name' %}
+								{% if sort_order == 'desc' %}
+									<i class="fas fa-sort-up"></i>
+								{% else %}
+									<i class="fas fa-sort-down"></i>
+								{% endif %}
+							{% else %}
+								<i class="fas fa-sort"></i>
+							{% endif %}
+						</a>
+					</th>
+					<th>
+						<a href="{{ path('app_activities', {'sort_by': 'company', 'sort_order': (sort_order == 'desc' and sort_by == 'company') ? 'asc' : 'desc', 'keyword': keyword }) }}">Société
+							{% if sort_by == 'company' %}
+								{% if sort_order == 'desc' %}
+									<i class="fas fa-sort-up"></i>
+								{% else %}
+									<i class="fas fa-sort-down"></i>
+								{% endif %}
+							{% else %}
+								<i class="fas fa-sort"></i>
+							{% endif %}
+						</a>
+					</th>
+					<th>
+						<a href="{{ path('app_activities', {'sort_by': 'reminder', 'sort_order': (sort_order == 'desc' and sort_by == 'reminder') ? 'asc' : 'desc', 'keyword': keyword }) }}">Rappel
+							{% if sort_by == 'reminder' %}
+								{% if sort_order == 'desc' %}
+									<i class="fas fa-sort-up"></i>
+								{% else %}
+									<i class="fas fa-sort-down"></i>
+								{% endif %}
+							{% else %}
+								<i class="fas fa-sort"></i>
+							{% endif %}
+						</a>
+					</th>
+					<th class="text-center">
+						<a href="{{ path('app_activities', {'sort_by': 'dueDate', 'sort_order': (sort_order == 'desc' and sort_by == 'dueDate') ? 'asc' : 'desc', 'keyword': keyword }) }}">Date limite
+							{% if sort_by == 'dueDate' %}
+								{% if sort_order == 'desc' %}
+									<i class="fas fa-sort-up"></i>
+								{% else %}
+									<i class="fas fa-sort-down"></i>
+								{% endif %}
+							{% else %}
+								<i class="fas fa-sort"></i>
+							{% endif %}
+						</a>
+					</th>
 				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-
-	<a class="btn btn-outline-secondary" href="{{ path('cam') }}">Retour à la liste</a>
+			</thead>
+			<tbody>
+				{% for item in pagination %}
+					{% set activity = item.activity %}
+					{% set company = item.activity.company %}
+					{% set daysToReminder = item.daysToReminder %}
+					<tr>
+						<td>
+							<a href="{{ path('app_activities_edit', {'id': activity.id}) }}">{{ activity.name }}</a>
+						</td>
+						<td>
+							<a href="{{ path('app_companies_show', {'id': activity.company.id}) }}">
+								{{ activity.company.name }}</a>
+						</td>
+						<td>
+							{% if daysToReminder is not null %}
+								<div class="d-flex justify-content-around border">
+									<div class="mt-2">
+										{{ activity.reminder ? activity.reminder|format_datetime(locale='fr', pattern='dd/MMM/yy') : '' }}
+									</div>
+									<div class="alarm bg-danger ms-1">
+										{{ daysToReminder }}
+										j
+									</div>
+								</div>
+							{% endif %}
+						</td>
+						<td class="text-center">{{ activity.dueDate ? activity.dueDate|format_datetime(locale='fr', pattern='dd/MMM/yy') : '' }}</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">Pas d'activités
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<div class="d-flex justify-content-center">
+			{{ knp_pagination_render(pagination) }}
+		</div>
+		<div class="btn-group btn-group-sm" role="group">
+			<a class="btn btn-outline-primary" href="{{ path('app_companies') }}">
+				<i class="fa-solid fa-address-book"></i>
+				Sociétés</a>
+			<a class="btn btn-outline-primary" href="{{ path('app_activities')}}">
+				<i class="fa-solid fa-table-list me-1"></i>Activités</a>
+		</div>
+	</div>
 {% endblock %}

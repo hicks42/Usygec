@@ -14,24 +14,42 @@
 						</h1>
 						<div class="lobby-container">
 							<h3>A quel service voulez vous accéder ?</h3>
-							<div class="lobby-content ms-5">
-								<h6 class="mt-5">
-									<a href="{{ path('ezreview') }}">
-										<i class="fa-solid fa-ranking-star mx-2"></i>
-										Easy review</a>
-								</h6>
-								<p>Une application pour faciliter les commentaires positifs sur Google</p>
-								<h6 class="mt-5">
-									<a href="{{ path('cam') }}">
-										<i class="fa-solid fa-file-contract mx-2"></i>
-										Customer Activity Managment</a>
-								</h6>
+							<div class="row lobby-content ms-5">
+								<div class="d-flex justify-content-start mt-5">
+									<div id="icon" class="p-2 col-2">
+										<a href="{{ path('ezreview') }}">
+											<h2>
+												<i class="fa-solid fa-ranking-star mx-2"></i>
+											</h2>
+										</a>
+									</div>
+									<div id="text" class="pt-2 col-10">
+										<h6>
+											<a href="{{ path('ezreview') }}">
+												Easy review</a>
+										</h6>
+										<p>Une application pour faciliter les commentaires positifs sur Google</p>
+									</div>
+								</div>
+								<div class="d-flex justify-content-start">
+									<div id="icon" class="p-2 col-2">
+										<a href="{{ path('app_activities') }}">
+											<h2>
+												<i class="fa-solid fa-file-contract mx-2"></i>
+											</h2>
+										</a>
+									</div>
+									<div id="text" class="pt-2 col-10">
+										<h6>
+											<a href="{{ path('app_activities') }}">Buisness Activity Managment</a>
+										</h6>
 										<p>Une application pour suivre l'intercation avec vos clients</p>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-{% endblock %}
+	{% endblock %}
