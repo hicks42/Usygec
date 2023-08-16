@@ -22,11 +22,16 @@
 	<table class="table mt-3">
 		<thead>
 			<tr>
-				<td colspan="2">
+				<td colspan="4">
 					<form action="{{ path('app_companies_result') }}" method="GET">
 						<div class="input-group mb-3">
 							<input type="text" class="form-control" name="name" placeholder="Recherche par nom">
-							<input type="text" class="form-control" name="category" placeholder="Recherche par categorie">
+							<select id="category" name="category" class="form-select">
+								<option value="">ou categories</option>
+								{% for category in categories %}
+									<option value="{{ category }}">{{ category }}</option>
+								{% endfor %}
+							</select>
 							<button type="submit" class="btn btn-outline-dark">
 								<i class="fa-solid fa-magnifying-glass"></i>
 							</button>
@@ -65,6 +70,7 @@
 					</td>
 					<td class="text-center">
 						<span class="badge bg-success p-2">{{ company.activities|length }}</span>
+						
 					</td>
 				</tr>
 			{% else %}

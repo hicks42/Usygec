@@ -32,6 +32,7 @@ class ActivityController extends AbstractController
 
   /**
    * @Route("/", name="app_activities", methods={"GET"})
+   * @IsGranted("ROLE_USER")
    */
   public function index(ActivityRepository $activityRepository, Request $request, PaginatorInterface $paginator): Response
   {
@@ -89,6 +90,7 @@ class ActivityController extends AbstractController
 
   /**
    * @Route("/{id<[0-9]+>}/add-activity", name="app_add_activity", methods={"GET", "POST"})
+   * @IsGranted("ROLE_USER")
    */
   public function new(Request $request, EntityManagerInterface $em, ActivityRepository $activityRepository, $id): Response
   {
@@ -113,6 +115,7 @@ class ActivityController extends AbstractController
 
   /**
    * @Route("/{id<[0-9]+>}", name="app_activities_show", methods={"GET"})
+   * @IsGranted("ROLE_USER")
    */
   public function show(Activity $activity): Response
   {
@@ -123,6 +126,7 @@ class ActivityController extends AbstractController
 
   /**
    * @Route("/{id}/edit", name="app_activities_edit", methods={"GET", "POST"})
+   * @IsGranted("ROLE_USER")
    */
   public function edit(Request $request, EntityManagerInterface $em, Activity $activity, ActivityRepository $activityRepository, $id): Response
   {
@@ -145,6 +149,7 @@ class ActivityController extends AbstractController
 
   /**
    * @Route("/{id}", name="app_activities_delete", methods={"POST"})
+   * @IsGranted("ROLE_USER")
    */
   public function delete(Request $request, Activity $activity, ActivityRepository $activityRepository): Response
   {

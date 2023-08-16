@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1891873f041302c8b6061831e766a467",
+    "content-hash": "fac5645110235d71dc85c10f45bb1a11",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1886,16 +1886,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "7.5.1",
+            "version": "7.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "b964ca597e86b752cd994f27293e9fa6b6a95ed9"
+                "reference": "8444a2bacf1960bc6a2b62ed86b8e72e11eebe51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/b964ca597e86b752cd994f27293e9fa6b6a95ed9",
-                "reference": "b964ca597e86b752cd994f27293e9fa6b6a95ed9",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/8444a2bacf1960bc6a2b62ed86b8e72e11eebe51",
+                "reference": "8444a2bacf1960bc6a2b62ed86b8e72e11eebe51",
                 "shasum": ""
             },
             "require": {
@@ -1926,9 +1926,6 @@
                 "bamarni-bin": {
                     "bin-links": true,
                     "forward-command": false
-                },
-                "branch-alias": {
-                    "dev-master": "7.5-dev"
                 }
             },
             "autoload": {
@@ -1994,7 +1991,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/guzzle/issues",
-                "source": "https://github.com/guzzle/guzzle/tree/7.5.1"
+                "source": "https://github.com/guzzle/guzzle/tree/7.6.1"
             },
             "funding": [
                 {
@@ -2010,7 +2007,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-17T16:30:08+00:00"
+            "time": "2023-05-15T20:43:01+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -2340,16 +2337,16 @@
         },
         {
             "name": "karser/karser-recaptcha3-bundle",
-            "version": "v0.1.23",
+            "version": "v0.1.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/karser/KarserRecaptcha3Bundle.git",
-                "reference": "50c35dc7fe78cd197f3be081912ef978e5f8e992"
+                "reference": "f2cc87e214b1bb2fb9e5af9684dd41f9d3bea717"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/karser/KarserRecaptcha3Bundle/zipball/50c35dc7fe78cd197f3be081912ef978e5f8e992",
-                "reference": "50c35dc7fe78cd197f3be081912ef978e5f8e992",
+                "url": "https://api.github.com/repos/karser/KarserRecaptcha3Bundle/zipball/f2cc87e214b1bb2fb9e5af9684dd41f9d3bea717",
+                "reference": "f2cc87e214b1bb2fb9e5af9684dd41f9d3bea717",
                 "shasum": ""
             },
             "require": {
@@ -2364,7 +2361,8 @@
                 "twig/twig": "^2.9|^3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7|^8|^9"
+                "phpunit/phpunit": "^7|^8|^9|^10",
+                "symfony/http-client": "^4.3|^5.0|^6.0"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -2415,9 +2413,9 @@
             ],
             "support": {
                 "issues": "https://github.com/karser/KarserRecaptcha3Bundle/issues",
-                "source": "https://github.com/karser/KarserRecaptcha3Bundle/tree/v0.1.23"
+                "source": "https://github.com/karser/KarserRecaptcha3Bundle/tree/v0.1.24"
             },
-            "time": "2022-08-30T21:24:44+00:00"
+            "time": "2023-07-03T17:14:18+00:00"
         },
         {
             "name": "knplabs/knp-components",

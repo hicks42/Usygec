@@ -49,13 +49,51 @@ class CompanyController extends AbstractController
    */
   public function index(CompanyRepository $companyRepository, Request $request, PaginatorInterface $paginator): Response
   {
-    $userCompanies = $companyRepository->findBy(['handler' => $this->user], ['name' => 'ASC']);
+    // $userCompanies = $companyRepository->findBy(['handler' => $this->user], ['name' => 'ASC']);
 
-    $result = $companyRepository->findByUserCompanies($this->user);
+    ////////  search bar  /////////////////////////
     $searchName = $request->query->get('name');
     $searchCategory = $request->query->get('category');
+    $sortBy = $request->query->get('sort_by', 'name'); // Default to sorting by name
+    $sortOrder = $request->query->get('sort_order', 'asc'); // Default to ascending order
 
-    ////////  Category search select  /////////////////////////
+
+    // Determine the order for sorting companies by name
+    $nameSortOrder = $sortOrder === 'asc' ? 'desc' : 'asc';
+
+    $searchResult = $companyRepository->findBySearchCriteria($this->user, $searchName, $searchCategory, $sortBy, $sortOrder);
+
+    ///////////////////////// toggle page : index / searchResult /////////////////////////
+    if (!empty($searchName) || !empty($searchCategory)) {
+      $userCompanies = $searchResult;
+    } else {
+      $userCompanies = $companyRepository->findBy(['handler' => $this->user], ['name' => $sortOrder]);
+    }
+
+    // Sort the $userCompanies array based on the selected criteria
+    if ($sortBy === 'activitiesCount') {
+      usort($userCompanies, function ($a, $b) use ($sortOrder) {
+        $aActiveCount = count(array_filter($a->getActivities()->toArray(), function ($activity) {
+            return $activity->isActive();
+        }));
+        $bActiveCount = count(array_filter($b->getActivities()->toArray(), function ($activity) {
+            return $activity->isActive();
+        }));
+
+        if ($sortOrder === 'asc') {
+            return $aActiveCount - $bActiveCount;
+        } else {
+            return $bActiveCount - $aActiveCount;
+        }
+    });
+    } elseif ($sortBy === 'name') {
+      usort($userCompanies, function ($a, $b) use ($sortOrder) {
+        return strcasecmp($a->getName(), $b->getName()) * ($sortOrder === 'asc' ? 1 : -1);
+      });
+    }
+
+
+    ///////////////////////// Category search select /////////////////////////
     $categories = $this->managerRegistry->getRepository(Category::class)->findAll();
     $categoryNames = [];
     foreach ($categories as $category) {
@@ -65,18 +103,20 @@ class CompanyController extends AbstractController
     $filteredResult = [];
     // foreach ($result['allUserCompanies'] as $company) {
     foreach ($userCompanies as $company) {
-      $activeActivityCount = 0;
+      $activitiesCount = 0;
 
       foreach ($company->getActivities() as $activity) {
         if ($activity->isActive()) {
-          $activeActivityCount++;
+          $activitiesCount++;
         }
       }
+
       $filteredResult[$company->getId()] = [
         'company' => $company,
-        'activeActivityCount' => $activeActivityCount,
+        'activitiesCount' => $activitiesCount,
       ];
     }
+
 
     // Paginate the filtered result
     $pagination = $paginator->paginate(
@@ -88,28 +128,9 @@ class CompanyController extends AbstractController
     return $this->render('companies/index.html.twig', [
       'pagination' => $pagination,
       'categories' => $categories,
-    ]);
-  }
-
-  /**
-   * @Route("/result", name="app_companies_result", methods={"GET"})
-   * @IsGranted("ROLE_USER")
-   */
-  public function searchResult(CompanyRepository $companyRepository, Request $request, PaginatorInterface $paginator): Response
-  {
-    $searchName = $request->query->get('name');
-    $searchCategory = $request->query->get('category');
-    $searchResult = $companyRepository->findBySearchCriteria($this->user, $searchName, $searchCategory);
-
-    // Paginate the filtered result
-    $pagination = $paginator->paginate(
-      $searchResult, // Query or result to paginate
-      $request->query->getInt('page', 1), // Current page number
-      10 // Number of items per page
-    );
-
-    return $this->render('companies/search_result.html.twig', [
-      'pagination' => $pagination,
+      'sort_order' => $sortOrder,
+      'sort_by' => $sortBy,
+      'name_sort_order' => $nameSortOrder,
     ]);
   }
 

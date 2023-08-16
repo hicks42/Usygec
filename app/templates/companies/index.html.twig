@@ -6,7 +6,13 @@
 {% block content %}
 	<div class="d-flex justify-content-between w-100">
 		<div class="ms-2">
-			<h1>Liste des sociétés</h1>
+			{% if  app.request.query.get('name') %}
+				<h1>Sociétés dont le nom contient : "{{ app.request.query.get('name') }}"</h1>
+			{% elseif  app.request.query.get('category') %}
+				<h1>Sociétés du type : "{{ app.request.query.get('category') }}"</h1>
+			{% else %}
+				<h1>Liste des sociétés</h1>
+			{% endif %}
 		</div>
 		<div>
 			<a class="btn btn-success" href="{{ path('app_companies_new') }}">
@@ -19,7 +25,7 @@
 		<thead>
 			<tr>
 				<td colspan="4">
-					<form action="{{ path('app_companies_result') }}" method="GET">
+					<form action="{{ path('app_companies') }}" method="GET">
 						<div class="input-group mb-3">
 							<input type="text" class="form-control" name="name" placeholder="Recherche par nom">
 							<select id="category" name="category" class="form-select">
@@ -38,19 +44,45 @@
 			</tr>
 			<tr>
 				<th>Categorie</th>
-				<th>Société</th>
+				<th>
+					<a href="{{ path('app_companies', { 'sort_by': 'name', 'sort_order': (sort_by == 'name' and sort_order == 'desc') ? 'asc' : 'desc' }) }}">
+						Société
+						{% if sort_by == 'name' %}
+							{% if sort_order == 'desc' %}
+								<i class="fas fa-sort-up"></i>
+							{% else %}
+								<i class="fas fa-sort-down"></i>
+							{% endif %}
+						{% else %}
+							<i class="fas fa-sort"></i>
+						{% endif %}
+					</a>
+				</th>
 				<th>Téléphone</th>
 				<th>Contact</th>
 				<th>Portable</th>
 				<th>Email</th>
-				<th class="text-center">Activités</th>
+				<th class="text-center">
+					<a href="{{ path('app_companies', { 'sort_by': 'activitiesCount', 'sort_order': (sort_by == 'activitiesCount' and sort_order == 'desc') ? 'asc' : 'desc' }) }}">
+						Activités
+						{% if sort_by == 'activitiesCount' %}
+							{% if sort_order == 'desc' %}
+								<i class="fas fa-sort-up"></i>
+							{% else %}
+								<i class="fas fa-sort-down"></i>
+							{% endif %}
+						{% else %}
+							<i class="fas fa-sort"></i>
+						{% endif %}
+					</a>
+				</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for item in pagination %}
 				{# {{ dump(sortedCompany) }} #}
 				{% set company = item.company %}
-				{% set activeActivityCount = item.activeActivityCount %}
+				{% set activitiesCount = item.activitiesCount %}
 				<tr>
 					<td>
 						{{ item.company.category }}
@@ -68,9 +100,9 @@
 						<a href="mailto:{{ item.company.email }}">{{ item.company.email }}</a>
 					</td>
 					<td class="text-center">
-					{% if item.activeActivityCount > 0 %}
-						<span class="badge bg-success p-2">{{ item.activeActivityCount }}</span>
-					{% endif %}
+						{% if item.activitiesCount > 0 %}
+							<span class="badge bg-success p-2">{{ item.activitiesCount }}</span>
+						{% endif %}
 					</td>
 				</tr>
 			{% else %}
@@ -80,13 +112,8 @@
 			{% endfor %}
 		</tbody>
 	</table>
-	{# <span class="badge bg-success p-2">{{ activeActivityCount }}</span> #}
-	{# {% if daysToSoonestReminder is not null %} #}
-	{# <span class="badge bg-danger p-2">{{ daysToSoonestReminder }} j</span>
-			{% else %}
-				-
-			{% endif %}#}
-		<div class="d-flex justify-content-center"> {{ knp_pagination_render(pagination) }}
+	<div class="d-flex justify-content-center">
+		{{ knp_pagination_render(pagination) }}
 	</div>
 	<div class="d-flex justify-content-between my-5 w-100">
 		<div class="align-top">
