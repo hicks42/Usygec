@@ -3,6 +3,11 @@
 {% block title %}Liste des sociétés
 {% endblock %}
 
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('ajaxsort') }}
+{% endblock javascripts %}
+
 {% block content %}
 	<div class="d-flex justify-content-between w-100">
 		<div class="ms-2">
@@ -20,9 +25,10 @@
 			</a>
 		</div>
 	</div>
-	<div class="row search-row d-flex justify-content-between">
+
+	<div class="row search-row">
 		<div class="col-6">
-			<form action="{{ path('app_companies') }}" method="GET">
+			<form action="{{ path('app_companies') }}" medivod="GET">
 				<div class="input-group mb-3">
 					<input type="text" class="form-control" name="name" placeholder="Recherche par nom">
 					<select id="category" name="category" class="form-select">
@@ -39,9 +45,10 @@
 		</div>
 		<div class="col-6"></div>
 	</div>
-	<div class="head-row d-flex justify-content-between">
+
+	<div class="row head-row d-flex justify-content-between">
 		<div class="col-1">Categorie</div>
-		<div class="col-3">
+		<div class="col-2">
 			<a href="{{ path('app_companies', { 'sort_by': 'name', 'sort_order': (sort_by == 'name' and sort_order == 'desc') ? 'asc' : 'desc' }) }}">
 				Société
 				{% if sort_by == 'name' %}
@@ -55,12 +62,14 @@
 				{% endif %}
 			</a>
 		</div>
-		<div class="col-1">Téléphone</div>
+		<div class="col-2">Téléphone</div>
 		<div class="col-2">Contact</div>
-		<div class="col-1">Portable</div>
-		<div class="col-3">Email</div>
+		<div class="col-2">Portable</div>
+		<div class="col-2">Email</div>
 		<div class="text-center col-1">
-			<a href="{{ path('app_companies', { 'sort_by': 'activitiesCount', 'sort_order': (sort_by == 'activitiesCount' and sort_order == 'desc') ? 'asc' : 'desc' }) }}" class="sort-control">
+			<a
+				href="#" class="sort-control" data-sort-by="activitiesCount" data-sort-order="asc">
+				{# <a href="{{ path('app_companies', { 'sort_by': 'activitiesCount', 'sort_order': (sort_by == 'activitiesCount' and sort_order == 'desc') ? 'asc' : 'desc' }) }}" class="sort-control"> #}
 				Activités
 				<span class="sort-icon">
 					<i class="fas fa-sort"></i>
@@ -68,19 +77,29 @@
 			</a>
 		</div>
 	</div>
+
+	<div id="sorted-companies"></div>
+
 	{% for item in pagination %}
 		{# {{ dump(sortedCompany) }} #}
 		{% set company = item.company %}
 		{% set activitiesCount = item.activitiesCount %}
-		<div class="list-row d-flex justify-content-between align-items-center">
-			<div class="col-1">{{ item.company.category }}</div>
-			<div class="col-3"><a href="{{ path('app_companies_show', {'id': item.company.id}) }}">
-				<i class="fa-solid fa-right-to-bracket me-2"></i>{{ item.company.name }}</a>
+		<div class="row d-flex justify-content-between">
+			<div class="col-1">
+				{{ item.company.category }}
 			</div>
-			<div class="col-1">{{ item.company.phone }}</div>
-			<div class="col-2">{{ item.company.contactFirstName }} {{ item.company.contactLastName }}</div>
-			<div class="col-1">{{ item.company.mobile }}</div>
-			<div class="col-3"><a href="mailto:{{ item.company.email }}">{{ item.company.email }}</a></div>
+			<div class="col-2">
+				<a href="{{ path('app_companies_show', {'id': item.company.id}) }}">
+					<i class="fa-solid fa-right-to-bracket me-2"></i>
+					{{ item.company.name }}</a>
+			</div>
+			<div class="col-2">{{ item.company.phone }}</div>
+			<div class="col-2">{{ item.company.contactFirstName }}
+				{{ item.company.contactLastName }}</div>
+			<div class="col-2">{{ item.company.mobile }}</div>
+			<div class="col-2">
+				<a href="mailto:{{ item.company.email }}">{{ item.company.email }}</a>
+			</div>
 			<div class="text-center col-1">
 				{% if item.activitiesCount > 0 %}
 					<span class="badge bg-success p-2">{{ item.activitiesCount }}</span>
@@ -92,9 +111,9 @@
 			<div class="col-12">Pas encore de compte</div>
 		</div>
 	{% endfor %}
-	<div class="pagination-row d-flex justify-content-center">
-		{{ knp_pagination_render(pagination) }}
-	</div>
+
+	<div class="d-flex justify-content-center">{{ knp_pagination_render(pagination) }}</div>
+
 	<div class="d-flex justify-content-between my-5 w-100">
 		<div class="align-top">
 			<div class="btn-group btn-group-sm" role="group">

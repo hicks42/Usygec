@@ -23,6 +23,7 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -74,24 +75,23 @@ class CompanyController extends AbstractController
     if ($sortBy === 'activitiesCount') {
       usort($userCompanies, function ($a, $b) use ($sortOrder) {
         $aActiveCount = count(array_filter($a->getActivities()->toArray(), function ($activity) {
-            return $activity->isActive();
+          return $activity->isActive();
         }));
         $bActiveCount = count(array_filter($b->getActivities()->toArray(), function ($activity) {
-            return $activity->isActive();
+          return $activity->isActive();
         }));
 
         if ($sortOrder === 'asc') {
-            return $aActiveCount - $bActiveCount;
+          return $aActiveCount - $bActiveCount;
         } else {
-            return $bActiveCount - $aActiveCount;
+          return $bActiveCount - $aActiveCount;
         }
-    });
+      });
     } elseif ($sortBy === 'name') {
       usort($userCompanies, function ($a, $b) use ($sortOrder) {
         return strcasecmp($a->getName(), $b->getName()) * ($sortOrder === 'asc' ? 1 : -1);
       });
     }
-
 
     ///////////////////////// Category search select /////////////////////////
     $categories = $this->managerRegistry->getRepository(Category::class)->findAll();
@@ -132,6 +132,47 @@ class CompanyController extends AbstractController
       'sort_by' => $sortBy,
       'name_sort_order' => $nameSortOrder,
     ]);
+  }
+
+  /**
+   * @Route("/ajax/sort", name="app_ajax_sort", methods={"GET", "POST"})
+   * @IsGranted("ROLE_USER")
+   */
+  public function ajaxSort(Request $request, CompanyRepository $companyRepository): JsonResponse
+  {
+    $user = $this->user;
+    $sortBy = $request->query->get('sort_by', 'name');
+    $sortOrder = $request->query->get('sort_order', 'asc');
+
+    // Fetch user companies
+    $userCompanies = $companyRepository->findBy(['handler' => $user], ['name' => $sortOrder]);
+
+    // Sort the userCompanies array based on the selected criteria
+    if ($sortBy === 'name') {
+      usort($userCompanies, function ($a, $b) use ($sortOrder) {
+        return strcasecmp($a->getName(), $b->getName()) * ($sortOrder === 'asc' ? 1 : -1);
+      });
+    }
+
+    // Create an array of data to be returned as JSON
+    $responseData = [];
+
+    foreach ($userCompanies as $company) {
+      // Populate the data array with company information
+      $responseData[] = [
+        'category' => $company->getCategory()->getName(),
+        'id' => $company->getId(),
+        'name' => $company->getName(),
+        'phone' => $company->getPhone(),
+        'contactFirstName' => $company->getContactFirstName(),
+        'contactLastName' => $company->getContactLastName(),
+        'mobile' => $company->getMobile(),
+        'email' => $company->getEmail(),
+        // 'activitiesCount' => $company->getActivitiesCount(),
+      ];
+    }
+
+    return new JsonResponse($responseData);
   }
 
   /**

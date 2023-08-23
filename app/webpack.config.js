@@ -40,6 +40,7 @@ Encore
     .addEntry('upload', './assets/js/upload.js')
     .addEntry('datepicker', './assets/js/datetimepicker.js')
     .addEntry('activity', './assets/js/activity.js')
+    .addEntry('ajaxsort', './assets/js/ajax_sort.js')
 
     // .addEntry('popper', '@popperjs/core/dist/cjs/popper.js')
 

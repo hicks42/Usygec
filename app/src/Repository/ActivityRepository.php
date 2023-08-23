@@ -97,7 +97,8 @@ class ActivityRepository extends ServiceEntityRepository
 
     return [
       'activitiesWithReminder' => $activitiesWithReminder,
-      'activitiesWithoutReminder' => $activitiesWithoutReminder
+      'activitiesWithoutReminder' => $activitiesWithoutReminder,
+      'allActivities' => array_merge($activitiesWithReminder, $activitiesWithoutReminder)
     ];
   }
 
@@ -143,6 +144,44 @@ class ActivityRepository extends ServiceEntityRepository
 
     return $qb->getQuery()->getResult();
   }
+
+  public function findByKeywordWithCustomSorting(User $user, ?string $keyword, ?string $sortBy, ?string $sortOrder): array
+  {
+    $now = new \DateTime();
+    $fiveDaysFromNow = (clone $now)->modify('+5 days');
+
+    $qb = $this->createQueryBuilder('a')
+        ->leftJoin('a.company', 'c')
+        ->leftJoin('c.handler', 'u')
+        ->where('u.id = :user')
+        ->andWhere('a.isActive = :isActive')
+        ->setParameter('user', $user)
+        ->setParameter('isActive', true);
+
+    // Filter by keyword if provided
+    if ($keyword) {
+      $qb->andWhere($qb->expr()->orX(
+        $qb->expr()->like('a.name', ':keyword'),
+        $qb->expr()->like('a.description', ':keyword'),
+        $qb->expr()->like('c.name', ':keyword')
+      ))
+        ->setParameter('keyword', '%' . $keyword . '%');
+    }
+
+    // Handle custom sorting for reminder and dueDate columns
+    if ($sortBy && $sortOrder) {
+      $validColumns = ['name', 'company', 'reminder', 'dueDate'];
+
+      if (in_array($sortBy, $validColumns)) {
+        $qb->addOrderBy('CASE WHEN a.' . $sortBy . ' IS NULL THEN 1 ELSE 0 END', $sortOrder);
+        $qb->addOrderBy('a.' . $sortBy, $sortOrder);
+      }
+    }
+
+    return $qb->getQuery()->getResult();
+  }
+
+
 
   //    /**
   //     * @return Activity[] Returns an array of Activity objects

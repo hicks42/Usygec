@@ -13,7 +13,7 @@
 			{% endif %}
 		</div>
 		<div>
-			<a class="btn btn-success" href="{{ path('app_companies_new') }}">
+			<a class="btn btn-success" href="{{ path('app_companies_new') }}" title="Création d'une société">
 				<i class="fa-solid fa-user-plus"></i>
 			</a>
 		</div>
@@ -70,7 +70,7 @@
 					</td>
 					<td class="text-center">
 						<span class="badge bg-success p-2">{{ company.activities|length }}</span>
-						
+
 					</td>
 				</tr>
 			{% else %}

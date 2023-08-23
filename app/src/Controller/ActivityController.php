@@ -37,16 +37,26 @@ class ActivityController extends AbstractController
   public function index(ActivityRepository $activityRepository, Request $request, PaginatorInterface $paginator): Response
   {
     $keyword = $request->query->get('keyword');
-    $sortBy = $request->query->get('sort_by', 'reminder'); // Default to sorting by name
-    $sortOrder = $request->query->get('sort_order', 'desc'); // Default to ascending order
+    $sortBy = $request->query->get('sort_by', 'reminder'); // Default to sorting by reminder
+    $sortOrder = $request->query->get('sort_order', 'asc'); // Default to ascending order
 
-    $activities = $activityRepository->findByKeyword($this->user, $keyword, $sortBy, $sortOrder);
+
+    // $activities = $activityRepository->findByKeyword($this->user, $keyword, $sortBy, $sortOrder);
+    $activities = $activityRepository->findByKeywordWithCustomSorting($this->user, $keyword, $sortBy, $sortOrder);
 
     $now = new \DateTime();
-    $daysToReminder = null;
-    $activActivities = [];
+    $fiveDaysFromNow = (clone $now)->modify('+5 days');
 
+    // foreach ($activities as $activity) {
+    //   if ($activity->getReminder() !== null && $activity->getReminder() <= $fiveDaysFromNow) {
+    //     $daysToReminder = $activity->getReminder()->diff($now)->days;
+    //     $activity->setDaysToReminder($daysToReminder);
+    //   }
+    // }
+
+    $activActivities = [];
     foreach ($activities as $activity) {
+      //
       if ($activity->getReminder()) {
         $reminderDate = $activity->getReminder();
         $nowDate = $now->setTime(0, 0, 0);
@@ -64,8 +74,13 @@ class ActivityController extends AbstractController
             'activity' => $activity,
             'daysToReminder' => $daysToReminder,
           ];
+        } else {
+          $activActivities[] = [
+            'activity' => $activity,
+            'daysToReminder' => null,
+          ];
         }
-      }else{
+      } else {
         $activActivities[] = [
           'activity' => $activity,
           'daysToReminder' => null,
@@ -81,6 +96,74 @@ class ActivityController extends AbstractController
     );
 
     return $this->render('activities/index.html.twig', [
+      'pagination' => $pagination,
+      'keyword' => $keyword,
+      'sort_by' => $sortBy,
+      'sort_order' => $sortOrder,
+    ]);
+  }
+
+  /**
+   * @Route("/ajax/sort", name="app_activities_ajax_sort", methods={"GET"})
+   * @IsGranted("ROLE_USER")
+   */
+  public function ajaxSortActivities(ActivityRepository $activityRepository, Request $request, PaginatorInterface $paginator): Response
+  {
+    $keyword = $request->query->get('keyword');
+    $sortBy = $request->query->get('sort_by', 'reminder'); // Default to sorting by name
+    $sortOrder = $request->query->get('sort_order', 'desc'); // Default to ascending order
+
+
+    $activities = $activityRepository->findByKeyword($this->user, $keyword, $sortBy, $sortOrder);
+
+    $now = new \DateTime();
+    $daysToReminder = null;
+    $activActivities = [];
+    $urgentActivities = [];
+
+    foreach ($activities as $activity) {
+      //
+      if ($activity->getReminder()) {
+        $reminderDate = $activity->getReminder();
+        $nowDate = $now->setTime(0, 0, 0);
+        $reminderDateOnly = $reminderDate->setTime(0, 0, 0);
+
+        $daysToReminder = $reminderDateOnly->diff($nowDate)->days;
+
+        // Add "+" in front of $daysToReminder if it is in the past
+        if ($reminderDate < $now) {
+          $daysToReminder = "+" . $daysToReminder;
+        }
+
+        if ($daysToReminder <= 10) {
+          $urgentActivities[] = [
+            'activity' => $activity,
+            'daysToReminder' => $daysToReminder,
+          ];
+        } else {
+          $reminderActivities[] = [
+            'activity' => $activity,
+            'daysToReminder' => null,
+          ];
+        }
+      } else {
+        $activActivities[] = [
+          'activity' => $activity,
+          'daysToReminder' => null,
+        ];
+      }
+    }
+    $allActivities = array_merge(array_reverse($urgentActivities), $reminderActivities, $activActivities);
+    // dd($activActivities);
+
+    // Paginate the filtered result
+    $pagination = $paginator->paginate(
+      $allActivities, // Query or result to paginate
+      $request->query->getInt('page', 1), // Current page number
+      10 // Number of items per page
+    );
+
+    return $this->render('activities/ajax_index.html.twig', [
       'pagination' => $pagination,
       'keyword' => $keyword,
       'sort_by' => $sortBy,
