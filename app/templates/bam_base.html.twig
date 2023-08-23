@@ -25,11 +25,11 @@
 	<body>
 		{% block body %}
 			{{ include('main/partials/_message_flash.html.twig') }}
-			{{ include('main/partials/_header_ezreview.html.twig') }}
+			{{ include('main/partials/_header_logged_in.html.twig') }}
 			{{ include('main/partials/_preloader.html.twig') }}
-			<div class="container">
+			<div class="mx-5">
 				<div class="main-row d-flex justify-content-center">
-					<div class="col-10">
+					<div class="col-12">
 						{% block content %}{% endblock %}
 					</div>
 				</div>

@@ -73,13 +73,12 @@ class AccountController extends AbstractController
   }
 
   /**
-   * @Route("/ezreview/account/", name="account")
+   * @Route("/ezreview/", name="ezreview")
    * @IsGranted("ROLE_USER")
    */
   public function show(Request $request, SluggerInterface $slugger, MessageBusInterface $bus, Security $security): Response
   {
     $user = $security->getUser();
-
 
     $form = $this->createForm(CsvType::class);
     $form->handleRequest($request);
@@ -107,7 +106,7 @@ class AccountController extends AbstractController
         $this->deleteFile($newFilename);
       }
       $this->addFlash('success', 'Ficier csv traité !');
-      return $this->redirectToRoute('account');
+      return $this->redirectToRoute('ezreview');
     }
     return $this->render('ezreview/account.html.twig', [
       'user' => $user,

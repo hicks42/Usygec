@@ -4,7 +4,7 @@ const addFormToCollection = (e) => {
   item.className = `bg-light rounded overflow-hidden p-2 mt-3`;
   item.innerHTML = collectionHolder.dataset.prototype.replace(/__name__/g, collectionHolder.dataset.index);
   collectionHolder.appendChild(item);
-  collectionHolder.dataset.index ++;
+  collectionHolder.dataset.index++;
   addFormDeleteLink(item);
 };
 
@@ -16,9 +16,9 @@ const addFormDeleteLink = (item) => {
   item.append(removeFormButton);
 
   removeFormButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      // remove the li for the structure form
-      item.remove();
+    e.preventDefault();
+    // remove the li for the structure form
+    item.remove();
   });
 };
 
@@ -30,9 +30,8 @@ document.querySelectorAll('div.etbl-card').forEach((group) => {
   addFormDeleteLink(group);
 });
 
-document.querySelectorAll('ul.structures li')
-  .forEach((structure) => {
-      addFormDeleteLink(structure);
+document.querySelectorAll('ul.structures li').forEach((structure) => {
+  addFormDeleteLink(structure);
 });
 
 document.querySelectorAll('.add_item_link').forEach(btn => {

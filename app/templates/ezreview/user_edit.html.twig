@@ -1,4 +1,4 @@
-{% extends 'ezreview_base.html.twig' %}
+{% extends 'logged_in_base.html.twig' %}
 
 {% block title %}Modification du compte
 {% endblock %}
@@ -36,11 +36,14 @@
 				</div>
 			</div>
 
+			{# ici commencent les structures existantes #}
 			{% for row in form.structures %}
 				<div class="etbl col-md-12 mt-3">
 					{{ formMacros.niceForm(row) }}
 				</div>
 			{% endfor %}
+
+			{# ici commencent le form d'ajout de structure #}
 			<ul class="structures" data-index="{{ form.structures|length > 0 ? form.structures|last.vars.name + 1 : 0 }}" data-prototype="{{ formMacros.newForm(form.structures.vars.prototype)|e('html_attr') }}"></ul>
 
 			{% do form.company.setRendered %}
@@ -49,7 +52,7 @@
 			{% endif %}
 
 			<div class="col-12 d-flex justify-content-around">
-				<a href="{{ path('account') }}" class="btn btn-outline-secondary btn-sm my-2">
+				<a href="{{ path('ezreview') }}" class="btn btn-outline-secondary btn-sm my-2">
 					<i class="fa-solid fa-angles-left"></i>
 					Retour</a>
 				<button type="submit" class="btn btn-warning btn-sm my-2">

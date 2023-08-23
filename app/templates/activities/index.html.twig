@@ -1,0 +1,133 @@
+{% extends 'bam_base.html.twig' %}
+
+{% block title %}Liste des Activités
+{% endblock %}
+
+{% block content %}
+	<div class="comtainer">
+		<div class="d-flex justify-content-between">
+			<div class="ms-2">
+				{% if  app.request.query.get('keyword') %}
+					<h1>Activités contenant le mot : "{{ app.request.query.get('keyword') }}"</h1>
+				{% else %}
+					<h1>Liste des Activités</h1>
+				{% endif %}
+			</div>
+			<div>
+				<a class="btn btn-success" href="{{ path('app_companies_new') }}" title="Création d'une société">
+					<i class="fa-solid fa-user-plus"></i>
+				</a>
+			</div>
+		</div>
+		<div class="row search-row">
+			<div class="col-6">
+				<form action="{{ path('app_activities') }}" method="GET">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" name="keyword" placeholder="Recherche par mots cléfs">
+						<button type="submit" class="btn btn-outline-dark">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</div>
+				</form>
+			</div>
+			<div class="col-6"></div>
+		</div>
+		<div class="head-row d-flex justify-content-between rounded-lg">
+			<div class="col-3">
+				<a href="{{ path('app_activities', {'sort_by': 'name', 'sort_order': (sort_order == 'desc' and sort_by == 'name') ? 'asc' : 'desc', 'keyword': keyword }) }}">Activité
+					{% if sort_by == 'name' %}
+						{% if sort_order == 'desc' %}
+							<i class="fas fa-sort-up"></i>
+						{% else %}
+							<i class="fas fa-sort-down"></i>
+						{% endif %}
+					{% else %}
+						<i class="fas fa-sort"></i>
+					{% endif %}
+				</a>
+			</div>
+			<div class="col-2">
+				<a href="{{ path('app_activities', {'sort_by': 'company', 'sort_order': (sort_order == 'desc' and sort_by == 'company') ? 'asc' : 'desc', 'keyword': keyword }) }}">Société
+					{% if sort_by == 'company' %}
+						{% if sort_order == 'desc' %}
+							<i class="fas fa-sort-up"></i>
+						{% else %}
+							<i class="fas fa-sort-down"></i>
+						{% endif %}
+					{% else %}
+						<i class="fas fa-sort"></i>
+					{% endif %}
+				</a>
+			</div>
+			<div class="col-1 d-flex flex-nowrap">
+        <a href="{{ path('app_activities', {'keyword': keyword, 'sort_by': 'reminder', 'sort_order': (sort_by == 'reminder' and sort_order == 'asc') ? 'desc' : 'asc'}) }}">Rappel
+            {% if sort_by == 'reminder' %}
+                {% if sort_order == 'desc' %}
+                    <i class="fas fa-sort-up"></i>
+                {% else %}
+                    <i class="fas fa-sort-down"></i>
+                {% endif %}
+            {% else %}
+                <i class="fas fa-sort"></i>
+            {% endif %}
+        </a>
+				</a>
+			</div>
+			<div class="text-center col-1 d-flex flex-nowrap">
+				<a href="{{ path('app_activities', {'keyword': keyword, 'sort_by': 'dueDate', 'sort_order': (sort_by == 'dueDate' and sort_order == 'asc') ? 'desc' : 'asc'}) }}">Date limite
+					{% if sort_by == 'dueDate' %}
+						{% if sort_order == 'desc' %}
+							<i class="fas fa-sort-up"></i>
+						{% else %}
+							<i class="fas fa-sort-down"></i>
+						{% endif %}
+					{% else %}
+						<i class="fas fa-sort"></i>
+					{% endif %}
+				</a>
+			</div>
+		</div>
+		{% for item in pagination %}
+			{% set activity = item.activity %}
+			{% set company = item.activity.company %}
+			{% set daysToReminder = item.daysToReminder %}
+			<div class="list-row d-flex justify-content-between align-items-center">
+				<div class="col-3">
+					<a href="{{ path('app_activities_edit', {'id': activity.id}) }}">{{ activity.name }}</a>
+				</div>
+				<div class="col-2">
+					<a href="{{ path('app_companies_show', {'id': activity.company.id}) }}">
+						{{ activity.company.name }}</a>
+				</div>
+				<div class="col-1 d-flex flex-nowrap">
+					{% if daysToReminder is not empty %}
+						<div class="reminder-case d-flex justify-content-between border rounded-right">
+							<div class="d-flex align-items-center mx-1">
+								{{ activity.reminder ? activity.reminder|format_datetime(locale='fr', pattern='dd/MMM/yy') : '' }}
+							</div>
+							<div class="alarm bg-danger ms-1"> {{ daysToReminder }} j </div>
+						</div>
+					{% elseif activity.reminder is not null %}
+						{{ activity.reminder|format_datetime(locale='fr', pattern='dd/MMM/yy') }}
+					{% endif %}
+				</div>
+				<div class="text-center col-1 d-flex flex-nowrap">{{ activity.dueDate ? activity.dueDate|format_datetime(locale='fr', pattern='dd/MMM/yy') : '' }}</div>
+			</div>
+		{% else %}
+			<div class="row">
+				<div class="col-12">Pas d'activités
+				</div>
+			</div>
+		{% endfor %}
+		<div class="pagination-row d-flex justify-content-center">
+			{{ knp_pagination_render(pagination) }}
+		</div>
+		<div class="btn-group btn-group-sm" role="group">
+			<a class="btn btn-outline-primary" href="{{ path('app_companies') }}">
+				<i class="fa-solid fa-address-book"></i>
+				Sociétés</a>
+			<a class="btn btn-outline-primary" href="{{ path('app_activities')}}">
+				<i class="fa-solid fa-table-list me-1"></i>Activités</a>
+		</div>
+	</div>
+{% endblock %}

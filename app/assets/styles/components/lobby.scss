@@ -1,0 +1,36 @@
+.lobby-bg {
+  background-color: #081828;
+  padding: 180px 0 100px;
+  position: relative;
+  min-height: 100vh;
+}
+
+.lobby * {
+  color: rgb(152, 193, 216);
+}
+
+.lobby-content
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 5px;
+  }
+
+.lobby-content
+  h3{
+    color: #98c1d8;
+    margin-top: 5px;
+  }
+
+.lobby-content h1 {
+  color: #ffc400;
+  font-weight: 600;
+  margin: 0;
+}
+
+.lobby-content h6 a {
+  color: #ffc400;
+}
+
+.lobby-content p {
+  color: #d8d8d8;
+  margin: 5px 2px 5px 2px;
+}

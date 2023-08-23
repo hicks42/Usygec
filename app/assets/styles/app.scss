@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import "~bootstrap/scss/bootstrap";
+@import "components/activity";
 
 @import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.min";
 
@@ -14,6 +15,7 @@
 @import "components/tiny-slider";
 @import "components/upload";
 @import "components/qrcode";
+@import "components/lobby";
 @import "scss/main";
 
 body {
@@ -66,6 +68,12 @@ h1 {
 
 .main-row {
   padding-top: 115px;
+}
+
+.content{
+  padding-top: 100px;
+  max-width: 98%;
+  margin-inline: auto;
 }
 
 @media (max-width: 450px) {

@@ -1,0 +1,21 @@
+{% extends 'logged_in_base.html.twig' %}
+
+{% block title %}Modification de Activité
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="d-flex justify-content-between w-100">
+			<h1>Modifier :
+				{{ activity.name }}
+			</h1>
+			<div>
+				{{ include('activities/_delete_form.html.twig') }}
+			</div>
+		</div>
+		{{ include('activities/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+	</div>
+	{% if company is not defined %}
+		{% set company = activity.company %}
+	{% endif %}
+{% endblock %}

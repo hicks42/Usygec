@@ -38,3 +38,9 @@ services:
         arguments:
             $dkim_key_path: "%app.dkim_key_path%"
             $project_dir: '%kernel.project_dir%'
+
+    App\Service\CompanyCsvExporter:
+        arguments:
+            $companyRepository: '@App\Repository\CompanyRepository'
+
+    Knp\Component\Pager\PaginatorInterface: '@knp_paginator'
