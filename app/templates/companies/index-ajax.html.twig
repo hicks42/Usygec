@@ -5,7 +5,7 @@
 
 {% block javascripts %}
 	{{ parent() }}
-	{{ encore_entry_script_tags('ajaxsort') }}
+	{{ encore_entry_script_tags('companies_ajaxsort') }}
 {% endblock javascripts %}
 
 {% block content %}
@@ -66,22 +66,21 @@
 		<div class="col-2">Contact</div>
 		<div class="col-2">Portable</div>
 		<div class="col-2">Email</div>
-		<div class="text-center col-1">
-			<a
-				href="#" class="sort-control" data-sort-by="activitiesCount" data-sort-order="asc">
-				{# <a href="{{ path('app_companies', { 'sort_by': 'activitiesCount', 'sort_order': (sort_by == 'activitiesCount' and sort_order == 'desc') ? 'asc' : 'desc' }) }}" class="sort-control"> #}
+		{# <div class="text-center col-1">
+			<a href="#" class="sort-control" data-sort-by="activitiesCount" data-sort-order="asc">
+				<a href="{{ path('app_companies', { 'sort_by': 'activitiesCount', 'sort_order': (sort_by == 'activitiesCount' and sort_order == 'desc') ? 'asc' : 'desc' }) }}" class="sort-control">
 				Activités
 				<span class="sort-icon">
 					<i class="fas fa-sort"></i>
 				</span>
 			</a>
-		</div>
+		</div> #}
 	</div>
 
 	<div id="sorted-companies"></div>
 
-	{% for item in pagination %}
-		{# {{ dump(sortedCompany) }} #}
+	{# {% for item in pagination %}
+
 		{% set company = item.company %}
 		{% set activitiesCount = item.activitiesCount %}
 		<div class="row d-flex justify-content-between">
@@ -110,7 +109,7 @@
 		<div class="row d-flex justify-content-between">
 			<div class="col-12">Pas encore de compte</div>
 		</div>
-	{% endfor %}
+	{% endfor %} #}
 
 	<div class="d-flex justify-content-center">{{ knp_pagination_render(pagination) }}</div>
 

@@ -36,27 +36,37 @@ class ActivityType extends AbstractType
                 'label' => 'Date limite : ',
                 'widget' => 'single_text',
                 'required' => false,
+                'html5' => false,
+                'format' => 'dd/MM/yyyy',
+                'attr' => [
+                    'placeholder' => 'jj/mm/aaaa',
+                    'class' => ''
+                ],
                 'label_attr' => [
                     'class' => 'mt-2 my-1',
                 ],
-                // 'input'  => 'datetime_immutable',
-                'html5' => true,
                 'row_attr' => [
                     'class' => 'my-1 m-2 input-group',
                 ],
+                // 'input'  => 'datetime_immutable',
             ])
             ->add('reminder', DateType::class, [
                 'label' => 'Rappel : ',
                 'widget' => 'single_text',
                 'required' => false,
+                'html5' => false,
+                'format' => 'dd/MM/yyyy',
+                'attr' => [
+                    'placeholder' => 'jj/mm/aaaa',
+                    'class' => ''
+                ],
                 'label_attr' => [
                     'class' => 'mt-2 my-1',
                 ],
-                // 'input'  => 'datetime_immutable',
-                'html5' => true,
                 'row_attr' => [
                     'class' => 'my-1 m-2 input-group',
                 ],
+                // 'input'  => 'datetime_immutable',
             ])
             ->add('isActive', CheckboxType::class, [
                 'label' => ' : En cours',
