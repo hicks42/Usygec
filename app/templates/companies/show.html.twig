@@ -11,8 +11,11 @@
 
 {% block javascripts %}
 	{{ parent() }}
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js" integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ==" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.31/moment-timezone-with-data.js"></script>
 	{{ encore_entry_script_tags('activity') }}
-	{# {{ encore_entry_script_tags('datetimepicker') }} #}
+	{# {{ encore_entry_script_tags('datepicker') }} #}
+	{{ encore_entry_script_tags('flatpickr') }}
 {% endblock javascripts %}
 
 {% block content %}

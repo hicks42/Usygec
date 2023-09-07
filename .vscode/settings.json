@@ -1,7 +1,7 @@
 {
   // "php.validate.enable": false,
   "docker-linter.php.enable": true,
-  "docker-linter.php.container": "usygec-php74-container",
+  "docker-linter.php.container": "www-container",
   "docker-linter.php.machine": "",
   "jshint.packageManager": "yarn",
   "jshint.nodePath": "./app/node_modules/",

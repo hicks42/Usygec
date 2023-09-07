@@ -40,7 +40,6 @@ $('.sort-control').on('click', function (e) {
           <div class="col-2">${company.contactFirstName} ${company.contactLastName}</div>
           <div class="col-2">${company.mobile}</div>
           <div class="col-2"><a href="mailto:${company.email}">${company.email}</a></div>
-          <div class="col-1">${company.phone}</div>
         </div>
         `);
       });
