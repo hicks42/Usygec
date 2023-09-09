@@ -24,6 +24,7 @@ import './js/isotope.min.js';
 import './js/wow.min.js';
 import './js/web-animations.min.js';
 import './js/main.js';
+import './js/flatpickr';
 
 
 window.Popper = require('./js/popper.js');

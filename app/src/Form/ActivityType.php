@@ -32,31 +32,41 @@ class ActivityType extends AbstractType
                     'class' => 'activ-description form-control'
                 ]
             ])
-            ->add('dueDate', DateType::class, [
-                'label' => 'Date limite : ',
-                'widget' => 'single_text',
-                'required' => false,
-                'label_attr' => [
-                    'class' => 'mt-2 my-1',
-                ],
-                // 'input'  => 'datetime_immutable',
-                'html5' => true,
-                'row_attr' => [
-                    'class' => 'my-1 m-2 input-group',
-                ],
-            ])
             ->add('reminder', DateType::class, [
                 'label' => 'Rappel : ',
-                'widget' => 'single_text',
                 'required' => false,
+                'html5' => false,
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'attr' => [
+                    'placeholder' => 'jj/mm/aaaa',
+                    'class' => 'flatpickr ms-2',
+                ],
                 'label_attr' => [
                     'class' => 'mt-2 my-1',
                 ],
-                // 'input'  => 'datetime_immutable',
-                'html5' => true,
                 'row_attr' => [
-                    'class' => 'my-1 m-2 input-group',
+                    'class' => 'input-group',
                 ],
+                // 'input'  => 'datetime_immutable',
+            ])
+            ->add('dueDate', DateType::class, [
+                'label' => 'Date limite : ',
+                'required' => false,
+                'html5' => false,
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'attr' => [
+                    'placeholder' => 'jj/mm/aaaa',
+                    'class' => 'flatpickr ms-2',
+                ],
+                'label_attr' => [
+                    'class' => 'mt-2 my-1',
+                ],
+                'row_attr' => [
+                    'class' => 'input-group',
+                ],
+                // 'input'  => 'datetime_immutable',
             ])
             ->add('isActive', CheckboxType::class, [
                 'label' => ' : En cours',
@@ -75,6 +85,7 @@ class ActivityType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Activity::class,
+            'block_prefix' => 'activity',
         ]);
     }
 }

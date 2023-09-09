@@ -2,17 +2,25 @@
 {% macro newForm(form) %}
 	{{ form_row(form.name) }}
 	{{ form_row(form.description) }}
-	<div class="row d-flex justify-content-between">
-		<div class="col-4">
-			{{ form_row(form.reminder, {'attr':{'class': 'new-reminder mx-2'}}) }}
+	<div class="row d-flex justify-content-between mt-1">
+		<div class="col-4 d-flex justify-content-between text-nowrap">
+		{# <div id="reminderPicker" class="new-dueDate mx-2"></div>
+			{{ form_row(form.reminder, { 'type': "hidden", 'id': 'result'}) }} #}
+			{# {{ form_row(form.reminder, {'attr':{'class': 'new-reminder mx-2'}}) }} #}
+			{# <label for="reminder-{{ form.vars.id }}">Reminder:</label> #}
+				{{ form_label(form.reminder) }}{{ form_widget(form.reminder, { 'id': 'reminder-' ~ form.vars.id }) }}
 		</div>
-		<div class="col-4">
-			{{ form_row(form.dueDate, {'attr':{'class': 'new-dueDate mx-2'}}) }}
+		<div class="col-4 d-flex justify-content-between text-nowrap">
+		{# <div id="dueDatePicker" class="new-dueDate mx-2"></div>
+			{{ form_row(form.dueDate, { 'type': "hidden", 'id': 'result'}) }} #}
+			{# {{ form_row(form.dueDate, {'attr':{'class': 'new-dueDate mx-2'}}) }} #}
+			{# <label for="dueDate-{{ form.vars.id }}">Due Date:</label> #}
+				{{ form_label(form.dueDate) }}{{ form_widget(form.dueDate, { 'id': 'dueDate-' ~ form.vars.id }) }}
 		</div>
 		<div class="new-active" style="display: none;">
 			{{ form_row(form.isActive, { 'checked': 'checked' }) }}
 		</div>
-		<div class="col-4"></div>
+		<div class="col-4"><div class="due-date-ghost"></div></div>
 	</div>
 {% endmacro newForm %}
 
@@ -21,14 +29,16 @@
 	<div class="col-md-12 p-1">
 		{{ form_row(form.name)}}
 		{{ form_row(form.description)}}
-		<div id="{{ form.vars.name }}" class="info-row row d-flex justify-content-between ">
-			<div class="col-4">
-				{{ form_row(form.reminder, {'attr':{'class': 'mx-2'}}) }}
+		<div id="{{ form.vars.name }}" class="info-row row d-flex justify-content-between mt-1">
+			<div class="col-4 d-flex justify-content-between text-nowrap">
+				{{ form_label(form.reminder) }}{{ form_widget(form.reminder, { 'id': 'reminder-' ~ form.vars.id }) }}
+				<a class="input-button" title="toggle" data-toggle><i class="icon-calendar"></i></a>
 			</div>
-			<div class="col-4">
-				{{ form_row(form.dueDate, {'attr':{'class': 'mx-2'}}) }}
+			<div class="col-4 d-flex justify-content-between text-nowrap">
+				{{ form_label(form.dueDate) }}{{ form_widget(form.dueDate, { 'id': 'dueDate-' ~ form.vars.id }) }}
+				<a class="input-button" title="toggle" data-toggle><i class="icon-calendar"></i></a>
 			</div>
-			<div class="col-4">
+			<div class="col-2 text-nowrap">
 				{{ form_row(form.isActive)}}
 			</div>
 		</div>

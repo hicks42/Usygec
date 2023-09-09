@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
+use Assert\DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\Timestampable;
 use App\Repository\ActivityRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ActivityRepository::class)
@@ -28,11 +30,6 @@ class Activity
     private $description;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $dueDate;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $isActive;
@@ -50,6 +47,13 @@ class Activity
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Assert\DateTime(format="d/m/Y", message="Invalid date format. Use dd/mm/yyyy.")
+     */
+    private $dueDate;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @Assert\DateTime(format="d/m/Y", message="Invalid date format. Use dd/mm/yyyy.")
      */
     private $reminder;
 
@@ -66,18 +70,6 @@ class Activity
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getDueDate(): ?\DateTimeInterface
-    {
-        return $this->dueDate;
-    }
-
-    public function setDueDate(?\DateTimeInterface $dueDate): self
-    {
-        $this->dueDate = $dueDate;
 
         return $this;
     }
@@ -114,6 +106,18 @@ class Activity
     public function setName(?string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDueDate(): ?\DateTimeInterface
+    {
+        return $this->dueDate;
+    }
+
+    public function setDueDate(?\DateTimeInterface $dueDate): self
+    {
+        $this->dueDate = $dueDate;
 
         return $this;
     }

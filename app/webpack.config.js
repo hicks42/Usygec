@@ -39,6 +39,7 @@ Encore
     .addEntry('collection', './assets/js/collection_managment.js')
     .addEntry('upload', './assets/js/upload.js')
     .addEntry('datepicker', './assets/js/datetimepicker.js')
+    .addEntry('flatpickr', './assets/js/flatpickr.js')
     .addEntry('activity', './assets/js/activity.js')
     .addEntry('ajaxsort', './assets/js/ajax_sort.js')
 

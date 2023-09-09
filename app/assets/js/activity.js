@@ -24,7 +24,8 @@ const addFormDeleteLink = (newItem) => {
   removeFormButton.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
   removeFormButton.className = `btn btn-warning fs-6 px-2 btn-sm`;
 
-  const newActiveInput = newItem.querySelector('input[name$="[reminder]"]');
+  // const newActiveInput = newItem.querySelector('input[name$="[dueDate]"]');
+  const newActiveInput = newItem.querySelector('.due-date-ghost"]');
   newActiveInput.insertAdjacentElement('afterend', removeFormButton);
 
   removeFormButton.addEventListener('click', (e) => {
@@ -126,11 +127,17 @@ function searchActivities() {
   const activities = document.querySelectorAll('.activity-card');
   activities.forEach((activity) => {
     const descriptionElement = activity.querySelector('textarea[name$="[description]"]');
+    const nameElement = activity.querySelector('input[name$="[name]"]');
 
     if (descriptionElement && descriptionElement.textContent) {
       const description = descriptionElement.textContent.toLowerCase();
 
-      if (description.includes(searchTerm)) {
+      let name = '';
+      if (nameElement) {
+        name = nameElement.value.trim().toLowerCase();
+      }
+
+      if (description.includes(searchTerm) || name.includes(searchTerm)) {
         activity.style.display = 'block';
       } else {
         activity.style.display = 'none';

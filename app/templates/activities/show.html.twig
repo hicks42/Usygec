@@ -18,11 +18,11 @@
 			</tr>
 			<tr>
 				<th>Date limite</th>
-				<td>{{ activity.dueDate ? activity.dueDate|date('Y-m-d H:i:s') : '' }}</td>
+				<td>{{ activity.dueDate ? activity.dueDate|date('d-m-Y H:i:s') : '' }}</td>
 			</tr>
 			<tr>
 				<th>Rappel</th>
-				<td>{{ activity.reminder ? activity.dueDate|date('Y-m-d H:i:s') : '' }}</td>
+				<td>{{ activity.reminder ? activity.dueDate|date('d-m-Y H:i:s') : '' }}</td>
 			</tr>
 		</tbody>
 	</table>
