@@ -2,64 +2,65 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.188fa053.js",
-        "/build/287.000264e6.js",
-        "/build/755.cb537d12.js",
-        "/build/600.71555da5.js",
-        "/build/740.c664805c.js",
-        "/build/567.15acb83d.js",
-        "/build/app.f9b196c7.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-9e55a2.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_es_str-cc3808.js",
+        "/build/vendors-node_modules_flatpickr_dist_esm_index_js-node_modules_flatpickr_dist_l10n_fr_js.js",
+        "/build/vendors-node_modules_bootstrap_dist_js_bootstrap_esm_js-node_modules_core-js_modules_es_array-fe8aad.js",
+        "/build/app.js"
       ],
       "css": [
-        "/build/567.6e6257c8.css",
-        "/build/app.37844af4.css"
+        "/build/vendors-node_modules_bootstrap_dist_js_bootstrap_esm_js-node_modules_core-js_modules_es_array-fe8aad.css",
+        "/build/app.css"
       ]
     },
     "collection": {
       "js": [
-        "/build/runtime.188fa053.js",
-        "/build/287.000264e6.js",
-        "/build/600.71555da5.js",
-        "/build/collection.268e7166.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-9e55a2.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_es_str-cc3808.js",
+        "/build/collection.js"
       ]
     },
     "upload": {
       "js": [
-        "/build/runtime.188fa053.js",
-        "/build/287.000264e6.js",
-        "/build/upload.f845ebdc.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-9e55a2.js",
+        "/build/upload.js"
       ]
     },
     "datepicker": {
       "js": [
-        "/build/runtime.188fa053.js",
-        "/build/287.000264e6.js",
-        "/build/755.cb537d12.js",
-        "/build/datepicker.a2034fdd.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-9e55a2.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_find_js-node_modules_core-js_modules_es_functio-fc602f.js",
+        "/build/datepicker.js"
       ]
     },
     "flatpickr": {
       "js": [
-        "/build/runtime.188fa053.js",
-        "/build/287.000264e6.js",
-        "/build/755.cb537d12.js",
-        "/build/740.c664805c.js",
-        "/build/flatpickr.a2f3d4b0.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-9e55a2.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/vendors-node_modules_flatpickr_dist_esm_index_js-node_modules_flatpickr_dist_l10n_fr_js.js",
+        "/build/flatpickr.js"
       ]
     },
     "activity": {
       "js": [
-        "/build/runtime.188fa053.js",
-        "/build/287.000264e6.js",
-        "/build/600.71555da5.js",
-        "/build/activity.fb3e4463.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-9e55a2.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_es_str-cc3808.js",
+        "/build/activity.js"
       ]
     },
     "ajaxsort": {
       "js": [
-        "/build/runtime.188fa053.js",
-        "/build/755.cb537d12.js",
-        "/build/ajaxsort.e2866531.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/ajaxsort.js"
       ]
     }
   }

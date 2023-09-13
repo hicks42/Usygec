@@ -222,6 +222,7 @@ conx:
 	./conex
 
 deploy:
+	$(MAKE) build
 	./deployit
 
 ## —— 📊 Database ——

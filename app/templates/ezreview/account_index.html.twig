@@ -4,13 +4,13 @@
 {% endblock %}
 
 {% block content %}
-	<div class="col-12 col-md-8 col-lg-6 mt-5">
+	<div class="er-row col-12 col-md-8 col-lg-6 mt-5 p-5">
 		<div class="row d-flex justify-content-center">
 			<h2>Liste des comptes</h2>
 		</div>
 		<p>Sur cette page on peut modifier les emails, et les mots de passe utilisateurs.</p>
 		<p>On peut également supprimer les utilisateurs et leurs dependences.</p>
-		<div class="bg-light rounded overflow-hidden my-3 p-2">
+		<div class="er-row rounded overflow-hidden my-3 p-2">
 			<ul class="structures">
 				{% for user in users %}
 					<li>

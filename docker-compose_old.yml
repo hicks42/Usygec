@@ -1,0 +1,81 @@
+version: '3'
+
+networks:
+    app-usygec:
+
+services:
+
+    # apache 7.4
+    usygec-apache-service:
+        build: php
+        container_name: usygec-apache-container
+        ports:
+          - "8080:80"
+        depends_on:
+            - usygec-php74-service
+            - usygec-mysql56-service
+        volumes:
+            - ./php/vhosts:/etc/apache2/sites-enabled
+            - ./app:/var/www/project
+            - ./shopdemo:/var/www/shopdemo
+            - ./VRAC:/var/www/VRAC
+        restart: always
+        networks:
+            - app-usygec
+
+    # php
+    usygec-php74-service:
+        build:
+            context: .
+            dockerfile: ./php/Dockerfile
+        container_name: usygec-php74-container
+        volumes:
+            - ./app:/var/www/project
+            - ./shopdemo:/var/www/shopdemo
+            - ./VRAC:/var/www/VRAC
+        networks:
+            - app-usygec
+
+    # mysql
+    usygec-mysql56-service:
+        image: mysql:5.6
+        container_name: usygec-mysql56-container
+        ports:
+            - "4306:3306"
+        volumes:
+            - ./mysql:/var/lib/mysql
+        command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+        restart: always # always restart unless stopped manually
+        environment:
+            MYSQL_ROOT_PASSWORD: secret
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        networks:
+            - app-usygec
+
+    #phpmyadmin
+    usygec-phpmyadmin:
+        image: phpmyadmin
+        container_name: usygec-phpmyadmin-container
+        restart: always
+        depends_on:
+            - usygec-mysql56-service
+        ports:
+            - 8081:80
+        environment:
+            PMA_HOST: usygec-mysql56-service
+        networks:
+            - app-usygec
+
+    # node
+    usygec-node-service:
+        image: node:14.17.5
+        container_name: usygec-node-container
+        volumes:
+            - ./app:/var/www/project
+            - ./shopdemo:/var/www/shopdemo
+        working_dir: /var/www/project
+        networks:
+            - app-usygec
+        ports:
+            - "8082:8080"
+        command: ["yarn", "dev-server", "--host=0.0.0.0"]
