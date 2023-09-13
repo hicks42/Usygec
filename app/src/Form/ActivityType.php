@@ -32,39 +32,39 @@ class ActivityType extends AbstractType
                     'class' => 'activ-description form-control'
                 ]
             ])
-            ->add('dueDate', DateType::class, [
-                'label' => 'Date limite : ',
-                'widget' => 'single_text',
+            ->add('reminder', DateType::class, [
+                'label' => 'Rappel : ',
                 'required' => false,
                 'html5' => false,
-                'format' => 'dd/MM/yyyy',
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
                 'attr' => [
                     'placeholder' => 'jj/mm/aaaa',
-                    'class' => ''
+                    'class' => 'flatpickr ms-2',
                 ],
                 'label_attr' => [
                     'class' => 'mt-2 my-1',
                 ],
                 'row_attr' => [
-                    'class' => 'my-1 m-2 input-group',
+                    'class' => 'input-group',
                 ],
                 // 'input'  => 'datetime_immutable',
             ])
-            ->add('reminder', DateType::class, [
-                'label' => 'Rappel : ',
-                'widget' => 'single_text',
+            ->add('dueDate', DateType::class, [
+                'label' => 'Date limite : ',
                 'required' => false,
                 'html5' => false,
-                'format' => 'dd/MM/yyyy',
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
                 'attr' => [
                     'placeholder' => 'jj/mm/aaaa',
-                    'class' => ''
+                    'class' => 'flatpickr ms-2',
                 ],
                 'label_attr' => [
                     'class' => 'mt-2 my-1',
                 ],
                 'row_attr' => [
-                    'class' => 'my-1 m-2 input-group',
+                    'class' => 'input-group',
                 ],
                 // 'input'  => 'datetime_immutable',
             ])
@@ -85,6 +85,7 @@ class ActivityType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Activity::class,
+            'block_prefix' => 'activity',
         ]);
     }
 }

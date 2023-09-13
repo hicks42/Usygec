@@ -1,0 +1,2 @@
+#!/bin/sh
+sshpass -p "Zem6109vf42" ssh usygecy@ftp.cluster031.hosting.ovh.net

@@ -19,6 +19,7 @@ import './js/isotope.min.js';
 import './js/wow.min.js';
 import './js/web-animations.min.js';
 import './js/main.js';
+import './js/flatpickr';
 
 // faire apparaître le nom de l’image apparaît dans le champs du formulaire
 $('.custom-file-input').on('change', function (e) {

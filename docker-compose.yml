@@ -43,10 +43,7 @@ services:
     restart: always
     networks:
       - app-USYGEC
-
 networks:
   app-USYGEC:
-    external: true  # Connect to an external network if needed
-
 volumes:
   db-data:

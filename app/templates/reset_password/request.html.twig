@@ -4,8 +4,8 @@
 {% endblock %}
 
 {% block body %}
-	<div class="row de-flex justify-content-center">
-		<div class="col-12 col-sm-8 col-lg-6 px-2 my-3">
+	<div class="row de-flex justify-content-center mt-5">
+		<div class="er-row col-12 col-sm-8 col-lg-5 rounded-lg mt-5 p-5">
 			{% for flash_error in app.flashes('reset_password_error') %}
 				<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 			{% endfor %}

@@ -18,7 +18,7 @@ function openModal(e) {
   const structureId = e.target.getAttribute("data-structureid");
   // console.log(structureId);
   // const structureId = uploadBtn.getAttribute("data-structureid");
-  formRow = `<input type="hidden" id="csv_structureId" class="form-control" name="csv[structureId]" value="${structureId}">`;
+  formRow = `<input type="hidden" id="csv_structureId" class="formal-control" name="csv[structureId]" value="${structureId}">`;
   formTitle.insertAdjacentHTML('afterend', formRow);
   const popup = uploadContainer.children[0];
   uploadContainer.classList.add("active");
