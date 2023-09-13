@@ -13,6 +13,9 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
     &&  curl -sS https://getcomposer.org/installer | php -- \
     &&  mv composer.phar /usr/local/bin/composer \
     \
+    && curl -sL https://deb.nodesource.com/setup_18.x | bash \
+    && apt-get install nodejs \
+    \
     &&  curl -sS https://get.symfony.com/cli/installer | bash \
     &&  mv /root/.symfony5/bin/symfony /usr/local/bin \
     \
@@ -32,4 +35,4 @@ RUN git config --global user.email "gerin.patrice@yahoo.fr" \
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 
-WORKDIR /var/www/project
+WORKDIR /var/www/project/app

@@ -43,10 +43,7 @@ services:
     restart: always
     networks:
       - app-USYGEC
-
 networks:
   app-USYGEC:
-
-
 volumes:
   db-data:
