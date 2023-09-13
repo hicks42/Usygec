@@ -1,0 +1,67 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-9e55a2.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_es_str-cc3808.js",
+        "/build/vendors-node_modules_flatpickr_dist_esm_index_js-node_modules_flatpickr_dist_l10n_fr_js.js",
+        "/build/vendors-node_modules_bootstrap_dist_js_bootstrap_esm_js-node_modules_core-js_modules_es_array-fe8aad.js",
+        "/build/app.js"
+      ],
+      "css": [
+        "/build/vendors-node_modules_bootstrap_dist_js_bootstrap_esm_js-node_modules_core-js_modules_es_array-fe8aad.css",
+        "/build/app.css"
+      ]
+    },
+    "collection": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-9e55a2.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_es_str-cc3808.js",
+        "/build/collection.js"
+      ]
+    },
+    "upload": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-9e55a2.js",
+        "/build/upload.js"
+      ]
+    },
+    "datepicker": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-9e55a2.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_find_js-node_modules_core-js_modules_es_functio-fc602f.js",
+        "/build/datepicker.js"
+      ]
+    },
+    "flatpickr": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-9e55a2.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/vendors-node_modules_flatpickr_dist_esm_index_js-node_modules_flatpickr_dist_l10n_fr_js.js",
+        "/build/flatpickr.js"
+      ]
+    },
+    "activity": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-9e55a2.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_es_str-cc3808.js",
+        "/build/activity.js"
+      ]
+    },
+    "ajaxsort": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/ajaxsort.js"
+      ]
+    }
+  }
+}

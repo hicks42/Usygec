@@ -47,13 +47,6 @@ class ActivityController extends AbstractController
     $now = new \DateTime();
     $fiveDaysFromNow = (clone $now)->modify('+5 days');
 
-    // foreach ($activities as $activity) {
-    //   if ($activity->getReminder() !== null && $activity->getReminder() <= $fiveDaysFromNow) {
-    //     $daysToReminder = $activity->getReminder()->diff($now)->days;
-    //     $activity->setDaysToReminder($daysToReminder);
-    //   }
-    // }
-
     $activActivities = [];
     foreach ($activities as $activity) {
       //

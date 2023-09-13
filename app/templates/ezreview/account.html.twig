@@ -17,7 +17,7 @@
 
 {% block content %}
 	<div class="my-3">
-		<div class="d-flex justify-content-between bg-light overflow-hidden p-2">
+		<div class="er-row d-flex justify-content-between overflow-hidden p-2">
 			<div class="col-md-8">
 				<h4>Compte :
 					{{ user.company}}</h4>
@@ -28,7 +28,7 @@
 					Modifier</a>
 			</div>
 		</div>
-		<div class="d-flex justify-content-start bg-light overflow-hidden my-3 p-2">
+		<div class="er-row d-flex justify-content-start overflow-hidden my-3 p-2">
 			<div class="col-md-8">
 				<h5>E-mail :
 					<i class="fa-solid fa-arrow-right"></i>
@@ -45,7 +45,7 @@
 			</div>
 		</div>
 		{% if 'ROLE_ADMIN' not in user.roles %}
-			<div class="bg-light rounded overflow-hidden p-2">
+			<div class="er-row rounded overflow-hidden p-2">
 				<div class="my-4">
 					<h5>Etablissements:</h5>
 					<ul class="structures">

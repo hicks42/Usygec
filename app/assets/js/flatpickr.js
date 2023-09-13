@@ -1,6 +1,12 @@
-document.querySelectorAll('.datetime-picker').forEach(input => {
+import flatpickr from 'flatpickr';
+const { French } = require("flatpickr/dist/l10n/fr");
+
+document.querySelectorAll('.flatpickr').forEach(input => {
   flatpickr(input, {
-      enableTime: true,
-      dateFormat: "Y-m-d H:i",
+    altInput: true,
+    altFormat: "j F, Y",
+    dateFormat: "d-m-Y",
+    "locale": French,
+    firstDayOfWeek: 1,
   });
 });

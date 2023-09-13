@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import "components/activity";
 
-// @import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap";
+
 // @import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.min";
 
-
 // @import "shared/variables";
+@import "components/activity";
+@import "components/ezreview";
 @import "components/animate";
 @import "components/bootstrap.min";
 @import "components/datetimepicker";
@@ -16,6 +17,7 @@
 @import "components/upload";
 @import "components/qrcode";
 @import "components/lobby";
+@import "components/flatpickr";
 @import "scss/main";
 
 body {
