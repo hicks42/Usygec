@@ -1,10 +1,8 @@
 Makefile
 conex
 deployit
-.*
 .gitignore
-.vscode
-
+.*
 
 ###> symfony/framework-bundle ###
 .env.local
