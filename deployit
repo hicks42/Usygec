@@ -1,7 +1,0 @@
-#!/bin/sh
-sshpass -p "Zem6109vf42" rsync -av ./ usygecy@ftp.cluster031.hosting.ovh.net:~/ --include="public/*" --include=vendor --include=.env --exclude-from=.gitignore --exclude=".\*" --exclude="node_modules" --exclude="remote" --exclude="php" --exclude="mysql" --exclude="assets" --exclude="var/*" --include="comparateur/*" --include="shopdemo/*" --exclude='wbk' --exclude='basics' --exclude="app/uploads" --exclude=".vscode/*" --exclude="app/vendor/*" --exclude="DKIM_key.txt"
-
-# sshpass -p "Zem6109vf42" ssh usygecy@ftp.cluster031.hosting.ovh.net 'app/bin/console cache:clear'
-
-# sshpass -p "Zem6109vf42" ssh usygecy@ftp.cluster031.hosting.ovh.net rm -r shopdemo/var/cache
-# sshpass -p "Zem6109vf42" ssh usygecy@ftp.cluster031.hosting.ovh.net rm -r comparateur/var/cache
