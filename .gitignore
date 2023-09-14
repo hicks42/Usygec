@@ -1,4 +1,7 @@
 Makefile
+conex
+deployit
+.gitignore
 .*
 
 ###> symfony/framework-bundle ###
