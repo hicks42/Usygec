@@ -204,7 +204,7 @@ class ActivityController extends AbstractController
    * @Route("/{id}/edit", name="app_activities_edit", methods={"GET", "POST"})
    * @IsGranted("ROLE_USER")
    */
-  public function edit(Request $request, EntityManagerInterface $em, Activity $activity, ActivityRepository $activityRepository, $id): Response
+  public function edit(Request $request, EntityManagerInterface $em, Activity $activity, ActivityRepository $activityRepository): Response
   {
     $form = $this->createForm(ActivityType::class, $activity);
     $form->handleRequest($request);
@@ -218,8 +218,8 @@ class ActivityController extends AbstractController
 
     return $this->renderForm('activities/edit.html.twig', [
       'activity' => $activity,
-      'form' => $form,
       'company' => $company,
+      'form' => $form,
     ]);
   }
 

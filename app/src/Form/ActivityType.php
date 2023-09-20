@@ -69,13 +69,13 @@ class ActivityType extends AbstractType
                 // 'input'  => 'datetime_immutable',
             ])
             ->add('isActive', CheckboxType::class, [
-                'label' => ' : En cours',
+                'label' => 'En cours : ',
                 'required' => false,
                 'row_attr' => [
-                    'class' => 'form-switch'
+                    'class' => 'form-switch d-flex justify-content-around pt-1 text-nowrap'
                 ],
                 'attr' => [
-                    'class' => 'is-active fs-6 mt-3',
+                    'class' => 'is-active fs-6 form-check-input',
                     'data-toggle' => 'toggle',
                 ],
             ]);
@@ -85,7 +85,7 @@ class ActivityType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Activity::class,
-            'block_prefix' => 'activity',
+            // 'block_prefix' => 'activity',
         ]);
     }
 }
