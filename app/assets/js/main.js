@@ -52,7 +52,7 @@ Author: GrayGrids
         });
     });
 
-    //===== close navbar-collapse when a  clicked
+    // //===== close navbar-collapse when a  clicked
     // let navbarToggler = document.querySelector(".navbar-toggler");
     // var navbarCollapse = document.querySelector(".collapse");
 
@@ -65,19 +65,20 @@ Author: GrayGrids
     // navbarToggler.addEventListener('click', function () {
     //     navbarToggler.classList.toggle("active");
     // });
-    // WOW active
 
+    // //========= WOW active
     // new WOW().init();
-    let filterButtons = document.querySelectorAll('.btn');
-    filterButtons.forEach(e =>
-        e.addEventListener('click', () => {
 
-            let filterValue = event.target.getAttribute('data-filter');
-            iso.arrange({
-                filter: filterValue
-            });
-        })
-    );
+    // let filterButtons = document.querySelectorAll('.btn');
+    // filterButtons.forEach(e =>
+    //     e.addEventListener('click', () => {
+
+    //         let filterValue = event.target.getAttribute('data-filter');
+    //         iso.arrange({
+    //             filter: filterValue
+    //         });
+    //     })
+    // );
 
     var elements = document.getElementsByClassName("portfolio-btn");
     for (var i = 0; i < elements.length; i++) {

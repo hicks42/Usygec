@@ -1,8 +1,10 @@
 // Variables
+import { initializeFlatpickr } from './flatpickr';
+
 const container = document.querySelector(".activity-container");
 const activityList = document.querySelector(".activity-list");
 
-// Add Collection
+////////////////// Add New Activity bloc //////////////////////////////////
 const addActivityToCollection = (e) => {
   const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
   const item = document.createElement('li');
@@ -11,6 +13,7 @@ const addActivityToCollection = (e) => {
   collectionHolder.appendChild(item);
   collectionHolder.dataset.index++;
   addFormDeleteLink(item);
+  initializeFlatpickr(item.querySelectorAll('.flatpickr'));
   item.scrollIntoView({ behavior: 'smooth' });
 };
 
@@ -18,14 +21,14 @@ document.querySelectorAll('.add-activity-btn').forEach(btn => {
   btn.addEventListener("click", addActivityToCollection);
 });
 
-////////////////// New Activity bloc //////////////////////////////////
+// New Activity delete btn
 const addFormDeleteLink = (newItem) => {
   const removeFormButton = document.createElement('button');
   removeFormButton.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
   removeFormButton.className = `btn btn-warning fs-6 px-2 btn-sm`;
 
   // const newActiveInput = newItem.querySelector('input[name$="[dueDate]"]');
-  const newActiveInput = newItem.querySelector('.due-date-ghost"]');
+  const newActiveInput = newItem.querySelector('.due-date-ghost');
   newActiveInput.insertAdjacentElement('afterend', removeFormButton);
 
   removeFormButton.addEventListener('click', (e) => {

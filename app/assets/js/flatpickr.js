@@ -10,3 +10,15 @@ document.querySelectorAll('.flatpickr').forEach(input => {
     firstDayOfWeek: 1,
   });
 });
+
+function initializeFlatpickr(element) {
+  flatpickr(element, {
+    altInput: true,
+    altFormat: "j F, Y",
+    dateFormat: "d-m-Y",
+    locale: French,
+    firstDayOfWeek: 1,
+  });
+}
+
+export { initializeFlatpickr };

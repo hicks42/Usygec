@@ -87,6 +87,7 @@
 				</a>
 			</div>
 		</div>
+
 		{% for item in pagination %}
 			{% set activity = item.activity %}
 			{% set company = item.activity.company %}
@@ -119,9 +120,11 @@
 				</div>
 			</div>
 		{% endfor %}
+
 		<div class="pagination-row d-flex justify-content-center">
 			{{ knp_pagination_render(pagination) }}
 		</div>
+
 		<div class="btn-group btn-group-sm" role="group">
 			<a class="btn btn-outline-primary" href="{{ path('app_companies') }}">
 				<i class="fa-solid fa-address-book"></i>
@@ -129,5 +132,6 @@
 			<a class="btn btn-outline-primary" href="{{ path('app_activities')}}">
 				<i class="fa-solid fa-table-list me-1"></i>Activités</a>
 		</div>
+
 	</div>
 {% endblock %}

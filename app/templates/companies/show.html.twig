@@ -129,8 +129,7 @@
 				</div>
 			</div>
 			<div class="activity-container">
-				<div
-					class="activity-content">
+				<div class="activity-content">
 
 					{# ici commencent le form d'ajout de activity #}
 					<ul class="activities" data-index="{{ form.activities|length > 0 ? form.activities|last.vars.name + 1 : 0 }}" data-prototype="{{ formMacros.newForm(form.activities.vars.prototype)|e('html_attr') }}"></ul>
