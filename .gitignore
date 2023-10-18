@@ -10,6 +10,7 @@ deployit
 .env.*.local
 app/config/secrets/prod/prod.decrypt.private.php
 app/public/bundles/
+app/config/jwt/*
 var/
 vendor/
 ###< symfony/framework-bundle ###

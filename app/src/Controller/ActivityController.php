@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/activities")
@@ -97,7 +98,7 @@ class ActivityController extends AbstractController
   }
 
   /**
-   * @Route("/ajax/sort", name="app_activities_ajax_sort", methods={"GET"})
+   * @Route("/json", name="app_activities_api", methods={"GET"})
    * @IsGranted("ROLE_USER")
    */
   public function ajaxSortActivities(ActivityRepository $activityRepository, Request $request, PaginatorInterface $paginator): Response
@@ -147,21 +148,26 @@ class ActivityController extends AbstractController
       }
     }
     $allActivities = array_merge(array_reverse($urgentActivities), $reminderActivities, $activActivities);
-    // dd($activActivities);
 
-    // Paginate the filtered result
-    $pagination = $paginator->paginate(
-      $allActivities, // Query or result to paginate
-      $request->query->getInt('page', 1), // Current page number
-      10 // Number of items per page
-    );
+    // Create an array of data to be returned as JSON
+    $responseData = [];
 
-    return $this->render('activities/ajax_index.html.twig', [
-      'pagination' => $pagination,
-      'keyword' => $keyword,
-      'sort_by' => $sortBy,
-      'sort_order' => $sortOrder,
-    ]);
+    foreach ($allActivities as $item) {
+      $activity = $item['activity']; // Supposons que 'activity' contient l'entité Activity
+      $daysToReminder = $item['daysToReminder'];
+      // Populate the data array with company information
+      $responseData[] = [
+        'id' => $activity->getId(),
+        'name' => $activity->getName(),
+        'company' => $activity->getCompany()->getName(),
+        'dueDate' => $activity->getDueDate(),
+        'reminder' => $activity->getReminder(),
+        'createdAt' => $activity->getCreatedAt(),
+        'updatedAt' => $activity->getUpdatedAt(),
+        'daysToReminder' => $daysToReminder,
+      ];
+    }
+      return new JsonResponse($responseData);
   }
 
   /**
