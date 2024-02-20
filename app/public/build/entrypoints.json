@@ -2,22 +2,22 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.9a71ee5d.js",
+        "/build/runtime.188fa053.js",
         "/build/287.fddd210b.js",
         "/build/755.287d4878.js",
         "/build/44.8b95e2ff.js",
         "/build/306.fa620bd4.js",
-        "/build/835.74383b16.js",
-        "/build/app.dfba1648.js"
+        "/build/401.e081563a.js",
+        "/build/app.42f39877.js"
       ],
       "css": [
-        "/build/835.6e6257c8.css",
+        "/build/401.6e6257c8.css",
         "/build/app.c710355c.css"
       ]
     },
     "collection": {
       "js": [
-        "/build/runtime.9a71ee5d.js",
+        "/build/runtime.188fa053.js",
         "/build/287.fddd210b.js",
         "/build/306.fa620bd4.js",
         "/build/collection.82fa0b04.js"
@@ -25,14 +25,14 @@
     },
     "upload": {
       "js": [
-        "/build/runtime.9a71ee5d.js",
+        "/build/runtime.188fa053.js",
         "/build/287.fddd210b.js",
         "/build/upload.14a6ee6f.js"
       ]
     },
     "datepicker": {
       "js": [
-        "/build/runtime.9a71ee5d.js",
+        "/build/runtime.188fa053.js",
         "/build/287.fddd210b.js",
         "/build/755.287d4878.js",
         "/build/datepicker.2cef627f.js"
@@ -40,7 +40,7 @@
     },
     "flatpickr": {
       "js": [
-        "/build/runtime.9a71ee5d.js",
+        "/build/runtime.188fa053.js",
         "/build/287.fddd210b.js",
         "/build/755.287d4878.js",
         "/build/44.8b95e2ff.js",
@@ -49,7 +49,7 @@
     },
     "activity": {
       "js": [
-        "/build/runtime.9a71ee5d.js",
+        "/build/runtime.188fa053.js",
         "/build/287.fddd210b.js",
         "/build/755.287d4878.js",
         "/build/44.8b95e2ff.js",
@@ -59,14 +59,14 @@
     },
     "ajaxsort": {
       "js": [
-        "/build/runtime.9a71ee5d.js",
+        "/build/runtime.188fa053.js",
         "/build/755.287d4878.js",
         "/build/ajaxsort.e2866531.js"
       ]
     },
     "companies_ajaxsort": {
       "js": [
-        "/build/runtime.9a71ee5d.js",
+        "/build/runtime.188fa053.js",
         "/build/287.fddd210b.js",
         "/build/755.287d4878.js",
         "/build/companies_ajaxsort.5a96928b.js"

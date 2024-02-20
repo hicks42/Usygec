@@ -1,20 +1,27 @@
 {# form for existing structures #}
 {% macro niceForm(form) %}
 	<div class="etbl-card er-row rounded overflow-hidden my-3 p-2">
-		<div class="accordion" id="etbls">
+		<div class="accordion" id="etbls-{{ form.vars.name }}">
 			<div class="accordion-item">
-				<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ form.vars.name }}" aria-expanded="true" aria-controls="collapse-{{ form.vars.name }}">
+				<button
+					class="accordion-button"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#collapse-{{ form.vars.name }}"
+					aria-expanded="true"
+					aria-controls="collapse-{{ form.vars.name }}"
+				>
 					<h6 class="accordion-header" id="heading-{{ form.vars.name }}">
 						{{ form.name.vars.value }}
 					</h6>
 				</button>
-				<div id="collapse-{{ form.vars.name }}" class="accordion-collapse collapse" aria-labelledby="heading-{{ form.vars.name }}" data-bs-parent="#etbls">
+				<div id="collapse-{{ form.vars.name }}" class="accordion-collapse collapse" aria-labelledby="heading-{{ form.vars.name }}" data-bs-parent="#etbls-{{ form.vars.name }}">
 					<div class="accordion-body">
 						{{ form_row(form.name)}}
 						{{ form_row(form.imageFile)}}
 						{{ form_row(form.Pid)}}
 						{{ form_row(form.badRevUrl)}}
-						<div class="row">
+						<div class="row mt-4">
 							<div class="col-lg-6">
 								{{ form_row(form.adresse1)}}
 							</div>
@@ -52,7 +59,7 @@
 		{{ form_row(form.imageFile)}}
 		{{ form_row(form.Pid)}}
 		{{ form_row(form.badRevUrl)}}
-		<div class="row">
+		<div class="row mt-4">
 			<div class="col-lg-6">
 				{{ form_row(form.adresse1)}}
 			</div>

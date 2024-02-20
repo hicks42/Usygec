@@ -46,6 +46,7 @@ class UserController extends AbstractController
 
             // $pid = $scraperService->getPid( $structureName, $cp );
             // $fullGooglUrl = "https://search.google.com/local/writereview?placeid=" . $pid ;
+
             $em->flush();
 
             $this->addFlash('success', 'Account updated successfully!');

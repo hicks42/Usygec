@@ -4,17 +4,23 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
-use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 
 class TargetType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
+            ->add('email', EmailType::class, [
+                'attr' => [
+                    'placeholder' => 'E-mail ciblé',
+                    'class' => 'form-control mt-5'
+                ]
+            ])
             // ->add('envoyer', SubmitType::class, [
             //     'row_attr' => ['class' => 'd-flex justify-content-center'],
             //     'attr' => [

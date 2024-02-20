@@ -6,13 +6,11 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	{# <link rel="stylesheet" href="http://localhost:8080/wip.scss"> #}
 {% endblock stylesheets %}
 
 {% block javascripts %}
 	{{ parent() }}
 	{{ encore_entry_script_tags('upload') }}
-	<script src="http://localhost:8080/wip.js"></script>
 {% endblock javascripts %}
 
 {% block content %}
