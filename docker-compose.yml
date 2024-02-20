@@ -9,7 +9,10 @@ services:
       - "4306:3306"
     volumes:
       - db-data:/var/lib/mysql
-    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
     restart: always # always restart unless stopped manually
     environment:
       MYSQL_ROOT_PASSWORD: secret
@@ -33,18 +36,40 @@ services:
 
   # apache 7.4
   www-service:
-    build: docker
+    build:
+      context: ./docker
     container_name: USYGEC-www-container
     ports:
       - "8080:80"
-      - "3000:3000"
+      - "443:443"
     volumes:
       - ./docker/vhosts:/etc/apache2/sites-enabled
+      - ./docker/ssl:/etc/apache2/ssl
       - ./app:/var/www/project/app
-      - ./:/var/www/project
-    restart: always
+      - ./app/var/log/apache_log:/var/log/apache2
+    restart: on-failure:5
     networks:
       - app-USYGEC
+
+  # # React
+  # frontend:
+  #   container_name: usygec-react-container
+  #   build:
+  #     context: ./frontend
+  #   # command: npm run dev
+  #   volumes:
+  #     - ./frontend/react/public:/usr/app/public
+  #     - ./frontend/react/src:/usr/app/src
+  #     - ./frontend/react/ssl:/usr/app/ssl
+  #     - ./frontend/react/package.json:/usr/app/package.json
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - www-service
+  #   restart: on-failure:5
+  #   networks:
+  #     - app-USYGEC
+
 networks:
   app-USYGEC:
 volumes:

@@ -2,6 +2,7 @@
 
 namespace App\EventSubscriber;
 
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Http\Event\LogoutEvent;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -18,6 +19,11 @@ class LogoutEventSubscriber implements EventSubscriberInterface
 
     public function onLogoutEvent(LogoutEvent $event)
     {
+
+        // $response = new Response();
+        // $response->headers->clearCookie('jwt_token');
+        // $response->send();
+
         $event->getRequest()->getSession()->getFlashBag()->add(
             'success',
             'Deconnexion réussie!'

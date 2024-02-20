@@ -18,7 +18,8 @@ class UserType extends AbstractType
             ->add('company', TextType::class, [
                 'label' => 'Nom de la société',
                 'attr' => [
-                    'placeholder' => 'Nom de votre employeur'
+                    'placeholder' => 'Nom de votre employeur',
+                    'class' => 'form-control'
                 ]
             ])
             ->add('structures', CollectionType::class, [

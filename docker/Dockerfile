@@ -26,19 +26,26 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
     \
     &&  pecl install apcu && docker-php-ext-enable apcu
 
-RUN a2enmod ssl && a2enmod rewrite
-RUN mkdir -p /etc/apache2/ssl
-RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
-
-COPY ./ssl/*.pem /etc/apache2/ssl/
-COPY ./apache/000-default.conf /etc/apache2/sites-available/000-default.conf
-
-EXPOSE 80
-EXPOSE 443
-
 RUN apt-get update && apt-get install -y libmagickwand-dev --no-install-recommends && rm -rf /var/lib/apt/lists/*
 RUN printf "\n" | pecl install imagick
 RUN docker-php-ext-enable imagick
+
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+
+RUN a2enmod rewrite && a2enmod ssl && a2enmod socache_shmcb
+RUN mkdir -p /etc/apache2/ssl
+
+COPY ./ssl/mycert.crt /etc/apache2/ssl/mycert.crt
+COPY ./ssl/mycert.key /etc/apache2/ssl/mycert.key
+
+RUN a2enmod proxy && a2enmod proxy_http
+RUN a2ensite default-ssl
+RUN apt-get update && apt-get upgrade -y
+
+# COPY ./vhosts/vhosts.conf /etc/apache2/sites-available/vhosts.conf
+
+EXPOSE 80
+EXPOSE 443
 
 RUN git config --global user.email "gerin.patrice@yahoo.fr" \
     &&  git config --global user.name "patrice"

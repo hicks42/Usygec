@@ -19,17 +19,24 @@ class StructureType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom',
+                'row_attr' => ['class' => 'mt-4'],
                 'attr' => [
-                    'placeholder' => 'Nom de l\'établissement'
+                    'placeholder' => 'Nom de l\'établissement',
+                    'class' => 'form-control'
                 ]
             ])
             ->add('imageFile', VichImageType::class, [
-                'label' => 'Image au format jpg ou png',
+                'label' => 'Image de l\'établissement',
                 'required' => false,
-                'allow_delete' => true,
-                'delete_label' => 'Supprimer l\'image',
                 'download_uri' => false,
                 'imagine_pattern' => 'company_image_banner',
+                'row_attr' => ['class' => 'mt-4'],
+                'attr' => [
+                    'placeholder' => 'Image au format jpg ou png',
+                    'class' => 'form-control'
+                ],
+                'allow_delete' => true,
+                'delete_label' => 'Supprimer l\'image',
             ])
             // ->add('googlUrl', TextareaType::class, [
             //     'label' => 'Indiquez l\'URL pour un avis positif (Google) :'
@@ -37,50 +44,59 @@ class StructureType extends AbstractType
             ->add('Pid', TextType::class, [
                 'required' => false,
                 // 'mapped' => false,
-                // 'attr' => ['autocomplete' => 'fullGooglUrl'],
+                'row_attr' => ['class' => 'mt-4'],
+                'attr' => ['class' => 'form-control'],
             ])
             ->add('badRevUrl', TextareaType::class, [
                 'label' => 'Indiquez l\'URL pour un avis negatif :',
                 'required' => false,
+                'row_attr' => ['class' => 'mt-4'],
                 'attr' => [
-                    'placeholder' => '(optionelle)'
+                    'placeholder' => '(optionelle)',
+                    'class' => 'form-control'
                 ]
             ])
             ->add('adresse1', TextType::class, [
                 'label' => 'Adresse 1',
                 'attr' => [
-                    'placeholder' => 'Indiquez l\'addresse'
+                    'placeholder' => 'Indiquez l\'addresse',
+                    'class' => 'form-control'
                 ]
             ])
             ->add('adresse2', TextType::class, [
                 'label' => 'Adresse 2',
                 'required' => false,
                 'attr' => [
-                    'placeholder' => '(optionelle)'
+                    'placeholder' => '(optionelle)',
+                    'class' => 'form-control'
                 ]
             ])
             ->add('cp', IntegerType::class, [
                 'label' => 'Code postal',
                 'attr' => [
-                    'placeholder' => 'Indiquez le code postal'
+                    'placeholder' => 'Indiquez le code postal',
+                    'class' => 'form-control'
                 ]
             ])
             ->add('city', TextType::class, [
                 'label' => 'Ville',
                 'attr' => [
-                    'placeholder' => 'Indiquez la ville'
+                    'placeholder' => 'Indiquez la ville',
+                    'class' => 'form-control'
                 ]
             ])
             ->add('country', TextType::class, [
                 'label' => 'Pays',
                 'attr' => [
-                    'placeholder' => 'Indiquez le pays'
+                    'placeholder' => 'Indiquez le pays',
+                    'class' => 'form-control'
                 ]
             ])
             ->add('phone', TelType::class, [
                 'label' => 'Téléphone',
                 'attr' => [
-                    'placeholder' => 'Le téléphone du contact'
+                    'placeholder' => 'Le téléphone du contact',
+                    'class' => 'form-control'
                 ]
             ]);
     }
