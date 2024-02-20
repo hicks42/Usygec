@@ -26,6 +26,16 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
     \
     &&  pecl install apcu && docker-php-ext-enable apcu
 
+RUN a2enmod ssl && a2enmod rewrite
+RUN mkdir -p /etc/apache2/ssl
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+
+COPY ./ssl/*.pem /etc/apache2/ssl/
+COPY ./apache/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+EXPOSE 80
+EXPOSE 443
+
 RUN apt-get update && apt-get install -y libmagickwand-dev --no-install-recommends && rm -rf /var/lib/apt/lists/*
 RUN printf "\n" | pecl install imagick
 RUN docker-php-ext-enable imagick

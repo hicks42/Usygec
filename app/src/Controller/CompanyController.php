@@ -135,7 +135,7 @@ class CompanyController extends AbstractController
   }
 
   /**
-   * @Route("/ajax/sort", name="app_ajax_sort", methods={"GET", "POST"})
+   * @Route("/json", name="app_ajax_sort", methods={"GET", "POST"})
    * @IsGranted("ROLE_USER")
    */
   public function ajaxSort(Request $request, CompanyRepository $companyRepository): JsonResponse
