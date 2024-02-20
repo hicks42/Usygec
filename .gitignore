@@ -11,6 +11,7 @@ deployit
 app/config/secrets/prod/prod.decrypt.private.php
 app/public/bundles/
 app/config/jwt/*
+frontend/ssl/react/
 var/
 vendor/
 ###< symfony/framework-bundle ###
