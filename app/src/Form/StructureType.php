@@ -28,15 +28,15 @@ class StructureType extends AbstractType
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Image de l\'établissement',
                 'required' => false,
-                'allow_delete' => true,
-                'delete_label' => 'Supprimer l\'image',
                 'download_uri' => false,
                 'imagine_pattern' => 'company_image_banner',
                 'row_attr' => ['class' => 'mt-4'],
                 'attr' => [
                     'placeholder' => 'Image au format jpg ou png',
                     'class' => 'form-control'
-                ]
+                ],
+                'allow_delete' => true,
+                'delete_label' => 'Supprimer l\'image',
             ])
             // ->add('googlUrl', TextareaType::class, [
             //     'label' => 'Indiquez l\'URL pour un avis positif (Google) :'

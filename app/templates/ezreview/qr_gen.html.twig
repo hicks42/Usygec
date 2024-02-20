@@ -8,11 +8,6 @@
 
 		<div class="banner-qr-container">
 			<img src="{{ (structure.imageName ? vich_uploader_asset(structure) | imagine_filter('company_image_banner') : asset('/images/placeholder.png')) }}" alt="{{ structure.name }}" alt="{{structure}}">
-			{# {% if structure.imageName %}
-				<img src="{{ vich_uploader_asset(structure) | imagine_filter('company_image_banner') }}" alt="{{ structure.name }}">
-			{% else %}
-				<img src="{{ asset('/images/placeholder.jpg') }}" alt="{{ structure.name }}">
-			{% endif %} #}
 		</div>
 		<div class="content">
 			<div class="qr-title">
