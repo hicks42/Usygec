@@ -211,18 +211,22 @@ class CompanyController extends AbstractController
     $activity = new Activity();
     $activities = $activityRepository->findBy(['company' => $company]);
     $form = $this->createForm(ClientType::class, $company, ['method' => 'POST']);
-
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
       $activities = $company->getActivities();
+      $activitiesToSave = [];
 
       foreach ($activities as $key => $activity) {
-        $activity->setCompany($company);
-        $activities->set($key, $activity);
+        if ($activity->isActive() !== null) {
+          $activity->setCompany($company);
+          $activitiesToSave[] = $activity;
+        }
       }
 
-      $activityRepository->add($activity, true);
+      foreach ($activitiesToSave as $activity) {
+        $activityRepository->add($activity, true);
+      }
 
       $this->addFlash('success', 'Situation Enregistrée');
       return $this->redirectToRoute('app_companies_show', ["id" => $id], Response::HTTP_SEE_OTHER);

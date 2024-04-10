@@ -1,14 +1,12 @@
-{% extends 'logged_in_base.html.twig' %}
+{% extends 'bam_base.html.twig' %}
 
 {% block title %}Modification de Activité
 {% endblock %}
 
 {% block content %}
 	{% import "activities/macros/forms.html.twig" as formMacros %}
-	{{ form_start(form, {"method": "POST"}) }}
-	<div class="container">
-		<div class="er-row p-3">
-			<div class="d-flex justify-content-between w-100">
+		<div class="er-row row g-0 m-1">
+			<div class=" d-flex justify-content-between col-12">
 				<h1>Modifier :
 					{{ activity.name }}
 				</h1>
@@ -16,19 +14,20 @@
 					{{ include('activities/_delete_form.html.twig') }}
 				</div>
 			</div>
+			{{ form_start(form, {"method": "POST"}) }}
 			{# {{ include('activities/_form.html.twig', {'button_label': 'Enregistrer'}) }} #}
 			{{ formMacros.existForm(form) }}
-		</div>
-		<div class="d-flex justify-content-between my-3 w-100">
-			<div class="btn-group" role="group">
-				{% if company is not defined %}
-					{% set company = activity.company %}
-				{% endif %}
-				<a class="btn btn-outline-primary" href="{{ path('app_companies_show', {'id': company.id}) }}">Retour</a>
-				<button type="submit" class="btn btn-group btn-success">{{ button_label|default('Modifier') }}</button>
+			<div class="d-flex justify-content-between my-3 w-100">
+				<div class="btn-group" role="group">
+					{% if company is not defined %}
+						{% set company = activity.company %}
+					{% endif %}
+					<a class="btn btn-outline-primary" href="{{ path('app_companies_show', {'id': company.id}) }}">
+						<i class="fa-solid fa-backward"></i>
+						Retour</a>
+					<button type="submit" class="btn btn-group btn-success">{{button_label|default('Modifier')}}</button>
+				</div>
 			</div>
-		</div>
-	</div>
-	{{ form_widget(form._token) }}
-	{{ form_end(form) }}
+			{{form_rest(form)}}{{form_end(form)}}</div>
+	{# {{ form_widget(form._token) }} #}
 {% endblock %}

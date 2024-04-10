@@ -843,11 +843,6 @@ ol {
   height: 100%;
 }
 
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-  .container {
-    width: 450px;
-  }
-}
 
 /* Bread Crumbs */
 .breadcrumbs {
@@ -1391,38 +1386,6 @@ ol {
   margin-top: 30px;
 }
 
-/*======================================
-	Header CSS
-========================================*/
-/*===== NAVBAR =====*/
-.navbar-area {
-  width: 100%;
-  z-index: 99;
-  -webkit-transition: all 0.3s ease-out 0s;
-  transition: all 0.3s ease-out 0s;
-  background-color: #fff;
-  position: absolute;
-  border-bottom: #d9d9d9 1px solid;
-  box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.05), 0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
-}
-
-.header.index2 .navbar-area {
-  background-color: transparent;
-  position: absolute;
-  z-index: 99;
-}
-
-.header.index2 .sticky {
-  position: fixed;
-  z-index: 99;
-  background-color: #fff;
-  -webkit-box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
-  box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
-  -webkit-transition: all 0.3s ease-out 0s;
-  transition: all 0.3s ease-out 0s;
-  top: 0;
-}
-
 .sticky {
   position: fixed;
   z-index: 99;
@@ -1470,9 +1433,6 @@ ol {
   padding: 0;
 }
 
-.navbar-brand img {
-  width: 150px;
-}
 
 .navbar-toggler {
   padding: 0;
@@ -3983,9 +3943,6 @@ blockquote span {
     bottom: 55px;
   }
 
-  .navbar-brand img {
-    width: 130px;
-  }
 
   .header.index2 .navbar .navbar-nav .nav-item a {
     color: #081828;
@@ -4474,10 +4431,6 @@ blockquote span {
 
   #scrollUp {
     bottom: 55px;
-  }
-
-  .navbar-brand img {
-    width: 130px;
   }
 
   .header.index2 .navbar .navbar-nav .nav-item a {

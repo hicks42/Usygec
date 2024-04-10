@@ -4,8 +4,9 @@
 {% endblock %}
 
 {% block content %}
-	<div class="d-flex justify-content-between w-100">
-		<div class="ms-2">
+
+	<div class="d-flex justify-content-between m-1">
+		<div class="">
 			{% if  app.request.query.get('name') %}
 				<h1>Sociétés dont le nom contient : "{{ app.request.query.get('name') }}"</h1>
 			{% elseif  app.request.query.get('category') %}
@@ -20,10 +21,10 @@
 			</a>
 		</div>
 	</div>
-	<div class="row search-row d-flex justify-content-between">
-		<div class="col-6">
+	<div class="search-row row g-0 d-flex justify-content-between my-1">
+		<div class="col-lg-6 col-12">
 			<form action="{{ path('app_companies') }}" method="GET">
-				<div class="input-group mb-3">
+				<div class="input-group">
 					<input type="text" class="form-control" name="name" placeholder="Recherche par nom">
 					<select id="category" name="category" class="form-select">
 						<option value="">ou categories</option>
@@ -39,9 +40,10 @@
 		</div>
 		<div class="col-6"></div>
 	</div>
+
+
 	<div class="head-row d-flex justify-content-between">
-		<div class="col-1">Categorie</div>
-		<div class="col-3">
+		<div class="col-lg-3 col-5">
 			<a href="{{ path('app_companies', { 'sort_by': 'name', 'sort_order': (sort_by == 'name' and sort_order == 'desc') ? 'asc' : 'desc' }) }}">
 				Société
 				{% if sort_by == 'name' %}
@@ -55,52 +57,100 @@
 				{% endif %}
 			</a>
 		</div>
-		<div class="col-1">Téléphone</div>
-		<div class="col-2">Contact</div>
-		<div class="col-1">Portable</div>
-		<div class="col-3">Email</div>
-		<div class="text-center col-1">
-			<a href="{{ path('app_companies', { 'sort_by': 'activitiesCount', 'sort_order': (sort_by == 'activitiesCount' and sort_order == 'desc') ? 'asc' : 'desc' }) }}" class="sort-control">
-				Activités
+		<div class="d-none d-xxl-block col-2">Téléphone</div>
+		<div class="col-lg-2 col-4">Contact</div>
+		<div class=" d-none d-lg-block d-md-none col-2">Portable</div>
+		<div class="col-xxl-2 col-1 text-md-start text-center">
+			<span class="d-xxl-none">
+				<i class="fa-solid fa-at d-xxl-none"></i>
+			</span>
+			<span class="d-none d-xxl-block">Email</span>
+		</div>
+		<div class="col-1 text-center">
+			<a href="{{ path('app_companies', { 'sort_by': 'activitiesCount', 'sort_order': (sort_by == 'activitiesCount' and sort_order == 'desc') ? 'asc' : 'desc' }) }}" class="sort-control text-nowrap">
+				<span class="d-xxl-none">
+					<i class="fa-solid fa-file-contract"></i>
+				</span>
+				<span class="d-none d-xxl-block">Activités</span>
 				<span class="sort-icon">
 					<i class="fas fa-sort"></i>
 				</span>
 			</a>
 		</div>
 	</div>
+
+
 	{% for item in pagination %}
 		{# {{ dump(sortedCompany) }} #}
 		{% set company = item.company %}
 		{% set activitiesCount = item.activitiesCount %}
-		<div class="list-row d-flex justify-content-between align-items-center">
-			<div class="col-1">{{ item.company.category }}</div>
-			<div class="col-3">
+		<div
+			class="row g-0 list-row d-flex justify-content-between align-items-center">
+			{# Name #}
+			<div class="col-lg-3 col-5">
+				<small>{{ item.company.category }}</small>
+				<br>
 				<a href="{{ path('app_companies_show', {'id': item.company.id}) }}">
 					<i class="fa-solid fa-right-to-bracket me-2"></i>
 					{{ item.company.name }}</a>
 			</div>
-			<div class="col-1">{{ item.company.phone }}</div>
-			<div class="col-2">{{ item.company.contactFirstName }}
-				{{ item.company.contactLastName }}</div>
-			<div class="col-1">{{ item.company.mobile }}</div>
-			<div class="col-3">
-				<a href="mailto:{{ item.company.email }}">{{ item.company.email }}</a>
+
+			{# telephone #}
+			<div class="d-xxl-block d-none col-2">{{ item.company.phone }}</div>
+
+			{# contact #}
+			<div class="col-lg-2 col-5 d-lg-block d-none">
+				{{ item.company.contactFirstName }}
+				{{ item.company.contactLastName }}
 			</div>
-			<div class="text-center col-1">
+
+			<div class="col-lg-3 col-4 d-lg-none">
+				{% if item.company.mobile %}
+					<a href="tel:{{ item.company.mobile }}">
+						<i class="fa-solid fa-phone me-1"></i>
+						{{ item.company.contactFirstName }}
+						{{ item.company.contactLastName }}
+					</a>
+				{% else %}
+					<div class="col-lg-3 col-5 d-lg-none">
+						{{ item.company.contactFirstName }}
+						{{ item.company.contactLastName }}
+					</div>
+				{% endif %}
+			</div>
+
+			{# mobile #}
+			<div class="d-none d-lg-block d-md-none col-2">{{ item.company.mobile }}</div>
+
+			{# email #}
+			<div class="col-xxl-2 col-1">
+				{% if item.company.email %}
+					<a href="mailto:{{ item.company.email }}">
+						<span class="d-xxl-none">
+							<i class="fa-solid fa-envelope d-xxl-none"></i>
+						</span>
+						<span class="d-none d-xxl-block">{{ item.company.email }}</span>
+					</a>
+				{% endif %}
+			</div>
+
+			{# activité #}
+			<div class="col-1 text-center">
 				{% if item.activitiesCount > 0 %}
 					<span class="badge bg-success p-2">{{ item.activitiesCount }}</span>
 				{% endif %}
 			</div>
+
 		</div>
 	{% else %}
 		<div class="row d-flex justify-content-between">
-			<div class="col-12">Pas encore de compte</div>
+			<div class="col-12 mt-2">Pas encore de compte</div>
 		</div>
 	{% endfor %}
 	<div class="pagination-row d-flex justify-content-center">
 		{{ knp_pagination_render(pagination) }}
 	</div>
-	<div class="d-flex justify-content-between my-5 w-100">
+	<div class="row g-0 d-flex justify-content-between my-3">
 		<div class="align-top">
 			<div class="btn-group btn-group-sm" role="group">
 				<a class="btn btn-outline-primary" href="{{ path('app_companies') }}">

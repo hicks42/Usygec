@@ -1,24 +1,26 @@
-{% extends 'logged_in_base.html.twig' %}
+{% extends 'bam_base.html.twig' %}
 
 {% block title %}Modification email
 {% endblock %}
 
 {% block content %}
-	<div class="row">
-		<div class="col-12 mt-3">
-			<h3>Modifier l'email du compte</h3>
-			{{ form_start(form, {"method": "POST"}) }}
-			{{ form_row(form.email) }}
-			<div class="col-12 d-flex justify-content-around">
-				<a href="{{ path('accounts_index') }}" class="btn btn-outline-secondary btn-sm my-5">
-					<i class="fa-solid fa-angles-left"></i>
-					Retour</a>
-				<button type="submit" class="btn btn-primary btn-sm my-5">
-					Enregistrer les modifications
-				</button>
-				{# {{ form_widget(form._token) }} #}
-				{# {{ form_end(form, {'render_rest': false}) }} #}
-				{{ form_end(form) }}
+	<div class="row g-0 d-flex justify-content-center mx-1">
+		<div class="col-lg-6 col-md-8 col-12 m-1">
+			<div class="col-12 my-2">
+				<h3>Modifier l'email du compte</h3>
+				{{ form_start(form, {"method": "POST"}) }}
+				{{ form_row(form.email) }}
+				<div class="col-12 d-flex justify-content-center">
+					<a href="{{ path('accounts_index') }}" class="btn btn-outline-secondary btn-sm my-5">
+						<i class="fa-solid fa-angles-left"></i>
+						Retour</a>
+					<button type="submit" class="btn btn-primary btn-sm my-5">
+						Enregistrer les modifications
+					</button>
+					{# {{ form_widget(form._token) }} #}
+					{# {{ form_end(form, {'render_rest': false}) }} #}
+					{{ form_end(form) }}
+				</div>
 			</div>
 		</div>
 	</div>

@@ -9,7 +9,7 @@
 {% endblock javascripts %}
 
 {% block content %}
-	<div class="comtainer">
+	<div class="container">
 		<div class="d-flex justify-content-between">
 			<div class="ms-2">
 				{% if  app.request.query.get('keyword') %}
@@ -54,9 +54,9 @@
 			</div>
 		</div>
 
-<div id="activities-list" data-ajax-url="{{ path('app_activities_ajax_sort') }}">
-    {% include 'activities/_ajax_activity_list.html.twig' %}
-</div>
+		<div id="activities-list" data-ajax-url="{{ path('app_activities_ajax_sort') }}">
+			{% include 'activities/_ajax_activity_list.html.twig' %}
+		</div>
 
 		<div class="pagination-row d-flex justify-content-center">
 			{{ knp_pagination_render(pagination) }}

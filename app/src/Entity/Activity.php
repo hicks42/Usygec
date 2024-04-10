@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Assert\DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\Timestampable;
 use App\Repository\ActivityRepository;
@@ -25,14 +26,14 @@ class Activity
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $isActive;
+    private $name;
 
     /**
      * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="activities")
@@ -41,25 +42,37 @@ class Activity
     private $company;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $name;
-
-    /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Assert\DateTime(format="d/m/Y", message="Invalid date format. Use dd/mm/yyyy.")
+     * @Assert\Type("\DateTimeInterface")
      */
     private $dueDate;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Assert\DateTime(format="d/m/Y", message="Invalid date format. Use dd/mm/yyyy.")
+     * @Assert\Type("\DateTimeInterface")
      */
     private $reminder;
+
+    /**
+     * @ORM\Column(type="boolean", options={"default":"0"})
+     */
+    private $isActive;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
     }
 
     public function getDescription(): ?string
@@ -67,14 +80,14 @@ class Activity
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function isActive(): ?bool
+    public function isActive(): bool
     {
         return $this->isActive;
     }
@@ -98,19 +111,7 @@ class Activity
         return $this;
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(?string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getDueDate(): ?\DateTimeInterface
+    public function getDueDate(): ?DateTimeInterface
     {
         return $this->dueDate;
     }

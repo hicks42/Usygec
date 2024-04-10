@@ -234,7 +234,7 @@ class Company
         return $this;
     }
 
-     /**
+    /**
      * Get the string representation of the Category object.
      *
      * @return string

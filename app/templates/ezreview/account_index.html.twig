@@ -1,31 +1,46 @@
-{% extends 'logged_in_base.html.twig' %}
+{% extends 'bam_base.html.twig' %}
 
 {% block title %}Liste des comptes
 {% endblock %}
 
 {% block content %}
-	<div class="er-row col-12 col-md-8 col-lg-6 mt-5 p-5">
-		<div class="row d-flex justify-content-center">
-			<h2>Liste des comptes</h2>
-		</div>
-		<p>Sur cette page on peut modifier les emails, et les mots de passe utilisateurs.</p>
-		<p>On peut également supprimer les utilisateurs et leurs dependences.</p>
-		<div class="er-row rounded overflow-hidden my-3 p-2">
-			<ul class="structures">
+	<div class="row g-0 d-flex justify-content-center mx-2">
+		<div class="col-lg-6 col-md-8 col-12">
+			<div class="my-2">
+				<h3>Liste des comptes</h3>
+			</div>
+			<p>Sur cette page on peut modifier les emails, et les mots de passe utilisateurs.</p>
+			<p>On peut également supprimer les utilisateurs et leurs dependences.</p>
+			<div class="structures row mt-3">
+				<div class="row g-0 bg-secondary rounded text-white text-center fs-5">
+					<div class="col-9 text-start"> <strong class="ms-3" >Compte</strong> </div>
+					<div class="col-1 text-center">
+						<i class="fa-solid fa-pen-to-square"></i>
+					</div>
+					<div class="col-1 text-center">
+						<i class="fa-solid fa-pen-to-square"></i>
+					</div>
+					<div class="col-1 text-center">
+						<i class="fa-solid fa-trash-can"></i>
+					</div>
+				</div>
 				{% for user in users %}
-					<li>
-						<div class="d-flex justify-content-between align-items-center w-100">
-							<strong class="w-50">-
+					<div class="row g-0 d-flex align-items-center mt-3 border-bottom">
+						<div class="col-9">
+							<strong>-
 								{{ user.email }}</strong>
-							<a href="{{ path('account_edit', {id: user.id}) }}" class="btn btn-sm btn-secondary m-2">
-								<i class="fa-solid fa-pen-to-square"></i>
+						</div>
+						<div class="col-1 text-center">
+							<a href="{{ path('account_edit', {id: user.id}) }}" class="btn btn-sm btn-secondary">
 								<i class="fa-regular fa-envelope"></i>
 							</a>
-
-							<a href="{{ path('change_password', {id: user.id}) }}" class="btn btn-secondary btn-sm float-end">
-								<i class="fa-solid fa-pen-to-square"></i>
+						</div>
+						<div class="col-1 text-center">
+							<a href="{{ path('change_password', {id: user.id}) }}" class="btn btn-secondary btn-sm">
 								<i class="fa-solid fa-lock"></i>
 							</a>
+						</div>
+						<div class="col-1 text-center">
 							{# <a href="{{ path('account_delete', {id: user.id}) }}" class="btn btn-sm btn-danger m-2">&times; Supprimer</a> #}
 							{% if 'ROLE_ADMIN' not in user.roles %}
 								<a href="#" onclick="event.preventDefault(); confirm('Confirmez la suppression de {{user.email}} ?') && document.getElementById('js-user-delete-form-{{user.id}}').submit();" class="btn btn-sm btn-danger m-2">
@@ -36,13 +51,13 @@
 									<input type="hidden" name="_method" value="POST">
 								</form>
 							{% else %}
-								<p class="lead mx-2 mr-3 text-muted">
-									<i class="fa-solid fa-ban"></i>
+								<p class="lead m-2 text-center">
+									<i class="fa-solid fa-ban text-muted"></i>
 								</p>
 							{% endif %}
 						</div>
-					</li>
+					</div>
 				{% endfor %}
-			</ul>
+			</div>
 		</div>
 	{% endblock %}

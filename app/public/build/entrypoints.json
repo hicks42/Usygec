@@ -3,58 +3,50 @@
     "app": {
       "js": [
         "/build/runtime.188fa053.js",
-        "/build/287.fddd210b.js",
+        "/build/25.337c57a0.js",
         "/build/755.287d4878.js",
-        "/build/44.8b95e2ff.js",
+        "/build/740.5a211616.js",
         "/build/306.fa620bd4.js",
         "/build/401.e081563a.js",
-        "/build/app.42f39877.js"
+        "/build/app.2602f905.js"
       ],
       "css": [
         "/build/401.6e6257c8.css",
-        "/build/app.c710355c.css"
+        "/build/app.fd03832a.css"
       ]
     },
     "collection": {
       "js": [
         "/build/runtime.188fa053.js",
-        "/build/287.fddd210b.js",
+        "/build/25.337c57a0.js",
         "/build/306.fa620bd4.js",
-        "/build/collection.82fa0b04.js"
+        "/build/collection.230b7729.js"
       ]
     },
     "upload": {
       "js": [
         "/build/runtime.188fa053.js",
-        "/build/287.fddd210b.js",
-        "/build/upload.14a6ee6f.js"
-      ]
-    },
-    "datepicker": {
-      "js": [
-        "/build/runtime.188fa053.js",
-        "/build/287.fddd210b.js",
-        "/build/755.287d4878.js",
-        "/build/datepicker.2cef627f.js"
+        "/build/25.337c57a0.js",
+        "/build/upload.a2995e12.js"
       ]
     },
     "flatpickr": {
       "js": [
         "/build/runtime.188fa053.js",
-        "/build/287.fddd210b.js",
+        "/build/25.337c57a0.js",
         "/build/755.287d4878.js",
-        "/build/44.8b95e2ff.js",
-        "/build/flatpickr.0654f32b.js"
+        "/build/740.5a211616.js",
+        "/build/flatpickr.1a7b1886.js"
       ]
     },
     "activity": {
       "js": [
         "/build/runtime.188fa053.js",
-        "/build/287.fddd210b.js",
+        "/build/25.337c57a0.js",
         "/build/755.287d4878.js",
-        "/build/44.8b95e2ff.js",
+        "/build/740.5a211616.js",
         "/build/306.fa620bd4.js",
-        "/build/activity.e40803cd.js"
+        "/build/activity.d27c6703.js"
       ]
     },
     "ajaxsort": {
@@ -67,9 +59,9 @@
     "companies_ajaxsort": {
       "js": [
         "/build/runtime.188fa053.js",
-        "/build/287.fddd210b.js",
+        "/build/25.337c57a0.js",
         "/build/755.287d4878.js",
-        "/build/companies_ajaxsort.5a96928b.js"
+        "/build/companies_ajaxsort.7be43b66.js"
       ]
     }
   }

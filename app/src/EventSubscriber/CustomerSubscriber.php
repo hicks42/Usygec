@@ -9,6 +9,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 
 class CustomerSubscriber implements EventSubscriberInterface
 {
+    private $security;
+
     public function __construct(Security $security)
     {
         $this->security = $security;
