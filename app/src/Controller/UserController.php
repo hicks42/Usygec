@@ -34,7 +34,6 @@ class UserController extends AbstractController
 
             foreach ($structures as $key => $structure) {
 
-
                 $structure->setUser($user);
                 $structures->set($key, $structure);
             }

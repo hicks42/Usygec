@@ -45,8 +45,8 @@ services:
 
     Knp\Component\Pager\PaginatorInterface: '@knp_paginator'
 
-    App\EventSubscriber\JWTAuthenticationSubscriber:
-        arguments:
-            $jwtManager: '@lexik_jwt_authentication.jwt_manager'
-        tags:
-            - { name: kernel.event_subscriber }
+    # App\EventSubscriber\JWTAuthenticationSubscriber:
+    #     arguments:
+    #         $jwtManager: '@lexik_jwt_authentication.jwt_manager'
+    #     tags:
+    #         - { name: kernel.event_subscriber }

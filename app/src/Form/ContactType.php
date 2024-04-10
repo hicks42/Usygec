@@ -19,19 +19,34 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Votre nom :'
+                'label' => 'Votre nom :',
+                'attr' => [
+                    'class' => 'form-control'
+                ]
             ])
             ->add('subject', TextType::class, [
-                'label' => 'Sujet :'
+                'label' => 'Sujet :',
+                'attr' => [
+                    'class' => 'form-control'
+                ]
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Votre email :'
+                'label' => 'Votre email :',
+                'attr' => [
+                    'class' => 'form-control'
+                ]
             ])
             ->add('phone', TextType::class, [
-                'label' => 'Votre téléphone :'
+                'label' => 'Votre téléphone :',
+                'attr' => [
+                    'class' => 'form-control'
+                ]
             ])
             ->add('message', TextareaType::class, [
-                'label' => 'Votre message :'
+                'label' => 'Votre message :',
+                'attr' => [
+                    'class' => 'form-control'
+                ]
             ])
             ->add('envoyer', SubmitType::class, [
                 'attr' => [
@@ -40,7 +55,8 @@ class ContactType extends AbstractType
             ])
             ->add('captcha', Recaptcha3Type::class, [
                 'constraints' => new Recaptcha3(),
-                'action_name' => 'contact'
+                'action_name' => 'contact',
+                'locale' => 'fr',
             ]);
     }
 

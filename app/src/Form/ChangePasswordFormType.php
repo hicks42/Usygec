@@ -18,7 +18,10 @@ class ChangePasswordFormType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => [
-                    'row_attr' => ['class' => 'mt-4'],
+                    'row_attr' => [
+                        'class' => 'mt-4',
+                        'class' => 'form-control'
+                    ],
                     'attr' => [
                         'class' => 'form-control',
                         'autocomplete' => 'Nouveau mot de passe'

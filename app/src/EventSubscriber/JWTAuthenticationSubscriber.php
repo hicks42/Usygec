@@ -26,19 +26,19 @@ class JWTAuthenticationSubscriber implements EventSubscriberInterface
   public function onAuthenticationSuccess(AuthenticationSuccessEvent $event)
   {
 
-    $user = $event->getUser();
+    // $user = $event->getUser();
 
-    // Générez un token JWT pour cet utilisateur
-    $token = $this->jwtManager->create($user);
+    // // Générez un token JWT pour cet utilisateur
+    // $token = $this->jwtManager->create($user);
 
-    // Create an HttpOnly cookie with the token
-    $cookie = Cookie::create('jwt_token', $token)
-      ->withHttpOnly(false)
-      ->withSecure(true) // If served over HTTPS
-      ->withSameSite('none');
+    // // Create an HttpOnly cookie with the token
+    // $cookie = Cookie::create('jwt_token', $token)
+    //   ->withHttpOnly(false)
+    //   ->withSecure(true) // If served over HTTPS
+    //   ->withSameSite('none');
 
-    // Inject the cookie into the response
-    $response = $event->getResponse();
-    $response->headers->setCookie($cookie);
+    // // Inject the cookie into the response
+    // $response = $event->getResponse();
+    // $response->headers->setCookie($cookie);
   }
 }

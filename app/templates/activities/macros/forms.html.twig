@@ -3,16 +3,16 @@
 	<div class="col-md-12 p-1">
 		{{ form_widget(form.name)}}
 		{{ form_widget(form.description)}}
-		<div id="{{ form.vars.name }}" class="info-row row d-flex justify-content-between mt-1">
-			<div class="col-4 d-flex justify-content-between text-nowrap">
+		<div id="{{ form.vars.name }}" class="info-row row g-0 d-flex justify-content-between mt-1">
+			<div class="col-md-4 col-12 d-flex justify-content-between m-1">
 				{{ form_label(form.reminder) }}{{ form_widget(form.reminder, { 'id': 'reminder-' ~ form.vars.id }) }}
-				<a class="input-button" title="toggle" data-toggle><i class="icon-calendar"></i></a>
+				{# <a class="input-button" title="toggle" data-toggle><i class="fa-regular fa-calendar"></i></a> #}
 			</div>
-			<div class="col-4 d-flex justify-content-between text-nowrap">
+			<div class="col-md-4 col-12 d-flex justify-content-between m-1">
 				{{ form_label(form.dueDate) }}{{ form_widget(form.dueDate, { 'id': 'dueDate-' ~ form.vars.id }) }}
-				<a class="input-button" title="toggle" data-toggle><i class="icon-calendar"></i></a>
+				{# <a class="input-button" title="toggle" data-toggle><i class="icon-calendar"></i></a> #}
 			</div>
-			<div class="col-2 d-flex justify-content-between text-nowrap">
+			<div class="col-md-3 col-12 d-flex justify-content-between m-1">
 				{{ form_row(form.isActive)}}
 			</div>
 		</div>

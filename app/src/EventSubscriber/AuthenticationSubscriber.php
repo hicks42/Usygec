@@ -19,19 +19,19 @@ class AuthenticationSubscriber implements EventSubscriberInterface
 
     public function onSecurityInteractiveLogin(LoginSuccessEvent $event): void
     {
-        $user = $event->getUser();
+        // $user = $event->getUser();
 
-        $token = $this->jwtManager->create($user);
+        // $token = $this->jwtManager->create($user);
 
-        // Create an HttpOnly cookie with the token
-        $cookie = Cookie::create('jwt_token', $token)
-            ->withHttpOnly(false)
-            ->withSecure(true) // If served over HTTPS
-            ->withSameSite('none');
+        // // Create an HttpOnly cookie with the token
+        // $cookie = Cookie::create('jwt_token', $token)
+        //     ->withHttpOnly(true)
+        //     ->withSecure(true) // If served over HTTPS
+        //     ->withSameSite('none');
 
-        // Inject the cookie into the response
-        $response = $event->getResponse();
-        $response->headers->setCookie($cookie);
+        // // Inject the cookie into the response
+        // $response = $event->getResponse();
+        // $response->headers->setCookie($cookie);
     }
 
     public static function getSubscribedEvents(): array

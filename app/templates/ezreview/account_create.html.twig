@@ -1,22 +1,26 @@
-{% extends 'logged_in_base.html.twig' %}
+{% extends 'bam_base.html.twig' %}
 
-{% block title %}Hello AccountController!
+{% block title %}Créer un compte
 {% endblock %}
 
 {% block content %}
-	<h3>Créer un compte</h3>
-	<a href="{{ path('accounts_index') }}" class="btn btn-secondary btn w-3">
-		<i class="fa-solid fa-angles-left"></i>
-		Retour</a>
-	{{ form_start(form, {"method": "POST"}) }}
-	<div class="row">
-		{{ form_row(form.email) }}
+	<div class="row g-0 d-flex justify-content-center col-lg-6 col-md-8 col-12 m-1">
+		<div>
+			<h3>Créer un compte</h3>
+		</div>
+		<a href="{{ path('accounts_index') }}" class="btn btn-secondary btn w-3">
+			<i class="fa-solid fa-angles-left"></i>
+			Retour</a>
+		{{ form_start(form, {"method": "POST"}) }}
+		<div class="row">
+			{{ form_row(form.email) }}
+		</div>
+		<div class="col-md-12 mt-3">
+			{{ form_widget(form._token) }}
+			{{ form_end(form, {'render_rest': false}) }}
+		</div>
+		<button type="submit" class="btn btn-primary btn-lg btn-block">
+			Enregistrer les modifications
+		</button>
 	</div>
-	<div class="col-md-12 mt-3">
-		{{ form_widget(form._token) }}
-		{{ form_end(form, {'render_rest': false}) }}
-	</div>
-	<button type="submit" class="btn btn-primary btn-lg btn-block">
-		Enregistrer les modifications
-	</button>
 {% endblock %}

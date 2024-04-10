@@ -3,6 +3,10 @@
 ========================================*/
 
 /*===== NAVBAR =====*/
+.logo-vv {width: auto;}
+.logo-v {}
+.logo-std {width: 300px;}
+
 .navbar-area {
     width: 100%;
     z-index: 99;
@@ -10,7 +14,7 @@
     background-color: $white;
     position: absolute;
     min-height: 70px;
-    margin: auto 3px;
+    margin: auto 0px;
 }
 
 .header.index2 {
@@ -75,9 +79,6 @@
     padding: 0;
 }
 
-.navbar-brand img {
-    width: 150px;
-}
 
 .navbar-toggler {
     padding: 0;
