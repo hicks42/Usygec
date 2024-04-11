@@ -213,10 +213,18 @@ class Company
     public function removeActivity(Activity $activity): self
     {
         if ($this->activities->removeElement($activity)) {
-            // set the owning side to null (unless already changed)
             if ($activity->getCompany() === $this) {
                 $activity->setCompany(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function resetActivities(): self
+    {
+        foreach ($this->activities as $activity) {
+            $this->removeActivity($activity);
         }
 
         return $this;

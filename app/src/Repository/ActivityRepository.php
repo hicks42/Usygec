@@ -151,12 +151,12 @@ class ActivityRepository extends ServiceEntityRepository
     $fiveDaysFromNow = (clone $now)->modify('+5 days');
 
     $qb = $this->createQueryBuilder('a')
-        ->leftJoin('a.company', 'c')
-        ->leftJoin('c.handler', 'u')
-        ->where('u.id = :user')
-        ->andWhere('a.isActive = :isActive')
-        ->setParameter('user', $user)
-        ->setParameter('isActive', true);
+      ->leftJoin('a.company', 'c')
+      ->leftJoin('c.handler', 'u')
+      ->where('u.id = :user')
+      ->andWhere('a.isActive = :isActive')
+      ->setParameter('user', $user)
+      ->setParameter('isActive', true);
 
     // Filter by keyword if provided
     if ($keyword) {
