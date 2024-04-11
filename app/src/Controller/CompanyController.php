@@ -209,24 +209,23 @@ class CompanyController extends AbstractController
   public function show(Company $company, Request $request, EntityManagerInterface $em, ActivityRepository $activityRepository, $id): Response
   {
     $activity = new Activity();
-    $activities = $activityRepository->findBy(['company' => $company]);
+    $dbactivities = $activityRepository->findBy(['company' => $company]);
     $form = $this->createForm(ClientType::class, $company, ['method' => 'POST']);
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
       $activities = $company->getActivities();
-      $activitiesToSave = [];
-
-      foreach ($activities as $key => $activity) {
-        if ($activity->isActive() !== null) {
+      if (count($activities) === 0) {
+        $company->resetActivities();
+      } else {
+        foreach ($activities as $key => $activity) {
           $activity->setCompany($company);
-          $activitiesToSave[] = $activity;
+          $activities->set($key, $activity);
         }
-      }
-
-      foreach ($activitiesToSave as $activity) {
         $activityRepository->add($activity, true);
       }
+
+      $em->flush();
 
       $this->addFlash('success', 'Situation Enregistrée');
       return $this->redirectToRoute('app_companies_show', ["id" => $id], Response::HTTP_SEE_OTHER);
