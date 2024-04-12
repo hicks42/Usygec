@@ -4,89 +4,89 @@
 {% endblock %}
 
 {% block content %}
-		<div class="d-flex justify-content-between">
-			<div class="ms-2">
-				{% if  app.request.query.get('keyword') %}
-					<h1>Activités contenant le mot : "{{ app.request.query.get('keyword') }}"</h1>
+	<div class="d-flex justify-content-between">
+		<div class="ms-2">
+			{% if  app.request.query.get('keyword') %}
+				<h1>Activités contenant le mot : "{{ app.request.query.get('keyword') }}"</h1>
+			{% else %}
+				<h1>Liste des Activités</h1>
+			{% endif %}
+		</div>
+		<div>
+			<a class="btn btn-success" href="{{ path('app_companies_new') }}" title="Création d'une société">
+				<i class="fa-solid fa-user-plus"></i>
+			</a>
+		</div>
+	</div>
+
+	<div class="row g-0 search-row my-sm-3 my-1">
+		<div class="col-sm-6 col-12">
+			<form action="{{ path('app_activities') }}" method="GET">
+				<div class="input-group">
+					<input type="text" class="form-control" name="keyword" placeholder="Recherche par mots cléfs">
+					<button type="submit" class="btn btn-outline-dark">
+						<i class="fa-solid fa-magnifying-glass"></i>
+					</button>
+				</div>
+			</form>
+		</div>
+		<div class="col-6"></div>
+	</div>
+
+	<div class="head-row d-flex justify-content-between rounded-lg">
+		<div class="col-sm-3 col-4">
+			<a href="{{ path('app_activities', {'sort_by': 'name', 'sort_order': (sort_order == 'desc' and sort_by == 'name') ? 'asc' : 'desc', 'keyword': keyword }) }}">Activité
+				{% if sort_by == 'name' %}
+					{% if sort_order == 'desc' %}
+						<i class="fas fa-sort-up"></i>
+					{% else %}
+						<i class="fas fa-sort-down"></i>
+					{% endif %}
 				{% else %}
-					<h1>Liste des Activités</h1>
+					<i class="fas fa-sort"></i>
 				{% endif %}
-			</div>
-			<div>
-				<a class="btn btn-success" href="{{ path('app_companies_new') }}" title="Création d'une société">
-					<i class="fa-solid fa-user-plus"></i>
-				</a>
-			</div>
+			</a>
 		</div>
-
-		<div class="row g-0 search-row my-sm-3 my-1">
-			<div class="col-sm-6 col-12">
-				<form action="{{ path('app_activities') }}" method="GET">
-					<div class="input-group">
-						<input type="text" class="form-control" name="keyword" placeholder="Recherche par mots cléfs">
-						<button type="submit" class="btn btn-outline-dark">
-							<i class="fa-solid fa-magnifying-glass"></i>
-						</button>
-					</div>
-				</form>
-			</div>
-			<div class="col-6"></div>
+		<div class="col-sm-2 col-4">
+			<a href="{{ path('app_activities', {'sort_by': 'company', 'sort_order': (sort_order == 'desc' and sort_by == 'company') ? 'asc' : 'desc', 'keyword': keyword }) }}">Société
+				{% if sort_by == 'company' %}
+					{% if sort_order == 'desc' %}
+						<i class="fas fa-sort-up"></i>
+					{% else %}
+						<i class="fas fa-sort-down"></i>
+					{% endif %}
+				{% else %}
+					<i class="fas fa-sort"></i>
+				{% endif %}
+			</a>
 		</div>
-
-		<div class="head-row d-flex justify-content-between rounded-lg">
-			<div class="col-sm-3 col-4">
-				<a href="{{ path('app_activities', {'sort_by': 'name', 'sort_order': (sort_order == 'desc' and sort_by == 'name') ? 'asc' : 'desc', 'keyword': keyword }) }}">Activité
-					{% if sort_by == 'name' %}
-						{% if sort_order == 'desc' %}
-							<i class="fas fa-sort-up"></i>
-						{% else %}
-							<i class="fas fa-sort-down"></i>
-						{% endif %}
+		<div class="col-sm-1 col-2 text-end">
+			<a href="{{ path('app_activities', {'keyword': keyword, 'sort_by': 'reminder', 'sort_order': (sort_by == 'reminder' and sort_order == 'asc') ? 'desc' : 'asc'}) }}">Rappel
+				{% if sort_by == 'reminder' %}
+					{% if sort_order == 'desc' %}
+						<i class="fas fa-sort-up"></i>
 					{% else %}
-						<i class="fas fa-sort"></i>
+						<i class="fas fa-sort-down"></i>
 					{% endif %}
-				</a>
-			</div>
-			<div class="col-sm-2 col-4">
-				<a href="{{ path('app_activities', {'sort_by': 'company', 'sort_order': (sort_order == 'desc' and sort_by == 'company') ? 'asc' : 'desc', 'keyword': keyword }) }}">Société
-					{% if sort_by == 'company' %}
-						{% if sort_order == 'desc' %}
-							<i class="fas fa-sort-up"></i>
-						{% else %}
-							<i class="fas fa-sort-down"></i>
-						{% endif %}
-					{% else %}
-						<i class="fas fa-sort"></i>
-					{% endif %}
-				</a>
-			</div>
-			<div class="col-sm-1 col-2 text-end">
-				<a href="{{ path('app_activities', {'keyword': keyword, 'sort_by': 'reminder', 'sort_order': (sort_by == 'reminder' and sort_order == 'asc') ? 'desc' : 'asc'}) }}">Rappel
-					{% if sort_by == 'reminder' %}
-						{% if sort_order == 'desc' %}
-							<i class="fas fa-sort-up"></i>
-						{% else %}
-							<i class="fas fa-sort-down"></i>
-						{% endif %}
-					{% else %}
-						<i class="fas fa-sort"></i>
-					{% endif %}
-				</a>
-			</div>
-			<div class="text-center col-sm-1 col-2 text-end">
-				<a href="{{ path('app_activities', {'keyword': keyword, 'sort_by': 'dueDate', 'sort_order': (sort_by == 'dueDate' and sort_order == 'asc') ? 'desc' : 'asc'}) }}">Limite
-					{% if sort_by == 'dueDate' %}
-						{% if sort_order == 'desc' %}
-							<i class="fas fa-sort-up"></i>
-						{% else %}
-							<i class="fas fa-sort-down"></i>
-						{% endif %}
-					{% else %}
-						<i class="fas fa-sort"></i>
-					{% endif %}
-				</a>
-			</div>
+				{% else %}
+					<i class="fas fa-sort"></i>
+				{% endif %}
+			</a>
 		</div>
+		<div class="text-center col-sm-1 col-2 text-end">
+			<a href="{{ path('app_activities', {'keyword': keyword, 'sort_by': 'dueDate', 'sort_order': (sort_by == 'dueDate' and sort_order == 'asc') ? 'desc' : 'asc'}) }}">Limite
+				{% if sort_by == 'dueDate' %}
+					{% if sort_order == 'desc' %}
+						<i class="fas fa-sort-up"></i>
+					{% else %}
+						<i class="fas fa-sort-down"></i>
+					{% endif %}
+				{% else %}
+					<i class="fas fa-sort"></i>
+				{% endif %}
+			</a>
+		</div>
+	</div>
 
 
 	{% for item in pagination %}
@@ -131,12 +131,14 @@
 		{{ knp_pagination_render(pagination) }}
 	</div>
 
-	<div class="btn-group btn-group-sm" role="group">
-		<a class="btn btn-outline-primary" href="{{ path('app_companies') }}">
-			<i class="fa-solid fa-address-book"></i>
-			Sociétés</a>
-		<a class="btn btn-outline-primary" href="{{ path('app_activities')}}">
-			<i class="fa-solid fa-table-list me-1"></i>Activités</a>
+	<div class="row g-0 btn-group d-flex justify-content-center btn-group-sm my-3 col-12" role="group">
+		<div class="d-flex justify-content-center col-lg-6 col-12">
+			<a class="btn btn-outline-primary col-6" href="{{ path('app_companies') }}">
+				<i class="fa-solid fa-address-book"></i>
+				Sociétés</a>
+			<a class="btn btn-outline-primary col-6" href="{{ path('app_activities')}}">
+				<i class="fa-solid fa-table-list me-1"></i>Activités</a>
+		</div>
 	</div>
 
 </div>{% endblock %}

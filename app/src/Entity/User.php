@@ -258,4 +258,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
 
         return $this;
     }
+
+    public function getNickName(): ?string
+    {
+        if (false !== strpos($this->email, '@')) {
+            return substr($this->email, 0, strpos($this->email, '@'));
+        }
+        return null;
+    }
 }

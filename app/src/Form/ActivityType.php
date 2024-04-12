@@ -21,7 +21,10 @@ class ActivityType extends AbstractType
 				'required' => false,
 				'attr' => [
 					'placeholder' => 'Nom',
-					'class' => 'form-control my-1'
+					'class' => 'form-control'
+				],
+				'row_attr' => [
+					'class' => 'my-1'
 				]
 			])
 			->add('description', TextareaType::class, [
@@ -29,7 +32,7 @@ class ActivityType extends AbstractType
 				'required' => true,
 				'attr' => [
 					'placeholder' => 'Description',
-					'class' => 'activ-description form-control d-inline-flex my-1'
+					'class' => 'activ-description form-control d-inline-flex'
 				]
 			])
 			->add('reminder', DateType::class, [
@@ -38,14 +41,16 @@ class ActivityType extends AbstractType
 				'html5' => false,
 				'widget' => 'single_text',
 				'format' => 'dd-MM-yyyy',
-				'attr' => [
-					'placeholder' => 'jj/mm/aaaa',
-					'class' => 'flatpickr w-50 form-control',
+				'row_attr' => [
+					'class' => 'float-start'
 				],
 				'label_attr' => [
-					'class' => 'w-25 my-2',
+					'class' => 'text-nowrap w-25 align-self-center',
 				],
-				// 'input'  => 'datetime_immutable',
+				'attr' => [
+					'placeholder' => 'jj/mm/aaaa',
+					'class' => 'flatpickr form-control me-md-5 me-1',
+				]
 			])
 			->add('dueDate', DateType::class, [
 				'label' => 'Limite : ',
@@ -53,24 +58,29 @@ class ActivityType extends AbstractType
 				'html5' => false,
 				'widget' => 'single_text',
 				'format' => 'dd-MM-yyyy',
-				'attr' => [
-					'placeholder' => 'jj/mm/aaaa',
-					'class' => 'flatpickr w-50 form-control',
+				'row_attr' => [
+					'class' => 'float-start'
 				],
 				'label_attr' => [
-					'class' => 'w-25 my-2',
+					'class' => 'text-nowrap w-25 align-self-center',
 				],
-				// 'input'  => 'datetime_immutable',
+				'attr' => [
+					'placeholder' => 'jj/mm/aaaa',
+					'class' => 'flatpickr form-control me-md-5 me-1',
+				]
 			])
 			->add('isActive', CheckboxType::class, [
 				'label' => 'En cours : ',
-				'required' => false,
-				'attr' => [
-					'class' => 'is-active fs-6 form-check-input ms-2',
-					'data-toggle' => 'toggle',
+				'label_attr' => [
+					'class' => 'text-nowrap',
 				],
+				'required' => false,
 				'row_attr' => [
-					'class' => 'form-switch d-flex justify-content-around pt-1 text-nowrap'
+					'class' => 'form-switch float-end me-2'
+				],
+				'attr' => [
+					'class' => 'is-active form-check-input ms-2',
+					'data-toggle' => 'toggle',
 				],
 			]);
 	}

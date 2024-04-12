@@ -1,7 +1,9 @@
 // Variables
-import { initializeFlatpickr, allflatpicker } from "./flatpickr";
+import { initializeFlatpickr } from "./flatpickr";
 
-allflatpicker();
+const container = document.querySelector(".activity-container");
+const activityList = document.querySelector(".activity-list");
+
 ////////////////// Add New Activity bloc //////////////////////////////////
 const addActivityToCollection = (e) => {
   const collectionHolder = document.querySelector(
@@ -15,35 +17,60 @@ const addActivityToCollection = (e) => {
   );
   collectionHolder.appendChild(item);
   collectionHolder.dataset.index++;
-  formBtns(item);
+  newFormBtns(item);
   initializeFlatpickr(item.querySelectorAll(".flatpickr"));
   item.scrollIntoView({ behavior: "smooth" });
 };
 
-const addActivity = document.querySelector(".add-activity-btn");
-addActivity.addEventListener("click", addActivityToCollection);
+document.querySelectorAll(".add-activity-btn").forEach((btn) => {
+  btn.addEventListener("click", addActivityToCollection);
+});
 
-//////////// Activity save and delete btns //////////////////////
-const formBtns = (item) => {
-  const trashButton = document.createElement("button");
-  trashButton.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
-  trashButton.className = `btn btn-danger px-3 btn-sm`;
+// New Activity save and delete btns
+const newFormBtns = (newItem) => {
+  const removeFormButton = document.createElement("button");
+  removeFormButton.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+  removeFormButton.className = `btn btn-danger fs-6 px-2 btn-sm`;
 
-  const saveButton = document.createElement("button");
-  saveButton.innerHTML = '<i class="fa-solid fa-file-arrow-down me-1"></i>';
-  saveButton.className = `btn btn-warning fs-4 px-5 btn-sm`;
-  saveButton.type = "submit";
+  const newSaveButton = document.createElement("button");
+  newSaveButton.innerHTML = '<i class="fa-solid fa-file-arrow-down me-1"></i>';
+  newSaveButton.className = `btn btn-warning fs-6 px-2 btn-sm`;
+  newSaveButton.type = "submit";
 
-  const btnsRow = item.querySelector(".activity-buttons");
-  btnsRow.insertAdjacentElement("afterbegin", trashButton);
-  btnsRow.insertAdjacentElement("beforeend", saveButton);
+  const newRow = newItem.querySelector(".activity-buttons");
+  newRow.insertAdjacentElement("afterbegin", removeFormButton);
+  newRow.insertAdjacentElement("beforeend", newSaveButton);
 
-  trashButton.addEventListener("click", (e) => {
+  newSaveButton.addEventListener("click", (e) => {
     e.preventDefault();
-    item.remove();
+    const form = newItem.closest("form");
+    if (form) {
+      form.submit();
+    }
   });
 
-  saveButton.addEventListener("click", (e) => {
+  removeFormButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    newItem.remove();
+  });
+};
+
+// document.querySelectorAll("new-activity-card").forEach((newItem) => {
+//   newFormDeleteBtn(newItem);
+// });
+
+// Activity save btn
+const formSaveBtn = (item) => {
+  const saveFormButton = document.createElement("button");
+  saveFormButton.innerHTML = '<i class="fa-solid fa-file-arrow-down me-1"></i>';
+  saveFormButton.className = `btn btn-warning fs-6 px-2 btn-sm`;
+  saveFormButton.type = "submit";
+
+  // const newActiveInput = item.querySelector('input[name$="[dueDate]"]');
+  // const buttonsRow = item.querySelector(".activity-buttons");
+  item.insertAdjacentElement("beforeend", saveFormButton);
+
+  saveFormButton.addEventListener("click", (e) => {
     e.preventDefault();
     const form = item.closest("form");
     if (form) {
@@ -52,8 +79,26 @@ const formBtns = (item) => {
   });
 };
 
-document.querySelectorAll(".activity-card").forEach((item) => {
-  formBtns(item);
+document.querySelectorAll(".activity-buttons").forEach((item) => {
+  formSaveBtn(item);
+});
+
+////////////////// Delete Existing Activity bloc //////////////////////////////////
+const addGroupDeleteLink = (item) => {
+  const removeFormButton = document.createElement("button");
+  removeFormButton.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+  removeFormButton.className = `btn btn-danger btn-sm`;
+
+  item.append(removeFormButton);
+
+  removeFormButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    item.parentNode.remove();
+  });
+};
+
+document.querySelectorAll("div.activity-buttons").forEach((group) => {
+  addGroupDeleteLink(group);
 });
 
 ////////////////// Filtering Activity bloc //////////////////////////////////
@@ -80,10 +125,10 @@ function filterActivities() {
   });
 
   if (isShowInactive) {
-    filterButton.innerHTML = '<i class="fa-solid fa-filter"></i> Cacher';
+    filterButton.textContent = "Cacher";
     filterButton.classList.remove("show-inactive");
   } else {
-    filterButton.innerHTML = '<i class="fa-solid fa-filter"></i> Voir';
+    filterButton.textContent = "Voir";
     filterButton.classList.add("show-inactive");
   }
 }
@@ -105,7 +150,7 @@ isActiveInputs.forEach((isActiveInput) => {
   isActiveInput.addEventListener("change", handleIsActiveChange);
 });
 
-////// classe css "inactive" au chargement de la page ////////////////////////
+////// classe "inactive" au chargement de la page ////////////////////////
 window.addEventListener("DOMContentLoaded", () => {
   const activities = document.querySelectorAll(".activity-card");
 

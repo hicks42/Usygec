@@ -3,15 +3,15 @@
 	{{ form_row(form.name) }}
 	{{ form_row(form.description) }}
 	<div class="row g-0 d-flex justify-content-between mt-1">
-		<div class="col-md-4 col-12 d-flex justify-content-between">
+		<div class="col-md-4 col-12 d-flex justify-content-between mb-1">
 			{{ form_label(form.reminder) }}{{ form_widget(form.reminder, { 'id': 'reminder-' ~ form.vars.id }) }}
 			{# <a class="input-button" title="toggle" data-toggle><i class="icon-calendar"></i></a> #}
 		</div>
-		<div class="col-md-4 col-12 d-flex justify-content-between">
+		<div class="col-md-4 col-12 d-flex justify-content-between mb-1">
 			{{ form_label(form.dueDate) }}{{ form_widget(form.dueDate, { 'id': 'dueDate-' ~ form.vars.id }) }}
 			{# <a class="input-button" title="toggle" data-toggle><i class="icon-calendar"></i></a> #}
 		</div>
-		<div class="new-buttons col-md-3 col-12 d-flex justify-content-between">
+		<div class="activity-buttons col-md-3 col-12 d-flex justify-content-between mb-1">
 			<span class="new-active" style="display: none;">
 				{{ form_row(form.isActive, { 'checked': 'checked' }) }}
 			</span>
@@ -24,18 +24,14 @@
 	<div class="col-12 p-1">
 		{{ form_row(form.name)}}
 		{{ form_row(form.description)}}
-		<div id="{{ form.vars.name }}" class="info-row d-flex justify-content-md-between row g-0 mt-1">
-			<div class="col-md-4 col-12 d-flex justify-content-between">
+		<div id="{{ form.vars.name }}" class="row g-0 info-row d-flex justify-content-md-between mt-1">
+			<div class="col-md-4 col-12 d-flex justify-content-start mb-1">
 				{{ form_label(form.reminder) }}{{ form_widget(form.reminder, { 'id': 'reminder-' ~ form.vars.id }) }}
-				{# <a class="input-button" title="toggle" data-toggle><i class="icon-calendar"></i></a> #}
 			</div>
-			<div class="col-md-4 col-12 d-flex justify-content-between">
+			<div class="col-md-4 col-12 d-flex justify-content-start mb-1">
 				{{ form_label(form.dueDate) }}{{ form_widget(form.dueDate, { 'id': 'dueDate-' ~ form.vars.id }) }}
-				{# <a class="input-button" title="toggle" data-toggle><i class="icon-calendar"></i></a> #}
 			</div>
-			<div class="activity-buttons col-md-3 col-12 d-flex justify-content-between">
-				{{ form_row(form.isActive)}}
-			</div>
+			<div class="activity-buttons col-md-4 col-12 d-flex justify-content-between mb-1"></div>
 		</div>
 	</div>
 {% endmacro existForm %}
