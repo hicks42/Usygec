@@ -4,15 +4,14 @@
       "js": [
         "/build/runtime.188fa053.js",
         "/build/25.337c57a0.js",
-        "/build/755.287d4878.js",
-        "/build/740.5a211616.js",
+        "/build/740.b8719386.js",
         "/build/306.fa620bd4.js",
         "/build/401.e081563a.js",
-        "/build/app.2602f905.js"
+        "/build/app.928a4c62.js"
       ],
       "css": [
         "/build/401.6e6257c8.css",
-        "/build/app.fd03832a.css"
+        "/build/app.b00c2cef.css"
       ]
     },
     "collection": {
@@ -34,34 +33,17 @@
       "js": [
         "/build/runtime.188fa053.js",
         "/build/25.337c57a0.js",
-        "/build/755.287d4878.js",
-        "/build/740.5a211616.js",
-        "/build/flatpickr.1a7b1886.js"
+        "/build/740.b8719386.js",
+        "/build/flatpickr.0b508de8.js"
       ]
     },
     "activity": {
       "js": [
         "/build/runtime.188fa053.js",
         "/build/25.337c57a0.js",
-        "/build/755.287d4878.js",
-        "/build/740.5a211616.js",
+        "/build/740.b8719386.js",
         "/build/306.fa620bd4.js",
-        "/build/activity.d27c6703.js"
-      ]
-    },
-    "ajaxsort": {
-      "js": [
-        "/build/runtime.188fa053.js",
-        "/build/755.287d4878.js",
-        "/build/ajaxsort.e2866531.js"
-      ]
-    },
-    "companies_ajaxsort": {
-      "js": [
-        "/build/runtime.188fa053.js",
-        "/build/25.337c57a0.js",
-        "/build/755.287d4878.js",
-        "/build/companies_ajaxsort.7be43b66.js"
+        "/build/activity.2f78ce9c.js"
       ]
     }
   }
