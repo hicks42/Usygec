@@ -71,7 +71,7 @@
 
 									<a href="#" type="button" data-structureid="{{structure.id}}" class="upload-btn btn btn-secondary btn-sm w-3 mx-1">
 										<i class="fa-regular fa-file-lines lead"></i><br>
-										Charger un fichier</a>
+										Envois groupé </a>
 
 									<a href="{{ path('qr_gen', {id: structure.id}) }}" type="button" data-structureid="{{structure.id}}" class="qrcode-btn btn btn-secondary btn-sm w-3 mx-1">
 										<i class="fa-solid fa-qrcode lead"></i><br>
@@ -91,7 +91,7 @@
 	<div class="upload-popup">
 		<button class="close-popup">x</button>
 		{{ form_start(form, {"method": "POST"}) }}
-		<h6 id="form-title" class="my-4">Selectionnez un fichier csv</h6>
+		<h6 id="form-title" class="my-4">Choisir un fichier de mails au format CSV</h6>
 		{{ form_row(form.csvFile) }}
 		<button type="submit" class="submit-upload w-100">Traiter</button>
 		{{ form_widget(form._token) }}

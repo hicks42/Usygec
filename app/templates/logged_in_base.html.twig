@@ -10,14 +10,33 @@
 			<title>
 				{% block title %}{% endblock title %}
 			</title>
-			<link
-			rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
-			<!-- Place favicon.ico in the root directory -->
+			{# <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/> #}
+			<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png">
+			<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+			<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+			<link rel="manifest" href="/site.webmanifest">
+			<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+			<meta name="msapplication-TileColor" content="#da532c">
+			<meta name="theme-color" content="#ffffff">
 
 			{% block stylesheets %}
 				{{ encore_entry_link_tags('app') }}
 				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 			{% endblock stylesheets %}
+			{% block javascripts %}
+				{{ encore_entry_script_tags('app') }}
+					<script>
+						document.addEventListener('DOMContentLoaded', function() {
+							var flashMessage = document.querySelector('.flash-container');
+
+								if (flashMessage) {
+									setTimeout(function () {
+									flashMessage.style.display = 'none';
+									}, 2000);
+							}
+						});
+					</script>
+			{% endblock %}
 
 		{% endblock head %}
 
@@ -38,9 +57,6 @@
 			<a href="#" class="scroll-top btn-hover">
 				<i class="lni lni-chevron-up"></i>
 			</a>
-		{% endblock %}
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</body>
 </html>

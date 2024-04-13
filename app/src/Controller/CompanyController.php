@@ -209,7 +209,7 @@ class CompanyController extends AbstractController
   public function show(Company $company, Request $request, EntityManagerInterface $em, ActivityRepository $activityRepository, $id): Response
   {
     $activity = new Activity();
-    $dbactivities = $activityRepository->findBy(['company' => $company]);
+    // $dbactivities = $activityRepository->findBy(['company' => $company]);
     $form = $this->createForm(ClientType::class, $company, ['method' => 'POST']);
     $form->handleRequest($request);
 
