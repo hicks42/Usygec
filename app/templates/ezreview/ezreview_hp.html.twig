@@ -75,7 +75,7 @@
 	<div class="modal-popup">
 		<button class="close-popup">x</button>
 		{{ form_start(form, {"method": "POST"}) }}
-		<h6 id="form-title" class="my-4">Choisir un fichier de mails au format CSV</h6>
+		<h6 id="form-title" class="my-4">Choisir un fichier CSV contenant des mails.</h6>
 		{{ form_row(form.csvFile) }}
 		<button type="submit" class="submit-modal w-100">Traiter</button>
 		{{ form_widget(form._token) }}

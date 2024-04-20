@@ -65,6 +65,19 @@ class CompanyCsvManager
     if (($handle = fopen($file->getPathname(), 'r')) !== false) {
       fgetcsv($handle, 1000, ";");
       while (($data = fgetcsv($handle, 1000, ";")) !== false) {
+        $companyName = $data[3];
+        $postalCode = intval($data[10]);
+
+        $existingCompany = $this->em->getRepository(Company::class)->findOneBy([
+          'name' => $companyName,
+          'cp' => $postalCode,
+          'handler' => $user,
+        ]);
+
+        if ($existingCompany) {
+          continue;
+        }
+
         $num = count($data);
         $row++;
         for ($c = 1; $c < $num; $c++) {
