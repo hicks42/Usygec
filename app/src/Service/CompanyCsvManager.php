@@ -2,14 +2,15 @@
 
 namespace App\Service;
 
-use League\Csv\Writer as CsvWriter;
-use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Company;
 use App\Entity\Category;
+use League\Csv\Writer as CsvWriter;
 use App\Repository\CompanyRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\Response;
 use League\Csv\Configuration as CsvConfiguration;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class CompanyCsvManager
 {
@@ -126,6 +127,7 @@ class CompanyCsvManager
     }
     fclose($handle);
     $this->em->flush();
+    $this->deleteFile($file);
   }
 
   private function getCsvWriter(string $fileName): CsvWriter
@@ -136,5 +138,11 @@ class CompanyCsvManager
     $csvWriter->setDelimiter(';'); // Set the delimiter character if needed
 
     return $csvWriter;
+  }
+
+  private function deleteFile(string $filename)
+  {
+    $filesystem = new Filesystem();
+    $filesystem->remove(['uploads/csv/' . $filename]);
   }
 }
