@@ -20,16 +20,12 @@ class CompanyCsvExporter
   {
     $userCompanies = $this->companyRepository->findBy(['handler' => $user]);
 
-    // Define the CSV file name
     $fileName = 'ExportUsygec.csv';
 
-    // Create a new CSV writer
     $csvWriter = $this->getCsvWriter($fileName);
 
-    // Write the CSV header
-    $csvWriter->insertOne(['Société', 'Categorie', 'Prénom du contact', 'Nom du contact', 'Adresse 1', 'Addresse 2', 'CP', 'Ville', 'Mail', 'Téléphone']);
+    $csvWriter->insertOne(['Civ', 'Prénom du contact', 'Nom du contact', 'Société', 'Categorie', 'Téléphone', 'Mobile', 'Mail', 'Adresse 1', 'Adresse 2', 'CP', 'Ville']);
 
-    // Write the company data rows
     foreach ($userCompanies as $company) {
       $csvWriter->insertOne([
         $company->getCiv(),
@@ -47,10 +43,8 @@ class CompanyCsvExporter
       ]);
     }
 
-    // Create the response with CSV content
     $response = new Response($csvWriter->toString(), Response::HTTP_OK);
 
-    // Set the response headers for CSV download
     $response->headers->set('Content-Type', 'text/csv');
     $response->headers->set('Content-Disposition', 'attachment; filename="' . $fileName . '"');
 

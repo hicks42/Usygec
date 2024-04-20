@@ -151,7 +151,7 @@ class ApiActivityController extends AbstractController
    */
   public function show(Activity $activity): Response
   {
-    return $this->render('activities/show.html.twig', [
+    return $this->render('bam/activities/show.html.twig', [
       'activity' => $activity,
     ]);
   }
@@ -172,7 +172,7 @@ class ApiActivityController extends AbstractController
       return $this->redirectToRoute('app_companies_show', ["id" => $company->getId()], Response::HTTP_SEE_OTHER);
     }
 
-    return $this->renderForm('activities/edit.html.twig', [
+    return $this->renderForm('bam/activities/edit.html.twig', [
       'activity' => $activity,
       'company' => $company,
       'form' => $form,

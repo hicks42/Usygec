@@ -39,7 +39,7 @@ services:
             $dkim_key_path: "%app.dkim_key_path%"
             $project_dir: '%kernel.project_dir%'
 
-    App\Service\CompanyCsvExporter:
+    App\Service\CompanyCsvManager:
         arguments:
             $companyRepository: '@App\Repository\CompanyRepository'
 

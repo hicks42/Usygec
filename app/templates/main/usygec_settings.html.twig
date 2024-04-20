@@ -1,0 +1,72 @@
+{% extends 'logged_in_base.html.twig' %}
+
+{% block title %}Compte de {{user.email}}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('modal') }}
+{% endblock javascripts %}
+
+{% block content %}
+	<div class="row d-flex justify-content-center">
+		<div class="col-md-11 col-12">
+		<h1>Compte de {{user.email}}</h1>
+			<div class="row d-flex justify-content-between mt-3 border-bottom">
+				<div class="col-9 my-2">
+				<h4>E-mail : <span class="text-dark fs-5">{{user.email}}</span></h4>
+				</div>
+				<div class="col-3">
+					<a href="{{ path('change_password', {'id': user.id}) }}" class="btn btn-secondary btn-sm float-end  text-nowrap">
+						<i class="fa-solid fa-pen-to-square"></i>
+						Mot de passe</a>
+				</div>
+				<div class="col-12">
+					Cet e-mail est utilisé comme indentifiant mais aussi pour certaines fonctionnalités.
+					<br>
+					<small>(Contactez l'administrateur pour modification)</small>
+				</div>
+			</div>
+			<div class="row d-flex justify-content-between mt-3 border-bottom">
+				<div class="col-9 my-2">
+				<h4>
+				Parametrage du compte EZreview de : <span class="text-dark">{{user.email}}</span>
+				</h4>
+				</div>
+				<div class="col-3">
+					<a href="{{ path('ezreview_settings', {'id': user.id}) }}" class="btn btn-secondary btn-sm float-end  text-nowrap">
+						<i class="fa-solid fa-pen-to-square"></i>
+						Paramètres</a>
+				</div>
+				<div class="col-12">
+					Ajout / suppression d'établissements monitorés par EZreview.
+				</div>
+			</div>
+			<div class="row d-flex justify-content-between mt-3 border-bottom">
+				<div class="col-9 my-2"><h4>Ajout de société pour la BAM de : <span class="text-dark fs-5">{{user.email}}</span></h4></div>
+				<div class="col-3">
+					<a href="#" type="button" data-modal-type="company-csv" class="modal-btn btn btn-secondary btn-sm float-end text-nowrap">
+						<i class="fa-solid fa-file-csv fs-5 me-1"></i> Importer</a>
+				</div>
+				<div class="col-12">
+					Importation au format csv de votre fichiers client/fournissuers
+					<br>
+					<small>(Respectez l'ordre et l'intitulé des entêtes de colonnes:<br>
+					Civ, Prénom du contact, Nom du contact, Société, Categorie, Téléphone, Mobile, Mail, Adresse 1, Adresse 2, CP, Ville)</small>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<div class="modal-container d-flex justify-content-around">
+		<div class="modal-popup">
+			<button class="close-popup">x</button>
+			{{ form_start(formcsv, {"method": "POST"}) }}
+			<h6 id="form-title" class="my-4">Choisir un fichier CSV contenant des mails.</h6>
+			{{ form_row(formcsv.csvFile) }}
+			<button type="submit" class="submit-modal w-100">Traiter</button>
+			{# {{ form_widget(formcsv._token) }} #}
+			{{ form_end(formcsv) }}
+		</div>
+	</div>
+{% endblock %}

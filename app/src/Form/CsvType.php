@@ -31,12 +31,6 @@ class CsvType extends AbstractType
                 //         'mimeTypesMessage' => 'Merci d\'indiquer un document csv ',
                 //     ])
                 // ],
-            ])
-            ->add('structureId', IntegerType::class, [
-                'label' => false,
-                'mapped' => false,
-                'required' => false,
-                // 'empty_data' => '1',
             ]);
     }
 

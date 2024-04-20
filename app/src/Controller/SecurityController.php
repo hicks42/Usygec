@@ -34,7 +34,7 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('ezreview/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('main/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
         // return $this->redirect('http://localhost:3000');
     }
 

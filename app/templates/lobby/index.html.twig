@@ -12,12 +12,13 @@
 						<h1>Bienvenue sur le compte de
 							{{ user.company }}!
 						</h1>
+
 						<div class="lobby-container">
 							<h3>A quel service voulez vous accéder ?</h3>
-							<div class="row lobby-content ms-5">
+							<div class="row lobby-content ms-2">
 								<div class="d-flex justify-content-start mt-5">
 									<div id="icon" class="p-2 col-2">
-										<a href="{{ path('ezreview') }}">
+										<a href="{{ path('ezreview_hp') }}">
 											<h2>
 												<i class="fa-solid fa-ranking-star mx-2"></i>
 											</h2>
@@ -25,7 +26,7 @@
 									</div>
 									<div id="text" class="pt-2 col-10">
 										<h6>
-											<a href="{{ path('ezreview') }}">
+											<a href="{{ path('ezreview_hp') }}">
 												Easy review</a>
 										</h6>
 										<p>Une application pour faciliter les commentaires positifs sur Google</p>

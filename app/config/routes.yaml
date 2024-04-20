@@ -4,3 +4,7 @@
 
 api_login_check:
     path: /api/login_check
+
+liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.yaml"
+    prefix: /liip-imagine

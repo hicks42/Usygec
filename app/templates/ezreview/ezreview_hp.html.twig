@@ -1,6 +1,6 @@
 {% extends 'bam_base.html.twig' %}
 
-{% block title %}Compte de
+{% block title %}Actions disponibles pour
 	{{ user.company}}
 {% endblock %}
 
@@ -10,54 +10,37 @@
 
 {% block javascripts %}
 	{{ parent() }}
-	{{ encore_entry_script_tags('upload') }}
+	{{ encore_entry_script_tags('modal') }}
 {% endblock javascripts %}
 {% block content %}
 	<div class="row d-flex justify-content-center">
-		<div class="col-md-6 col-12">
+		<div class="col-md-10 col-12">
 			<div class="row d-flex justify-content-between my-3 border-bottom">
-				<div class="col-9 my-2">
-					<h5>Compte :
-						<span class="font-weight-bold">
+				<div class="d-flex justify-content-start flex-column col-10 my-2">
+					<h3>Compte EZ Review de:</h3>
+						<span class="font-weight-bold fs-6 ms-2">
 							{{ user.company}}
 						</span>
-					</h5>
+						<span class="text-muted fs-6 ms-1"> e-mail : {{user.email}}</span>
+
 				</div>
-				<div class="col-3">
-					<a href="{{ path('user_edit') }}" class="btn btn-secondary btn-sm float-end">
+				<div class="col-2 align-center">
+					<a href="{{ path('ezreview_settings') }}" class="btn btn-secondary btn-sm float-end text-nowrap">
 						<i class="fa-solid fa-pen-to-square"></i>
-						Modifier</a>
+						Configurer</a>
 				</div>
 			</div>
-			<div class="row d-flex justify-content-between my-3 border-bottom">
-				<div class="col-9 my-2">
-					<h6>E-mail :
-						{# <i class="fa-solid fa-arrow-right"></i> #}
-						<span class="text-muted">{{user.email}}</span>
-					</h6>
-				</div>
-				<div class="col-3">
-					<a href="{{ path('change_password', {'id': user.id}) }}" class="btn btn-secondary btn-sm float-end">
-						<i class="fa-solid fa-pen-to-square"></i>
-						Modifier</a>
-				</div>
-			</div>
-			<p class="mt-4">
-				Cet e-mail est utilisé comme login et aussi pour l'envois et la réception de l'enquete.
-				<br>
-				<small>(Contactez l'administrateur pour modification)</small>
-			</p>
 		</div>
 	</div>
 	{% if 'ROLE_ADMIN' not in user.roles %}
-		<div class="er-row rounded overflow-hidden p-2">
-			<div class="my-4">
+		<div class="er-row row g-0 rounded overflow-hidden justify-content-center p-2">
+			<div class="col-md-10 col-12 my-4">
 				<h5>Etablissements:</h5>
 				<ul class="structures">
 					{% for structure in user.structures %}
 						<li>
 							<hr>
-							<div class="d-flex flex-wrap justify-content-around align-items-center m-1">
+							<div class="row d-flex flex-wrap justify-content-around align-items-center m-1">
 								<div class="col-12 col-md-4 my-3">
 									<div class="d-flex flex-column align-items-center">
 										<i class="fa-solid fa-building lead my-2"></i>
@@ -69,9 +52,10 @@
 										<i class="fa-regular fa-envelope lead"></i><br>
 										Envoyer mail</a>
 
-									<a href="#" type="button" data-structureid="{{structure.id}}" class="upload-btn btn btn-secondary btn-sm w-3 mx-1">
+									<a href="#" type="button" data-modal-type="email-csv" data-structureid="{{structure.id}}" class="modal-btn btn btn-secondary btn-sm w-3 mx-1">
 										<i class="fa-regular fa-file-lines lead"></i><br>
-										Envois groupé </a>
+										Envois groupé
+									</a>
 
 									<a href="{{ path('qr_gen', {id: structure.id}) }}" type="button" data-structureid="{{structure.id}}" class="qrcode-btn btn btn-secondary btn-sm w-3 mx-1">
 										<i class="fa-solid fa-qrcode lead"></i><br>
@@ -87,14 +71,15 @@
 	{% endif %}
 </div>
 
-<div class="upload-container d-flex justify-content-around">
-	<div class="upload-popup">
+<div class="modal-container d-flex justify-content-around">
+	<div class="modal-popup">
 		<button class="close-popup">x</button>
 		{{ form_start(form, {"method": "POST"}) }}
 		<h6 id="form-title" class="my-4">Choisir un fichier de mails au format CSV</h6>
 		{{ form_row(form.csvFile) }}
-		<button type="submit" class="submit-upload w-100">Traiter</button>
+		<button type="submit" class="submit-modal w-100">Traiter</button>
 		{{ form_widget(form._token) }}
 		{{ form_end(form, {'render_rest': false}) }}
 	</div>
+</div>
 {% endblock %}

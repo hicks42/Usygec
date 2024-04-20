@@ -5,14 +5,20 @@
 
 {% block body %}
 	<div class="row de-flex justify-content-center mt-5">
-		<div class="er-row col-12 col-sm-8 col-lg-5 rounded-lg mt-5 p-5">
-			<h1>Changer le mot de passe de
-				{{ userName }}</h1>
-
+		<div class="er-row col-sm-8 col-lg-5 col-12 rounded-lg mt-5 p-5">
+			<div class="mb-3">
+				<h1>Changer le mot de passe pour :
+					{{ userName }}</h1>
+			</div>
 			{{ form_start(changeForm) }}
 			{{ form_row(changeForm.plainPassword) }}
-			<div class="row de-flex justify-content-center">
-				<button class="btn btn-primary btn-sm w-25 mt-3">Changer</button>
+			<div class="row d-flex justify-content-center">
+				<div class="btn-group mt-3 w-50" role="group">
+					<a class="btn btn-outline-primary" href="{{ path('lobby') }}">
+						<i class="fa-solid fa-backward"></i> Retour
+					</a>
+					<button class="btn btn-primary">Changer</button>
+				</div>
 			</div>
 			{{ form_end(changeForm) }}
 		</div>

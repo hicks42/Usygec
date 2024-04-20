@@ -1,0 +1,343 @@
+Civ,Prénom du contact,Nom du contact,Société,Categorie,Téléphone,Mobile,Mail,Adresse 1,Addresse 2,CP,Ville
+,Rémi,EMMANUEL,Je Suis Art,Client,986281789,,remi@jesuisart.fr,"109, rue Garibaldi",,69006,LYON
+Mme,Garance,DAMART,1909 ESCAPE GAME,Client,,,atelier-du-vin@orange.fr,"6, rue de la République",,42000,SAINT ETIENNE
+Mme,Marina,THEVENON,AESIO Santé,Client,,,,"60, rue Robespierre",,42100,SAINT ETIENNE
+M.,Xavier,JOLY,AGE DUSSAUZE,Client,04 77 32 55 84,,xavierjoly@agedussauze.fr,"1, rue Jean Huss BP 50 641",,42042,SAINT ETIENNE Cedex 1
+,Franck,REYNARD,AV1 COMMUNICATION,Fournisseur,04 77 22 72 80,06 29 92 35 70,f.reynard@av1communication.com,"2, Ter Bd François Delay",,42400,SAINT CHAMOND
+Mme,Marion,DESCOURS,AXEO SERVICES,Client,04 77 22 72 80,06 08 17 67 79,mdescours@axeoservices.com,"110, avenue du Marquisat",,31170,TOURNEFEUILLE
+M.,Olivier,FRACHON,AXIO CONSEILS,Client,,06 79 40 02 71,ofrachon@axio-conseils.fr,"36, rue Emile Zola",,42650,SAINT JEAN BONNEFONDS
+Mme,Valentine,CAIL,BERLINGOTTE,Client,,06 25 91 57 18,valentine@berlingotte.fr,"83 A, rue des Alliés",,42000,SAINT ETIENNE
+M.,Jean-Louis,VINCENDON,BIJOUTERIE VINCENDON,Client,,,valentine@berlingotte.fr,92 rue Jean Jaurés,,42700,FIRMINY
+M.,Yvan,MOREAU,BLACK STORE,Client,04 77 49 06 26,06 78 72 89 80,ymoreau@reseau-intersport.fr,"2, allée du Pont de l'Ane",,42000,SAINT ETIENNE
+M.,Moan,BESSON,B'SONS,Client,04 77 49 06 26,06 52 88 01 09,contact@bsons.fr,"2, allée du Pont de l'Ane",,0,SAINT ETIENNE
+,Moan,BESSON,BLIND CAT,Client,,,contact@bsons.fr,"52, bd Waldeck Rousseau",,42400,SAINT CHAMOND
+M.,Christian ,CHARLIER,BONY AUTOMOBILES,Client,,06 30 72 19 25,christian.charlier@bonyautomobiles.com,"4, rue Louis Blériot",,63000,CLERMONT FERRAND
+M.,Brice,BILLON,CLOS NUMERO 3,Client,,06 40 79 24 42,bureau@closnumero3.fr,"4, rue Louis Blériot",,0,CLERMONT FERRAND
+M.,Jérémy,GUICHARD,BRASSERIE GEOFFROY GUICHARD,Client,,,bureau@closnumero3.fr,"14, rue Paul et Pierre Guichard",,42000,SAINT ETIENNE
+M.,Sébastien,VENIANT,BRASSERIE VIP,Client,,,,"59, chemin de Pompey",,42800,GENILAC
+Mme,Béatrice,BORGES,STADIUM,Client,,06 72 48 88 46,bb.stadiumsa@gmail.com,"19, rue Michelet",,42000,SAINT ETIENNE
+M.,Sylvain,BRUYERE,CADOMAESTRO,Client,04.81.64.00.84,06 85 38 56 22,sylvain@cadomaestro.com,Rue Adrienne Bolland - Parc de l'Orùe les Sources,,42340,VEAUCHE
+M.,André,BRUNON,AB HYGIENE ET FORMATION,Client,04.81.64.00.84,06 24 08 24 16,brunon.andre@orange.fr,ZA de l'Aéroport - rue Roland Garros,,42160,ANDREZIEUX BOUTHEON
+Mme,Cécile,CHAPUIS,CAFE CHAPUIS,Client,,,brunon.andre@orange.fr,"35, rue des Aciéries",,42000,SAINT ETIENNE
+Mme,Sandrine,PRESLE,CAISSE D'EPARGNE LOIRE DRÔME ARDÈCHE,Client,,,,"Espace Fauriel, 17 rue P. et D. Ponchardier - BP 147",,42012,SAINT ETIENNE Cedex 2
+Mme,Charlotte,PETIT,CAPÉA,Client,04 77 92 05 34,07 60 30 62 67,charlotte.petit@capea.fr,"23, rue Jean Zay",17 rue P. et D. Ponchardier - BP 147,42270,SAINT PRIEST EN JAREZ
+M.,Bruno,BOUGAIN,CAPÉA,Client,04 77 92 05 34,06 72 08 89 16,bruno.bougain@capea.fr,"23, rue Jean Zay",,42270,SAINT PRIEST EN JAREZ
+M.,Hervé,MOLLIER,CARAMBA,Client,04 77 49 75 66,06 09 33 53 52,h.mollier@caramba-com.com,"Vision Ouest"" rue Jules Verne		42530	SAINT GENEST LERPT
+M.	Pierre-Albert	GOUTTEFANGEAS	CARAMBA	Client	04 77 49 75 62	06 71 14 28 84	pa.gouttefangeas@caramba-com.com	""Vision Ouest"" rue Jules Verne		42530	SAINT GENEST LERPT
+Mme	Caroline	CASATEJADA	LE MOULIN DES MOTS	Client		06 71 80 55 94	caroline@lemoulindesmots.fr	ZAC de la Quérillère - 8, rue du Forez Sud		42170	SAINT JUST SAINT RAMBERT
+M.	Hervé	CHABBAL	France BLEU	Client	04 77 52 08 08	06 78 77 19 69	herve.chabbal@radiofrance.com	5, rue Pablo Picasso - CS 10091		42003	SAINT ETIENNE Cedex 1
+M.	Thibaud	LASSALLE	CARECO CORAM	Client				Cret Marchal		42230	ROCHE LA MOLIERE
+Mme	Adeline	CHAMBAT	VILLE DE SAINT-ETIENNE	Client	04 77 58 63 73		adeline.chambat@saint-etienne-metropole.fr	BP 503		42007	SAINTE ETIENNE Cedex 1
+M.	Maxime	RICHAUD	CARECO CORAM	Client	04 77 90 90 75	06 32 59 58 92	maxime.richaud@careco42.fr	Cret Marchal		42230	ROCHE LA MOLIERE
+Mme	Marie	CARROT	CARROSSERIE CARROT	Client	04 77 93 78 81	06 27 57 56 54	mcarrot@gmail.com	27, rue Gustave Delory		42000	SAINT ETIENNE
+M.	André	RODRIGUEZ	CARROSSERIE FAYOLLE	Client	04 77 49 68 68			4, rue du Pré Chapelon		42000	SAINT ETIENNE
+M.	Pierre	LIOGIER	CARROSSERIE LIOGiER	Client				25 Route de Roche-la-Molière		42700	FIRMINY
+Mme	Sarah	MEYER	CAVE DES VIEILLES TERRES - BAYER BOISSONS	Client				79, impasse de Bombes		43700	SAINT GERMAIN LAPRADE
+Mme	Corinne	CHANTRE	CCI	Client				57, cours Fauriel		42024	SAINT ETIENNE Cedex 2
+M.	Guillaume	CLEMENT	CECOIA	Client				7, rue Jacquard		42500	LE CHAMBON FEUGEROLLES
+M.	Ahmed	BENBOUZID	CIBC LOIRE	Client	04 77 01 34 49	07 57 58 33 41	ab@cibc-loire.fr	MdEF St Etienne 18 avenue Augustin Dupré		42000	SAINT ETIENNE
+M.	Grégory	COMETTI	ACTO INTERIM	Client		06 19 75 46 26	g.cometti@actointerim.com	33, avenue Jean Monnet		42330	SAINT GALMIER
+Mme	Aurélie	FOUVET	COM'ELLE	Client		06 35 58 07 06	contact@com-elle.com	18, rue Dorian		42700	FIRMINY
+M.	André	LIMOUSIN	COMITE DES FETES DE FIRMINY	Client				32 rue Jean Jaures		42700	FIRMINY
+M.	Philippe	CONDAMIN	CONDAMIN NETTOYAGE	Client				84, rue des Aciéries		42000	SAINT ETIENNE
+M.	Frédéric	GRASSET	COREME	Client				33, rue Emile Zola		42100	SAINT ETIENNE
+Mme	Laurie	SEYVE	COTE SAINT ETIENNE	Client				17, rue du Président Wilson		42000	SAINT-ETIENNE
+M.	Daniel	VILLAREALE	CPME LOIRE	Client				3, rue Charles de Gaulle		42000	SAINT ETIENNE
+Mme	Lisa	LEROUGE	CREDIT MUTUEL	Client				7 Place du Breuil		42700	FIRMINY
+Mme	Amandine	COSTA	CROWN AGENCY	Client				3, rue de la Productique		42000	SAINT ETIENNE
+M.	Christian	MARION	DAFY MOTO	Client				4, rue de Dunkerque		42100	SAINT ETIENNE
+M.	Thomas	ARQUILLERE	DALERY	Client	04 77 40 04 44	06 60 56 65 22	thomas.arquillere@dalery.com	13, rue de l'Ondaine		42500	LE CHAMBON FEUGEROLLES
+M.	Rémi	EMMANUEL	DEA DESIGN 	Client				7, ZA la Platière 		42320	LA GRAND CROIX
+M.	Nicolas 	DESCHAUMES	SUPERVISE ME	Client		06 85 79 54 38	nicolas@supervise-me.fr	20, allée Henry Purcell		42000	SAINT ETIENNE
+Mme	Fanny	DESJOYAUX	DESJOYAUX	Client				42, avenue Benoit Fourneyron		42480	LA FOUILLOUSE
+M.	Yann	GAGNOUD	DUCATI SAINT ETIENNE	Client				1 et 3, rue Pierre Loti		42100	SAINT ETIENNE
+M.	Laurent	DEVUN	DUPUY STORES	Client				4, cours Fauriel		42000	SAINT ETIENNE
+Mme	Aurélie	DUFAU MESSINEA	DV2	Client				RN 82 - ZC de l'Arche CS 10514 Carrefour Ratarieux		42480	LA FOUILLOUSE
+M.	Olivier	GUILLOT	ECOTEL	Client				26, rue des Trois Glorieuses		42000	SAINT ETIENNE
+M.	Patrick	OUILLON	EDA FORD	Client				17, rue Gustave Delory		42000	SAINT ETIENNE
+Mme	Alexandra	BONO	ENEDIS	Client				2, avenue Grüner CS 705507		42007	SAINT-ETIENNE Cedex 1
+Mme	Erika	VAUQUELIN	ERIKA V.	Client				2, rue de l'Église		42600	MONTBRISON
+Mme	Manon	FALCONNIER	ETS PATRICK FALCONNIER	Client				4, impasse Côte Thiollière		42100	SAINT ETIENNE
+M.	Hafid	EL MAGHNOUJI	France ALARME	Client	04 28 04 09 71	06 19 04 77 89	hafid@francealarme.net	18, allée Henry Purcell		42000	SAINT ETIENNE
+Mme	Christelle	CHAPELON	EXAUREV	Client				6, rue Pétin Gaudet		42400	SAINT-CHAMOND
+M.	Cyril	ESCANEZ	BIJOUTERIE ESCANEZ	Client			cyril.escanez@sfr.fr			0	
+M.	Vincent	MAY	EXPERT	Client				2, rue Charles de Gaulle		42240	UNIEUX
+M.	Vincent	GRENIER	FARINER	Client				40 Avenue Jean Mermoz		42160	ANDREZIEUX BOUTHEON
+M.	Djamel	ASSAKSOU	FAST AND GREEN	Client		06 63 08 54 07	d.assaksaou@fast-and-green.com	9, esplanade Bénévent		42000	SAINT ETIENNE
+M.	Pierre	FRAISSE	FRANCE LITERIE	Client				11, rue de la République		42000	SAINT ETIENNE
+M.	Gilles	FAURE	CLIENT ROI	Client			getcfaure@wanadoo.fr			0	
+Mme	Nathalie	LAURENDON	GMPC COURTAGE	Client				Le Millénium, 1 rue de la Presse		42000	SAINT-ETIENNE
+M.	Gilles	GERPHAGNON	GROUPE GTI IMMOBILIER	Client				22, rue Jean Jaurès		42700	FIRMINY
+M.	Carl	PATSALIS	GROUPE PROGRÈS	Client				6, esplanade de France		42964	SAINT ETIENNE Cedex 09
+M.	Julien	IMBERT	GUITARE AVENUE	Client				122, rue Bergson		42000	SAINT ETIENNE
+M.	Richard	FRANGIN	TILT	Client		06 43 00 65 00	r.frangin@t-consulting.me	4, rue Wuppertal		42100	SAINT ETIENNE
+Mme	Nazli	BAS	HB FACADIER	Client		06 27 54 53 26	nanouk192828@live.fr	4, allée des Noisetiers		42160	ANDREZIEUX BOUTHEON
+M.	Gautier	DUFOSSEZ	HESS AUTOMOBILE	Client				Rue du Rocher ZI Necker		42000	SAINT ETIENNE
+M.	Pierrick	LUMINIER	HOMEBOX	Client				24, rue du Mont		42000	SAINT-ETIENNE
+Mme	Angélique	LIBERCIER	HUISSIER DE JUSTICE	Client				15, rue de la Presse		42000	SAINT ETIENNE
+Mme	Camille	VILLAREALE	ICE GROUPE	Client	04 77 93 03 55	06 22 27 09 23	camille.villareale@i-c-e.fr	Le Technopole, 11 rue de la Robotique		42000	SAINT ETIENNE
+M.	Jean	PELEGRIN	IKEA	Client				Rue Jean Huss ZI du Pont de l'Ane		42000	SAINT ETIENNE
+Mme	Roxanne	PLANFORET	IMMO DE France	Client				4, rue Pierre Bérard		42000	SAINT ETIENNE
+Mme	Sophie	GEOFFRAY	INITIATIVE LOIRE - Antenne Loire SUD	Client				1!, avenue Augustin Dupré		42000	SAINT ETIENNE
+M.	Sébastien	PALUSCI	INTERMARCHE RICHELANDIERE	Client				4, rue Robert Cancet		42000	SAINT ETIENNE
+M.	Ludwig	GOKOYO	YELLOW PAIE	Client		06 98 17 90 57	contact@yellowpaie.com	665, rue Saint Jean François Régie		42660	MARLHES
+Mme	Valérie	HACQUARD	IPL CENTER	Client				78, cours Fauriel		42000	SAINT ETIENNE
+M.	Jeanine	KLEIJ	IZISPORT	Client				ZI du Buisson		42230	ROCHE LA MOLIERE
+M.	Noël	ARDIZZONE	JTB	Client		06 11 70 41 27	sarl.jtb@outlook.fr	35 A, avenue de Rochetaillée		42100	SAINT ETIENNE
+M.	Jérôme	GRENIER	ATOL GRENIER LIZON	Partenaire	04 77 37 29 09		grenier.lizon@gmail.com	6, rue du Général Foy		42000	SAINT ETIENNE
+M. et Mme	François et Christèle	JOUBERT	JUST UN REGARD	Client				Espace commercial Velay Pilat		43240	SAINT JUST MALMONT
+M.	Aymeric	SADOURNY	KELTEN	Client				17 A, rue de la Presse		42000	SAINT ETIENNE
+M.	Fabrice	FLOTTE	KELYPS INTERIM	Client				Le Platinium, 5 Imp. Dieudonné Coste		42160	ANDREZIEUX BOUTHEON
+M.	Michael	CHALAYER	KOESIO	Client				1, rue des Rochettes		42000	SAINT ETIENNE
+M.	Olivier	MOUNIER	L'ANNEXE	Client				7, rue Verdié		42700	FIRMINY
+M.	Romain	SOUVIGNET	LA BOULE OBUT	Client				5, route du Cros		42380	SAINT BONNET LE CHÂTEAU
+M.	William	TOMASZEWSKI	LA BOUTIQUE DU MENUISIER	Client	04 77 93 52 23	06 33 43 35 88	wto4243@gmail.com	18, rue Dorian		42700	FIRMINY
+M.	Benoit	MAGAND	LA COMPAGNIE DES DEBOUCHEURS	Client				7, chemin de Chantemerle		42330	SAINT GALMIER
+Mme	Véronique	BESSOU	LA FOIR'FOUILLE	Client				CC STEEL		42000	SAINT ETIENNE
+Mme	Carole	JURINE	EFS Auvergne Rhône-Alpes	Client		06 88 62 80 09	carole.jurine@efs.sante.fr	25, bd Pasteur		42023	SAINT ETIENNE Cedex 2
+M.	GUILLAUME	JURY	STUDIO JURY	Prospect	04 26 48 27 38	06 12 36 42 76	guillaume@studiojury.com	6, rue Francis Garnier		42530	SAINT GENEST LERPT
+Mme	Diarra	KANE	TEMPORIS	Client		06 45 59 33 67	diarra.kane@temporis.fr	21-23, rue des Aciéries		42000	SAINT ETIENNE
+M.	Rémi	BOUTE	LA LIBRAIRIE DE PARIS	Client				6, rue Michel Rondet		42000	SAINT ETIENNE
+Mme	Clémentine	PRADIER	LA MARQUE 42	Client				Lieu dit Le Cordier – 389 chemin du Pinet		42170	SAINT JUST SAINT RAMBERT
+Mme	Camille	GARCIA	LA SEMAINE DES QUATRE JEUDIS	Client				3, cours Charlemagne		69002	LYON
+M.	Yves	VIALLON	LA TABLE DU BRASSEUR	Client		06 09 03 66 85	yvesviallon@orange.fr	SAS Les Roches Loisirs, 85 chemin de la Côte		42390	VILLARS
+M.	Rémy	DAMICO	LE CONSERVATEUR	Client				1, allée du rond Point		42000	SAINT-ETIENNE
+Mme	Céline	BASTIN	LE TOIT FORÉZIEN	Client		06 03 27 53 52	celine.bastin@toitforezien.fr	29, rue Jo Gouttebarge		42021	SAINT ETIENNE Cedex 1
+Mme	Meggie	FOURCHEGUT	LES HALLES MAZERAT	Client				2, cours Victor Hugo		42000	SAINT ETIENNE
+Mme	Alexia	BORGHI	LIBRAIRIE DE PARIS	Client	04 77 49 21 24	06 45 97 94 15	communicationldp@gmail.com	6, 8 rue Michelet		42000	SAINT ETIENNE
+M.	Rémi	BOUTE	LIBRAIRIE DE PARIS	Client			directionldp@gmail.com	6, 8 rue Michelet		42000	SAINT ETIENNE
+Mme	Salomé	DESMET	LIGHT LAB.IO	Client				34, rue de la République		42000	SAINT ETIENNE
+M.	Damien	PAIHLES	LISSAC OPTICIEN	Client				2 rue du moulin Gilier		42290	SORBIERS
+M.	Anthony	MALJOURNAL	REGIE NETWORKS SAS	Client	04 77 59 50 59	06 15 64 14 76	amaljournal@nrjglobal.fr	15, rue Camille de Rochetaillée		42100	SAINT ETIENNE
+Mme	Romane	PALITTA	LOIRE INVESTISSEMENT	Client				40, rue Michelet		42000	SAINT ETIENNE
+M.	François	GRANGE	LYÇÉE  PROFESSIONNEL ÉTIENNE MIMARD	Client				32, rue Etienne Mimard		42021	SAINT ETIENNE Cedex 01
+Mme	Isabelle	PEYRON	MADO ET LES AUTRES	Client				77, rue  Jean jaurès		42700	FIRMINY
+M.	Grégoire	CLARET	MÉLIÈS BRASSERIE CAFÉ	Client				10, place Jean Jaurès		42000	SAINT ETIENNE
+M.	Bernard	ROUSSON	MENUISERIE ROUSSON	Client				76 bis rue Victor Hugo		42700	FIRMINY
+M.	Nicolas	RIVORY	MOBALPA PACORET	Client				Parc des Essarts 		42160	ANDREZIEUX BOUTHEON
+Mme	Amandine	MORETTON	CPME LOIRE	Fournisseur		06 66 27 98 23	amoretton@cpmeloire.fr	3, rue Charles de Gaulle		42000	SAINT ETIENNE
+M.	Thomas	MOUNARD	HISTYA	Client		06 19 05 86 82	thomas@lpm42.fr	24, rue de la Robotique		42000	SAINT ETIENNE
+M.	Quentin	NOUVET	OCTO CONSEILS	Client		06 99 79 09 81	q.nouvet@octoconseil.fr	Immeuble L'Horizon - 3, rue J. Constant Milleret		42000	SAINT ETIENNE
+M.	Thomas	VANACKERE	OCTO CONSEILS	Client		07 72 05 01 19	t.vanackere@octoconseil.fr	Immeuble L'Horizon - 3, rue J. Constant Milleret		42000	SAINT ETIENNE
+Mme	Maryline	GERMAIN	PANO SIGN'SERVICE	Client				2, avenue de la Mairie		42160	BONSON
+Mme	Alice	NOURRISSON	ALIX &CO	Client		06 23 16 60 89	alice@alix-co.fr	186, rue de la Jalousie		42130	MARCILLY-LE-CHATEL
+M.	Nicolas	ODIN	CODAZA	Client		06 29 50 09 90	nicolas.odin@codaza.fr			0	
+M.	Guillaume	JOUVE	PAPERMINT CRÉATION	Client				13, rue Denis Épitalon		42000	SAINT ETIENNE
+M.	Loic 	MALLARD	PETIT FILS	Client				83, rue des Alliés		42100	SAINT ETIENNE
+M.	Mathieu	NOIRBENT	PHARMACIE DU BOIS MONZIL	Client				1, place du Bois Monzil		42490	VILLARS
+M.	Hilmi	CUBUKCU	PORCELANOSA	Client				51, bis cours Fauriel		42100	SAINT ETIENNE
+M.	Alexandre	CANETTI	PRO ENSEIGNES	Client				146, bis rue de la Richelandière		42100	SAINT ETIENNE
+Mme	Mélanie	CARRAZ	RAVON  AUTOMOBILES 	Client				1, chemin des Chaux		42000	SAINT ETIENNE
+M.	Philippe	GRANGE	REFUGE MONTARON	Client				Les Communes		42660	MARLHES
+M.	Lionel	SUAREZ	RENAISSANCE	Client				183, rue des Alliés		42100	SAINT ETIENNE
+M.	Julien	NICOL	RENAULT THIVOLLE	Client				5, rue Claude Odde BP 525		42007	SAINT ETIENNE Cedex 1
+M.	Yohan	PEYRARD	42ème AVENUE	Client		06 32 90 04 04 	yohan.peyrard@42emeavenue.com	1, cours Victor Hugo		42000	SAINT ETIENNE
+M.	Bruno	OLIVIER	RÉNOVAL	Client				ZA du Pont de l'Ane - 5, rue de l'Eparre		42000	SAINT ETIENNE
+M.	Fabien	PITAVAL	BELLES PERSPECTIVES	Client		06 95 50 32 15	contact.bellespersepctives@gmail.com	165, chemin du Pilat		42560	CHENERAILLES
+Mme	Laurent	TRUPHEME	RICHARDSON	Client				ZI La Chauvetière 9, rue Edouard Martel		42100	SAINT ETIENNE
+M.	Mathieu	MONTEIL	RS FINANCES	Client				9, allée du Vorzelas		42480	LA FOUILLOUSE
+M.	Pascal	BIALECKI	SAINT ETIENNE GAZ ENTRETIEN	Client				22, rue de la Mollanche		42290	SORBIERS
+Mme	Carole	RENAUDIER	BIEN-ÊTRE & TECHNOLOGIE	Client	04 27 77 15 90	06 14 42 60 77	lesdunesdorient@icloud.com	12, rue du Pont Noir		42700	FIRMINY
+M.	Jérôme	CHIRAT	SAINT ETIENNE METROPOLE	Client				2, avenue Grüner		42006	SAINT ETIENNE
+M.	Hervé	FALLONE	SAINTÉ FERMETURES - POINT FORT FICHET	Client				48, rue de la Résistance		42000	SAINT-ETIENNE
+M.	Loic	FRÈRE	SAS LES JARDINS DE VINGRÉ	Client				10, rue Léon Nautin		42000	SAINT ETIENNE
+Mme	Claudie	GIFFARD	SBN	Client				Z.I. la prairie II, 15 rue Gutenberg 		42340	VEAUCHE
+M.	Sébastien	COUTURIER	SEBASTIEN COUTURIER	Client				1, place Jean Jaurès		42000	SAINT ETIENNE
+M.	Baptiste	ROLLET	GROUPE UNAGI	Client		06 03 29 72 64	brollet@groupe-unagi.fr	3, rue de la Résistance 		42000	SAINT ETIENNE
+M.	Nicolas	GINHOUX	SHOPIX	Client				Parc des Essarts, 272 Rue Pierre-Georges Latécoère		42160	ANDREZIEUX BOUTHEON
+M.	Romain	BLIN	SMARTKEEPERS	Client				7, place Bellevue		42100	SAINT ETIENNE
+M.	Nicolas	SCHOLZ	NS MADE	Client		07 60 86 30 39	creation@ns-made.com			0	
+Mme	Charline	BERTHOT	SMARTKEEPERS	Client	04 82 37 06 25	06 14 74 42 77	charline.berthot@smartkeepers.com	7, place Bellevue		42100	SAINT ETIENNE
+M.	Léopold	SOUVIGNET	SPLIT LIGHT PRODUCTION	Client				5, rue du 19 Mars 1962		42270	SAINT PRIEST EN JAREZ
+M.	Josselin	DURAND	STEEL	Client				2, rue Ferrer		42000	SAINT ETIENNE
+M.	Eric	VIOU	STEMP	Client				1, rue du Onze Novembre		42000	SAINT ETIENNE
+M.	Lionel	LAURENT	STUDIO TRACÉ	Client				6, place Dorian		42000	SAINT ETIENNE
+M.	Michel	TAILLER	GROUPE DIFFUSALP	Client		06 03 69 70 74	ocd.tailler@gmail.com	14, rue du Mollaret		38070	SAINT QUENTIN FALLAVIER
+M.	Christophe	FAREL	TOTEM	Client				Avenue Charles de Gaulle		42240	UNIEUX
+M.	François	TOUCHARD	TOUCHPROD	Client				39, rue du Calvaire		92000	NANTERRE
+M.	Jean-Sébastien	SEUX	TOYOTA - LOIRE ALLIANCE MOTORS	Client				25, rue Gustave Delory		42000	SAINT ETIENNE
+Mme	Marie-Noëlle	TRONCHON	MNTIPS	Client		07 68 84 84 20	vaeloire@gmail.com			0	
+Mme	Ingrid	TRONCHON		Client		06 46 08 80 71	ingrid.tronchon@gmail.com			0	
+M.	Sylvain	CHARREL	TP DE L'ONDAINE	Client				Le Ban, Les trois ponts		42500	LE CHAMBON FEUGEROLLES
+M.	Nicolas	COMTE	VERANDAS JEAN BLANC	Client				4, rue Simone de Beauvoir		42580	L'ETRAT
+Mme	Sophie	DELPLANQUE	VILLE D'ANDREZIEUX BOUTHEON	Client				Hôtel de ville Avenue du Parc - CS 10 032 		42160	 72 48 88 46
+Mme	Stéphanie	VERON	L'ESSOR	Client		06 40 14 23 60	sveron@lessor.fr			0	
+Mme	Céline	DUCOIN	VILLE DE FIRMINY	Client				Place du Breuil CS 10040 		42702	FIRMINY Cedex
+Mme	Sandrine	DECHAVANNE	VILLE DE MONTBRISON	Client				1 Place de l'Hôtel de Ville - CS 50179		42605	MONTBRISON cedex
+M.	François et Christèle	TOULAT-BRISSON	VILLE DE RIVE DE GIER	Client				2 rue de l’Hôtel de Ville		42800	RIVE DE GIER
+M.	Emmanuel	DEMONT	VILLE DE ROANNE	Client				Place de l'Hôtel de Ville BP 90512		42328	ROANNE Cedex
+M.	Marc	ZIMMERMANN	HORLOGERIE ZIM	Partenaire	04 77 32 22 72	06 16 95 95 63	zim-horloger@orange.fr	26, rue Denis Escoffier		42000	SAINT ETIENNE
+M.	Eric	BERLIVET	VILLE DE ROCHE LA MOLIERE	Client		06 86 68 12 06		2, rue Gambetta		42230	ROCHE LA MOLIERE
+Mme	Stéphanie	CALACIURA	VILLE DE SAINT CHAMOND	Client				Avenue Antoine Pinay - CS 80148		42403	SAINT CHAMOND Cedex
+M.	Jean-François	LEGAT	VILLE DE SAINT CHAMOND	Client				Avenue Antoine Pinay - CS 80148		42403	SAINT CHAMOND Cedex
+Mme	Camille	EVANS	VILLE DE SAINT JUST SAINT RAMBERT	Client				4, rue Gonyn		42170	SAINT JUST SAINT RAMBERT
+Mme	Carole	BENMELEH	VPN	Client	04 77 49 28 10	06 18 43 10 48	cb@concession-benmeleh.com	133, rue de la Montat		42100	SAINT ETIENNE
+Mme	Camille	PERRIN	WASABI SPORTS	Client				4, rue de Wuppertal		42000	SAINT ETIENNE
+M.	Vincent	GALLOT	WEBQAM GROUPE	Client				27, rue des Aciéries		42000	SAINT ETIENNE
+Mme	Astrid	REYNAUD	ZE DESK	Client				4, rue de la Convention		42100	SAINT-ETIENNE
+Mme	Amandine	BÉGU	BÉGU	Comédien				Domaine des Noisetiers - 3 allée des Chataigners		33290	LE PIAN MÉDOC
+M.	William	CROS		Comédien				177, bd Maréchal Joffre		83100	TOULON
+M.	Patrice	DUSSON		Prospect				1227, route de Saint Paul		43110	AUREC-SUR-LOIRE
+Mme	Estelle	HUBERT		Comédien				147, rue de Dunkerque		62500	SAINT OMER
+M.	David	VICENTE		Comédien				6, rue Christian Gavelle		78200	MANTES LA JOLIE
+",,42270,SAINT PRIEST EN JAREZ
+,Hervé,MOLLIER,CARAMBA,Client,04 77 49 75 66,,h.mollier@caramba-com.com,"""Vision Ouest"" rue Jules Verne",,42530,SAINT GENEST LERPT
+,Pierre-Albert,GOUTTEFANGEAS,CARAMBA,Client,04 77 49 75 62,,pa.gouttefangeas@caramba-com.com,"""Vision Ouest"" rue Jules Verne",,42530,SAINT GENEST LERPT
+,Caroline,CASATEJADA,LE MOULIN DES MOTS,Client,,,caroline@lemoulindesmots.fr,"ZAC de la Quérillère - 8, rue du Forez Sud",,42170,SAINT JUST SAINT RAMBERT
+,Hervé,CHABBAL,France BLEU,Client,04 77 52 08 08,,herve.chabbal@radiofrance.com,"5, rue Pablo Picasso - CS 10091",,42003,SAINT ETIENNE Cedex 1
+,Thibaud,LASSALLE,CARECO CORAM,Client,,,,Cret Marchal,,42230,ROCHE LA MOLIERE
+,Adeline,CHAMBAT,VILLE DE SAINT-ETIENNE,Client,04 77 58 63 73,,adeline.chambat@saint-etienne-metropole.fr,BP 503,,42007,SAINTE ETIENNE Cedex 1
+,Maxime,RICHAUD,CARECO CORAM,Client,04 77 90 90 75,,maxime.richaud@careco42.fr,Cret Marchal,,42230,ROCHE LA MOLIERE
+,Marie,CARROT,CARROSSERIE CARROT,Client,04 77 93 78 81,,mcarrot@gmail.com,"27, rue Gustave Delory",,42000,SAINT ETIENNE
+,André,RODRIGUEZ,CARROSSERIE FAYOLLE,Client,04 77 49 68 68,,,"4, rue du Pré Chapelon",,42000,SAINT ETIENNE
+,Pierre,LIOGIER,CARROSSERIE LIOGiER,Client,,,,25 Route de Roche-la-Molière,,42700,FIRMINY
+,Sarah,MEYER,CAVE DES VIEILLES TERRES - BAYER BOISSONS,Client,,,,"79, impasse de Bombes",,43700,SAINT GERMAIN LAPRADE
+,Corinne,CHANTRE,CCI,Client,,,,"57, cours Fauriel",,42024,SAINT ETIENNE Cedex 2
+,Guillaume,CLEMENT,CECOIA,Client,,,,"7, rue Jacquard",,42500,LE CHAMBON FEUGEROLLES
+,Ahmed,BENBOUZID,CIBC LOIRE,Client,04 77 01 34 49,,ab@cibc-loire.fr,MdEF St Etienne 18 avenue Augustin Dupré,,42000,SAINT ETIENNE
+,Grégory,COMETTI,ACTO INTERIM,Client,,,g.cometti@actointerim.com,"33, avenue Jean Monnet",,42330,SAINT GALMIER
+,Aurélie,FOUVET,COM'ELLE,Client,,,contact@com-elle.com,"18, rue Dorian",,42700,FIRMINY
+,André,LIMOUSIN,COMITE DES FETES DE FIRMINY,Client,,,,32 rue Jean Jaures,,42700,FIRMINY
+,Philippe,CONDAMIN,CONDAMIN NETTOYAGE,Client,,,,"84, rue des Aciéries",,42000,SAINT ETIENNE
+,Frédéric,GRASSET,COREME,Client,,,,"33, rue Emile Zola",,42100,SAINT ETIENNE
+,Laurie,SEYVE,COTE SAINT ETIENNE,Client,,,,"17, rue du Président Wilson",,42000,SAINT-ETIENNE
+,Daniel,VILLAREALE,CPME LOIRE,Client,,,,"3, rue Charles de Gaulle",,42000,SAINT ETIENNE
+,Lisa,LEROUGE,CREDIT MUTUEL,Client,,,,7 Place du Breuil,,42700,FIRMINY
+,Amandine,COSTA,CROWN AGENCY,Client,,,,"3, rue de la Productique",,42000,SAINT ETIENNE
+,Christian,MARION,DAFY MOTO,Client,,,,"4, rue de Dunkerque",,42100,SAINT ETIENNE
+,Thomas,ARQUILLERE,DALERY,Client,04 77 40 04 44,,thomas.arquillere@dalery.com,"13, rue de l'Ondaine",,42500,LE CHAMBON FEUGEROLLES
+,Rémi,EMMANUEL,DEA DESIGN ,Client,,,,"7, ZA la Platière ",,42320,LA GRAND CROIX
+,Nicolas ,DESCHAUMES,SUPERVISE ME,Client,,,nicolas@supervise-me.fr,"20, allée Henry Purcell",,42000,SAINT ETIENNE
+,Fanny,DESJOYAUX,DESJOYAUX,Client,,,,"42, avenue Benoit Fourneyron",,42480,LA FOUILLOUSE
+,Yann,GAGNOUD,DUCATI SAINT ETIENNE,Client,,,,"1 et 3, rue Pierre Loti",,42100,SAINT ETIENNE
+,Laurent,DEVUN,DUPUY STORES,Client,,,,"4, cours Fauriel",,42000,SAINT ETIENNE
+,Aurélie,DUFAU MESSINEA,DV2,Client,,,,RN 82 - ZC de l'Arche CS 10514 Carrefour Ratarieux,,42480,LA FOUILLOUSE
+,Olivier,GUILLOT,ECOTEL,Client,,,,"26, rue des Trois Glorieuses",,42000,SAINT ETIENNE
+,Patrick,OUILLON,EDA FORD,Client,,,,"17, rue Gustave Delory",,42000,SAINT ETIENNE
+,Alexandra,BONO,ENEDIS,Client,,,,"2, avenue Grüner CS 705507",,42007,SAINT-ETIENNE Cedex 1
+,Erika,VAUQUELIN,ERIKA V.,Client,,,,"2, rue de l'Église",,42600,MONTBRISON
+,Manon,FALCONNIER,ETS PATRICK FALCONNIER,Client,,,,"4, impasse Côte Thiollière",,42100,SAINT ETIENNE
+,Hafid,EL MAGHNOUJI,France ALARME,Client,04 28 04 09 71,,hafid@francealarme.net,"18, allée Henry Purcell",,42000,SAINT ETIENNE
+,Christelle,CHAPELON,EXAUREV,Client,,,,"6, rue Pétin Gaudet",,42400,SAINT-CHAMOND
+,Cyril,ESCANEZ,BIJOUTERIE ESCANEZ,Client,,,cyril.escanez@sfr.fr,,,0,
+,Vincent,MAY,EXPERT,Client,,,,"2, rue Charles de Gaulle",,42240,UNIEUX
+,Vincent,GRENIER,FARINER,Client,,,,40 Avenue Jean Mermoz,,42160,ANDREZIEUX BOUTHEON
+,Djamel,ASSAKSOU,FAST AND GREEN,Client,,,d.assaksaou@fast-and-green.com,"9, esplanade Bénévent",,42000,SAINT ETIENNE
+,Pierre,FRAISSE,FRANCE LITERIE,Client,,,,"11, rue de la République",,42000,SAINT ETIENNE
+,Gilles,FAURE,CLIENT ROI,Client,,,getcfaure@wanadoo.fr,,,0,
+,Nathalie,LAURENDON,GMPC COURTAGE,Client,,,,"Le Millénium, 1 rue de la Presse",,42000,SAINT-ETIENNE
+,Gilles,GERPHAGNON,GROUPE GTI IMMOBILIER,Client,,,,"22, rue Jean Jaurès",,42700,FIRMINY
+,Carl,PATSALIS,GROUPE PROGRÈS,Client,,,,"6, esplanade de France",,42964,SAINT ETIENNE Cedex 09
+,Julien,IMBERT,GUITARE AVENUE,Client,,,,"122, rue Bergson",,42000,SAINT ETIENNE
+,Richard,FRANGIN,TILT,Client,,,r.frangin@t-consulting.me,"4, rue Wuppertal",,42100,SAINT ETIENNE
+,Nazli,BAS,HB FACADIER,Client,,,nanouk192828@live.fr,"4, allée des Noisetiers",,42160,ANDREZIEUX BOUTHEON
+,Gautier,DUFOSSEZ,HESS AUTOMOBILE,Client,,,,Rue du Rocher ZI Necker,,42000,SAINT ETIENNE
+,Pierrick,LUMINIER,HOMEBOX,Client,,,,"24, rue du Mont",,42000,SAINT-ETIENNE
+,Angélique,LIBERCIER,HUISSIER DE JUSTICE,Client,,,,"15, rue de la Presse",,42000,SAINT ETIENNE
+,Camille,VILLAREALE,ICE GROUPE,Client,04 77 93 03 55,,camille.villareale@i-c-e.fr,"Le Technopole, 11 rue de la Robotique",,42000,SAINT ETIENNE
+,Jean,PELEGRIN,IKEA,Client,,,,Rue Jean Huss ZI du Pont de l'Ane,,42000,SAINT ETIENNE
+,Roxanne,PLANFORET,IMMO DE France,Client,,,,"4, rue Pierre Bérard",,42000,SAINT ETIENNE
+,Sophie,GEOFFRAY,INITIATIVE LOIRE - Antenne Loire SUD,Client,,,,"1!, avenue Augustin Dupré",,42000,SAINT ETIENNE
+,Sébastien,PALUSCI,INTERMARCHE RICHELANDIERE,Client,,,,"4, rue Robert Cancet",,42000,SAINT ETIENNE
+,Ludwig,GOKOYO,YELLOW PAIE,Client,,,contact@yellowpaie.com,"665, rue Saint Jean François Régie",,42660,MARLHES
+,Valérie,HACQUARD,IPL CENTER,Client,,,,"78, cours Fauriel",,42000,SAINT ETIENNE
+,Jeanine,KLEIJ,IZISPORT,Client,,,,ZI du Buisson,,42230,ROCHE LA MOLIERE
+,Noël,ARDIZZONE,JTB,Client,,,sarl.jtb@outlook.fr,"35 A, avenue de Rochetaillée",,42100,SAINT ETIENNE
+,Jérôme,GRENIER,ATOL GRENIER LIZON,Prospect,04 77 37 29 09,,grenier.lizon@gmail.com,"6, rue du Général Foy",,42000,SAINT ETIENNE
+,François et Christèle,JOUBERT,JUST UN REGARD,Client,,,,Espace commercial Velay Pilat,,43240,SAINT JUST MALMONT
+,Aymeric,SADOURNY,KELTEN,Client,,,,"17 A, rue de la Presse",,42000,SAINT ETIENNE
+,Fabrice,FLOTTE,KELYPS INTERIM,Client,,,,"Le Platinium, 5 Imp. Dieudonné Coste",,42160,ANDREZIEUX BOUTHEON
+,Michael,CHALAYER,KOESIO,Client,,,,"1, rue des Rochettes",,42000,SAINT ETIENNE
+,Olivier,MOUNIER,L'ANNEXE,Client,,,,"7, rue Verdié",,42700,FIRMINY
+,Romain,SOUVIGNET,LA BOULE OBUT,Client,,,,"5, route du Cros",,42380,SAINT BONNET LE CHÂTEAU
+,William,TOMASZEWSKI,LA BOUTIQUE DU MENUISIER,Client,04 77 93 52 23,,wto4243@gmail.com,"18, rue Dorian",,42700,FIRMINY
+,Benoit,MAGAND,LA COMPAGNIE DES DEBOUCHEURS,Client,,,,"7, chemin de Chantemerle",,42330,SAINT GALMIER
+,Véronique,BESSOU,LA FOIR'FOUILLE,Client,,,,CC STEEL,,42000,SAINT ETIENNE
+,Carole,JURINE,EFS Auvergne Rhône-Alpes,Client,,,carole.jurine@efs.sante.fr,"25, bd Pasteur",,42023,SAINT ETIENNE Cedex 2
+,GUILLAUME,JURY,STUDIO JURY,Prestataire,04 26 48 27 38,,guillaume@studiojury.com,"6, rue Francis Garnier",,42530,SAINT GENEST LERPT
+,Diarra,KANE,TEMPORIS,Client,,,diarra.kane@temporis.fr,"21-23, rue des Aciéries",,42000,SAINT ETIENNE
+,Rémi,BOUTE,LA LIBRAIRIE DE PARIS,Client,,,,"6, rue Michel Rondet",,42000,SAINT ETIENNE
+,Clémentine,PRADIER,LA MARQUE 42,Client,,,,Lieu dit Le Cordier – 389 chemin du Pinet,,42170,SAINT JUST SAINT RAMBERT
+,Camille,GARCIA,LA SEMAINE DES QUATRE JEUDIS,Client,,,,"3, cours Charlemagne",,69002,LYON
+,Yves,VIALLON,LA TABLE DU BRASSEUR,Client,,,yvesviallon@orange.fr,"SAS Les Roches Loisirs, 85 chemin de la Côte",,42390,VILLARS
+,Rémy,DAMICO,LE CONSERVATEUR,Client,,,,"1, allée du rond Point",,42000,SAINT-ETIENNE
+,Céline,BASTIN,LE TOIT FORÉZIEN,Client,,,celine.bastin@toitforezien.fr,"29, rue Jo Gouttebarge",,42021,SAINT ETIENNE Cedex 1
+,Meggie,FOURCHEGUT,LES HALLES MAZERAT,Client,,,,"2, cours Victor Hugo",,42000,SAINT ETIENNE
+,Alexia,BORGHI,LIBRAIRIE DE PARIS,Client,04 77 49 21 24,,communicationldp@gmail.com,"6, 8 rue Michelet",,42000,SAINT ETIENNE
+,Rémi,BOUTE,LIBRAIRIE DE PARIS,Client,,,directionldp@gmail.com,"6, 8 rue Michelet",,42000,SAINT ETIENNE
+,Salomé,DESMET,LIGHT LAB.IO,Client,,,,"34, rue de la République",,42000,SAINT ETIENNE
+,Damien,PAIHLES,LISSAC OPTICIEN,Client,,,,2 rue du moulin Gilier,,42290,SORBIERS
+,Anthony,MALJOURNAL,REGIE NETWORKS SAS,Client,04 77 59 50 59,,amaljournal@nrjglobal.fr,"15, rue Camille de Rochetaillée",,42100,SAINT ETIENNE
+,Romane,PALITTA,LOIRE INVESTISSEMENT,Client,,,,"40, rue Michelet",,42000,SAINT ETIENNE
+,François,GRANGE,LYÇÉE  PROFESSIONNEL ÉTIENNE MIMARD,Client,,,,"32, rue Etienne Mimard",,42021,SAINT ETIENNE Cedex 01
+,Isabelle,PEYRON,MADO ET LES AUTRES,Client,,,,"77, rue  Jean jaurès",,42700,FIRMINY
+,Grégoire,CLARET,MÉLIÈS BRASSERIE CAFÉ,Client,,,,"10, place Jean Jaurès",,42000,SAINT ETIENNE
+,Bernard,ROUSSON,MENUISERIE ROUSSON,Client,,,,76 bis rue Victor Hugo,,42700,FIRMINY
+,Nicolas,RIVORY,MOBALPA PACORET,Client,,,,Parc des Essarts ,,42160,ANDREZIEUX BOUTHEON
+,Amandine,MORETTON,CPME LOIRE,Partenaire,,,amoretton@cpmeloire.fr,"3, rue Charles de Gaulle",,42000,SAINT ETIENNE
+,Thomas,MOUNARD,HISTYA,Client,,,thomas@lpm42.fr,"24, rue de la Robotique",,42000,SAINT ETIENNE
+,Quentin,NOUVET,OCTO CONSEILS,Client,,,q.nouvet@octoconseil.fr,"Immeuble L'Horizon - 3, rue J. Constant Milleret",,42000,SAINT ETIENNE
+,Thomas,VANACKERE,OCTO CONSEILS,Client,,,t.vanackere@octoconseil.fr,"Immeuble L'Horizon - 3, rue J. Constant Milleret",,42000,SAINT ETIENNE
+,Maryline,GERMAIN,PANO SIGN'SERVICE,Client,,,,"2, avenue de la Mairie",,42160,BONSON
+,Alice,NOURRISSON,ALIX &CO,Client,,,alice@alix-co.fr,"186, rue de la Jalousie",,42130,MARCILLY-LE-CHATEL
+,Nicolas,ODIN,CODAZA,Client,,,nicolas.odin@codaza.fr,,,0,
+,Guillaume,JOUVE,PAPERMINT CRÉATION,Client,,,,"13, rue Denis Épitalon",,42000,SAINT ETIENNE
+,Loic ,MALLARD,PETIT FILS,Client,,,,"83, rue des Alliés",,42100,SAINT ETIENNE
+,Mathieu,NOIRBENT,PHARMACIE DU BOIS MONZIL,Client,,,,"1, place du Bois Monzil",,42490,VILLARS
+,Hilmi,CUBUKCU,PORCELANOSA,Client,,,,"51, bis cours Fauriel",,42100,SAINT ETIENNE
+,Alexandre,CANETTI,PRO ENSEIGNES,Client,,,,"146, bis rue de la Richelandière",,42100,SAINT ETIENNE
+,Mélanie,CARRAZ,RAVON  AUTOMOBILES ,Client,,,,"1, chemin des Chaux",,42000,SAINT ETIENNE
+,Philippe,GRANGE,REFUGE MONTARON,Client,,,,Les Communes,,42660,MARLHES
+,Lionel,SUAREZ,RENAISSANCE,Client,,,,"183, rue des Alliés",,42100,SAINT ETIENNE
+,Julien,NICOL,RENAULT THIVOLLE,Client,,,,"5, rue Claude Odde BP 525",,42007,SAINT ETIENNE Cedex 1
+,Yohan,PEYRARD,42ème AVENUE,Client,04 77 32 64 67,06 07 08 09 10,yohan.peyrard@42emeavenue.com,"1, cours Victor Hugo",,42000,SAINT ETIENNE
+,Bruno,OLIVIER,RÉNOVAL,Client,,,,"ZA du Pont de l'Ane - 5, rue de l'Eparre",,42000,SAINT ETIENNE
+,Fabien,PITAVAL,BELLES PERSPECTIVES,Client,,,contact.bellespersepctives@gmail.com,"165, chemin du Pilat",,42560,CHENERAILLES
+,Laurent,TRUPHEME,RICHARDSON,Client,,,,"ZI La Chauvetière 9, rue Edouard Martel",,42100,SAINT ETIENNE
+,Mathieu,MONTEIL,RS FINANCES,Client,,,,"9, allée du Vorzelas",,42480,LA FOUILLOUSE
+,Pascal,BIALECKI,SAINT ETIENNE GAZ ENTRETIEN,Client,,,,"22, rue de la Mollanche",,42290,SORBIERS
+,Carole,RENAUDIER,BIEN-ÊTRE & TECHNOLOGIE,Client,04 27 77 15 90,,lesdunesdorient@icloud.com,"12, rue du Pont Noir",,42700,FIRMINY
+,Jérôme,CHIRAT,SAINT ETIENNE METROPOLE,Client,,,,"2, avenue Grüner",,42006,SAINT ETIENNE
+,Hervé,FALLONE,SAINTÉ FERMETURES - POINT FORT FICHET,Client,,,,"48, rue de la Résistance",,42000,SAINT-ETIENNE
+,Loic,FRÈRE,SAS LES JARDINS DE VINGRÉ,Client,,,,"10, rue Léon Nautin",,42000,SAINT ETIENNE
+,Claudie,GIFFARD,SBN,Client,,,,"Z.I. la prairie II, 15 rue Gutenberg ",,42340,VEAUCHE
+,Sébastien,COUTURIER,SEBASTIEN COUTURIER,Client,,,,"1, place Jean Jaurès",,42000,SAINT ETIENNE
+,Baptiste,ROLLET,GROUPE UNAGI,Client,,,brollet@groupe-unagi.fr,"3, rue de la Résistance ",,42000,SAINT ETIENNE
+,Nicolas,GINHOUX,SHOPIX,Client,,,,"Parc des Essarts, 272 Rue Pierre-Georges Latécoère",,42160,ANDREZIEUX BOUTHEON
+,Romain,BLIN,SMARTKEEPERS,Client,,,,"7, place Bellevue",,42100,SAINT ETIENNE
+,Nicolas,SCHOLZ,NS MADE,Client,,,creation@ns-made.com,,,0,
+,Charline,BERTHOT,SMARTKEEPERS,Client,04 82 37 06 25,,charline.berthot@smartkeepers.com,"7, place Bellevue",,42100,SAINT ETIENNE
+,Léopold,SOUVIGNET,SPLIT LIGHT PRODUCTION,Client,,,,"5, rue du 19 Mars 1962",,42270,SAINT PRIEST EN JAREZ
+,Josselin,DURAND,STEEL,Client,,,,"2, rue Ferrer",,42000,SAINT ETIENNE
+,Eric,VIOU,STEMP,Client,,,,"1, rue du Onze Novembre",,42000,SAINT ETIENNE
+,Lionel,LAURENT,STUDIO TRACÉ,Client,,,,"6, place Dorian",,42000,SAINT ETIENNE
+,Michel,TAILLER,GROUPE DIFFUSALP,Client,,,ocd.tailler@gmail.com,"14, rue du Mollaret",,38070,SAINT QUENTIN FALLAVIER
+,Christophe,FAREL,TOTEM,Client,,,,Avenue Charles de Gaulle,,42240,UNIEUX
+,François,TOUCHARD,TOUCHPROD,Client,,,,"39, rue du Calvaire",,92000,NANTERRE
+,Jean-Sébastien,SEUX,TOYOTA - LOIRE ALLIANCE MOTORS,Client,,,,"25, rue Gustave Delory",,42000,SAINT ETIENNE
+,Marie-Noëlle,TRONCHON,MNTIPS,Client,,,vaeloire@gmail.com,,,0,
+,Ingrid,TRONCHON,TRONCHON,Client,,,ingrid.tronchon@gmail.com,,,42000,Saint-Étienne
+,Sylvain,CHARREL,TP DE L'ONDAINE,Client,,,,"Le Ban, Les trois ponts",,42500,LE CHAMBON FEUGEROLLES
+,Nicolas,COMTE,VERANDAS JEAN BLANC,Client,,,,"4, rue Simone de Beauvoir",,42580,L'ETRAT
+,Sophie,DELPLANQUE,VILLE D'ANDREZIEUX BOUTHEON,Client,,,,Hôtel de ville Avenue du Parc - CS 10 032 ,,42160, 72 48 88 46
+,Stéphanie,VERON,L'ESSOR,Client,,,sveron@lessor.fr,,,0,
+,Céline,DUCOIN,VILLE DE FIRMINY,Client,,,,Place du Breuil CS 10040 ,,42702,FIRMINY Cedex
+,Sandrine,DECHAVANNE,VILLE DE MONTBRISON,Client,,,,1 Place de l'Hôtel de Ville - CS 50179,,42605,MONTBRISON cedex
+,François et Christèle,TOULAT-BRISSON,VILLE DE RIVE DE GIER,Client,,,,2 rue de l’Hôtel de Ville,,42800,RIVE DE GIER
+,Emmanuel,DEMONT,VILLE DE ROANNE,Client,,,,Place de l'Hôtel de Ville BP 90512,,42328,ROANNE Cedex
+,Marc,ZIMMERMANN,HORLOGERIE ZIM,Prospect,04 77 32 22 72,,zim-horloger@orange.fr,"26, rue Denis Escoffier",,42000,SAINT ETIENNE
+,Eric,BERLIVET,VILLE DE ROCHE LA MOLIERE,Client,,,,"2, rue Gambetta",,42230,ROCHE LA MOLIERE
+,Stéphanie,CALACIURA,VILLE DE SAINT CHAMOND,Client,,,,Avenue Antoine Pinay - CS 80148,,42403,SAINT CHAMOND Cedex
+,Jean-François,LEGAT,VILLE DE SAINT CHAMOND,Client,,,,Avenue Antoine Pinay - CS 80148,,42403,SAINT CHAMOND Cedex
+,Camille,EVANS,VILLE DE SAINT JUST SAINT RAMBERT,Client,,,,"4, rue Gonyn",,42170,SAINT JUST SAINT RAMBERT
+,Carole,BENMELEH,VPN,Client,04 77 49 28 10,,cb@concession-benmeleh.com,"133, rue de la Montat",,42100,SAINT ETIENNE
+,Camille,PERRIN,WASABI SPORTS,Client,,,,"4, rue de Wuppertal",,42000,SAINT ETIENNE
+,Vincent,GALLOT,WEBQAM GROUPE,Client,,,,"27, rue des Aciéries",,42000,SAINT ETIENNE
+,Astrid,REYNAUD,ZE DESK,Client,,,,"4, rue de la Convention",,42100,SAINT-ETIENNE
+,Amandine,BÉGU,BÉGU,Comédien,,,,Domaine des Noisetiers - 3 allée des Chataigners,,33290,LE PIAN MÉDOC
+,William,CROS,CROS,Comédien,,,,"177, bd Maréchal Joffre",,83100,TOULON
+,Patrice,DUSSON,DUSSON,Prestataire,,,,"1227, route de Saint Paul",,43110,AUREC-SUR-LOIRE
+,Estelle,HUBERT,HUBERT,Comédien,,,,"147, rue de Dunkerque",,62500,SAINT OMER
+,David,VICENTE,VICENTE,Comédien,,,,"6, rue Christian Gavelle",,78200,MANTES LA JOLIE
+,,,martine,Client,,,,,,,
+,,,Gerard,Client,,,,,,,
