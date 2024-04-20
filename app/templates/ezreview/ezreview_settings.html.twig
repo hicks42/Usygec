@@ -1,6 +1,6 @@
 {% extends 'logged_in_base.html.twig' %}
 
-{% block title %}Modification du compte
+{% block title %}Modification du compte EZR
 {% endblock %}
 
 {% block stylesheets %}
@@ -16,21 +16,22 @@
 {% block content %}
 	{% import "ezreview/macros/forms.html.twig" as formMacros %}
 
-	<div class="col-12 col-md-8 col-lg-6">
-		<h1>Modification du compte</h1>
+	<div class="col-md-10 col-12">
+		<h1>Paramètres de {{ user.company}}</h1>
 
-		<div class="my-2">
+		<div class="">
 			{{ form_start(form, {"method": "PATCH"}) }}
 			<div class="er-row rounded overflow-hidden my-3 p-2">
+			<h2>Nom de la société : </h2>
 				{{ form_row(form.company) }}
 			</div>
 
-			<div class="d-flex justify-content-between er-row p-2">
+			<div class="row d-flex justify-content-between border-bottom mt-5 p-2">
 				<div class="col-md-8">
-					<h4>Etablissements :</h4>
+					<h1>Etablissements :</h1>
 				</div>
 				<div class="col-md-4">
-					<button type="button" class="add_item_link btn btn-secondary btn-sm w-3 mt-2 float-end" data-collection-holder-class="structures">
+					<button type="button" class="add_item_link btn btn-secondary btn-sm float-end" data-collection-holder-class="structures">
 						<i class="fa-solid fa-folder-plus"></i>
 						Ajouter</button>
 				</div>
@@ -52,7 +53,7 @@
 			{% endif %}
 
 			<div class="col-12 d-flex justify-content-around">
-				<a href="{{ path('ezreview') }}" class="btn btn-outline-secondary btn-sm my-2">
+				<a href="{{ path('ezreview_hp') }}" class="btn btn-outline-secondary btn-sm my-2">
 					<i class="fa-solid fa-angles-left"></i>
 					Retour</a>
 				<button type="submit" class="btn btn-warning btn-sm my-2">
@@ -63,5 +64,6 @@
 
 			{{ form_end(form) }}
 		</div>
+
 	</div>
-{% endblock %}
+</div>{% endblock %}

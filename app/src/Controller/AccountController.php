@@ -3,12 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\CsvType;
 use League\Csv\Reader;
+use App\Form\EmailCsvType;
 use App\Mails\EnqueteMail;
+use App\Service\MailJetService;
 use App\Form\ChangeMailFormType;
 use App\Service\SendMailService;
-use App\Service\MailJetService;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Filesystem\Filesystem;
@@ -42,7 +42,7 @@ class AccountController extends AbstractController
   {
     $users = $userRepo->findBy([], ['email' => 'DESC']);
 
-    return $this->render('ezreview/account_index.html.twig', compact('users'));
+    return $this->render('main/account/account_index.html.twig', compact('users'));
   }
 
   /**
@@ -66,31 +66,29 @@ class AccountController extends AbstractController
       return $this->redirectToRoute('accounts_index');
     }
 
-    return $this->render('ezreview/account_edit.html.twig', [
+    return $this->render('ezreview/account/account_edit.html.twig', [
       'form' => $form->createView(),
       'user' => $user
     ]);
   }
 
   /**
-   * @Route("/ezreview/", name="ezreview")
+   * @Route("ezreview/", name="ezreview_hp")
    * @IsGranted("ROLE_USER")
    */
   public function show(Request $request, SluggerInterface $slugger, MessageBusInterface $bus, Security $security): Response
   {
     $user = $security->getUser();
 
-    $form = $this->createForm(CsvType::class);
+    $form = $this->createForm(EmailCsvType::class);
     $form->handleRequest($request);
 
     // dd(unserialize(""));
     if ($form->isSubmitted() && $form->isValid()) {
       /** @var UploadedFile $csvFile */
-      // upload le csv
+
       $csvFile = $form['csvFile']->getData();
-      // get la structure via l ID
       $structureId = $form['structureId']->getData();
-      // $structure = $this->structureRepo->findOneById($structureId);
       if ($csvFile) {
         $baseUrl = $request->getSchemeAndHttpHost();
 
@@ -99,16 +97,15 @@ class AccountController extends AbstractController
         $targets = $this->getEmailsArray($newFilename);
 
         foreach ($targets as $target) {
-          // $this->mailService->sendToTarget($target, $structureId, $baseUrl);
           $this->mailService->send($baseUrl, $target, $structureId);
           // $bus->dispatch(new EnqueteMail($target, $structureId, $baseUrl));
         }
         $this->deleteFile($newFilename);
       }
       $this->addFlash('success', 'Ficier csv traité !');
-      return $this->redirectToRoute('ezreview');
+      return $this->redirectToRoute('ezreview_hp');
     }
-    return $this->render('ezreview/account.html.twig', [
+    return $this->render('ezreview/ezreview_hp.html.twig', [
       'user' => $user,
       'form' => $form->createView(),
     ]);
@@ -133,10 +130,10 @@ class AccountController extends AbstractController
   private function getNewFileName($csvFile, $slugger)
   {
     $originalFilename = pathinfo($csvFile->getClientOriginalName(), PATHINFO_FILENAME);
-    // this is needed to safely include the file name as part of the URL
+
     $safeFilename = $slugger->slug($originalFilename);
     $newFilename = $safeFilename . '-' . uniqid() . '.' . $csvFile->guessExtension();
-    // Move the file to the directory where csvs are stored
+
     $csvFile->move(
       $this->getParameter('csv_directory'),
       $newFilename

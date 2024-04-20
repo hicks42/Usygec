@@ -37,10 +37,10 @@ Encore
    */
   .addEntry("app", "./assets/app.js")
   .addEntry("collection", "./assets/js/collection_managment.js")
-  .addEntry("upload", "./assets/js/upload.js")
-  // .addEntry("datepicker", "./assets/js/datetimepicker.js")
+  .addEntry("modal", "./assets/js/modal.js")
   .addEntry("flatpickr", "./assets/js/flatpickr.js")
   .addEntry("activity", "./assets/js/activity.js")
+  // .addEntry("datepicker", "./assets/js/datetimepicker.js")
   // .addEntry("ajaxsort", "./assets/js/ajax_sort.js")
   // .addEntry("companies_ajaxsort", "./assets/js/companies_ajax_sort.js")
 

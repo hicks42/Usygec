@@ -9,8 +9,9 @@ use App\Entity\Category;
 use App\Form\ClientType;
 use App\Form\CompanyType;
 use App\Form\ActivityType;
+use App\Form\CsvType;
 use App\Repository\UserRepository;
-use App\Service\CompanyCsvExporter;
+use App\Service\CompanyCsvManager;
 use App\Repository\CompanyRepository;
 use App\Repository\ActivityRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -125,7 +126,7 @@ class CompanyController extends AbstractController
       10 // Number of items per page
     );
 
-    return $this->render('companies/index.html.twig', [
+    return $this->render('bam/companies/index.html.twig', [
       'pagination' => $pagination,
       'categories' => $categories,
       'sort_order' => $sortOrder,
@@ -196,7 +197,7 @@ class CompanyController extends AbstractController
       return $this->redirectToRoute('app_companies_show', ['id' => $companyId], Response::HTTP_SEE_OTHER);
     }
 
-    return $this->renderForm('companies/new.html.twig', [
+    return $this->renderForm('bam/companies/new.html.twig', [
       'company' => $company,
       'form' => $form,
     ]);
@@ -209,7 +210,7 @@ class CompanyController extends AbstractController
   public function show(Company $company, Request $request, EntityManagerInterface $em, ActivityRepository $activityRepository, $id): Response
   {
     $activity = new Activity();
-    $dbactivities = $activityRepository->findBy(['company' => $company]);
+    // $dbactivities = $activityRepository->findBy(['company' => $company]);
     $form = $this->createForm(ClientType::class, $company, ['method' => 'POST']);
     $form->handleRequest($request);
 
@@ -231,7 +232,7 @@ class CompanyController extends AbstractController
       return $this->redirectToRoute('app_companies_show', ["id" => $id], Response::HTTP_SEE_OTHER);
     }
 
-    return $this->renderForm('companies/show.html.twig', [
+    return $this->renderForm('bam/companies/show.html.twig', [
       'form' => $form,
       'company' => $company,
     ]);
@@ -252,17 +253,17 @@ class CompanyController extends AbstractController
       return $this->redirectToRoute('app_companies_show', ["id" => $id], Response::HTTP_SEE_OTHER);
     }
 
-    return $this->renderForm('companies/edit.html.twig', [
+    return $this->renderForm('bam/companies/edit.html.twig', [
       'company' => $company,
       'form' => $form,
     ]);
   }
 
   /**
-   * @Route("/csv", name="csv_export")
+   * @Route("/csv/export", name="csv_export")
    * @IsGranted("ROLE_USER")
    */
-  public function exportCompanies(CompanyCsvExporter $companyCsvExporter): Response
+  public function exportCompanies(CompanyCsvManager $companyCsvExporter): Response
   {
     return $companyCsvExporter->exportCompaniesToCsv($this->user);
   }

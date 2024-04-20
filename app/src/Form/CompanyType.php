@@ -18,7 +18,8 @@ class CompanyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class,[
+            ->add('name', TextType::class, [
+                'label' => 'Nom de la société : ',
                 'attr' => [
                     'placeholder' => 'Société',
                     'class' => 'form-control'
@@ -26,15 +27,17 @@ class CompanyType extends AbstractType
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
+                'label' => 'Type : ',
                 'attr' => [
                     'class' => 'form-select',
                 ],
                 'choice_label' => function ($category) {
-                  return $category->getName();
+                    return $category->getName();
                 }
-              ])
-              ->add('civ', ChoiceType::class, [
+            ])
+            ->add('civ', ChoiceType::class, [
                 'required' => false,
+                'label' => 'Civilité : ',
                 'choices' => [
                     'Monsieur' => 'Mr',
                     'Madame' => 'Mme',
@@ -45,63 +48,72 @@ class CompanyType extends AbstractType
                     'class' => 'form-select',
                 ],
             ])
-            ->add('contactFirstName', TextType::class,[
+            ->add('contactFirstName', TextType::class, [
+                'label' => 'Prénom du contact : ',
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Prénom',
                     'class' => 'form-control'
                 ]
             ])
-            ->add('contactLastName', TextType::class,[
+            ->add('contactLastName', TextType::class, [
+                'label' => 'Nom du contact : ',
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Nom',
                     'class' => 'form-control'
                 ]
             ])
-            ->add('address1', TextType::class,[
+            ->add('address1', TextType::class, [
+                'label' => 'Adresse 1 : ',
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Addresse 1',
                     'class' => 'form-control'
                 ]
             ])
-            ->add('address2', TextType::class,[
+            ->add('address2', TextType::class, [
+                'label' => 'Adresse 2 : ',
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Addresse 2',
                     'class' => 'form-control'
                 ]
             ])
-            ->add('cp', TextType::class,[
+            ->add('cp', TextType::class, [
+                'label' => 'Code postal : ',
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Code postal',
                     'class' => 'form-control'
                 ]
             ])
-            ->add('city', TextType::class,[
+            ->add('city', TextType::class, [
+                'label' => 'Ville : ',
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Ville',
                     'class' => 'form-control'
                 ]
             ])
-            ->add('phone', TelType::class,[
+            ->add('phone', TelType::class, [
+                'label' => 'Téléphone société : ',
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Téléphone',
                     'class' => 'form-control'
                 ]
             ])
-            ->add('mobile', TelType::class,[
+            ->add('mobile', TelType::class, [
+                'label' => 'Portable du contact : ',
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Portable',
                     'class' => 'form-control'
                 ]
             ])
-            ->add('email', EmailType::class,[
+            ->add('email', EmailType::class, [
+                'label' => 'E-mail du contact : ',
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'E-mail',

@@ -3,14 +3,14 @@
 const colorDivs = document.querySelectorAll(".color");
 const generateBtn = document.querySelector(".generate");
 const rangeSliders = document.querySelectorAll('input[type="range"]');
-const currentHexes = document.querySelectorAll('.color h2');
+const currentHexes = document.querySelectorAll(".color h2");
 const popup = document.querySelector(".copy-container");
 
 // Sliders
-const adjustBtns = document.querySelectorAll('.adjust');
-const lockBtns = document.querySelectorAll('.lock');
-const closeAdjust = document.querySelectorAll('.close-adjustment');
-const sliderContainer = document.querySelectorAll('.sliders');
+const adjustBtns = document.querySelectorAll(".adjust");
+const lockBtns = document.querySelectorAll(".lock");
+const closeAdjust = document.querySelectorAll(".close-adjustment");
+const sliderContainer = document.querySelectorAll(".sliders");
 
 // Save Module
 const saveBtn = document.querySelector(".save");
@@ -38,7 +38,7 @@ let savedPalettes = [];
 
 generateBtn.addEventListener("click", randomColors);
 
-rangeSliders.forEach(slider => {
+rangeSliders.forEach((slider) => {
   slider.addEventListener("input", hslControls);
 });
 
@@ -48,7 +48,7 @@ colorDivs.forEach((slider, index) => {
   });
 });
 
-currentHexes.forEach(hex => {
+currentHexes.forEach((hex) => {
   // Ici on fait un callback pour pouvoir utiliser hex ds copyToClipboard(hex)
   hex.addEventListener("click", () => {
     copyToClipboard(hex);
@@ -66,7 +66,7 @@ adjustBtns.forEach((adjuster, index) => {
   adjuster.addEventListener("click", () => {
     openAdjusmentPanel(index);
   });
-})
+});
 
 closeAdjust.forEach((button, index) => {
   button.addEventListener("click", () => {
@@ -76,7 +76,7 @@ closeAdjust.forEach((button, index) => {
 
 lockBtns.forEach((button, index) => {
   // e stock l'event
-  button.addEventListener("click", e => {
+  button.addEventListener("click", (e) => {
     lockColor(e, index);
   });
 });
@@ -97,7 +97,6 @@ function generateHex() {
 }
 
 function randomColors() {
-
   initialColors = [];
 
   colorDivs.forEach((div, index) => {
@@ -151,20 +150,23 @@ function checkTextContrast(color, text) {
 }
 
 function colorizeRangeSliders(color, hue, brightness, saturation) {
-
   // Scale Brightness
   const midBright = color.set("hsl.l", 0.5);
   const scaleBright = chroma.scale(["black", midBright, "white"]);
 
   // Scale saturation
-  const noSat = color.set('hsl.s', 0);
-  const fullSat = color.set('hsl.s', 1);
+  const noSat = color.set("hsl.s", 0);
+  const fullSat = color.set("hsl.s", 1);
   const scaleSat = chroma.scale([noSat, color, fullSat]);
 
   // Update input color
   hue.style.backgroundImage = `linear-gradient(to right, rgb(204, 75, 75), rgb(204, 204, 75), rgb(75, 204, 75), rgb(75, 204, 204), rgb(75, 75, 204), rgb(204, 75, 204), rgb(204, 75, 75))`;
-  brightness.style.backgroundImage = `linear-gradient(to right,${scaleBright(0)}, ${scaleBright(0.5)}, ${scaleBright(1)})`;
-  saturation.style.backgroundImage = `linear-gradient(to right,${scaleSat(0)},${scaleSat(1)})`;
+  brightness.style.backgroundImage = `linear-gradient(to right,${scaleBright(
+    0
+  )}, ${scaleBright(0.5)}, ${scaleBright(1)})`;
+  saturation.style.backgroundImage = `linear-gradient(to right,${scaleSat(
+    0
+  )},${scaleSat(1)})`;
 }
 
 function hslControls(e) {
@@ -173,7 +175,9 @@ function hslControls(e) {
     e.target.getAttribute("data-bright") ||
     e.target.getAttribute("data-sat");
 
-  let rangeSliders = e.target.parentElement.querySelectorAll('input[type="range"]');
+  let rangeSliders = e.target.parentElement.querySelectorAll(
+    'input[type="range"]'
+  );
   const hue = rangeSliders[0];
   const brightness = rangeSliders[1];
   const saturation = rangeSliders[2];
@@ -208,21 +212,21 @@ function updateTextUI(index) {
 function resetInputs() {
   const rangeSliders = document.querySelectorAll(".rangeSliders input");
   // hsl()[0] is hue // hsl()[1] is sat // hsl()[2] is light/bright
-  rangeSliders.forEach(slider => {
+  rangeSliders.forEach((slider) => {
     if (slider.name === "hue") {
-      const hueColor = initialColors[slider.getAttribute('data-hue')];
+      const hueColor = initialColors[slider.getAttribute("data-hue")];
       const hueValue = chroma(hueColor).hsl()[0];
       slider.value = Math.floor(hueValue);
     }
 
     if (slider.name === "saturation") {
-      const satColor = initialColors[slider.getAttribute('data-sat')];
+      const satColor = initialColors[slider.getAttribute("data-sat")];
       const satValue = chroma(satColor).hsl()[1];
       slider.value = Math.floor(satValue);
     }
 
     if (slider.name === "brightness") {
-      const brightColor = initialColors[slider.getAttribute('data-bright')];
+      const brightColor = initialColors[slider.getAttribute("data-bright")];
       const brightValue = chroma(brightColor).hsl()[2];
       slider.value = Math.floor(brightValue * 100) / 100;
     }
@@ -280,11 +284,11 @@ function closePalette(e) {
 function savePalette(e) {
   saveContainer.classList.remove("active");
   popup.classList.remove("active");
-// L utilisateur donne le nom
+  // L utilisateur donne le nom
   const name = saveInput.value;
   const colors = [];
   // on enregistre chacun des hex dans colors
-  currentHexes.forEach(hex => {
+  currentHexes.forEach((hex) => {
     colors.push(hex.innerText);
   });
 
@@ -293,11 +297,11 @@ function savePalette(e) {
   let paletteId;
   const paletteObjects = JSON.parse(localStorage.getItem("palettes"));
   if (paletteObjects) {
-    paletteId =paletteObjects.length;
-    }else{
+    paletteId = paletteObjects.length;
+  } else {
     paletteId = savedPalettes.length;
   }
-  const paletteObj = { name, colors, id: paletteId }
+  const paletteObj = { name, colors, id: paletteId };
   // Ajout des paletteObj à savedPalette
   savedPalettes.push(paletteObj);
 
@@ -309,14 +313,14 @@ function savePalette(e) {
   makelibrary(paletteObj, savedPalettes);
 }
 
-function makelibrary(paletteObj, savedPalettes){
-  const palette = document.createElement("div")
+function makelibrary(paletteObj, savedPalettes) {
+  const palette = document.createElement("div");
   palette.classList.add("custom-palette");
   const title = document.createElement("h4");
   title.innerText = paletteObj.name;
   const preview = document.createElement("div");
   preview.classList.add("small-preview");
-  paletteObj.colors.forEach(smallColor => {
+  paletteObj.colors.forEach((smallColor) => {
     const smallDiv = document.createElement("div");
     smallDiv.style.background = smallColor;
     preview.appendChild(smallDiv);
@@ -329,7 +333,7 @@ function makelibrary(paletteObj, savedPalettes){
   paletteBtn.innerText = "Select";
 
   // Bouton select: actions
-  paletteBtn.addEventListener("click", e => {
+  paletteBtn.addEventListener("click", (e) => {
     closeLibrary();
     // le classList[1] correspond a l'ID de l'objet paletteObj
     // car 2eme entrée de la class CSS apres pick-palette-btn
@@ -380,17 +384,17 @@ function closeLibrary() {
 }
 
 function getLocal() {
-  if(localStorage.getItem("palettes") === null){
-    localPalettes =[];
-  }else{
+  if (localStorage.getItem("palettes") === null) {
+    localPalettes = [];
+  } else {
     const paletteObjects = JSON.parse(localStorage.getItem("palettes"));
     savedPalettes = [...paletteObjects];
-    paletteObjects.forEach(paletteObj => {
-    makelibrary(paletteObj, paletteObjects);
-  });
+    paletteObjects.forEach((paletteObj) => {
+      makelibrary(paletteObj, paletteObjects);
+    });
+  }
 }
-}
-function raz(){
+function raz() {
   localStorage.clear();
   location.reload();
 }

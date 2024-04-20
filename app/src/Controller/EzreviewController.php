@@ -122,6 +122,6 @@ class EzreviewController extends AbstractController
      */
     public function ezreview(): Response
     {
-        return $this->redirectToRoute('ezreview');
+        return $this->redirectToRoute('ezreview_hp');
     }
 }

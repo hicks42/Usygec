@@ -16,7 +16,10 @@ class UserType extends AbstractType
     {
         $builder
             ->add('company', TextType::class, [
-                'label' => 'Nom de la société',
+                'label' => false,
+                'label_attr' => [
+                    'class' => 'h2',
+                ],
                 'attr' => [
                     'placeholder' => 'Nom de votre employeur',
                     'class' => 'form-control'

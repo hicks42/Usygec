@@ -108,7 +108,7 @@
 		</div>
 
 		<div id="right-side" class="d-flex flex-column col-lg-9 col-12">
-			{% import "companies/macros/forms.html.twig" as formMacros %}
+			{% import "bam/companies/macros/forms.html.twig" as formMacros %}
 			{{ form_start(form, {"method": "PATCH"}) }}
 			<div class="row g-0  d-flex justify-content-between">
 				<div id="search-container" class="d-flex justify-content-start col-md-6 col-12 mb-2">
@@ -127,7 +127,7 @@
 						<i class="fa-solid fa-file-circle-plus me-1"></i>Ajouter
 					</button>
 
-					<button type="submit" class="btn btn-warning">
+					<button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#aknowledge-modal">
 						<i class="fa-solid fa-file-arrow-down me-1"></i>
 						Enregistrer
 					</button>

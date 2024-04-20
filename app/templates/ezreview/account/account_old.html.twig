@@ -10,7 +10,7 @@
 
 {% block javascripts %}
 	{{ parent() }}
-	{{ encore_entry_script_tags('upload') }}
+	{{ encore_entry_script_tags('modal') }}
 {% endblock javascripts %}
 
 {% block content %}
@@ -45,7 +45,7 @@
 								<div class="d-flex flex-nowrap justify-content-around col-xl-6 col-sm-12 my-3">
 									<a href="{{ path('enquete', {'id': structure.id}) }}" class="btn btn-secondary btn-sm w-3 mx-1">Envoyer mail</a>
 
-									<a href="#" type="button" data-structureid="{{structure.id}}" class="upload-btn btn btn-secondary btn-sm w-3 mx-1">charger un fichier</a>
+									<a href="#" type="button" data-structureid="{{structure.id}}" class="modal-btn btn btn-secondary btn-sm w-3 mx-1">charger un fichier</a>
 								</div>
 							</div>
 						</li>
@@ -54,16 +54,16 @@
 			</div>
 		</div>
 		<div class="d-flex justify-content-around text-center">
-			<a href="{{ path('user_edit') }}" class="btn btn-primary btn  w-3">Modifier votre compte</a>
+			<a href="{{ path('ezreview_settings') }}" class="btn btn-primary btn  w-3">Modifier votre compte</a>
 		</div>
 
-		<div class="upload-container d-flex justify-content-around">
-			<div class="upload-popup">
+		<div class="modal-container d-flex justify-content-around">
+			<div class="modal-popup">
 				<button class="close-popup">x</button>
 				{{ form_start(form, {"method": "POST"}) }}
 				<h6 id="form-title">Selectionnez un fichier csv</h6>
 				{{ form_row(form.csvFile) }}
-				<button type="submit" class="submit-upload">Traiter</button>
+				<button type="submit" class="submit-modal">Traiter</button>
 				{{ form_widget(form._token) }}
 				{{ form_end(form, {'render_rest': false}) }}
 			</div>

@@ -92,7 +92,7 @@ class ActivityController extends AbstractController
       10 // Number of items per page
     );
 
-    return $this->render('activities/index.html.twig', [
+    return $this->render('bam/activities/index.html.twig', [
       'pagination' => $pagination,
       'keyword' => $keyword,
       'sort_by' => $sortBy,
@@ -119,7 +119,7 @@ class ActivityController extends AbstractController
       return $this->redirectToRoute('app_company_activities', ["id" => $id], Response::HTTP_SEE_OTHER);
     }
 
-    return $this->renderForm('activities/new.html.twig', [
+    return $this->renderForm('bam/activities/new.html.twig', [
       'activity' => $activity,
       'form' => $form,
       'company' => $company,
@@ -132,7 +132,7 @@ class ActivityController extends AbstractController
    */
   public function show(Activity $activity): Response
   {
-    return $this->render('activities/show.html.twig', [
+    return $this->render('bam/bam/activities/show.html.twig', [
       'activity' => $activity,
     ]);
   }
@@ -155,7 +155,7 @@ class ActivityController extends AbstractController
       return $this->redirectToRoute('app_companies_show', ["id" => $company->getId()], Response::HTTP_SEE_OTHER);
     }
 
-    return $this->renderForm('activities/edit.html.twig', [
+    return $this->renderForm('bam/activities/edit.html.twig', [
       'activity' => $activity,
       'company' => $company,
       'form' => $form,
