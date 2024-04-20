@@ -1,11 +1,11 @@
 <?php
 
-namespace App\EventListener;
+namespace App\EventSubscriber;
 
-use Symfony\Component\Security\Http\Event\LogoutEvent;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class LogoutListener
+class SessionEventSubscriber
 {
     private $session;
 
@@ -14,9 +14,8 @@ class LogoutListener
         $this->session = $session;
     }
 
-    public function onSecurityLogout(LogoutEvent $event)
+    public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)
     {
-        // Nettoyer la session à la déconnexion
         $this->session->clear();
     }
 }
