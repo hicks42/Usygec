@@ -30,9 +30,9 @@
 var flashMessage = document.querySelector('.flash-container');
 
 if (flashMessage) {
-setTimeout(function () {
-flashMessage.style.display = 'none';
-}, 2000);
+	setTimeout(function () {
+	flashMessage.style.display = 'none';
+	}, 1000);
 }
 });
 				</script>
@@ -51,7 +51,7 @@ flashMessage.style.display = 'none';
 				</div>
 			</div>
 			<!-- ========================= scroll-top ========================= -->
-			<a href="#" class="scroll-top btn-hover">
+			<a href="#" class="d-none d-xxl-flex scroll-top btn-hover">
 				<i class="lni lni-chevron-up"></i>
 			</a>
 		{% endblock %}

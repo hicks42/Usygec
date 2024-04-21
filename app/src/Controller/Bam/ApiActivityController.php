@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Bam;
 
 use App\Entity\Company;
 use App\Entity\Activity;
@@ -8,12 +8,12 @@ use App\Form\ActivityType;
 use Psr\Log\LoggerInterface;
 use App\Repository\ActivityRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\SerializerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -38,14 +38,10 @@ class ApiActivityController extends AbstractController
   /**
    * @Route("/activities", name="api_activities_api", methods={"GET"})
    * @IsGranted("ROLE_USER")
+   * @IgnoreAnnotation("Security")
    */
   public function ajaxSortActivities(ActivityRepository $activityRepository, Request $request): Response
   {
-    // Ajoutez ce code pour enregistrer le contenu de l'en-tête Authorization dans les logs
-    // $authorizationHeader = $request->headers->get('Authorization');
-    // $url = $request->getUri();
-    // $this->logger->info('Authorization Header : ' . $authorizationHeader, ['url' => $url]);
-
     $headers = $request->headers->all();
     $this->logger->info('Request Headers: ' . json_encode($headers));
 
@@ -70,7 +66,6 @@ class ApiActivityController extends AbstractController
 
           $daysToReminder = $reminderDateOnly->diff($nowDate)->days;
 
-          // Add "+" in front of $daysToReminder if it is in the past
           if ($reminderDate < $now) {
             $daysToReminder = "+" . $daysToReminder;
           }
@@ -95,7 +90,6 @@ class ApiActivityController extends AbstractController
       }
       $allActivities = array_merge(array_reverse($urgentActivities), $reminderActivities, $activActivities);
 
-      // Create an array of data to be returned as JSON
       $responseData = [];
 
       foreach ($allActivities as $item) {
@@ -123,6 +117,7 @@ class ApiActivityController extends AbstractController
   /**
    * @Route("/activity/", name="api_add_activity", methods={"POST"})
    * @IsGranted("ROLE_USER")
+   * @IgnoreAnnotation("Security")
    */
   public function new(Request $request, EntityManagerInterface $em, SerializerInterface $serializer, ActivityRepository $activityRepository, $id): Response
   {
@@ -148,6 +143,7 @@ class ApiActivityController extends AbstractController
   /**
    * @Route("/activity/{id<[0-9]+>}", name="api_activities_show", methods={"GET"})
    * @IsGranted("ROLE_USER")
+   * @IgnoreAnnotation("Security")
    */
   public function show(Activity $activity): Response
   {
@@ -159,6 +155,7 @@ class ApiActivityController extends AbstractController
   /**
    * @Route("/{id}/edit", name="api_activities_edit", methods={"PATCH"})
    * @IsGranted("ROLE_USER")
+   * @IgnoreAnnotation("Security")
    */
   public function edit(Request $request, EntityManagerInterface $em, Activity $activity, ActivityRepository $activityRepository): Response
   {
@@ -182,6 +179,7 @@ class ApiActivityController extends AbstractController
   /**
    * @Route("/{id}", name="api_activities_delete", methods={"POST"})
    * @IsGranted("ROLE_USER")
+   * @IgnoreAnnotation("Security")
    */
   public function delete(Request $request, Activity $activity, ActivityRepository $activityRepository): Response
   {

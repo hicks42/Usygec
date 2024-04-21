@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Bam;
 
 use App\Entity\Company;
 use App\Entity\Activity;
 use App\Form\ActivityType;
-use Psr\Log\LoggerInterface;
 use App\Repository\ActivityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -13,7 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -26,26 +24,24 @@ class ActivityController extends AbstractController
 
   private $security;
   private $user;
-  private $logger;
 
-  public function __construct(Security $security, LoggerInterface $logger)
+  public function __construct(Security $security)
   {
     $this->security = $security;
-    $this->logger = $logger;
     $this->user = $this->security->getUser();
   }
 
   /**
    * @Route("/", name="app_activities", methods={"GET"})
    * @IsGranted("ROLE_USER")
+   * @IgnoreAnnotation("Security")
    */
   public function index(ActivityRepository $activityRepository, Request $request, PaginatorInterface $paginator): Response
   {
     $keyword = $request->query->get('keyword');
-    $sortBy = $request->query->get('sort_by', 'reminder'); // Default to sorting by reminder
-    $sortOrder = $request->query->get('sort_order', 'asc'); // Default to ascending order
+    $sortBy = $request->query->get('sort_by', 'reminder');
+    $sortOrder = $request->query->get('sort_order', 'asc');
 
-    // $activities = $activityRepository->findByKeyword($this->user, $keyword, $sortBy, $sortOrder);
     $activities = $activityRepository->findByKeywordWithCustomSorting($this->user, $keyword, $sortBy, $sortOrder);
 
     $now = new \DateTime();
@@ -53,7 +49,7 @@ class ActivityController extends AbstractController
 
     $activActivities = [];
     foreach ($activities as $activity) {
-      //
+
       if ($activity->getReminder()) {
         $reminderDate = $activity->getReminder();
         $nowDate = $now->setTime(0, 0, 0);
@@ -61,7 +57,6 @@ class ActivityController extends AbstractController
 
         $daysToReminder = $reminderDateOnly->diff($nowDate)->days;
 
-        // Add "+" in front of $daysToReminder if it is in the past
         if ($reminderDate < $now) {
           $daysToReminder = "+" . $daysToReminder;
         }
@@ -85,11 +80,10 @@ class ActivityController extends AbstractController
       }
     }
 
-    // Paginate the filtered result
     $pagination = $paginator->paginate(
-      $activActivities, // Query or result to paginate
-      $request->query->getInt('page', 1), // Current page number
-      10 // Number of items per page
+      $activActivities,
+      $request->query->getInt('page', 1),
+      10
     );
 
     return $this->render('bam/activities/index.html.twig', [
@@ -103,6 +97,7 @@ class ActivityController extends AbstractController
   /**
    * @Route("/{id<[0-9]+>}/add-activity", name="app_add_activity", methods={"GET", "POST"})
    * @IsGranted("ROLE_USER")
+   * @IgnoreAnnotation("Security")
    */
   public function new(Request $request, EntityManagerInterface $em, ActivityRepository $activityRepository, $id): Response
   {
@@ -129,6 +124,7 @@ class ActivityController extends AbstractController
   /**
    * @Route("/{id<[0-9]+>}", name="app_activities_show", methods={"GET"})
    * @IsGranted("ROLE_USER")
+   * @IgnoreAnnotation("Security")
    */
   public function show(Activity $activity): Response
   {
@@ -140,6 +136,7 @@ class ActivityController extends AbstractController
   /**
    * @Route("/{id}/edit", name="app_activities_edit", methods={"GET", "POST"})
    * @IsGranted("ROLE_USER")
+   * @IgnoreAnnotation("Security")
    */
   public function edit(Request $request, EntityManagerInterface $em, Activity $activity, ActivityRepository $activityRepository): Response
   {
@@ -165,6 +162,7 @@ class ActivityController extends AbstractController
   /**
    * @Route("/{id}", name="app_activities_delete", methods={"POST"})
    * @IsGranted("ROLE_USER")
+   * @IgnoreAnnotation("Security")
    */
   public function delete(Request $request, Activity $activity, ActivityRepository $activityRepository): Response
   {

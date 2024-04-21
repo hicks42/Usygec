@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Bam;
 
 use App\Entity\User;
 use App\Entity\Company;
@@ -35,23 +35,23 @@ class CompanyController extends AbstractController
 {
 
   private $security;
-  private $user;
   private $managerRegistry;
 
   public function __construct(Security $security, ManagerRegistry $managerRegistry)
   {
     $this->security = $security;
-    $this->user = $this->security->getUser();
     $this->managerRegistry = $managerRegistry;
   }
 
   /**
    * @Route("/", name="app_companies", methods={"GET"})
    * @IsGranted("ROLE_USER")
+   * @IgnoreAnnotation("Security")
    */
   public function index(CompanyRepository $companyRepository, Request $request, PaginatorInterface $paginator): Response
   {
-    // $userCompanies = $companyRepository->findBy(['handler' => $this->user], ['name' => 'ASC']);
+    $user = $this->security->getUser();
+    // $userCompanies = $companyRepository->findBy(['handler' => $user], ['name' => 'ASC']);
 
     ////////  search bar  /////////////////////////
     $searchName = $request->query->get('name');
@@ -63,13 +63,13 @@ class CompanyController extends AbstractController
     // Determine the order for sorting companies by name
     $nameSortOrder = $sortOrder === 'asc' ? 'desc' : 'asc';
 
-    $searchResult = $companyRepository->findBySearchCriteria($this->user, $searchName, $searchCategory, $sortBy, $sortOrder);
+    $searchResult = $companyRepository->findBySearchCriteria($user, $searchName, $searchCategory, $sortBy, $sortOrder);
 
     ///////////////////////// toggle page : index / searchResult /////////////////////////
     if (!empty($searchName) || !empty($searchCategory)) {
       $userCompanies = $searchResult;
     } else {
-      $userCompanies = $companyRepository->findBy(['handler' => $this->user], ['name' => $sortOrder]);
+      $userCompanies = $companyRepository->findBy(['handler' => $user], ['name' => $sortOrder]);
     }
 
     // Sort the $userCompanies array based on the selected criteria
@@ -136,49 +136,9 @@ class CompanyController extends AbstractController
   }
 
   /**
-   * @Route("/json", name="app_ajax_sort", methods={"GET", "POST"})
-   * @IsGranted("ROLE_USER")
-   */
-  public function ajaxSort(Request $request, CompanyRepository $companyRepository): JsonResponse
-  {
-    $user = $this->user;
-    $sortBy = $request->query->get('sort_by', 'name');
-    $sortOrder = $request->query->get('sort_order', 'asc');
-
-    // Fetch user companies
-    $userCompanies = $companyRepository->findBy(['handler' => $user], ['name' => $sortOrder]);
-
-    // Sort the userCompanies array based on the selected criteria
-    if ($sortBy === 'name') {
-      usort($userCompanies, function ($a, $b) use ($sortOrder) {
-        return strcasecmp($a->getName(), $b->getName()) * ($sortOrder === 'asc' ? 1 : -1);
-      });
-    }
-
-    // Create an array of data to be returned as JSON
-    $responseData = [];
-
-    foreach ($userCompanies as $company) {
-      // Populate the data array with company information
-      $responseData[] = [
-        'category' => $company->getCategory()->getName(),
-        'id' => $company->getId(),
-        'name' => $company->getName(),
-        'phone' => $company->getPhone(),
-        'contactFirstName' => $company->getContactFirstName(),
-        'contactLastName' => $company->getContactLastName(),
-        'mobile' => $company->getMobile(),
-        'email' => $company->getEmail(),
-        // 'activitiesCount' => $company->getActivitiesCount(),
-      ];
-    }
-
-    return new JsonResponse($responseData);
-  }
-
-  /**
    * @Route("/new", name="app_companies_new", methods={"GET", "POST"})
    * @IsGranted("ROLE_USER")
+   * @IgnoreAnnotation("Security")
    */
   public function new(Request $request, CompanyRepository $companyRepository): Response
   {
@@ -206,6 +166,7 @@ class CompanyController extends AbstractController
   /**
    * @Route("/{id}/show", name="app_companies_show", methods={"GET", "POST"})
    * @IsGranted("ROLE_USER")
+   * @IgnoreAnnotation("Security")
    */
   public function show(Company $company, Request $request, EntityManagerInterface $em, ActivityRepository $activityRepository, $id): Response
   {
@@ -241,9 +202,11 @@ class CompanyController extends AbstractController
   /**
    * @Route("/{id<[0-9]+>}/edit", name="app_companies_edit", methods={"GET", "POST"})
    * @IsGranted("ROLE_USER")
+   * @IgnoreAnnotation("Security")
    */
   public function edit(Request $request, Company $company, CompanyRepository $companyRepository, $id): Response
   {
+
     $form = $this->createForm(CompanyType::class, $company);
     $form->handleRequest($request);
 
@@ -262,10 +225,12 @@ class CompanyController extends AbstractController
   /**
    * @Route("/csv/export", name="csv_export")
    * @IsGranted("ROLE_USER")
+   * @IgnoreAnnotation("Security")
    */
   public function exportCompanies(CompanyCsvManager $companyCsvExporter): Response
   {
-    return $companyCsvExporter->exportCompaniesToCsv($this->user);
+    $user = $this->security->getUser();
+    return $companyCsvExporter->exportCompaniesToCsv($user);
   }
 
   /**

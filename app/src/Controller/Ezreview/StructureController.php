@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Ezreview;
 
 use App\Entity\Structure;
 use App\Repository\StructureRepository;
@@ -17,6 +17,8 @@ class StructureController extends AbstractController
 {
     /**
      * @Route("/", name="structure_index", methods={"GET"})
+     * @IsGranted("ROLE_USER")
+     * @IgnoreAnnotation("Security")
      */
     public function index(StructureRepository $structureRepository): Response
     {
@@ -27,6 +29,8 @@ class StructureController extends AbstractController
 
     /**
      * @Route("/{id}", name="structure_show", methods={"GET"})
+     * @IsGranted("ROLE_USER")
+     * @IgnoreAnnotation("Security")
      */
     public function show(Structure $structure): Response
     {
@@ -37,6 +41,8 @@ class StructureController extends AbstractController
 
     /**
      * @Route("/{id}", name="structure_delete", methods={"POST"})
+     * @IsGranted("ROLE_USER")
+     * @IgnoreAnnotation("Security")
      */
     public function delete(Request $request, Structure $structure, EntityManagerInterface $entityManager): Response
     {

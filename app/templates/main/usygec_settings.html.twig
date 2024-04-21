@@ -62,7 +62,8 @@
 		<div class="modal-popup">
 			<button class="close-popup">x</button>
 			{{ form_start(formcsv, {"method": "POST"}) }}
-			<h6 id="form-title" class="my-4">Choisir un fichier CSV contenant des mails.</h6>
+			<h6 id="form-title" class="my-4">Choisir un fichier CSV contenant les sociétés.</h6>
+			<p class="mb-4">Les doublons (nom de société et code postal) seront ignorés</p>
 			{{ form_row(formcsv.csvFile) }}
 			<button type="submit" class="submit-modal w-100">Traiter</button>
 			{# {{ form_widget(formcsv._token) }} #}

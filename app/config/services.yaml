@@ -17,6 +17,14 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+    App\EventSubscriber\SessionEventSubscriber:
+        tags:
+            - { name: kernel.event_listener, event: security.interactive_login }
+
+    App\EventSubscriber\LogoutEventSubscriber:
+            tags:
+                - { name: kernel.event_listener, event: security.logout }
+
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
@@ -44,6 +52,7 @@ services:
             $companyRepository: '@App\Repository\CompanyRepository'
 
     Knp\Component\Pager\PaginatorInterface: '@knp_paginator'
+
 
     # App\EventSubscriber\JWTAuthenticationSubscriber:
     #     arguments:
