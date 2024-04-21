@@ -28,46 +28,12 @@ class UserController extends AbstractController
         $this->security = $security;
     }
 
-    /**
-     * @Route("/ezreview/settings", name="ezreview_settings")
-     * @IsGranted("ROLE_USER")
-     */
-    public function editEzreviewUser(Request $request, EntityManagerInterface $em): Response
-    {
-        $user = $this->security->getUser();
-
-        $form = $this->createForm(UserType::class, $user, [
-            'method' => 'POST',
-        ]);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $structures = $user->getStructures();
-
-            foreach ($structures as $key => $structure) {
-
-                $structure->setUser($user);
-                $structures->set($key, $structure);
-            }
-
-            $em->flush();
-
-            $this->addFlash('success', 'Modification enregistrée.');
-
-            return $this->redirectToRoute('ezreview_settings');
-        }
-
-        return $this->render('ezreview/ezreview_settings.html.twig', [
-            'form' => $form->createView(),
-            'user' => $user
-        ]);
-    }
 
     /**
      * @Route("/usygec/settings", name="usygec_settings")
      * @IsGranted("ROLE_USER")
-     */ /////
+     * @IgnoreAnnotation("Security")
+     */
     public function editUsygecUser(Request $request, CompanyCsvManager $companyCsvImporter): Response
     {
         $user = $this->security->getUser();
@@ -94,19 +60,5 @@ class UserController extends AbstractController
             'formcsv' => $formcsv->createView(),
             'user' => $user,
         ]);
-    }
-
-    private function getNewFileName($csvFile, $slugger)
-    {
-        $originalFilename = pathinfo($csvFile->getClientOriginalName(), PATHINFO_FILENAME);
-
-        $safeFilename = $slugger->slug($originalFilename);
-        $newFilename = $safeFilename . '-' . uniqid() . '.' . $csvFile->guessExtension();
-
-        $csvFile->move(
-            $this->getParameter('csv_directory'),
-            $newFilename
-        );
-        return $newFilename;
     }
 }
