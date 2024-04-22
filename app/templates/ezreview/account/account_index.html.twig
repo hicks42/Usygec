@@ -27,8 +27,9 @@
 				{% for user in users %}
 					<div class="row g-0 d-flex align-items-center mt-3 border-bottom">
 						<div class="col-9">
-							<strong>-
-								{{ user.email }}</strong>
+						<a href=" {{ path('lobby', {'_switch_user': user.email})}}" class="link-secondary mt-1">
+							<strong>- {{ user.email }}</strong>
+							</a>
 						</div>
 						<div class="col-1 text-center">
 							<a href="{{ path('account_edit', {id: user.id}) }}" class="btn btn-sm btn-secondary">

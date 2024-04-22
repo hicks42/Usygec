@@ -36,7 +36,7 @@ class AccountController extends AbstractController
   {
     $users = $userRepo->findBy([], ['email' => 'DESC']);
 
-    return $this->render('main/account/account_index.html.twig', compact('users'));
+    return $this->render('ezreview/account/account_index.html.twig', compact('users'));
   }
 
   /**

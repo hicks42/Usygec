@@ -1,4 +1,9 @@
 <div class="d-flex justify-content-end w-100">
+{% if is_granted('IS_IMPERSONATOR') %}
+	<div class="alert alert-warning">
+    <a href="{{ impersonation_exit_path(path('lobby') ) }}">Exit impersonation</a>
+	</div>
+{% endif %}
 	<div class="my-0">
 		{% if is_granted('ROLE_ADMIN') %}
 			<ul class="banner-menu mx-2">
