@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-end w-100">
 {% if is_granted('IS_IMPERSONATOR') %}
-	<div class="alert alert-warning">
-    <a href="{{ impersonation_exit_path(path('lobby') ) }}">Exit impersonation</a>
+	<div class="alert alert-info">
+    <a href="{{ impersonation_exit_path(path('lobby') ) }}"><i class="fas fa-sign-out-alt ms-2"></i> Admin</a>
 	</div>
 {% endif %}
 	<div class="my-0">
