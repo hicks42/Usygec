@@ -106,7 +106,20 @@
 					<div class="d-flex justify-content-between">
 						<div class="d-flex align-items-end p-2 position-relative">
 							{{ activity.reminder ? activity.reminder|format_datetime(locale='fr', pattern='dd MMM') : '' }}
-							<span class="badge-reminder-days position-absolute top-0 start-100">
+							{% set couleurBg %}
+							{% if '+' in daysToReminder %}
+								bg-dark
+							{% else %}
+								{% if daysToReminder >= 4 %}
+									green-bg
+								{% elseif daysToReminder >= 2 %}
+									orange-bg
+								{% elseif daysToReminder >= 0 %}
+									red-bg
+								{% endif %}
+							{% endif %}
+							{% endset %}
+							<span class="badge-reminder {{ couleurBg }} position-absolute top-0 start-100">
 								{{ daysToReminder }}
 								j
 							</span>
