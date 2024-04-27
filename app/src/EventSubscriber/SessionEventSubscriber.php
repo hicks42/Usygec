@@ -2,16 +2,16 @@
 
 namespace App\EventSubscriber;
 
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class SessionEventSubscriber
 {
     private $session;
 
-    public function __construct(SessionInterface $session)
+    public function __construct(RequestStack $requestStack)
     {
-        $this->session = $session;
+        $this->session = $requestStack->getSession();
     }
 
     public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)
