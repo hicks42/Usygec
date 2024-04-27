@@ -3,9 +3,9 @@
 namespace App\EventSubscriber;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Http\Event\LogoutEvent;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
@@ -16,11 +16,11 @@ class LogoutEventSubscriber implements EventSubscriberInterface
     private $flash;
     private $session;
 
-    public function __construct(UrlGeneratorInterface $urlGenerator, FlashBagInterface $flash, SessionInterface $session)
+    public function __construct(UrlGeneratorInterface $urlGenerator, FlashBagInterface $flash, RequestStack $requestStack)
     {
         $this->urlGenerator = $urlGenerator;
         $this->flash = $flash;
-        $this->session = $session;
+        $this->session = $requestStack->getSession();
     }
 
     public function onLogoutEvent(LogoutEvent $event)

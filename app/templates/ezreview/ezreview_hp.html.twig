@@ -13,9 +13,9 @@
 	{{ encore_entry_script_tags('modal') }}
 {% endblock javascripts %}
 {% block content %}
-	<div class="row d-flex justify-content-center">
+	<div class="row g-0 d-flex justify-content-center">
 		<div class="col-md-10 col-12">
-			<div class="row d-flex justify-content-between my-3 border-bottom">
+			<div class="row g-0 d-flex justify-content-between my-3 border-bottom">
 				<div class="d-flex justify-content-start flex-column col-10 my-2">
 					<h3>Compte EZ Review de:</h3>
 					<span class="font-weight-bold fs-6 ms-2">
@@ -42,7 +42,7 @@
 					{% for structure in user.structures %}
 						<li>
 							<hr>
-							<div class="row d-flex flex-wrap justify-content-around align-items-center m-1">
+							<div class="row g-0 d-flex flex-wrap justify-content-around align-items-center m-1">
 								<div class="col-12 col-md-4 my-3">
 									<div class="d-flex flex-column align-items-center">
 										<i class="fa-solid fa-building lead my-2"></i>
@@ -87,4 +87,5 @@
 			</div>
 		</div>
 	</div>
-</div>{% endblock %}
+</div>
+{% endblock %}
