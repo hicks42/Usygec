@@ -185,7 +185,7 @@
   }
 }
 
-.badge-reminder-days {
+.badge-reminder {
   top: 0;
   display: inline-block;
   padding: 0.5em 0.65em;
@@ -195,7 +195,6 @@
   color: #fff;
   text-align: center;
   white-space: nowrap;
-  background-color: #dc3545;
   border-radius: 50rem ;
   transform: translateX(-50%) translateY(-50%) ;
   vertical-align: baseline;
@@ -205,6 +204,18 @@
   --bs-badge-font-weight: 700;
   --bs-badge-color: #fff;
   --bs-badge-border-radius: var(--bs-border-radius);
+}
+
+.green-bg{
+  background-color: #198754;
+}
+
+.orange-bg{
+  background-color: #ffc107;
+}
+
+.red-bg{
+  background-color: #dc3545;
 }
 
 .pagination-row {
