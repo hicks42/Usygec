@@ -1,38 +1,4 @@
-version: '3'
-
 services:
-  # mysql
-  db-service:
-    image: mysql:5.6
-    container_name: USYGEC-db-container
-    ports:
-      - "4306:3306"
-    volumes:
-      - db-data:/var/lib/mysql
-    command:
-      --default-authentication-plugin=mysql_native_password
-      --character-set-server=utf8mb4
-      --collation-server=utf8mb4_unicode_ci
-    restart: always # always restart unless stopped manually
-    environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-    networks:
-      - app-USYGEC
-
-  #phpmyadmin
-  phpmyadmin-service:
-    image: phpmyadmin
-    container_name: USYGEC-phpmyadmin-container
-    restart: always
-    depends_on:
-      - db-service
-    ports:
-      - 8081:80
-    environment:
-      PMA_HOST: db-service
-    networks:
-      - app-USYGEC
 
   # apache 7.4
   www-service:
@@ -49,28 +15,13 @@ services:
       - ./app/var/log/apache_log:/var/log/apache2
     restart: on-failure:5
     networks:
-      - app-USYGEC
+      - USYGEC-ntw
 
-  # # React
-  # frontend:
-  #   container_name: usygec-react-container
-  #   build:
-  #     context: ./frontend
-  #   # command: npm run dev
-  #   volumes:
-  #     - ./frontend/react/public:/usr/app/public
-  #     - ./frontend/react/src:/usr/app/src
-  #     - ./frontend/react/ssl:/usr/app/ssl
-  #     - ./frontend/react/package.json:/usr/app/package.json
-  #   ports:
-  #     - "3000:3000"
-  #   depends_on:
-  #     - www-service
-  #   restart: on-failure:5
-  #   networks:
-  #     - app-USYGEC
+    # depends_on:
+    #   - db-service
 
 networks:
-  app-USYGEC:
-volumes:
-  db-data:
+  USYGEC-ntw:
+    external: true
+    driver: bridge
+    name: USYGEC-ntw

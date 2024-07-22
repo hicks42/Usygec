@@ -47,6 +47,11 @@ class Order
   private $delivery;
 
   /**
+   * @ORM\OneToMany(targetEntity=OrderDetails::class, mappedBy="theOrder")
+   */
+  private $orderDetails;
+
+  /**
    * @ORM\Column(type="string", length=255)
    */
   private $reference;

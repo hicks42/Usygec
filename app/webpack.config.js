@@ -40,7 +40,7 @@ Encore
   .addEntry("modal", "./assets/js/modal.js")
   .addEntry("flatpickr", "./assets/js/flatpickr.js")
   .addEntry("activity", "./assets/js/activity.js")
-  // .addEntry("datepicker", "./assets/js/datetimepicker.js")
+  .addEntry("datepicker", "./assets/js/datetimepicker.js")
   // .addEntry("ajaxsort", "./assets/js/ajax_sort.js")
   // .addEntry("companies_ajaxsort", "./assets/js/companies_ajax_sort.js")
 

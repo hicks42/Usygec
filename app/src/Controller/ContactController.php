@@ -33,7 +33,7 @@ class ContactController extends AbstractController
 
             $mailService->send(
                 $contact->get('email')->getData(),  //from
-                'p.gerin@usygec.fr',                //to
+                'info@usygec.fr',                //to
                 'Mail de usygec.fr : ' . $sujet,    //subject
                 'contact_template',                 //template
                 $context                            //context
