@@ -1,5 +1,7 @@
 FROM php:7.4-apache
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
     \
     &&  apt-get update \
@@ -14,7 +16,7 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
     &&  mv composer.phar /usr/local/bin/composer \
     \
     && curl -sL https://deb.nodesource.com/setup_18.x | bash \
-    && apt-get install nodejs \
+    && apt-get install -y nodejs \
     \
     &&  curl -sS https://get.symfony.com/cli/installer | bash \
     &&  mv /root/.symfony5/bin/symfony /usr/local/bin \

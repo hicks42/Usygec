@@ -12,7 +12,7 @@
 	{{ parent() }}
 	{# <script src="http://localhost:8080/wip.js"></script> #}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js" integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ==" crossorigin="anonymous"></script>
-	<script src="moment-timezone-with-data.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.31/moment-timezone-with-data.js"></script>
 	{{ encore_entry_script_tags('datepicker') }}
 {% endblock javascripts %}
 
@@ -28,11 +28,11 @@
 			</div>
 
 			<div class="row d-flex justify-content-between mt-5">
-				<div class="col-md-6 col-sm-12">
+				<div class="col-md-6 col-12">
 					Indiquez la date et l'heure de votre rendez vous :
 				</div>
 
-				<div class="col-md-6 col-sm-12 d-flex justify-content-center justify-content-md-end">
+				<div class="col-md-6 col-12 d-flex justify-content-center justify-content-md-end">
 					<div id="picker"></div>
 					{{ form_row(form.date_rdv, { 'type': "hidden", 'id': 'result'}) }}
 				</div>
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 			<div class="row mt-5">
-				<div class="col-md-12">
+				<div class="col-12 d-flex flex-direction-column">
 					{{ form_row(form.message) }}
 				</div>
 				{{ form_end(form) }}

@@ -1,24 +1,29 @@
 ﻿(function ($) {
-  'use strict';
+  "use strict";
   $.fn.dateTimePicker = function (options) {
-
-    var settings = $.extend({
-      selectData: "now",
-      dateFormat: "DD-MMM-YYYY HH:mm",
-      dateFormatDigit: "YYYY-MM-DD HH:mm",
-      showTime: true,
-      locale: 'fr',
-      positionShift: { top: 20, left: 1 },
-      title: "Select Date and Time",
-      buttonTitle: "Select"
-    }, options);
+    var settings = $.extend(
+      {
+        selectData: "now",
+        dateFormat: "DD-MMM-YYYY HH:mm",
+        dateFormatDigit: "YYYY-MM-DD HH:mm",
+        showTime: true,
+        locale: "fr",
+        positionShift: { top: 20, left: 1 },
+        title: "Select Date and Time",
+        buttonTitle: "Select",
+      },
+      options
+    );
 
     moment.locale(settings.locale);
     var elem = this;
-    var limitation = { "hour": 23, "minute": 59 };
+    var limitation = { hour: 23, minute: 59 };
     var mousedown = false;
     var timeout = 800;
-    var selectDate = settings.selectData == "now" ? moment() : moment(settings.selectData, settings.dateFormat);
+    var selectDate =
+      settings.selectData == "now"
+        ? moment()
+        : moment(settings.selectData, settings.dateFormat);
     if (selectDate < moment()) {
       selectDate = moment();
     }
@@ -28,37 +33,37 @@
       if (lastSelected != selectDate) {
         selectDate = copyDate(lastSelected);
       }
-      elem.addClass("dtp_main float-end");
+      elem.addClass("dtp_main w-100 float-end");
       updateMainElemGlobal();
       //  elem.text(selectDate.format(settings.dateFormat));
       function updateMainElemGlobal() {
-        var arrF = settings.dateFormat.split(' ');
+        var arrF = settings.dateFormat.split(" ");
         if (settings.showTime && arrF.length != 2) {
           arrF.length = 2;
-          arrF[0] = 'DD/MMM/YYYY';
-          arrF[1] = 'HH:mm';
+          arrF[0] = "DD/MMM/YYYY";
+          arrF[1] = "HH:mm";
         }
-        var $s = $('<span>');
+        var $s = $("<span>");
 
         $s.text(lastSelected.format(arrF[0]));
         elem.empty();
         elem.append($s);
-        $s = $('<i>');
-        $s.addClass('fa fa-calendar ico-size');
+        $s = $("<i>");
+        $s.addClass("fa fa-calendar ico-size");
         elem.append($s);
         if (settings.showTime) {
-          $s = $('<span>');
+          $s = $("<span>");
           $s.text(lastSelected.format(arrF[1]));
           elem.append($s);
-          $s = $('<i>');
-          $s.addClass('fa fa-clock-o ico-size aaa');
+          $s = $("<i>");
+          $s.addClass("fa fa-clock-o ico-size aaa");
           elem.append($s);
         }
       }
-      elem.on('click', function () {
-        var $win = $('<div>');
+      elem.on("click", function () {
+        var $win = $("<div>");
         $win.addClass("dtp_modal-win");
-        var $body = $('body');
+        var $body = $("body");
         $body.append($win);
         var $content = createContent();
         $body.append($content);
@@ -69,31 +74,31 @@
         // $content.css({ top: (offset.top + settings.positionShift.top) + "px", left: (settings.positionShift.left) + "%" });
 
         feelDates(selectDate);
-        $win.on('click', function () {
+        $win.on("click", function () {
           $content.remove();
           $win.remove();
         });
         if (settings.showTime) {
           attachChangeTime();
-          var $fieldTime = $('#field-time');
-          var $hour = $fieldTime.find('#d-hh');
-          var $minute = $fieldTime.find('#d-mm');
+          var $fieldTime = $("#field-time");
+          var $hour = $fieldTime.find("#d-hh");
+          var $minute = $fieldTime.find("#d-mm");
         }
 
         function feelDates(selectM) {
-          var $fDate = $content.find('#field-data');
+          var $fDate = $content.find("#field-data");
           $fDate.empty();
           $fDate.append(createMonthPanel(selectM));
           $fDate.append(createCalendar(selectM));
         }
 
         function createCalendar(selectedMonth) {
-          var $c = $('<div>');
-          $c.addClass('dtp_modal-calendar');
+          var $c = $("<div>");
+          $c.addClass("dtp_modal-calendar");
           for (var i = 0; i < 7; i++) {
-            var $e = $('<div>');
-            $e.addClass('dtp_modal-calendar-cell dtp_modal-colored');
-            $e.text(moment().weekday(i).format('ddd'));
+            var $e = $("<div>");
+            $e.addClass("dtp_modal-calendar-cell dtp_modal-colored");
+            $e.text(moment().weekday(i).format("ddd"));
             $c.append($e);
           }
           var m = copyDate(selectedMonth);
@@ -102,16 +107,17 @@
           // console.log(selectData.format('DD--MM--YYYY'));
           // console.log(m.weekday());
           var flagStart = totalMonths(selectedMonth) === totalMonths(startDate);
-          var flagSelect = totalMonths(lastSelected) === totalMonths(selectedMonth);
-          var cerDay = parseInt(selectedMonth.format('D'));
-          var dayNow = parseInt(startDate.format('D'));
+          var flagSelect =
+            totalMonths(lastSelected) === totalMonths(selectedMonth);
+          var cerDay = parseInt(selectedMonth.format("D"));
+          var dayNow = parseInt(startDate.format("D"));
           for (var i = 0; i < 6; i++) {
             for (var j = 0; j < 7; j++) {
-              var $b = $('<div>');
-              $b.html('&nbsp;');
-              $b.addClass('dtp_modal-calendar-cell');
+              var $b = $("<div>");
+              $b.html("&nbsp;");
+              $b.addClass("dtp_modal-calendar-cell");
               if (m.month() == selectedMonth.month() && m.weekday() == j) {
-                var day = parseInt(m.format('D'));
+                var day = parseInt(m.format("D"));
                 $b.text(day);
 
                 // forbide past selection
@@ -122,16 +128,14 @@
 
                 // forbide futur selection
                 if (flagStart && day > dayNow) {
-                  $b.addClass('dtp_modal-grey');
+                  $b.addClass("dtp_modal-grey");
+                } else if (flagSelect && day == cerDay) {
+                  $b.addClass("dtp_modal-cell-selected");
+                } else {
+                  $b.addClass("cursorily");
+                  $b.bind("click", changeDate);
                 }
-                else if (flagSelect && day == cerDay) {
-                  $b.addClass('dtp_modal-cell-selected');
-                }
-                else {
-                  $b.addClass('cursorily');
-                  $b.bind('click', changeDate);
-                }
-                m.add(1, 'days');
+                m.add(1, "days");
               }
               $c.append($b);
             }
@@ -140,37 +144,36 @@
         }
 
         function changeDate() {
-
           var $div = $(this);
           selectDate.date($div.text());
           lastSelected = copyDate(selectDate);
           updateDate();
-          var $fDate = $content.find('#field-data');
-          var old = $fDate.find('.dtp_modal-cell-selected');
-          old.removeClass('dtp_modal-cell-selected');
-          old.addClass('cursorily');
-          $div.addClass('dtp_modal-cell-selected');
-          $div.removeClass('cursorily');
-          old.bind('click', changeDate);
-          $div.unbind('click');
+          var $fDate = $content.find("#field-data");
+          var old = $fDate.find(".dtp_modal-cell-selected");
+          old.removeClass("dtp_modal-cell-selected");
+          old.addClass("cursorily");
+          $div.addClass("dtp_modal-cell-selected");
+          $div.removeClass("cursorily");
+          old.bind("click", changeDate);
+          $div.unbind("click");
           // console.log(selectDate.format('DD-MM-YYYY HH:mm'));
         }
 
         function createMonthPanel(selectMonth) {
-          var $d = $('<div>');
-          $d.addClass('dtp_modal-months');
-          var $s = $('<i></i>');
-          $s.addClass('fa fa-angle-left cursorily ico-size-month hov');
+          var $d = $("<div>");
+          $d.addClass("dtp_modal-months");
+          var $s = $("<i></i>");
+          $s.addClass("fa fa-angle-left cursorily ico-size-month hov");
           //$s.attr('data-fa-mask', 'fas fa-circle');
-          $s.bind('click', prevMonth);
+          $s.bind("click", prevMonth);
           $d.append($s);
-          $s = $('<span>');
+          $s = $("<span>");
           $s.text(selectMonth.format("MMM YYYY"));
           $d.append($s);
           if (totalMonths(selectDate) < totalMonths(startDate)) {
-            $s = $('<i></i>');
-            $s.addClass('fa fa-angle-right cursorily ico-size-month hov');
-            $s.bind('click', nextMonth);
+            $s = $("<i></i>");
+            $s.addClass("fa fa-angle-right cursorily ico-size-month hov");
+            $s.bind("click", nextMonth);
             $d.append($s);
           }
           return $d;
@@ -189,7 +192,7 @@
         }
 
         function nextMonth() {
-          selectDate.add(1, 'month');
+          selectDate.add(1, "month");
           feelDates(selectDate);
         }
 
@@ -197,10 +200,9 @@
           // to forbid past selection
           //if (totalMonths(selectDate) > totalMonths(startDate)) {
 
-
           // to forbid futur selection ??
           // if (totalMonths(selectDate) < totalMonths(startDate)) {
-          selectDate.add(-1, 'month');
+          selectDate.add(-1, "month");
           feelDates(selectDate);
           // }
         }
@@ -208,11 +210,11 @@
         function attachChangeTime() {
           var $angles = $($content).find('i[id^="angle-"]');
           // $angles.bind('click', changeTime);
-          $angles.bind('mouseup', function () {
+          $angles.bind("mouseup", function () {
             mousedown = false;
             timeout = 800;
           });
-          $angles.bind('mousedown', function () {
+          $angles.bind("mousedown", function () {
             mousedown = true;
             changeTime(this);
           });
@@ -222,9 +224,9 @@
           var $el = this || el;
           $el = $($el);
           ///angle-up-hour angle-up-minute angle-down-hour angle-down-minute
-          var arr = $el.attr('id').split('-');
+          var arr = $el.attr("id").split("-");
           var increment = 1;
-          if (arr[1] == 'down') {
+          if (arr[1] == "down") {
             increment = -1;
           }
           appendIncrement(arr[2], increment);
@@ -243,113 +245,109 @@
         }
 
         function appendIncrement(typeDigits, increment) {
-
           var $i = typeDigits == "hour" ? $hour : $minute;
           var val = parseInt($i.text()) + increment;
           if (val < 0) {
             val = limitation[typeDigits];
-          }
-          else if (val > limitation[typeDigits]) {
+          } else if (val > limitation[typeDigits]) {
             val = 0;
           }
           $i.text(formatDigits(val));
         }
 
         function formatDigits(val) {
-
           if (val < 10) {
-            return '0' + val;
+            return "0" + val;
           }
           return val;
         }
 
         function createTimer() {
-          var $div = $('<div>');
-          $div.addClass('dtp_modal-time-mechanic');
-          var $panel = $('<div>');
-          $panel.addClass('dtp_modal-append');
-          var $i = $('<i>');
-          $i.attr('id', 'angle-up-hour');
-          $i.addClass('fa fa-angle-up ico-size-large cursorily hov');
+          var $div = $("<div>");
+          $div.addClass("dtp_modal-time-mechanic");
+          var $panel = $("<div>");
+          $panel.addClass("dtp_modal-append");
+          var $i = $("<i>");
+          $i.attr("id", "angle-up-hour");
+          $i.addClass("fa fa-angle-up ico-size-large cursorily hov");
           $panel.append($i);
-          var $m = $('<span>');
-          $m.addClass('dtp_modal-midle');
+          var $m = $("<span>");
+          $m.addClass("dtp_modal-midle");
           $panel.append($m);
-          $i = $('<i>');
-          $i.attr('id', 'angle-up-minute');
-          $i.addClass('fa fa-angle-up ico-size-large cursorily hov');
+          $i = $("<i>");
+          $i.attr("id", "angle-up-minute");
+          $i.addClass("fa fa-angle-up ico-size-large cursorily hov");
           $panel.append($i);
           $div.append($panel);
 
-          $panel = $('<div>');
-          $panel.addClass('dtp_modal-digits');
-          var $d = $('<span>');
-          $d.addClass('dtp_modal-digit');
-          $d.attr('id', 'd-hh');
-          $d.text(lastSelected.format('HH'));
+          $panel = $("<div>");
+          $panel.addClass("dtp_modal-digits");
+          var $d = $("<span>");
+          $d.addClass("dtp_modal-digit");
+          $d.attr("id", "d-hh");
+          $d.text(lastSelected.format("HH"));
           $panel.append($d);
-          $m = $('<span>');
-          $m.addClass('dtp_modal-midle-dig');
-          $m.html(':');
+          $m = $("<span>");
+          $m.addClass("dtp_modal-midle-dig");
+          $m.html(":");
           $panel.append($m);
-          $d = $('<span>');
-          $d.addClass('dtp_modal-digit');
-          $d.attr('id', 'd-mm');
-          $d.text(lastSelected.format('mm'));
+          $d = $("<span>");
+          $d.addClass("dtp_modal-digit");
+          $d.attr("id", "d-mm");
+          $d.text(lastSelected.format("mm"));
           $panel.append($d);
           $div.append($panel);
 
-          $panel = $('<div>');
-          $panel.addClass('dtp_modal-append');
-          $i = $('<i>');
-          $i.attr('id', 'angle-down-hour');
-          $i.addClass('fa fa-angle-down ico-size-large cursorily hov');
+          $panel = $("<div>");
+          $panel.addClass("dtp_modal-append");
+          $i = $("<i>");
+          $i.attr("id", "angle-down-hour");
+          $i.addClass("fa fa-angle-down ico-size-large cursorily hov");
           $panel.append($i);
-          $m = $('<span>');
-          $m.addClass('dtp_modal-midle');
+          $m = $("<span>");
+          $m.addClass("dtp_modal-midle");
           $panel.append($m);
-          $i = $('<i>');
-          $i.attr('id', 'angle-down-minute');
-          $i.addClass('fa fa-angle-down ico-size-large cursorily hov');
+          $i = $("<i>");
+          $i.attr("id", "angle-down-minute");
+          $i.addClass("fa fa-angle-down ico-size-large cursorily hov");
           $panel.append($i);
           $div.append($panel);
           return $div;
         }
 
         function createContent() {
-          var $c = $('<div>');
+          var $c = $("<div>");
           if (settings.showTime) {
             $c.addClass("dtp_modal-content");
-          }
-          else {
+          } else {
             $c.addClass("dtp_modal-content-no-time");
           }
-          var $el = $('<div>');
+          var $el = $("<div>");
           $el.addClass("dtp_modal-title");
           $el.text(settings.title);
           $c.append($el);
-          $el = $('<div>');
-          $el.addClass('dtp_modal-cell-date');
-          $el.attr('id', 'field-data');
+          $el = $("<div>");
+          $el.addClass("dtp_modal-cell-date");
+          $el.attr("id", "field-data");
           $c.append($el);
           if (settings.showTime) {
-            $el = $('<div>');
-            $el.addClass('dtp_modal-cell-time');
-            var $a = $('<div>');
-            $a.addClass('dtp_modal-time-block');
-            $a.attr('id', 'field-time');
+            $el = $("<div>");
+            $el.addClass("dtp_modal-cell-time");
+            var $a = $("<div>");
+            $a.addClass("dtp_modal-time-block");
+            $a.attr("id", "field-time");
             $el.append($a);
-            var $line = $('<div>');
-            $line.attr('id', 'time-line');
-            $line.addClass('dtp_modal-time-line');
+            var $line = $("<div>");
+            $line.attr("id", "time-line");
+            $line.addClass("dtp_modal-time-line");
             $line.text(lastSelected.format(settings.dateFormat));
 
             $a.append($line);
             $a.append(createTimer());
-            var $but = $('<div>');
-            $but.addClass('dpt_modal-button');
+            var $but = $("<div>");
+            $but.addClass("dpt_modal-button");
             $but.text(settings.buttonTitle);
-            $but.bind('click', close);
+            $but.bind("click", close);
             $el.append($but);
             $c.append($el);
           }
@@ -357,13 +355,13 @@
         }
         function updateDate() {
           if (settings.showTime) {
-            $('#time-line').text(lastSelected.format(settings.dateFormat));
+            $("#time-line").text(lastSelected.format(settings.dateFormat));
           }
           updateMainElem();
           elem.next().val(selectDate.format(settings.dateFormat));
 
           var $value = selectDate.format(settings.dateFormatDigit);
-          var $inpute = $('#result');
+          var $inpute = $("#result");
           $inpute.attr("value", $value);
 
           if (!settings.showTime) {
@@ -373,33 +371,30 @@
         }
 
         function updateMainElem() {
-          var arrF = settings.dateFormat.split(' ');
+          var arrF = settings.dateFormat.split(" ");
           if (settings.showTime && arrF.length != 2) {
             arrF.length = 2;
-            arrF[0] = 'DD/MM/YYYY';
-            arrF[1] = 'HH:mm';
+            arrF[0] = "DD/MM/YYYY";
+            arrF[1] = "HH:mm";
           }
-          var $s = $('<span>');
+          var $s = $("<span>");
           $s.text(lastSelected.format(arrF[0]));
           elem.empty();
           elem.append($s);
-          $s = $('<i>');
-          $s.addClass('fa fa-calendar ico-size');
+          $s = $("<i>");
+          $s.addClass("fa fa-calendar ico-size");
           elem.append($s);
           if (settings.showTime) {
-            $s = $('<span>');
+            $s = $("<span>");
             $s.text(lastSelected.format(arrF[1]));
             elem.append($s);
-            $s = $('<i>');
-            $s.addClass('fa fa-clock-o ico-size');
+            $s = $("<i>");
+            $s.addClass("fa fa-clock-o ico-size");
             elem.append($s);
           }
         }
-
       });
-
     });
-
   };
 
   function copyDate(d) {
@@ -407,11 +402,10 @@
   }
 
   function totalMonths(m) {
-    var r = m.format('YYYY') * 12 + parseInt(m.format('MM'));
+    var r = m.format("YYYY") * 12 + parseInt(m.format("MM"));
     return r;
   }
-
-}(jQuery));
+})(jQuery);
 // fa-caret-down
 
 let psl;
@@ -422,30 +416,30 @@ if (window.innerWidth < 450) {
 }
 
 $(document).ready(function () {
-  $('#picker').dateTimePicker({
+  $("#picker").dateTimePicker({
     // positionShift: { top: 30, left: psl },
-    title: "Selectinez l\'heure et la date.",
+    title: "Selectinez l'heure et la date.",
     buttonTitle: "Valider",
   });
   // $('#picker-no-time').dateTimePicker({ showTime: false, dateFormat: 'DD/MMMM/YYYY', title: 'Select Date' });
 });
 
 $(document).ready(function () {
-  $('#dueDatePicker').dateTimePicker({
+  $("#dueDatePicker").dateTimePicker({
     // positionShift: { top: 30, left: psl },
     showTime: false,
-    dateFormat: 'DD/MMMM/YYYY',
-    title: "Selectinez l\'heure et la date.",
+    dateFormat: "DD/MMMM/YYYY",
+    title: "Selectinez l'heure et la date.",
     buttonTitle: "Valider",
   });
   // $('#picker-no-time').dateTimePicker({ showTime: false, dateFormat: 'DD/MMMM/YYYY', title: 'Select Date' });
 });
 
 $(document).ready(function () {
-  $('#reminderPicker').dateTimePicker({
+  $("#reminderPicker").dateTimePicker({
     // positionShift: { top: 30, left: psl },
     showTime: false,
-    dateFormat: 'DD/MMMM/YYYY',
+    dateFormat: "DD/MMMM/YYYY",
     title: "Selectinez la date.",
     buttonTitle: "Valider",
   });

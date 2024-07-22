@@ -10,6 +10,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Crypto\DkimSigner;
 use Symfony\Component\Mime\Crypto\DkimOptions;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+
 class SendMailService
 {
     private $twig;
@@ -24,9 +25,9 @@ class SendMailService
         $this->mailer = $mailer;
         $this->em = $em;
         $this->twig = $twig;
-        $this->dkim_key_path = $dkim_key_path;
         $this->project_dir = $project_dir;
         $this->parameterBag = $parameterBag;
+        $this->dkim_key_path = $dkim_key_path;
     }
 
     public function sendOne($email)
@@ -76,17 +77,20 @@ class SendMailService
         string $template,
         array $context
     ): void {
-        // On crée le mail
+
+        $dkim_hey = file_get_contents($this->dkim_key_path);
+
         $email = (new TemplatedEmail())
             ->from($from)
             ->to($to)
             ->subject($subject)
-            // ->htmlTemplate("emails/" . $template . ".html.twig")
+            ->text('Sending emails is fun again!')
             ->html($this->twig->render(
-                "emails/" . $template . ".html.twig",
-                [
-                    'context' => $context,
-                ]
+              "ezreview/emails/" . $template . ".html.twig",
+              [
+                'context' => $context,
+              ]
+                // ->htmlTemplate("emails/" . $template . ".html.twig")
                 // ->context($context);
             ));
 
@@ -95,19 +99,22 @@ class SendMailService
         // $signer = new DkimSigner('file://'.dirname(__DIR__).$this->dkim_key_path, 'usygec.fr', 'email');
 
         if ($this->parameterBag->get('kernel.environment') === 'prod') {
-            $signer = new DkimSigner('file://'.dirname(__DIR__).'/../../DKIM_key.txt', 'usygec.fr', 'email');
+            $signer = new DkimSigner($dkim_hey, 'usygec.fr', 'email');
+            // $signer = new DkimSigner('file://'.dirname(__DIR__).$this->dkim_key_path, 'usygec.fr', 'email');
         } else {
-            $signer = new DkimSigner('file://'.$this->project_dir.$this->dkim_key_path, 'usygec.fr', 'email');
+            $signer = new DkimSigner($dkim_hey, 'usygec.fr', 'email');
+            // $signer = new DkimSigner('file://'.$this->project_dir.$this->dkim_key_path, 'usygec.fr', 'email');
         }
 
         $signedEmail = $signer->sign($email, (new DkimOptions())
-        ->bodyCanon('relaxed')
-        ->headerCanon('relaxed')
-        ->headersToIgnore(['Message-ID'])
-        ->toArray()
-    );
+          ->bodyCanon('relaxed')
+          ->headerCanon('relaxed')
+          ->headersToIgnore(['Message-ID'])
+          ->toArray()
+        );
 
         // On envoie le mail
         $this->mailer->send($signedEmail);
+        // dd($signedEmail);
     }
 }

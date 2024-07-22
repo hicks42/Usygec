@@ -13,11 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MailJetService
 {
-  private EntityManagerInterface $em;
 
   protected $mailjet_key_public;
   protected $mailjet_key_private;
   private $structureRepo;
+  private $em;
 
   public function __construct(EntityManagerInterface $em, StructureRepository $structureRepo, $mailjet_key_public, $mailjet_key_private)
   {
@@ -72,6 +72,6 @@ class MailJetService
       ]
     ];
     $response = $mj->post(Resources::$Email, ['body' => $body]);
-    $response->success();
+    $response->success() && var_dump($response->getData());
   }
 }

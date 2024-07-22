@@ -63,6 +63,11 @@ class Produit
   private $imageFile;
 
   /**
+   * @ORM\OneToMany(targetEntity=Attachment::class, mappedBy="produit")
+   */
+  private $attachments;
+
+  /**
    * @ORM\Column(type="string", length=255, nullable=true)
    */
   private $imageName;

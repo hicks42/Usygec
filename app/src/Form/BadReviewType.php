@@ -48,7 +48,14 @@ class BadReviewType extends AbstractType
             ])
 
             ->add('message', TextareaType::class, [
-                'label' => 'Expliquez le motif de votre mécontentement :'
+              'row_attr' => ['class' => 'w-100'],
+              'label' => 'Expliquez le motif de votre mécontentement :',
+              'label_attr' => [
+                  'class' => 'w-100'
+              ],
+              'attr' => [
+                  'class' => 'w-100'
+              ]
             ])
             ->add('envoyer', SubmitType::class, [
                 'row_attr' => ['class' => 'd-flex justify-content-center'],
